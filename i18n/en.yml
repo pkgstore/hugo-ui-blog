@@ -60,7 +60,7 @@ alert:
   license_deprecated_id: { other: 'License ID is deprecated!' }
   license_fsf_libre: { other: 'License is considered free by the FSF.' }
   license_osi_approved: { other: 'License is OSI-approved.' }
-  opinion: { other: 'Information on this page is the subjective opinion of author.' }
+  opinion: { other: 'Information on this page is the subjective opinion of author and may constitute a value judgment.' }
   related_not_found: { other: 'Related not found.' }
   tags_not_found: { other: 'Tags not found.' }
 
