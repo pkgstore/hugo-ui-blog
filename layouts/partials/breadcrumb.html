@@ -1,0 +1,12 @@
+<nav style="--bs-breadcrumb-divider:'/';" class="small" aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light p-2 rounded">
+      {{ range (.Ancestors.Reverse) }}
+        <li class="breadcrumb-item">
+          <a href="{{ (.RelPermalink) }}">
+              {{ if (.IsHome) }}<i class="fas fa-home fa-fw"></i>{{ else }}{{ (.Title) }}{{ end }}
+          </a>
+        </li>
+      {{ end }}
+    <li class="breadcrumb-item active" aria-current="page">{{ (.Title) }}</li>
+  </ol>
+</nav>

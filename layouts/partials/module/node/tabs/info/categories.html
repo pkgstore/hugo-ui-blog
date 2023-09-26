@@ -1,0 +1,27 @@
+{{ $categories := 0 }}
+{{ if (isset .Params "categories") }}
+    {{ if (not (eq (index (.Param "categories") 0) "")) }}
+        {{ $categories = 1 }}
+    {{ end }}
+{{ end }}
+
+<section class="card node-categories h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ (i18n "categories") }}</h5>
+      {{ if ($categories) }}
+        <ul class="list-inline">
+            {{ range (.GetTerms "categories") }}
+              <li class="list-inline-item">
+                <a href="{{ (.Permalink) }}">{{ (.LinkTitle) }}</a>
+              </li>
+            {{ end }}
+        </ul>
+      {{ else }}
+          {{ (partial "function/alert" (dict
+          "type" "warning"
+          "icon" "fas fa-folder-open"
+          "msg" (i18n "alert.categories_not_found")
+          )) }}
+      {{ end }}
+  </div>
+</section>

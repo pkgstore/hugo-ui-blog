@@ -1,0 +1,27 @@
+{{ $tags := 0 }}
+{{ if (isset .Params "tags") }}
+    {{ if (not (eq (index (.Param "tags") 0) "")) }}
+        {{ $tags = 1 }}
+    {{ end }}
+{{ end }}
+
+<section class="card node-tags h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ (i18n "tags") }}</h5>
+      {{ if ($tags) }}
+        <ul class="list-inline">
+            {{ range (.GetTerms "tags") }}
+              <li class="list-inline-item">
+                <a href="{{ (.Permalink) }}">#{{ (.LinkTitle) }}</a>
+              </li>
+            {{ end }}
+        </ul>
+      {{ else }}
+          {{ (partial "function/alert" (dict
+          "type" "warning"
+          "icon" "fas fa-tags"
+          "msg" (i18n "alert.tags_not_found")
+          )) }}
+      {{ end }}
+  </div>
+</section>

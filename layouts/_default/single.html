@@ -1,0 +1,241 @@
+{{ define "main" }}
+
+    {{ $cfg := ($.Site.Params.node) }}
+    {{ $tabsID := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
+
+    <div class="section py-3">
+      <div class="container">
+
+          {{ (partial "breadcrumb" .) }}
+
+        <article>
+          <header>
+              {{ if ($cfg.cover.image.enabled) }}
+                  {{ (partial "module/node/cover/image.lg" .) }}
+              {{ end }}
+            <div class="node-title">
+              <h1 class="text-center">{{ (.Title) }}</h1>
+            </div>
+          </header>
+          <footer>
+            <ul class="list-inline text-center text-muted small">
+                {{ with (.Param "date") }}
+                  <li class="list-inline-item">
+                    <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
+                        {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
+                    </time>
+                  </li>
+                {{ end }}
+                {{ with (.Param "complexity") }}
+                    {{ with (eq . "0") }}
+                      <li class="list-inline-item">&bull;</li>
+                      <li title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}' class="list-inline-item text-success">
+                        <i class="far fa-face-smile fa-fw"></i>
+                      </li>
+                    {{ end }}
+                    {{ with (eq . "1") }}
+                      <li class="list-inline-item">&bull;</li>
+                      <li title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}' class="list-inline-item text-warning">
+                        <i class="far fa-face-meh fa-fw"></i>
+                      </li>
+                    {{ end }}
+                    {{ with (eq . "2") }}
+                      <li class="list-inline-item">&bull;</li>
+                      <li title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}' class="list-inline-item text-danger">
+                        <i class="far fa-face-frown fa-fw"></i>
+                      </li>
+                    {{ end }}
+                {{ end }}
+            </ul>
+          </footer>
+          <ul class="nav nav-tabs mb-3" id="{{ ($tabsID) }}" data-fn="node-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button title='{{ (i18n "home") }}' class="nav-link active" id="tab-main-home" data-bs-toggle="tab" data-bs-target="#tab-pane-main-home" type="button" role="tab" aria-controls="tab-pane-main-home" aria-selected="true">
+                <i class="fas fa-home fa-fw"></i>
+              </button>
+            </li>
+              {{ if ($cfg.tabs.info.enabled) }}
+                <li class="nav-item" role="presentation">
+                  <button title='{{ (i18n "info") }}' class="nav-link" id="tab-main-info" data-bs-toggle="tab" data-bs-target="#tab-pane-main-info" type="button" role="tab" aria-controls="tab-pane-main-info" aria-selected="false">
+                    <i class="fas fa-info fa-fw"></i>
+                  </button>
+                </li>
+              {{ end }}
+              {{ if ($cfg.tabs.license.enabled) }}
+                  {{ with (.Param "license") }}
+                    <li class="nav-item" role="presentation">
+                      <button title='{{ (i18n "license") }}' class="nav-link" id="tab-main-license" data-bs-toggle="tab" data-bs-target="#tab-pane-main-license" type="button" role="tab" aria-controls="tab-pane-main-license" aria-selected="false">
+                        <i class="far fa-copyright fa-fw"></i>
+                      </button>
+                    </li>
+                  {{ end }}
+              {{ end }}
+              {{ if (.IsTranslated) }}
+                <li class="nav-item" role="presentation">
+                  <button title='{{ (i18n "languages") }}' class="nav-link" id="tab-main-languages" data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages" type="button" role="tab" aria-controls="tab-pane-main-languages" aria-selected="false">
+                    <i class="fas fa-language fa-fw"></i>
+                  </button>
+                </li>
+              {{ end }}
+              {{ if ($cfg.tabs.share.enabled) }}
+                <li class="nav-item ms-auto" role="presentation">
+                  <button title='{{ (i18n "share") }}' class="nav-link" id="tab-main-share" data-bs-toggle="tab" data-bs-target="#tab-pane-main-share" type="button" role="tab" aria-controls="tab-pane-main-share" aria-selected="false">
+                    <i class="fas fa-share fa-fw"></i>
+                  </button>
+                </li>
+              {{ end }}
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home" tabindex="0">
+              <div class="node-body">
+                  {{ if (in .Params.categories "InDev") }}
+                      {{ (partial "function/alert" (dict
+                      "type" "warning"
+                      "icon" "fas fa-edit"
+                      "msg" (i18n "alert.in_dev")
+                      )) }}
+                  {{ end }}
+
+                  {{ if (in .Params.categories "Opinion") }}
+                      {{ (partial "function/alert" (dict
+                      "type" "warning"
+                      "icon" "fas fa-user-graduate"
+                      "msg" (i18n "alert.opinion")
+                      )) }}
+                  {{ end }}
+
+                  {{ (.Content) }}
+              </div>
+                {{ with (.Param "sources") }}
+                    {{ if (not (eq (index . 0) "")) }}
+                      <div class="text-muted font-italic border-top mt-5 pt-3 small">
+                        <p>{{ i18n "sources" }}:</p>
+                        <ul>
+                            {{ range . }}
+                              <li>
+                                  {{ if (hasPrefix . "http") }}
+                                      {{ $url := (urls.Parse .) }}
+                                      <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">{{ $url.Host }}</a>
+                                  {{ else }}
+                                      {{ . }}
+                                  {{ end }}
+                              </li>
+                            {{ end }}
+                        </ul>
+                      </div>
+                    {{ end }}
+                {{ end }}
+            </div>
+              {{ if ($cfg.tabs.info.enabled) }}
+                <div class="tab-pane" id="tab-pane-main-info" role="tabpanel" aria-labelledby="tab-main-info" tabindex="0">
+                  <div class="node-body">
+                    <div class="row row-cols-1 row-cols-lg-2 g-3">
+                        {{ if ($cfg.tabs.info.categories.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/categories" .) }}
+                          </div>
+                        {{ end }}
+                        {{ if ($cfg.tabs.info.tags.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/tags" .) }}
+                          </div>
+                        {{ end }}
+                        {{ if ($cfg.tabs.info.authors.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/authors" .) }}
+                          </div>
+                        {{ end }}
+                        {{ if ($cfg.tabs.info.related.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/related" .) }}
+                          </div>
+                        {{ end }}
+                        {{ if ($cfg.tabs.info.meta.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/meta" .) }}
+                          </div>
+                        {{ end }}
+                        {{ if ($cfg.tabs.info.stats.enabled) }}
+                          <div class="col">
+                              {{ (partial "module/node/tabs/info/stats" .) }}
+                          </div>
+                        {{ end }}
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+              {{ if ($cfg.tabs.license.enabled) }}
+                  {{ with (.Param "license") }}
+                    <div class="tab-pane" id="tab-pane-main-license" role="tabpanel" aria-labelledby="tab-main-license" tabindex="0">
+                      <div class="node-body">
+                          {{ $api := ($.Site.Params.api) }}
+                          {{ $ts := (now.Format "2006-01-02") }}
+                          {{ $headers := (dict "User-Agent" ($api.user_agent)) }}
+                          {{ $url := "https://raw.githubusercontent.com/spdx/license-list-data/main/json/details" }}
+                          {{ $license := (getJSON ($url) "/" . ".json?ts=" ($ts) ($headers)) }}
+                          {{ with ($license) }}
+                              {{ if (.isDeprecatedLicenseId) }}
+                                  {{ (partial "function/alert" (dict
+                                  "type" "warning"
+                                  "icon" "fas fa-triangle-exclamation"
+                                  "msg" (i18n "alert.license_deprecated_id")
+                                  )) }}
+                              {{ end }}
+                              {{ if (.isFsfLibre) }}
+                                  {{ (partial "function/alert" (dict
+                                  "type" "success"
+                                  "icon" "fas fa-heart"
+                                  "msg" (i18n "alert.license_fsf_libre")
+                                  )) }}
+                              {{ end }}
+                              {{ if (.isOsiApproved) }}
+                                  {{ (partial "function/alert" (dict
+                                  "type" "success"
+                                  "icon" "fab fa-osi"
+                                  "msg" (i18n "alert.license_osi_approved")
+                                  )) }}
+                              {{ end }}
+                              {{ with (.licenseComments) }}
+                                  {{ (partial "function/alert" (dict
+                                  "type" "info"
+                                  "icon" "fas fa-info"
+                                  "msg" .
+                                  )) }}
+                              {{ end }}
+                              {{ with (.standardLicenseHeaderHtml) }}
+                                <div class="card mb-3">
+                                  <h5 class="card-header">{{ (i18n "license_header") }}</h5>
+                                  <div class="card-body">
+                                      {{ (. | safeHTML) }}
+                                  </div>
+                                </div>
+                              {{ end }}
+                              {{ with (.licenseTextHtml) }}
+                                <div class="card">
+                                  <h5 class="card-header">{{ (i18n "license_text") }}</h5>
+                                  <div class="card-body">
+                                      {{ (. | safeHTML) }}
+                                  </div>
+                                </div>
+                              {{ end }}
+                          {{ end }}
+                      </div>
+                    </div>
+                  {{ end }}
+              {{ end }}
+              {{ if (.IsTranslated) }}
+                <div class="tab-pane" id="tab-pane-main-languages" role="tabpanel" aria-labelledby="tab-main-languages" tabindex="0">
+                    {{ (partial "module/node/tabs/languages" .) }}
+                </div>
+              {{ end }}
+              {{ if ($cfg.tabs.share) }}
+                <div class="tab-pane" id="tab-pane-main-share" role="tabpanel" aria-labelledby="tab-main-share" tabindex="0">
+                    {{ (partial "module/node/tabs/share" .) }}
+                </div>
+              {{ end }}
+          </div>
+        </article>
+      </div>
+    </div>
+
+{{ end }}

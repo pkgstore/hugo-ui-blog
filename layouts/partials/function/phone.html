@@ -1,0 +1,6 @@
+{{ $phone := (.phone) }}
+{{ $phone = (($phone) | replaceRE `^((\+)([0-9]{1})([0-9]{3})([0-9]{3})([0-9]{1})([0-9]{3}))` "$2 $3 $4 $5-$6-$7") }}
+{{ $phone = (($phone) | replaceRE `^(([0-9]{1})([0-9]{2}))` "$2-$3") }}
+{{ $phone = ((printf "<a href='tel:%s'>%s</a>" (.phone) ($phone)) | safeHTML) }}
+
+{{ return ($phone) }}

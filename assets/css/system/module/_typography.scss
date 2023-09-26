@@ -1,0 +1,59 @@
+body {
+  @for $i from 1 through 6 {
+    h#{$i},
+    .h#{$i} {
+      @include font-cond();
+    }
+  }
+}
+
+body {
+  .node {
+    &-body {
+      @include font-serif();
+
+      blockquote {
+        border-left: .5rem solid var(--bs-gray-200);
+        padding-left: 1rem;
+      }
+
+      kbd {
+        @include font-mono();
+      }
+
+      code {
+        @include font-mono();
+        background-color: rgba(var(--bs-danger-rgb), 5%);
+        border-radius: var(--bs-border-radius-sm);
+        padding: .1rem .3rem;
+        white-space: nowrap;
+      }
+
+      pre {
+        @include font-mono();
+        border-radius: var(--bs-border-radius-sm);
+        max-height: 40rem;
+
+        > code {
+          background: var(--bs-gray-900);
+          color: var(--bs-gray-200);
+          display: block;
+          font-size: var(--bs-body-font-size);
+          padding: 1rem;
+          white-space: pre;
+        }
+      }
+
+      .figure {
+        &.is-table {
+          display: inline-table;
+
+          .figure-caption {
+            display: table-caption;
+            caption-side: bottom;
+          }
+        }
+      }
+    }
+  }
+}

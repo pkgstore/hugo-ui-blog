@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+    {{ $cfg := ($.Site.Params.node) }}
+
+    <div class="section py-3">
+      <div class="container">
+
+          {{ (partial "breadcrumb" .) }}
+
+        <div class="row row-cols-1 row-cols-lg-2 }} g-3">
+            {{ range (.Paginator.Pages) }}
+              <div class="col">
+                <article class="node-{{ (.Type) }} d-flex">
+                    {{ if ($cfg.cover.image.enabled) }}
+                        {{ (partial "module/node/cover/image.md" .) }}
+                    {{ end }}
+                  <div class="flex-grow-1">
+                    <header>
+                      <div class="node-title">
+                        <h4 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h4>
+                      </div>
+                    </header>
+                    <div class="node-body">{{ (.Render "summary") }}</div>
+                  </div>
+                </article>
+              </div>
+            {{ end }}
+        </div>
+
+          {{ (partial "pagination" .) }}
+
+      </div>
+    </div>
+
+{{ end }}

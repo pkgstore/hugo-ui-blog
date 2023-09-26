@@ -1,0 +1,155 @@
+{{ $cfg := ($.Site.Params.node.tabs.share) }}
+
+{{ $url := (.Permalink) }}
+{{ $title := ((.Title) | htmlEscape) }}
+{{ $summary := ((.Summary) | htmlEscape) }}
+{{ $tags := ((.Params.tags) | default "") }}
+{{ $tags = (delimit ($tags) ",") }}
+
+<div class="node-body">
+  <div class="row row-cols-1 row-cols-lg-2 g-3">
+    <div class="col">
+      <div class="row row-cols-1 g-3">
+          {{ if ($cfg.social.enabled) }}
+            <div class="col">
+              <div class="row row-cols-auto g-2">
+                <div class="col">
+                    {{ $email := (i18n "email") }}
+                  <a title='{{ ($email) }}' class="btn btn-light" href="mailto:?subject={{ ($title) }}&amp;body={{ ($url) }}" role="button" rel="noopener nofollow">
+                    <i class="fas fa-envelope-open-text fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $twitter := (i18n "social.twitter") }}
+                  <a title='{{ ($twitter) }}' class="btn btn-light btn-social" href="https://twitter.com/intent/tweet?url={{ ($url) }}&amp;text={{ ($title) }}&amp;hashtags={{ ($tags) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-twitter fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $facebook := (i18n "social.facebook") }}
+                  <a title='{{ ($facebook) }}' class="btn btn-light btn-social" href="https://facebook.com/sharer/sharer.php?u={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-facebook fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $linkedIn := (i18n "social.linkedin") }}
+                  <a title='{{ ($linkedIn) }}' class="btn btn-light btn-social" href="https://linkedin.com/sharing/share-offsite/?url={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-linkedin fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $reddit := (i18n "social.reddit") }}
+                  <a title='{{ ($reddit) }}' class="btn btn-light btn-social" href="https://reddit.com/submit?url={{ ($url) }}&amp;title={{ ($title) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-reddit fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $vk := (i18n "social.vk") }}
+                  <a title='{{ ($vk) }}' class="btn btn-light btn-social" href="https://vk.com/share.php?url={{ ($url) }}&amp;title={{ ($title) }}&amp;description={{ ($summary) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-vk fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $telegram := (i18n "social.telegram") }}
+                  <a title='{{ ($telegram) }}' class="btn btn-light btn-social" href="https://t.me/share/url?url={{ ($url) }}&amp;text={{ ($title) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-telegram fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $pinterest := (i18n "social.pinterest") }}
+                  <a title='{{ ($pinterest) }}' class="btn btn-light btn-social" href="http://pinterest.com/pin/create/button/?url={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-pinterest fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $pocket := (i18n "social.pocket") }}
+                  <a title='{{ ($pocket) }}' class="btn btn-light btn-social" href="https://getpocket.com/edit?url={{ ($url) }}&amp;title={{ ($title) }}" target="_blank" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-get-pocket fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $hackerNews := (i18n "social.hackernews") }}
+                  <a title='{{ ($hackerNews) }}' class="btn btn-light btn-social" href="https://news.ycombinator.com/submitlink?u={{ ($url) }}&amp;t={{ ($title) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-hacker-news fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $liveJournal := (i18n "social.livejournal") }}
+                  <a title='{{ ($liveJournal) }}' class="btn btn-light btn-social" href="https://livejournal.com/update.bml?subject={{ ($title) }}&amp;event={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fas fa-edit fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $ok := (i18n "social.ok") }}
+                  <a title='{{ ($ok) }}' class="btn btn-light btn-social" href="https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&amp;st.shareUrl={{ ($url) }}&amp;title={{ ($title) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-odnoklassniki fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $blogger := (i18n "social.blogger") }}
+                  <a title='{{ ($blogger) }}' class="btn btn-light btn-social" href="https://blogger.com/blog-this.g?u={{ ($url) }}&amp;n={{ ($title) }}&amp;t={{ ($summary) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-blogger fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $digg := (i18n "social.digg") }}
+                  <a title='{{ ($digg) }}' class="btn btn-light btn-social" href="https://digg.com/submit?url={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-digg fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $skype := (i18n "social.skype") }}
+                  <a title='{{ ($skype) }}' class="btn btn-light btn-social" href="https://web.skype.com/share?url={{ ($url) }}&amp;title={{ ($title) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-skype fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $whatsapp := (i18n "social.whatsapp") }}
+                  <a title='{{ ($whatsapp) }}' class="btn btn-light btn-social" href="https://api.whatsapp.com/send?text={{ ($url) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-whatsapp fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $tumblr := (i18n "social.tumblr") }}
+                  <a title='{{ ($tumblr) }}' class="btn btn-light btn-social" href="https://tumblr.com/widgets/share/tool?canonicalUrl={{ ($url) }}&amp;title={{ ($title) }}&amp;content={{ ($summary) }}&amp;tags={{ ($tags) }}&amp;posttype=link" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-tumblr fa-fw"></i>
+                  </a>
+                </div>
+                <div class="col">
+                    {{ $wordpress := (i18n "social.wordpress") }}
+                  <a title='{{ ($wordpress) }}' class="btn btn-light btn-social" href="https://wordpress.com/wp-admin/press-this.php?u={{ ($url) }}&amp;t={{ ($title) }}&amp;s={{ ($summary) }}" role="button" rel="noopener nofollow" data-fn="popup">
+                    <i class="fab fa-wordpress fa-fw"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {{ end }}
+          {{ if ($cfg.url.enabled) }}
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-link fa-fw"></i></span>
+                <input type="text" class="form-control" value="{{ ($url) }}" data-fn="select-all" readonly/>
+              </div>
+            </div>
+          {{ end }}
+          {{ if ($cfg.file.enabled) }}
+            <div class="col">
+                {{ with (.File) }}
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-file fa-fw"></i></span>
+                    <input type="text" class="form-control" value="{{ (.Path) }}" data-fn="select-all" readonly/>
+                  </div>
+                {{ end }}
+            </div>
+          {{ end }}
+      </div>
+    </div>
+      {{ if ($cfg.qrcode.enabled) }}
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <div class="d-block img-thumbnail" data-fn="qrcode" data-ext-text="{{ $url }}"></div>
+          </div>
+        </div>
+      {{ end }}
+  </div>
+</div>

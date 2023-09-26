@@ -1,0 +1,101 @@
+# -------------------------------------------------------------------------------------------------------------------- #
+# General.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+articles: { other: 'Статьи' }
+authors: { other: 'Авторы' }
+categories: { other: 'Категории' }
+close: { other: 'Закрыть' }
+complexity-0: { other: 'Простой' }
+complexity-1: { other: 'Средний' }
+complexity-2: { other: 'Сложный' }
+complexity: { other: 'Уровень сложности' }
+contacts: { other: 'Контакты' }
+developers: { other: 'Разработчики' }
+egg: { other: 'Oops!' }
+email: { other: 'Email' }
+file_id: { other: 'ID файла' }
+home: { other: 'Главная' }
+info: { other: 'Информация' }
+languages: { other: 'Языки' }
+license: { other: 'Лицензия' }
+license_header: { other: 'Заголовок лицензии' }
+license_text: { other: 'Текст лицензия' }
+meta: { other: 'Мета' }
+minutes: { other: 'мин.' }
+reading_time: { other: 'Время чтения' }
+search: { other: 'Поиск' }
+search_bing: { other: 'Поиск Bing' }
+search_google: { other: 'Поиск Google' }
+search_yandex: { other: 'Поиск Яндекс' }
+see_also: { other: 'Смотрите также' }
+share: { other: 'Поделиться' }
+site_resize: { other: 'Изменить размер сайта' }
+size: { other: 'Размер' }
+social_networks: { other: 'Социальный сети' }
+sources: { other: 'Источники' }
+stats: { other: 'Статистика' }
+sys_path: { other: 'Системный путь' }
+tags: { other: 'Теги' }
+type: { other: 'Тип' }
+uuid: { other: 'UUID' }
+word_count: { other: 'Количество слов' }
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Browser console.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+console:
+  about_me: { other: 'Обо мне' }
+  buy_me: { other: 'Купите мне' }
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Alerts.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+alert:
+  authors_not_found: { other: 'Авторы не указаны.' }
+  categories_not_found: { other: 'Категории не установлены.' }
+  in_dev: { other: 'Информация на этой странице находится в доработке. Информация может добавляться (и / или) изменяться.' }
+  license_deprecated_id: { other: 'Устаревший идентификатор лицензии!' }
+  license_fsf_libre: { other: 'Лицензия считается свободной FSF.' }
+  license_osi_approved: { other: 'Лицензия одобрена OSI.' }
+  opinion: { other: 'Информация на этой странице является субъективным мнением автора.' }
+  related_not_found: { other: 'Похожие записи не найдены.' }
+  tags_not_found: { other: 'Теги не установлены.' }
+
+  search_help:
+    other: >
+      Используется нечёткий поиск (приблизительное сопоставление строк).
+      Это метод поиска строк, которые приблизительно соответствуют поисковому шаблону.
+      Результаты поиска сортируются по точности совпадения с поисковым шаблоном.
+      Результаты поиска, наиболее точно соответствующие запросу, находятся сверху, приблизительные результаты - снизу.
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Social.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+social:
+  bitbucket: { other: 'BitBucket' }
+  blogger: { other: 'Blogger' }
+  digg: { other: 'Digg' }
+  facebook: { other: 'Facebook' }
+  github: { other: 'GitHub' }
+  gitlab: { other: 'GitLab' }
+  hackernews: { other: 'Hacker News' }
+  instagram: { other: 'Instagram' }
+  linkedin: { other: 'LinkedIn' }
+  livejournal: { other: 'LiveJournal' }
+  ok: { other: 'Одноклассники' }
+  patreon: { other: 'Patreon' }
+  pinterest: { other: 'Pinterest' }
+  pocket: { other: 'Pocket' }
+  reddit: { other: 'Reddit' }
+  skype: { other: 'Skype' }
+  telegram: { other: 'Telegram' }
+  tumblr: { other: 'Tumblr' }
+  twitter: { other: 'Twitter' }
+  vk: { other: 'ВКонтакте' }
+  whatsapp: { other: 'WhatsApp' }
+  wordpress: { other: 'WordPress' }
+  youtube: { other: 'YouTube' }

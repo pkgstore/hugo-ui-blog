@@ -1,0 +1,24 @@
+{{ $cfg := ($.Site.Params.node.cover.image) }}
+
+<div class="node-cover mb-3">
+    {{ $width := ($cfg.lg.width) }}{{ $height := ($cfg.lg.height) }}
+    {{ $crop := ((.Param "cover.crop") | default ($cfg.crop)) }}
+    {{ $fit := ((.Param "cover.fit") | default ($cfg.fit)) }}
+    {{ $src := (index (.Param "images") 0) | default ($cfg.placeholder) }}
+    {{ $srcset := (slice
+    (dict "width" "640" "height" "360")
+    (dict "width" "768" "height" "432")
+    (dict "width" "1024" "height" "576")
+    (dict "width" "1280" "height" "720")
+    (dict "width" "1600" "height" "900")
+    ) }}
+  <a class="d-block" href="{{ (.RelPermalink) }}">
+    <picture>
+      <source srcset='{{ range $i, $e := ($srcset) }}{{ if $i }},{{ end }}{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ (.width) }}&amp;h={{ (.height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format {{ (.width) }}w{{ end }}' sizes="(min-width: 576px) 100vw"/>
+      <img class="d-block w-100 h-100 rounded"
+           src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
+           width="{{ ($width) }}" height="{{ ($height) }}"
+           alt="" loading="lazy"/>
+    </picture>
+  </a>
+</div>

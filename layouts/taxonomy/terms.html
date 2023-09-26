@@ -1,0 +1,52 @@
+{{ define "main" }}
+
+    {{ $type := (.Type) }}
+    {{ $cfg := (index ($.Site.Params.taxonomy) ($type)) }}
+
+    <div class="section py-3">
+      <div class="container">
+
+          {{ (partial "breadcrumb" .) }}
+
+        <div class="row row-cols-1 row-cols-lg-{{ $cfg.grid.cols }} g-3">
+            {{ range $k, $v := (.Data.Terms.Alphabetical) }}
+                {{ $name := (.Name) }}{{ $count := (.Count) }}
+                {{ with ($.Site.GetPage (printf "/%s/%s" ($type) ($name))) }}
+                    {{ $cfg := (index ($.Site.Params.taxonomy) ($type)) }}
+                    {{ $size := ($cfg.cover.size) }}
+                    {{ $email := ((.Param "email") | default (delimit (shuffle (seq 999)) "")) }}
+                    {{ $icon_id := ((.Param "cover.icon.name") | default ($cfg.cover.icon.name)) }}
+                    {{ $icon_size := ($cfg.cover.icon.size) }}
+                    {{ $avatar_id := (($email) | md5) }}
+                    {{ $avatar_size := ($cfg.cover.avatar.size) }}
+                    <div class="col">
+                      <article class="d-flex">
+                        <div class="flex-shrink-0">
+                          <div class="node-cover">
+                            <a href="{{ (.RelPermalink) }}"
+                               class="d-flex justify-content-center align-items-center border rounded p-1 text-decoration-none text-muted bg-light"
+                               style="width: {{ ($size) }}; height: {{ ($size) }};">
+                                {{ if (eq ($type) "authors") }}
+                                  <img class="img-fluid" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
+                                {{ else }}
+                                  <i class="{{ ($icon_id) }} fa-fw fa-{{ ($icon_size) }}"></i>
+                                {{ end }}
+                            </a>
+                          </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h4 class="h5 mt-0">
+                            <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+                            <sup class="text-muted">{{ ($count) }}</sup>
+                          </h4>
+                          <div class="node-body">{{ (.Content) }}</div>
+                        </div>
+                      </article>
+                    </div>
+                {{ end }}
+            {{ end }}
+        </div>
+      </div>
+    </div>
+
+{{ end }}

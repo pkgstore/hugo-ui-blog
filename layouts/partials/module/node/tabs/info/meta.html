@@ -1,0 +1,31 @@
+<section class="card node-meta h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ (i18n "meta") }}</h5>
+    <div class="row row-cols-1 row-cols-sm-2 g-2 align-items-center">
+        {{ with (.File) }}
+          <div class="col">{{ (i18n "file_id") }}</div>
+          <div class="col">
+            <input type="text" class="form-control" value="{{ .UniqueID }}" readonly/>
+          </div>
+        {{ end }}
+        {{ with (.Param "uuid") }}
+          <div class="col">{{ (i18n "uuid") }}</div>
+          <div class="col">
+            <input type="text" class="form-control" value="{{ . }}" readonly/>
+          </div>
+        {{ end }}
+        {{ with (.File) }}
+          <div class="col">{{ (i18n "sys_path") }}</div>
+          <div class="col">
+            <input type="text" class="form-control" value="{{ .Path }}" readonly/>
+          </div>
+        {{ end }}
+        {{ with (.Type) }}
+          <div class="col">{{ (i18n "type") }}</div>
+          <div class="col">
+            <input type="text" class="form-control" value="{{ . }}" readonly/>
+          </div>
+        {{ end }}
+    </div>
+  </div>
+</section>

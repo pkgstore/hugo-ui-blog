@@ -1,0 +1,22 @@
+{{ $related := ((where ($.Site.RegularPages.Related .) "Type" "in" (.Type)) | first 10) }}
+
+<section class="card node-similar h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ (i18n "see_also") }}</h5>
+      {{ with ($related) }}
+        <ul>
+            {{ range . }}
+              <li>
+                <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+              </li>
+            {{ end }}
+        </ul>
+      {{ else }}
+          {{ (partial "function/alert" (dict
+          "type" "warning"
+          "icon" "fas fa-triangle-exclamation"
+          "msg" (i18n "alert.related_not_found")
+          )) }}
+      {{ end }}
+  </div>
+</section>

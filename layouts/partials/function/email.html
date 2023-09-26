@@ -1,0 +1,5 @@
+{{ $email := ((.email) | default "") }}
+{{ $email = (($email) | lower) }}
+{{ $email = ((printf "<a href='mailto:%s'>%s</a>" (.email) ($email)) | safeHTML) }}
+
+{{ return ($email) }}

@@ -1,0 +1,62 @@
+html {
+  scroll-padding-top: 4rem;
+}
+
+body {
+  @include font-base();
+  padding-top: 57px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+body {
+  > header {
+    .navbar {
+      @include font-cond();
+
+      // HeadRoom JS.
+      &.headroom {
+        will-change: transform;
+        transition: transform 200ms linear;
+
+        &--pinned {
+          transform: translateY(0%);
+        }
+
+        &--unpinned {
+          transform: translateY(-100%);
+        }
+      }
+
+      &-brand {
+        @include font-brand();
+      }
+    }
+  }
+}
+
+body {
+  main {
+    > .section {
+      &:nth-child(even) {
+      }
+
+      &:nth-child(odd) {
+      }
+    }
+  }
+}
+
+body {
+  > footer {
+    > .section {
+      &:nth-child(even) {
+      }
+
+      &:nth-child(odd) {
+      }
+    }
+  }
+}

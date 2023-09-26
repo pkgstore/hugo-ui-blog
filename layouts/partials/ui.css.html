@@ -1,0 +1,42 @@
+{{ $styles := (($.Site.Data.ui.styles) | default slice) }}
+
+<!--[ vendor-external ]-->
+{{ with ($styles.vendor.external) }}
+    {{ range . }}
+      <link rel="preload" href="{{ . }}" as="style" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="{{ . }}" crossorigin="anonymous"/>
+    {{ end }}
+{{ end }}
+<!--[ / vendor-external ]-->
+
+<!--[ vendor-internal ]-->
+{{ with ($styles.vendor.internal) }}
+    {{ $bundle := slice }}
+    {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
+    {{ $bundle = (($bundle) | resources.Concat "css/vendor.bundle.scss") }}
+    {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
+    <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
+    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
+{{ end }}
+<!--[ / vendor-internal ]-->
+
+<!--[ system-internal ]-->
+{{ with ($styles.system.internal) }}
+    {{ $bundle := slice }}
+    {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
+    {{ $bundle = (($bundle) | resources.Concat "css/system.bundle.scss") }}
+    {{ $bundle = (($bundle) | resources.ExecuteAsTemplate ("css/system.bundle.scss" | relLangURL) .) }}
+    {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
+    <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
+    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
+{{ end }}
+<!--[ / system-internal ]-->
+
+<!--[ extra-internal ]-->
+{{ $extra := "css/extra.scss" }}
+{{ $extra = (resources.Get ($extra)) }}
+{{ $extra = (($extra) | resources.ExecuteAsTemplate (($extra) | relLangURL) .) }}
+{{ $extra = ((($extra) | resources.ToCSS) | minify) }}
+<link rel="preload" href="{{ ($extra.RelPermalink) }}" as="style"/>
+<link rel="stylesheet" href="{{ ($extra.RelPermalink) }}"/>
+<!--[ / extra-internal ]-->

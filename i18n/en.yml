@@ -1,0 +1,101 @@
+# -------------------------------------------------------------------------------------------------------------------- #
+# General.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+articles: { other: 'Articles' }
+authors: { other: 'Authors' }
+categories: { other: 'Categories' }
+close: { other: 'Close' }
+complexity-0: { other: 'Easy' }
+complexity-1: { other: 'Medium' }
+complexity-2: { other: 'Hard' }
+complexity: { other: 'Level of difficulty' }
+contacts: { other: 'Contacts' }
+developers: { other: 'Developers' }
+egg: { other: 'Oops!' }
+email: { other: 'Email' }
+file_id: { other: 'File ID' }
+home: { other: 'Home' }
+info: { other: 'Information' }
+languages: { other: 'Languages' }
+license: { other: 'License' }
+license_header: { other: 'License header' }
+license_text: { other: 'License text' }
+meta: { other: 'Meta' }
+minutes: { other: 'min.' }
+reading_time: { other: 'Reading time' }
+search: { other: 'Search' }
+search_bing: { other: 'Bing Search' }
+search_google: { other: 'Google Search' }
+search_yandex: { other: 'Yandex Search' }
+see_also: { other: 'See also' }
+share: { other: 'Share' }
+site_resize: { other: 'Resize site' }
+size: { other: 'Size' }
+social_networks: { other: 'Social networks' }
+sources: { other: 'Sources' }
+stats: { other: 'Statistics' }
+sys_path: { other: 'System path' }
+tags: { other: 'Tags' }
+type: { other: 'Type' }
+uuid: { other: 'UUID' }
+word_count: { other: 'Word count' }
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Browser console.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+console:
+  about_me: { other: 'About me' }
+  buy_me: { other: 'Buy me a' }
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Alerts.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+alert:
+  authors_not_found: { other: 'Authors not found.' }
+  categories_not_found: { other: 'Categories not found.' }
+  in_dev: { other: 'Information on this page is under revision. Information may be added (and / or) changed.' }
+  license_deprecated_id: { other: 'License ID is deprecated!' }
+  license_fsf_libre: { other: 'License is considered free by the FSF.' }
+  license_osi_approved: { other: 'License is OSI-approved.' }
+  opinion: { other: 'Information on this page is the subjective opinion of author.' }
+  related_not_found: { other: 'Related not found.' }
+  tags_not_found: { other: 'Tags not found.' }
+
+  search_help:
+    other: >
+      Fuzzy search (rough string matching) is used.
+      This is a method for finding strings that approximately match search pattern.
+      Search results are sorted by exact match to search pattern.
+      Search results that most closely match a query are at the top, approximate results are at bottom.
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Social.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+social:
+  bitbucket: { other: 'BitBucket' }
+  blogger: { other: 'Blogger' }
+  digg: { other: 'Digg' }
+  facebook: { other: 'Facebook' }
+  github: { other: 'GitHub' }
+  gitlab: { other: 'GitLab' }
+  hackernews: { other: 'Hacker News' }
+  instagram: { other: 'Instagram' }
+  linkedin: { other: 'LinkedIn' }
+  livejournal: { other: 'LiveJournal' }
+  ok: { other: 'OK' }
+  patreon: { other: 'Patreon' }
+  pinterest: { other: 'Pinterest' }
+  pocket: { other: 'Pocket' }
+  reddit: { other: 'Reddit' }
+  skype: { other: 'Skype' }
+  telegram: { other: 'Telegram' }
+  tumblr: { other: 'Tumblr' }
+  twitter: { other: 'Twitter' }
+  vk: { other: 'VK' }
+  whatsapp: { other: 'WhatsApp' }
+  wordpress: { other: 'WordPress' }
+  youtube: { other: 'YouTube' }

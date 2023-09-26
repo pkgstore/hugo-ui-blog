@@ -1,0 +1,20 @@
+.figure {
+  display: table;
+}
+
+.figure-caption {
+  display: table-caption;
+  caption-side: bottom;
+}
+
+.ext {
+  &-modal-image {
+    img {
+      object-fit: cover;
+    }
+  }
+}
+
+.optional-license-text {
+  color: var(--bs-gray);
+}

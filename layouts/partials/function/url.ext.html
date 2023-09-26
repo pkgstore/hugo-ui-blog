@@ -1,0 +1,7 @@
+{{ $title := ((.title) | default "") }}
+{{ $href := ((.href) | default "") }}
+{{ $text := ((.text) | default "") }}
+{{ $class := ((.class) | default "") }}
+
+{{ $url := ((printf "<a title='%s' class='%s' href='%s' target='_blank' rel='noopener noreferrer nofollow'>%s</a>" ($title) ($class) ($href) ($text)) | safeHTML) }}
+{{ return ($url) }}
