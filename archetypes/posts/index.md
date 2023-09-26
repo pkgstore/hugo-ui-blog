@@ -21,10 +21,9 @@ tags:
 authors:
   - 'Author_01'
   - 'Author_02'
-licenses:
-  - 'CC-BY-SA-4.0'
 sources:
   - ''
+license: 'CC-BY-SA-4.0'
 complexity: ''
 
 date: '{{ (.Date) }}'
