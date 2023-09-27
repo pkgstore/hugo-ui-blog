@@ -38,11 +38,11 @@ api:
 
 search:
   bing:
-    enabled: 0
+    enabled: false
   google:
-    enabled: 1
+    enabled: true
   yandex:
-    enabled: 0
+    enabled: false
 
 # -------------------------------------------------------------------------------------------------------------------- #
 # Taxonomy.
@@ -72,7 +72,7 @@ taxonomy:
 node:
   cover:
     image:
-      enabled: 1
+      enabled: true
       placeholder: 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a'
       crop: 'entropy'
       fit: 'crop'
@@ -84,31 +84,31 @@ node:
         height: 160
   tabs:
     info:
-      enabled: 1
+      enabled: true
       categories:
-        enabled: 1
+        enabled: true
       tags:
-        enabled: 1
+        enabled: true
       authors:
-        enabled: 1
+        enabled: true
       related:
-        enabled: 1
+        enabled: true
       meta:
-        enabled: 1
+        enabled: true
       stats:
-        enabled: 1
+        enabled: true
     license:
-      enabled: 1
+      enabled: true
     share:
-      enabled: 1
+      enabled: true
       social:
-        enabled: 1
+        enabled: true
       qrcode:
-        enabled: 1
+        enabled: true
       url:
-        enabled: 1
+        enabled: true
       file:
-        enabled: 1
+        enabled: true
 
 # -------------------------------------------------------------------------------------------------------------------- #
 # Highlight.js.
