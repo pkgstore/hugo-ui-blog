@@ -29,6 +29,10 @@ body {
         white-space: nowrap;
       }
 
+      pre {
+        @include font-mono();
+      }
+
       .figure {
         &.is-table {
           display: inline-table;
