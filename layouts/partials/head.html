@@ -45,13 +45,6 @@
       <link rel="preload" href="{{ . }}" as="script" crossorigin="anonymous"/>
     {{ end }}
 {{ end }}
-
-{{ $hljs := ($.Site.Params.highlight.languages) }}
-{{ with ($hljs.external) }}
-    {{ range . }}
-      <link rel="preload" href="{{ . }}" as="script" crossorigin="anonymous"/>
-    {{ end }}
-{{ end }}
 <!--[ / pre-load-js ]-->
 
 <meta name="application-name" content="{{ ($.Site.Title) }}"/>

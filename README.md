@@ -109,16 +109,6 @@ node:
         enabled: true
       file:
         enabled: true
-
-# -------------------------------------------------------------------------------------------------------------------- #
-# Highlight.js.
-# -------------------------------------------------------------------------------------------------------------------- #
-
-highlight:
-  languages:
-    external:
-      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/go.min.js'
-    internal:
 ```
 
 ## Front matter
