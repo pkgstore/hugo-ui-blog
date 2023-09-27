@@ -125,7 +125,7 @@ highlight:
 
 ```yml
 title: '{{ ($title) }}' # Title of material.
-description: ''         # Description of material
+description: ''         # Description of material.
 images:                 # Images from https://unsplash.com.
   - 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a'
 cover:                  # Cover of material.
