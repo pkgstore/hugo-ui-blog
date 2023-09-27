@@ -27,13 +27,13 @@
 {{ end }}
 <!--[ / vendor-internal ]-->
 
-<!--[ highlight-external ]-->
+<!--[ highlight-internal ]-->
 {{ with ($hljs.internal) }}
     {{ range . }}
       <script src="{{ . }}" crossorigin="anonymous" defer></script>
     {{ end }}
 {{ end }}
-<!--[ / highlight-external ]-->
+<!--[ / highlight-internal ]-->
 
 <!--[ system-internal ]-->
 {{ with ($scripts.system.internal) }}

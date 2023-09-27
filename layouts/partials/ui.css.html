@@ -13,8 +13,8 @@
 {{ with ($styles.vendor.internal) }}
     {{ $bundle := slice }}
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
-    {{ $bundle = (($bundle) | resources.Concat "css/vendor.bundle.scss") }}
-    {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
+    {{ $bundle = (($bundle) | resources.Concat "css/vendor.bundle.css") }}
+    {{ $bundle = (($bundle) | minify) }}
     <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
     <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
 {{ end }}
@@ -31,12 +31,3 @@
     <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
 {{ end }}
 <!--[ / system-internal ]-->
-
-<!--[ extra-internal ]-->
-{{ $extra := "css/extra.scss" }}
-{{ $extra = (resources.Get ($extra)) }}
-{{ $extra = (($extra) | resources.ExecuteAsTemplate (($extra) | relLangURL) .) }}
-{{ $extra = ((($extra) | resources.ToCSS) | minify) }}
-<link rel="preload" href="{{ ($extra.RelPermalink) }}" as="style"/>
-<link rel="stylesheet" href="{{ ($extra.RelPermalink) }}"/>
-<!--[ / extra-internal ]-->
