@@ -1,4 +1,4 @@
-{{ $fonts := (($.Site.Data.ui.fonts) | default slice) }}
+{{ $fonts := ($.Site.Data.ui.fonts) }}
 
 <!--[ fonts: external ]-->
 {{ with ($fonts.external) }}

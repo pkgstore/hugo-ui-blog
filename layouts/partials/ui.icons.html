@@ -1,4 +1,4 @@
-{{ $sizes := (($.Site.Data.ui.meta.icons.sizes) | default slice) }}
+{{ $sizes := ($.Site.Data.ui.meta.icons.sizes) }}
 
 {{ range ($sizes) }}
   <link rel="icon" type="image/png" sizes="{{ . }}x{{ . }}" href='{{ ((printf "favicon-%s.png" .) | absURL) }}'/>
