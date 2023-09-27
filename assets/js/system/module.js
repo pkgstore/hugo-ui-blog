@@ -6,7 +6,7 @@ import * as select from './module/select';
 import * as share from './module/share';
 import * as qrcode from './module/qrcode';
 import * as navbar from './module/navbar';
-// import * as hljs from './module/hljs';
+import * as hljs from './module/hljs';
 import * as fancybox from './module/fancybox'
 // import * as site_resize from './module/site_resize';
 // import * as search from './module/search';
@@ -22,7 +22,7 @@ export function init() {
   share.init();
   qrcode.init();
   navbar.init();
-  // hljs.init();
+  hljs.init();
   fancybox.init();
   // site_resize.init();
   // search.init();
