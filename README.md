@@ -121,6 +121,36 @@ highlight:
     internal:
 ```
 
+## Front matter
+
+```yml
+title: '{{ ($title) }}' # Title of material.
+description: ''         # Description of material
+images:                 # Images from https://unsplash.com.
+  - 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a'
+cover:                  # Cover of material.
+  crop: 'entropy'       # Crop mode controls how the image is aligned when fit=crop is set.
+                        # Link: https://docs.imgix.com/apis/rendering/size/crop.
+  fit: 'crop'           # The fit parameter controls how the output image is fit to its target dimensions after resizing,
+                        # and how any background areas will be filled.
+                        # Link: https://docs.imgix.com/apis/rendering/size/fit.
+categories:             # Categories of material.
+  - 'cat_01'
+  - 'cat_02'
+  - 'cat_03'
+tags:                   # Tags of material.
+  - 'tag_01'
+  - 'tag_02'
+  - 'tag_03'
+authors:                # Authors of material.
+  - 'Author_01'
+  - 'Author_02'
+sources:                # Sources of material.
+  - ''
+license: 'CC-BY-SA-4.0' # License ID (https://github.com/spdx/license-list-data/tree/main/json/details).
+complexity: ''          # Complexity of material. Example: 0 / 1 / 2.
+```
+
 ## Functions
 
 - If article is in `InDev` category, then a notification appears about updating article.
