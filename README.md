@@ -115,13 +115,9 @@ node:
 # -------------------------------------------------------------------------------------------------------------------- #
 
 highlight:
-  styles:
+  languages:
     external:
-      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/agate.min.css'
-    internal:
-  scripts:
-    external:
-      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'
+      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/go.min.js'
     internal:
 ```
 
