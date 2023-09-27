@@ -1,4 +1,5 @@
-{{ $styles := (($.Site.Data.ui.styles) | default slice) }}
+{{ $styles := ($.Site.Data.ui.styles) }}
+{{ $hljs := ($.Site.Params.highlight.styles) }}
 
 <!--[ vendor-external ]-->
 {{ with ($styles.vendor.external) }}
@@ -8,6 +9,15 @@
     {{ end }}
 {{ end }}
 <!--[ / vendor-external ]-->
+
+<!--[ highlight-external ]-->
+{{ with ($hljs.external) }}
+    {{ range . }}
+      <link rel="preload" href="{{ . }}" as="style" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="{{ . }}" crossorigin="anonymous"/>
+    {{ end }}
+{{ end }}
+<!--[ / highlight-external ]-->
 
 <!--[ vendor-internal ]-->
 {{ with ($styles.vendor.internal) }}
@@ -19,6 +29,17 @@
     <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
 {{ end }}
 <!--[ / vendor-internal ]-->
+
+<!--[ highlight-internal ]-->
+{{ with ($hljs.internal) }}
+    {{ $bundle := slice }}
+    {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
+    {{ $bundle = (($bundle) | resources.Concat "css/hljs.bundle.scss") }}
+    {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
+    <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
+    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
+{{ end }}
+<!--[ / highlight-internal ]-->
 
 <!--[ system-internal ]-->
 {{ with ($styles.system.internal) }}

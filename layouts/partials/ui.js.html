@@ -1,4 +1,5 @@
-{{ $scripts := (($.Site.Data.ui.scripts) | default slice) }}
+{{ $scripts := ($.Site.Data.ui.scripts) }}
+{{ $hljs := ($.Site.Params.highlight.scripts) }}
 
 <!--[ vendor-external ]-->
 {{ with ($scripts.vendor.external) }}
@@ -7,6 +8,14 @@
     {{ end }}
 {{ end }}
 <!--[ / vendor-external ]-->
+
+<!--[ highlight-external ]-->
+{{ with ($hljs.external) }}
+    {{ range . }}
+      <script src="{{ . }}" crossorigin="anonymous" defer></script>
+    {{ end }}
+{{ end }}
+<!--[ / highlight-external ]-->
 
 <!--[ vendor-internal ]-->
 {{ with ($scripts.vendor.internal) }}
@@ -17,6 +26,14 @@
     <script src="{{ ($bundle.RelPermalink) }}" integrity="{{ ($bundle.Data.Integrity) }}" defer></script>
 {{ end }}
 <!--[ / vendor-internal ]-->
+
+<!--[ highlight-external ]-->
+{{ with ($hljs.internal) }}
+    {{ range . }}
+      <script src="{{ . }}" crossorigin="anonymous" defer></script>
+    {{ end }}
+{{ end }}
+<!--[ / highlight-external ]-->
 
 <!--[ system-internal ]-->
 {{ with ($scripts.system.internal) }}

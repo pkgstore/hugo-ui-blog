@@ -109,6 +109,20 @@ node:
         enabled: 1
       file:
         enabled: 1
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Highlight.js.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+highlight:
+  styles:
+    external:
+      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/agate.min.css'
+    internal:
+  scripts:
+    external:
+      - 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'
+    internal:
 ```
 
 ## Functions
