@@ -45,8 +45,8 @@ fonts:
 styles:
   vendor:
     external:
-      - 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css'
     internal:
+      - 'css/vendor/fontawesome/all.min.css'
       - 'css/vendor/bootstrap/bootstrap.min.css'
       - 'css/vendor/fancyapps/fancybox.min.css'
       - 'css/vendor/highlight/agate.min.css'
@@ -68,7 +68,6 @@ scripts:
       - 'js/vendor/headroom/headroom.min.js'
       - 'js/vendor/highlight/highlight.min.js'
       - 'js/vendor/qrcode/qrcode.min.js'
-      - 'js/vendor.js'
   system:
     internal:
       - 'js/system.js'
