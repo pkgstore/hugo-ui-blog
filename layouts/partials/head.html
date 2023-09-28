@@ -12,13 +12,6 @@
 <meta name="title" content="{{ ($title) }} {{ ($.Site.Title) }}"/>
 <meta name="description" content="{{ ((($description) | plainify) | chomp) }}"/>
 
-<!--[ dns-prefetch ]-->
-{{ $dns_prefetch := ($.Site.Data.ui.network.dns_prefetch) }}
-{{ range ($dns_prefetch) }}
-  <link rel="dns-prefetch" href="{{ . }}"/>
-{{ end }}
-<!--[ / dns-prefetch ]-->
-
 <!--[ pre-connect ]-->
 {{ $pre_connect := ($.Site.Data.ui.network.pre_connect) }}
 {{ range ($pre_connect) }}

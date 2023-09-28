@@ -15,11 +15,6 @@ meta:
 # -------------------------------------------------------------------------------------------------------------------- #
 
 network:
-  dns_prefetch:
-    - 'https://fonts.googleapis.com'
-    - 'https://fonts.gstatic.com'
-    - 'https://gravatar.com'
-    - 'https://images.unsplash.com'
   pre_connect:
     - 'https://fonts.googleapis.com'
     - 'https://fonts.gstatic.com'
