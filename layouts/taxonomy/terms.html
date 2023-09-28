@@ -15,7 +15,7 @@
                     {{ $cfg := (index ($.Site.Params.taxonomy) ($type)) }}
                     {{ $size := ($cfg.cover.size) }}
                     {{ $email := ((.Param "email") | default (delimit (shuffle (seq 999)) "")) }}
-                    {{ $icon_id := ((.Param "cover.icon.name") | default ($cfg.cover.icon.name)) }}
+                    {{ $icon_id := ((.Param "icon") | default ($cfg.cover.icon.name)) }}
                     {{ $icon_size := ($cfg.cover.icon.size) }}
                     {{ $avatar_id := (($email) | md5) }}
                     {{ $avatar_size := ($cfg.cover.avatar.size) }}
