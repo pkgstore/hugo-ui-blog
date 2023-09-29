@@ -32,7 +32,6 @@ body {
       pre {
         @include font-mono();
         border-radius: var(--bs-border-radius-sm);
-        // max-height: 40rem;
 
         > code {
           background: var(--bs-gray-900);
