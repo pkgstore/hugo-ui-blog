@@ -104,6 +104,10 @@
                       )) }}
                   {{ end }}
 
+                <div class="node-toc mb-3">
+                    {{ (partial "module/node/toc" .) }}
+                </div>
+
                   {{ (.Content) }}
               </div>
                 {{ with (.Param "sources") }}

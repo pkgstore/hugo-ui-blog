@@ -37,6 +37,7 @@ sources: { other: 'Sources' }
 stats: { other: 'Statistics' }
 sys_path: { other: 'System path' }
 tags: { other: 'Tags' }
+toc: { other: 'Contents' }
 type: { other: 'Type' }
 uuid: { other: 'UUID' }
 word_count: { other: 'Word count' }

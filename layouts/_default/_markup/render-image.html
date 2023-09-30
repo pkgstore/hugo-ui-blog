@@ -1,5 +1,6 @@
-{{ $title := ((.Title) | default "") }}
-{{ $alt := ((.Text) | default "") }}
-{{ $src := ((.Destination) | safeURL) }}
+{{- $title := ((.Title) | default "") -}}
+{{- $alt := ((.Text) | default "") -}}
+{{- $src := ((.Destination) | safeURL) -}}
 
-<img title="{{ ($title) }}" class="img-fluid img-thumbnail" src="{{ ($src) }}" alt="{{ ($alt) }}" loading="lazy"/>
+<img title="{{- ($title) -}}" class="img-fluid img-thumbnail" src="{{- ($src) -}}" alt="{{- ($alt) -}}" loading="lazy"/>
+{{- /* This comment removes trailing newlines. */ -}}
