@@ -47,8 +47,8 @@ styles:
       - 'css/vendor/bootstrap/bootstrap.min.css'
       # https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css
       - 'css/vendor/fancyapps/fancybox.min.css'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/agate.min.css
-      - 'css/vendor/highlight/agate.min.css'
+      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/
+      - 'css/vendor/highlight/atom-one-dark.min.css'
   system:
     internal:
       - 'css/system.scss'
