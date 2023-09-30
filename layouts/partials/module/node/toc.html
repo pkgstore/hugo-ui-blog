@@ -1,6 +1,6 @@
 {{ $tocID := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
 
-{{ if and (gt .WordCount 400) (.Param "toc") }}
+{{ if (.Param "toc") }}
   <div class="node-toc mb-3">
     <div class="accordion" id="accordion-{{ ($tocID) }}">
       <div class="accordion-item">
