@@ -1,4 +1,5 @@
-{{ $scripts := ($.Site.Data.ui.scripts) }}
+{{ $scripts := (site.Data.ui.scripts) }}
+{{ $cfg := (site.Params) }}
 
 <!--[ vendor-external ]-->
 {{ with ($scripts.vendor.external) }}
@@ -28,3 +29,25 @@
     <script src="{{ ($bundle.RelPermalink) }}" integrity="{{ ($bundle.Data.Integrity) }}" defer></script>
 {{ end }}
 <!--[ / system-internal ]-->
+
+<!--[ github-comments ]-->
+{{ if (and ($cfg.node.tabs.comments.enabled) (.Param "comments")) }}
+    {{ $cfg := (site.Params.node.tabs.comments.giscus) }}
+    <script src="https://giscus.app/client.js"
+            data-repo="{{ ($cfg.repo) }}"
+            data-repo-id="{{ ($cfg.repo_id) }}"
+            data-category="{{ ($cfg.category) }}"
+            data-category-id="{{ ($cfg.category_id) }}"
+            data-mapping="{{ ($cfg.mapping) }}"
+            data-strict="{{ ($cfg.strict) }}"
+            data-reactions-enabled="{{ ($cfg.reactions) }}"
+            data-emit-metadata="{{ ($cfg.metadata) }}"
+            data-input-position="{{ ($cfg.position) }}"
+            data-theme="{{ ($cfg.theme) }}"
+            data-lang="{{ (site.Language.Lang) }}"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script>
+{{ end }}
+<!--[ / github-comments ]-->

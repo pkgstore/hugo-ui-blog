@@ -6,6 +6,7 @@ articles: { other: 'Статьи' }
 authors: { other: 'Авторы' }
 categories: { other: 'Категории' }
 close: { other: 'Закрыть' }
+comments: { other: 'Комментарии' }
 complexity-0: { other: 'Простой' }
 complexity-1: { other: 'Средний' }
 complexity-2: { other: 'Сложный' }

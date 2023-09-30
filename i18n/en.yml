@@ -6,6 +6,7 @@ articles: { other: 'Articles' }
 authors: { other: 'Authors' }
 categories: { other: 'Categories' }
 close: { other: 'Close' }
+comments: { other: 'Comments' }
 complexity-0: { other: 'Easy' }
 complexity-1: { other: 'Medium' }
 complexity-2: { other: 'Hard' }

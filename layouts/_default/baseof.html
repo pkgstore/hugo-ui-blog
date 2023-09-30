@@ -1,6 +1,6 @@
 <!doctype html>
 
-{{ $lang := (($.Site.LanguageCode) | default "en-US") }}
+{{ $lang := ((site.LanguageCode) | default "en-US") }}
 {{ $type := (($.Type) | default "") }}
 {{ $home := "" }}{{ $node := "" }}{{ $page := "" }}
 {{ if ($.IsHome) }}{{ $home = "is-home" }}{{ end }}

@@ -1,7 +1,7 @@
 {{ define "main" }}
 
     {{ $type := (.Type) }}
-    {{ $cfg := (index ($.Site.Params.taxonomy) ($type)) }}
+    {{ $cfg := (index (site.Params.taxonomy) ($type)) }}
 
     <div class="section py-3">
       <div class="container">
@@ -11,8 +11,8 @@
         <div class="row row-cols-1 row-cols-lg-{{ $cfg.grid.cols }} g-3">
             {{ range $k, $v := (.Data.Terms.Alphabetical) }}
                 {{ $name := (.Name) }}{{ $count := (.Count) }}
-                {{ with ($.Site.GetPage (printf "/%s/%s" ($type) ($name))) }}
-                    {{ $cfg := (index ($.Site.Params.taxonomy) ($type)) }}
+                {{ with (site.GetPage (printf "/%s/%s" ($type) ($name))) }}
+                    {{ $cfg := (index (site.Params.taxonomy) ($type)) }}
                     {{ $size := ($cfg.cover.size) }}
                     {{ $email := ((.Param "email") | default (delimit (shuffle (seq 999)) "")) }}
                     {{ $icon_id := ((.Param "icon") | default ($cfg.cover.icon.name)) }}

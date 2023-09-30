@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $tags := ($.Site.Taxonomies.tags.ByCount) }}
+    {{ $tags := (site.Taxonomies.tags.ByCount) }}
 
     <div class="section py-3">
       <div class="container">

@@ -1,5 +1,5 @@
-{{ $cfg := ($.Site.Params.search.yandex) }}
-{{ $url := (urls.Parse ($.Site.BaseURL)) }}
+{{ $cfg := (site.Params.search.yandex) }}
+{{ $url := (urls.Parse (site.BaseURL)) }}
 
 {{ $urlYa := "" }}
 {{ $iconYa := "" }}

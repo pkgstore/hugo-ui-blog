@@ -1,4 +1,4 @@
-{{ $related := ((where ($.Site.RegularPages.Related .) "Type" "in" (.Type)) | first 10) }}
+{{ $related := ((where (site.RegularPages.Related .) "Type" "in" (.Type)) | first 10) }}
 
 <section class="card node-similar h-100">
   <div class="card-body">

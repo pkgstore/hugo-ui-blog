@@ -1,9 +1,9 @@
-{{ $description := ($.Site.Params.description) }}
+{{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
-{{ $posts := (where $.Site.RegularPages "Type" "in" "posts") }}
-{{ $limit := ($.Site.Config.Services.RSS.Limit) }}
+{{ $posts := (where site.RegularPages "Type" "in" "posts") }}
+{{ $limit := (site.Config.Services.RSS.Limit) }}
 {{ if (ge ($limit) 1) }}{{ $posts = (($posts) | first ($limit)) }}{{ end }}
 
 {{ ((printf "<?xml version='1.0' encoding='UTF-8' standalone='yes'?>") | safeHTML) }}
@@ -14,15 +14,15 @@
      xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
   <channel>
     <title>
-        {{ if (eq (.Title) ($.Site.Title)) }}
-            {{ ($.Site.Title) }}
+        {{ if (eq (.Title) (site.Title)) }}
+            {{ (site.Title) }}
         {{ else }}
-            {{ with (.Title) }}{{ . }} | {{ end }}{{ ($.Site.Title) }}
+            {{ with (.Title) }}{{ . }} | {{ end }}{{ (site.Title) }}
         {{ end }}
     </title>
     <link>{{ (.Permalink) }}</link>
     <description>{{ ($description) }}</description>
-      {{ with ($.Site.LanguageCode) }}
+      {{ with (site.LanguageCode) }}
         <language>{{ . }}</language>
       {{ end }}
     <sy:updatePeriod>weekly</sy:updatePeriod>
@@ -33,10 +33,10 @@
       <width>128</width>
       <height>128</height>
       <title>
-          {{ if (eq (.Title) ($.Site.Title)) }}
-              {{ ($.Site.Title) }}
+          {{ if (eq (.Title) (site.Title)) }}
+              {{ (site.Title) }}
           {{ else }}
-              {{ with (.Title) }}{{ . }} | {{ end }}{{ ($.Site.Title) }}
+              {{ with (.Title) }}{{ . }} | {{ end }}{{ (site.Title) }}
           {{ end }}
       </title>
       <description>{{ ($description) }}</description>

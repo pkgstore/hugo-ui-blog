@@ -2,18 +2,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 
 {{ $title := "" }}
-{{ if (and (.Title) ((ne (.Title) ($.Site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
+{{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
 
-{{ $description := ($.Site.Params.description) }}
+{{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
-<title>{{ ($title) }} {{ ($.Site.Title) }}</title>
-<meta name="title" content="{{ ($title) }} {{ ($.Site.Title) }}"/>
+<title>{{ ($title) }} {{ (site.Title) }}</title>
+<meta name="title" content="{{ ($title) }} {{ (site.Title) }}"/>
 <meta name="description" content="{{ ((($description) | plainify) | chomp) }}"/>
 
 <!--[ pre-connect ]-->
-{{ $pre_connect := ($.Site.Data.ui.network.pre_connect) }}
+{{ $pre_connect := (site.Data.ui.network.pre_connect) }}
 {{ range ($pre_connect) }}
   <link rel="preconnect" href="{{ . }}" crossorigin="anonymous"/>
 {{ end }}
@@ -32,7 +32,7 @@
 <!--[ / ui-icons ]-->
 
 <!--[ pre-load-js ]-->
-{{ $scripts := ($.Site.Data.ui.scripts) }}
+{{ $scripts := (site.Data.ui.scripts) }}
 {{ with ($scripts.vendor.external) }}
     {{ range . }}
       <link rel="preload" href="{{ . }}" as="script" crossorigin="anonymous"/>
@@ -40,7 +40,7 @@
 {{ end }}
 <!--[ / pre-load-js ]-->
 
-<meta name="application-name" content="{{ ($.Site.Title) }}"/>
+<meta name="application-name" content="{{ (site.Title) }}"/>
 
 <!--[ canonical ]-->
 <link rel="canonical" href="{{ (.Permalink) }}"/>
@@ -53,7 +53,7 @@
     {{ end }}
 {{ else }}
     {{ range (.Site.Languages) }}
-        {{ if (ne ($.Site.Language.Lang) (.Lang)) }}
+        {{ if (ne (site.Language.Lang) (.Lang)) }}
           <link rel="alternate" href="{{ ((.Lang) | absURL) }}" hreflang="{{ (.Lang) }}"/>
         {{ end }}
     {{ end }}
@@ -62,7 +62,7 @@
 
 <!--[ output-formats ]-->
 {{ range (.AlternativeOutputFormats) }}
-  <link rel="{{ (.Rel) }}" type="{{ (.MediaType.Type) }}" href="{{ ((.Permalink) | safeURL) }}" title="{{ ($.Site.Title) }}"/>
+  <link rel="{{ (.Rel) }}" type="{{ (.MediaType.Type) }}" href="{{ ((.Permalink) | safeURL) }}" title="{{ (site.Title) }}"/>
 {{ end }}
 <!--[ / output-formats ]-->
 

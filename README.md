@@ -77,11 +77,11 @@ node:
       crop: 'entropy'
       fit: 'crop'
       lg:
-        width: 1600
-        height: 900
+        width: '1600'
+        height: '900'
       md:
-        width: 160
-        height: 160
+        width: '160'
+        height: '160'
   tabs:
     info:
       enabled: true
@@ -99,6 +99,19 @@ node:
         enabled: true
     license:
       enabled: true
+    comments:
+      enabled: true
+      giscus:
+        repo: ''
+        repo_id: ''
+        category: ''
+        category_id: ''
+        mapping: 'pathname'
+        strict: '1'
+        reactions: '1'
+        metadata: '0'
+        position: 'top'
+        theme: 'preferred_color_scheme'
     share:
       enabled: true
       social:
@@ -116,14 +129,14 @@ node:
 ```yml
 title: '{{ ($title) }}' # Title of material.
 description: ''         # Description of material.
-images:                 # Images from https://unsplash.com.
+images:                 # Images from https://unsplash.com. Format: URL.
   - 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a'
 cover:                  # Cover of material.
   crop: 'entropy'       # Crop mode controls how the image is aligned when fit=crop is set.
-                        # Link: https://docs.imgix.com/apis/rendering/size/crop.
+                        # Info: https://docs.imgix.com/apis/rendering/size/crop.
   fit: 'crop'           # The fit parameter controls how the output image is fit to its target dimensions after resizing,
                         # and how any background areas will be filled.
-                        # Link: https://docs.imgix.com/apis/rendering/size/fit.
+                        # Info: https://docs.imgix.com/apis/rendering/size/fit.
 categories:             # Categories of material.
   - 'cat_01'
   - 'cat_02'
@@ -135,10 +148,12 @@ tags:                   # Tags of material.
 authors:                # Authors of material.
   - 'Author_01'
   - 'Author_02'
-sources:                # Sources of material.
+sources:                # Sources of material. Format: URL.
   - ''
 license: 'CC-BY-SA-4.0' # License ID (https://github.com/spdx/license-list-data/tree/main/json/details).
-complexity: ''          # Complexity of material. Example: 0 / 1 / 2.
+complexity: ''          # Complexity of material. Example: '0' / '1' / '2'.
+toc: 1                  # Enable / disable table of content.
+comments: 1             # Enable / disable comments.
 ```
 
 ## Functions

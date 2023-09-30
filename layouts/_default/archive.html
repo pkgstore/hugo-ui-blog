@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $posts := (where $.Site.RegularPages "Type" "in" "posts") }}
+    {{ $posts := (where site.RegularPages "Type" "in" "posts") }}
 
     <div class="section py-3">
       <div class="container">

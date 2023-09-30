@@ -1,6 +1,6 @@
 {{ define "main" }}
-    {{ $posts := ((where $.Site.RegularPages "Type" "in" "posts") | first 11) }}
-    {{ $cfg := (($.Site.Params.node) | default "") }}
+    {{ $posts := ((where site.RegularPages "Type" "in" "posts") | first 11) }}
+    {{ $cfg := ((site.Params.node) | default "") }}
 
     {{ with ($posts) }}
       <div class="section py-3">

@@ -1,5 +1,5 @@
 <!--[ blocks ]-->
-{{ $block := (where ($.Site.RegularPages) "Type" "in" "footer") }}
+{{ $block := (where (site.RegularPages) "Type" "in" "footer") }}
 {{ with ($block) }}
   <div class="section py-5 border-bottom">
     <div class="container">
@@ -26,8 +26,8 @@
       <div class="col text-center text-lg-start">
         <ul class="list-inline mb-0">
           <li class="list-inline-item">
-            <div>{{ ($.Site.Title) }} &copy; {{ (now.UTC.Format "2006") }}</div>
-              {{ with ($.Site.Params.description) }}
+            <div>{{ (site.Title) }} &copy; {{ (now.UTC.Format "2006") }}</div>
+              {{ with (site.Params.description) }}
                 <div>{{ . }}</div>
               {{ end }}
           </li>
@@ -51,7 +51,7 @@
                 </a>
               </li>
             {{ end }}
-            {{ with ($.Site.Home.AllTranslations) }}
+            {{ with (site.Home.AllTranslations) }}
               <li class="list-inline-item dropup">
                 <a title='{{ (i18n "languages") }}' class="dropdown-toggle btn btn-sm" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-language fa-fw"></i>

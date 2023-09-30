@@ -1,5 +1,5 @@
-{{ $cfg := ($.Site.Params.search.bing) }}
-{{ $url := (urls.Parse ($.Site.BaseURL)) }}
+{{ $cfg := (site.Params.search.bing) }}
+{{ $url := (urls.Parse (site.BaseURL)) }}
 
 {{ if ($cfg.enabled) }}
   <form action="https://bing.com/search" method="get" class="d-flex" target="_blank">

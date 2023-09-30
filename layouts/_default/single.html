@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $cfg := ($.Site.Params.node) }}
+    {{ $cfg := (site.Params.node) }}
     {{ $tabsID := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
 
     <div class="section py-3">
@@ -66,6 +66,15 @@
                     <li class="nav-item" role="presentation">
                       <button title='{{ (i18n "license") }}' class="nav-link" id="tab-main-license" data-bs-toggle="tab" data-bs-target="#tab-pane-main-license" type="button" role="tab" aria-controls="tab-pane-main-license" aria-selected="false">
                         <i class="far fa-copyright fa-fw"></i>
+                      </button>
+                    </li>
+                  {{ end }}
+              {{ end }}
+              {{ if ($cfg.tabs.comments.enabled) }}
+                  {{ with (.Param "comments") }}
+                    <li class="nav-item" role="presentation">
+                      <button title='{{ (i18n "comments") }}' class="nav-link" id="tab-main-comments" data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments" type="button" role="tab" aria-controls="tab-pane-main-comments" aria-selected="false">
+                        <i class="far fa-comments fa-fw"></i>
                       </button>
                     </li>
                   {{ end }}
@@ -170,57 +179,16 @@
                   {{ with (.Param "license") }}
                     <div class="tab-pane" id="tab-pane-main-license" role="tabpanel" aria-labelledby="tab-main-license" tabindex="0">
                       <div class="node-body">
-                          {{ $api := ($.Site.Params.api) }}
-                          {{ $ts := (now.Format "2006-01-02") }}
-                          {{ $headers := (dict "User-Agent" ($api.user_agent)) }}
-                          {{ $url := "https://raw.githubusercontent.com/spdx/license-list-data/main/json/details" }}
-                          {{ $license := (getJSON ($url) "/" . ".json?ts=" ($ts) ($headers)) }}
-                          {{ with ($license) }}
-                              {{ if (.isDeprecatedLicenseId) }}
-                                  {{ (partial "function/alert" (dict
-                                  "type" "warning"
-                                  "icon" "fas fa-triangle-exclamation"
-                                  "msg" (i18n "alert.license_deprecated_id")
-                                  )) }}
-                              {{ end }}
-                              {{ if (.isFsfLibre) }}
-                                  {{ (partial "function/alert" (dict
-                                  "type" "success"
-                                  "icon" "fas fa-heart"
-                                  "msg" (i18n "alert.license_fsf_libre")
-                                  )) }}
-                              {{ end }}
-                              {{ if (.isOsiApproved) }}
-                                  {{ (partial "function/alert" (dict
-                                  "type" "success"
-                                  "icon" "fab fa-osi"
-                                  "msg" (i18n "alert.license_osi_approved")
-                                  )) }}
-                              {{ end }}
-                              {{ with (.licenseComments) }}
-                                  {{ (partial "function/alert" (dict
-                                  "type" "info"
-                                  "icon" "fas fa-info"
-                                  "msg" .
-                                  )) }}
-                              {{ end }}
-                              {{ with (.standardLicenseHeaderHtml) }}
-                                <div class="card mb-3">
-                                  <h5 class="card-header">{{ (i18n "license_header") }}</h5>
-                                  <div class="card-body">
-                                      {{ (. | safeHTML) }}
-                                  </div>
-                                </div>
-                              {{ end }}
-                              {{ with (.licenseTextHtml) }}
-                                <div class="card">
-                                  <h5 class="card-header">{{ (i18n "license_text") }}</h5>
-                                  <div class="card-body">
-                                      {{ (. | safeHTML) }}
-                                  </div>
-                                </div>
-                              {{ end }}
-                          {{ end }}
+                          {{ (partial "module/node/tabs/license" .) }}
+                      </div>
+                    </div>
+                  {{ end }}
+              {{ end }}
+              {{ if ($cfg.tabs.comments.enabled) }}
+                  {{ with (.Param "comments") }}
+                    <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments" tabindex="0">
+                      <div class="node-body">
+                          {{ (partial "module/node/tabs/comments" .) }}
                       </div>
                     </div>
                   {{ end }}

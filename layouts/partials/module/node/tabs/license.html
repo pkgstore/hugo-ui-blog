@@ -1,0 +1,51 @@
+{{ $api := (site.Params.api) }}
+{{ $ts := (now.Format "2006-01-02") }}
+{{ $headers := (dict "User-Agent" ($api.user_agent)) }}
+{{ $url := "https://raw.githubusercontent.com/spdx/license-list-data/main/json/details" }}
+{{ $license := (getJSON ($url) "/" . ".json?ts=" ($ts) ($headers)) }}
+{{ with ($license) }}
+    {{ if (.isDeprecatedLicenseId) }}
+        {{ (partial "function/alert" (dict
+        "type" "warning"
+        "icon" "fas fa-triangle-exclamation"
+        "msg" (i18n "alert.license_deprecated_id")
+        )) }}
+    {{ end }}
+    {{ if (.isFsfLibre) }}
+        {{ (partial "function/alert" (dict
+        "type" "success"
+        "icon" "fas fa-heart"
+        "msg" (i18n "alert.license_fsf_libre")
+        )) }}
+    {{ end }}
+    {{ if (.isOsiApproved) }}
+        {{ (partial "function/alert" (dict
+        "type" "success"
+        "icon" "fab fa-osi"
+        "msg" (i18n "alert.license_osi_approved")
+        )) }}
+    {{ end }}
+    {{ with (.licenseComments) }}
+        {{ (partial "function/alert" (dict
+        "type" "info"
+        "icon" "fas fa-info"
+        "msg" .
+        )) }}
+    {{ end }}
+    {{ with (.standardLicenseHeaderHtml) }}
+      <div class="card mb-3">
+        <h5 class="card-header">{{ (i18n "license_header") }}</h5>
+        <div class="card-body">
+            {{ (. | safeHTML) }}
+        </div>
+      </div>
+    {{ end }}
+    {{ with (.licenseTextHtml) }}
+      <div class="card">
+        <h5 class="card-header">{{ (i18n "license_text") }}</h5>
+        <div class="card-body">
+            {{ (. | safeHTML) }}
+        </div>
+      </div>
+    {{ end }}
+{{ end }}

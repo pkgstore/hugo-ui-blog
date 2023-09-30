@@ -26,6 +26,7 @@ sources:
 license: 'CC-BY-SA-4.0'
 complexity: '0'
 toc: 1
+comments: 1
 
 date: '{{ (.Date) }}'
 hash: '{{ ($hash) }}'
