@@ -24,7 +24,8 @@ authors:
 sources:
   - ''
 license: 'CC-BY-SA-4.0'
-complexity: ''
+complexity: '0'
+toc: 1
 
 date: '{{ (.Date) }}'
 hash: '{{ ($hash) }}'

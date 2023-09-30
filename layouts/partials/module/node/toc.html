@@ -1,16 +1,20 @@
 {{ $tocID := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
 
-<div class="accordion" id="accordion-{{ ($tocID) }}">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($tocID) }}" aria-expanded="false" aria-controls="collapse-{{ ($tocID) }}">
-        {{ (i18n "toc") }}
-      </button>
-    </h2>
-    <div id="collapse-{{ ($tocID) }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ ($tocID) }}">
-      <div class="accordion-body">
-          {{ (.TableOfContents) }}
+{{ if and (gt .WordCount 400) (.Param "toc") }}
+  <div class="node-toc mb-3">
+    <div class="accordion" id="accordion-{{ ($tocID) }}">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($tocID) }}" aria-expanded="false" aria-controls="collapse-{{ ($tocID) }}">
+              {{ (i18n "toc") }}
+          </button>
+        </h2>
+        <div id="collapse-{{ ($tocID) }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ ($tocID) }}">
+          <div class="accordion-body">
+              {{ (.TableOfContents) }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+{{ end }}
