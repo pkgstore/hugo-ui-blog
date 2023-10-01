@@ -1,6 +1,6 @@
 {{ $x := ((.context) | default .) }}
-{{ $id := ((.id) | default "") }}
-{{ $active := ("") }}
+{{ $id := (.id) }}
+{{ $active := "" }}
 
 {{ range (index ($x.Site.Menus) ($id)) }}
     {{ $active = (or ($x.IsMenuCurrent .Menu .) ($x.HasMenuCurrent .Menu .)) }}
