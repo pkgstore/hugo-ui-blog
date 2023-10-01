@@ -4,5 +4,7 @@ export function init() {
 
 function tooltip($selector) {
   const $el = document.querySelectorAll($selector);
-  return [...$el].map($el => new bootstrap.Tooltip($el));
+  return [...$el].map($el => new bootstrap.Tooltip($el, {
+    container: 'body'
+  }));
 }

@@ -1,4 +1,3 @@
-// import * as tabs from './module/tabs';
 import * as modal from './module/modal';
 import * as tooltip from './module/tooltip';
 import * as date from './module/date';
@@ -9,13 +8,8 @@ import * as navbar from './module/navbar';
 import * as hljs from './module/hljs';
 import * as fancybox from './module/fancybox'
 import * as clipboard from './module/clipboard'
-// import * as site_resize from './module/site_resize';
-// import * as search from './module/search';
-// import * as konami from './module/konami';
-// import * as console from './module/console';
 
 export function init() {
-  // tabs.init();
   modal.init();
   tooltip.init();
   date.init();
@@ -26,8 +20,4 @@ export function init() {
   hljs.init();
   fancybox.init();
   clipboard.init();
-  // site_resize.init();
-  // search.init();
-  // konami.init();
-  // console.init();
 }
