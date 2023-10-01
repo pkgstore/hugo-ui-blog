@@ -8,6 +8,7 @@ import * as qrcode from './module/qrcode';
 import * as navbar from './module/navbar';
 import * as hljs from './module/hljs';
 import * as fancybox from './module/fancybox'
+import * as clipboard from './module/clipboard'
 // import * as site_resize from './module/site_resize';
 // import * as search from './module/search';
 // import * as konami from './module/konami';
@@ -24,6 +25,7 @@ export function init() {
   navbar.init();
   hljs.init();
   fancybox.init();
+  clipboard.init();
   // site_resize.init();
   // search.init();
   // konami.init();
