@@ -39,21 +39,14 @@
         <ul class="list-inline mb-0">
             {{ with (.OutputFormats.Get "rss") }}
               <li class="list-inline-item">
-                <a title="{{ (.Name) }}" class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank">
+                <a class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank" data-bs-tooltip data-bs-title='{{ (.Name) }}'>
                   <i class="fas fa-rss fa-fw"></i>
-                </a>
-              </li>
-            {{ end }}
-            {{ with (.OutputFormats.Get "json") }}
-              <li class="list-inline-item">
-                <a title="{{ (.Name) }}" class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank">
-                  <i class="far fa-file-code fa-fw"></i>
                 </a>
               </li>
             {{ end }}
             {{ with (site.Home.AllTranslations) }}
               <li class="list-inline-item dropup">
-                <a title='{{ (i18n "languages") }}' class="dropdown-toggle btn btn-sm" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="dropdown-toggle btn btn-sm" href="#" role="button" data-bs-toggle="dropdown" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}' aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-language fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
