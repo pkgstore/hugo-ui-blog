@@ -1,5 +1,5 @@
 export function init() {
-  clipboard('[data-fn="clipboard"]');
+  clipboard('[data-fn*="clipboard"]');
 }
 
 function clipboard($selector) {

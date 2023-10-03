@@ -45,8 +45,8 @@
               </li>
             {{ end }}
             {{ with (site.Home.AllTranslations) }}
-              <li class="list-inline-item dropup">
-                <a class="dropdown-toggle btn btn-sm" href="#" role="button" data-bs-toggle="dropdown" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}' aria-haspopup="true" aria-expanded="false">
+              <li class="list-inline-item dropup" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
+                <a class="dropdown-toggle btn btn-sm" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-language fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">

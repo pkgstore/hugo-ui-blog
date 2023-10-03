@@ -8,6 +8,7 @@ import * as navbar from './module/navbar';
 import * as hljs from './module/hljs';
 import * as fancybox from './module/fancybox'
 import * as clipboard from './module/clipboard'
+import * as eDefault from './module/eDefault'
 
 export function init() {
   modal.init();
@@ -20,4 +21,5 @@ export function init() {
   hljs.init();
   fancybox.init();
   clipboard.init();
+  eDefault.init();
 }
