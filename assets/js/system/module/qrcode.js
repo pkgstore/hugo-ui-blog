@@ -1,5 +1,5 @@
 export function init() {
-  generator('[data-fn="qrcode"]');
+  generator('[data-fn*="qrcode"]');
 }
 
 function generator($selector) {
@@ -7,7 +7,7 @@ function generator($selector) {
   let $text;
 
   $el.forEach(($i) => {
-    $text = $i.getAttribute('data-ext-text');
+    $text = $i.getAttribute('data-qr-text');
     _qrcode($i, $text);
   });
 }

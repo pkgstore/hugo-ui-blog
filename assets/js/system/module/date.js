@@ -1,6 +1,6 @@
 export function init() {
-  local('[data-fn="date-local"]');
-  local('[data-fn="time-local"]', 4);
+  local('[data-fn*="date-local"]');
+  local('[data-fn*="time-local"]', 4);
 }
 
 function local($selector, $view = 0) {

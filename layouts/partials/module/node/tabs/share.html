@@ -129,7 +129,7 @@
       {{ if ($cfg.qrcode.enabled) }}
         <div class="col">
           <div class="d-flex justify-content-center">
-            <div class="d-block img-thumbnail" data-fn="qrcode" data-ext-text="{{ $url }}"></div>
+            <div class="d-block img-thumbnail" data-fn="qrcode" data-qr-text="{{ $url }}"></div>
           </div>
         </div>
       {{ end }}

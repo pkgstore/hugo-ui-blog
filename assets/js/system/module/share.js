@@ -1,5 +1,5 @@
 export function init() {
-  popUp('[data-fn="popup"]');
+  popUp('[data-fn*="popup"]');
 }
 
 function popUp($selector) {

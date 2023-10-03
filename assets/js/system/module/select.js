@@ -1,5 +1,5 @@
 export function init() {
-  selectAll('[data-fn="select-all"]');
+  selectAll('[data-fn*="select-all"]');
 }
 
 function selectAll($selector) {
