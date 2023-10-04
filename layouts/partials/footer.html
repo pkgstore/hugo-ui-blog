@@ -38,9 +38,16 @@
       <div class="col text-center text-lg-end">
         <ul class="list-inline mb-0">
             {{ with (.OutputFormats.Get "rss") }}
-              <li class="list-inline-item">
-                <a class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank" data-bs-tooltip data-bs-title='{{ (.Name) }}'>
+              <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (.Name) }}'>
+                <a class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank">
                   <i class="fas fa-rss fa-fw"></i>
+                </a>
+              </li>
+            {{ end }}
+            {{ with (.OutputFormats.Get "json") }}
+              <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (.Name) }}'>
+                <a title="{{ (.Name) }}" class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank">
+                  <i class="far fa-file-code fa-fw"></i>
                 </a>
               </li>
             {{ end }}

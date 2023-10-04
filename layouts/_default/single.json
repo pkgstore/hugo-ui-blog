@@ -1,0 +1,35 @@
+{{ ($.Scratch.Add "data" slice) }}
+
+{{ ($.Scratch.Add "data" (dict
+"site" (dict
+"name" (site.Title)
+"description" (site.Params.description)
+"url" (site.BaseURL)
+)
+"page" (dict
+"name" ((.Page.Title) | plainify)
+"images" (.Page.Params.images)
+"description" (((((.Page.Description) | default (.Page.Summary)) | plainify) | chomp) | base64Encode)
+"content" (((.Page.Plain) | chomp) | base64Encode)
+"authors" (.Page.Params.authors)
+"categories" (.Page.Params.categories)
+"tags" (.Page.Params.tags)
+"url" (.Page.Permalink)
+"date" (dict
+"created" (.Page.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00")
+"published" (.Page.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00")
+"modified" (.Page.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00")
+)
+"meta" (dict
+"type" (.Page.Type)
+"licenses" (.Page.Params.licenses)
+"fid" (.File.UniqueID)
+"uuid" (.Page.Params.uuid)
+"sha1" (((.Page.Plain) | chomp) | sha1)
+"word_count" (.Page.WordCount)
+"read_time" (.Page.ReadingTime)
+)
+)
+)) }}
+
+{{ ((dict "data" (($.Scratch.Get "data") | uniq)) | jsonify) }}
