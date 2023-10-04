@@ -1,8 +1,8 @@
 export function init() {
-  eDefault('[data-fn*="a"]');
+  prevent('[data-fn*="preventDefault"]');
 }
 
-function eDefault($selector) {
+function prevent($selector) {
   const $el = document.querySelectorAll($selector);
 
   $el.forEach(($i) => {
