@@ -21,6 +21,17 @@ body {
             }
           }
         }
+
+        &-code {
+          > div {
+            div:nth-child(2) {
+              ul {
+                position: sticky;
+                top: 4rem;
+              }
+            }
+          }
+        }
       }
     }
   }
