@@ -1,6 +1,7 @@
+{{ $a := (.Attributes) }}
 {{ $id := (printf "codeblock-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
-{{ if (or (.Attributes.title) (.Attributes.file)) }}
+{{ if (or ($a.title) ($a.file)) }}
 
   <div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ (.Type) }}">
     <div class="card-header">
@@ -9,17 +10,17 @@
           <i class="fas fa-file-code fa-fw"></i>
         </div>
         <div class="flex-grow-1 mx-2">
-            {{ with (.Attributes.title) }}
+            {{ with ($a.title) }}
               <h5 class="mb-0">{{ . }}</h5>
             {{ end }}
 
-            {{ with (.Attributes.file) }}
+            {{ with ($a.file) }}
               <code>{{ . }}</code>
             {{ end }}
         </div>
         <div class="flex-shrink-0">
           <ul class="list-inline mb-0">
-            <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.codebox.copy") }}'>
+            <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
               <a class="text-body-secondary" href="#"
                  data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($id) }}"
                  role="button">
