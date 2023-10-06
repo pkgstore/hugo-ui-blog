@@ -22,13 +22,17 @@ body {
           }
         }
 
-        &-code {
-          > div {
-            div:nth-child(2) {
-              ul {
-                position: sticky;
-                top: 4rem;
-              }
+        &-codeblock {
+          .codeblock-tools {
+            ul {
+              position: sticky;
+              top: 4rem;
+            }
+          }
+
+          &-terminal {
+            pre {
+              background-color: unset;
             }
           }
         }

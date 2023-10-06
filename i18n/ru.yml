@@ -38,6 +38,7 @@ sources: { other: 'Источники' }
 stats: { other: 'Статистика' }
 sys_path: { other: 'Системный путь' }
 tags: { other: 'Теги' }
+terminal: { other: 'Терминал' }
 toc: { other: 'Содержание' }
 type: { other: 'Тип' }
 uuid: { other: 'UUID' }

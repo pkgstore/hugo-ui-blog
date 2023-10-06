@@ -23,22 +23,23 @@ body {
 
       code {
         @include font-mono();
+        display: inline-block;
         background-color: rgba(var(--bs-danger-rgb), 5%);
         border-radius: var(--bs-border-radius-sm);
-        padding: .1rem .3rem;
+        padding: 0 .3rem;
         white-space: nowrap;
       }
 
       pre {
         @include font-mono();
-        border-radius: var(--bs-border-radius-sm);
-        background: var(--bs-gray-900);
+        background-color: rgba(var(--bs-danger-rgb), 5%);
+        border-radius: var(--bs-border-radius);
+        margin: 0;
 
         > code {
+          //font-size: var(--bs-body-font-size);
           background: unset;
-          color: var(--bs-gray-200);
           display: block;
-          font-size: var(--bs-body-font-size);
           padding: 1rem;
           white-space: pre;
         }
