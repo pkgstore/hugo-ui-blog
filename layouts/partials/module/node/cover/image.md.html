@@ -10,7 +10,7 @@
       <img class="d-block rounded"
            src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
            width="{{ ($width) }}" height="{{ ($height) }}"
-           alt="{{ (.Title) }}"/>
+           alt="{{ ((.Title) | htmlEscape) }}"/>
     </a>
   </div>
 </div>
