@@ -13,7 +13,7 @@
                 {{ range ($tags) }}
                   <li class="list-inline-item">
                     <a href="{{ (.Page.RelPermalink) }}">{{ (.Page.Title) }}</a>
-                    <sup class="text-muted">{{ (.Count) }}</sup>
+                    <sup class="text-body-secondary">{{ (.Count) }}</sup>
                   </li>
                 {{ end }}
             </ul>

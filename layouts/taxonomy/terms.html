@@ -24,7 +24,7 @@
                         <div class="flex-shrink-0">
                           <div class="node-cover">
                             <a href="{{ (.RelPermalink) }}"
-                               class="d-flex justify-content-center align-items-center border rounded p-1 text-decoration-none text-muted bg-light"
+                               class="d-flex justify-content-center align-items-center border rounded p-1 text-decoration-none text-body-secondary bg-light"
                                style="width: {{ ($size) }}; height: {{ ($size) }};">
                                 {{ if (eq ($type) "authors") }}
                                   <img class="img-fluid" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
@@ -37,7 +37,7 @@
                         <div class="flex-grow-1 ms-3">
                           <h4 class="h5 mt-0">
                             <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
-                            <sup class="text-muted">{{ ($count) }}</sup>
+                            <sup class="text-body-secondary">{{ ($count) }}</sup>
                           </h4>
                           <div class="node-body">{{ (.Content) }}</div>
                         </div>
