@@ -2,12 +2,12 @@
 
 {{ ($.Scratch.Add "data" (dict
 "site" (dict
-"name" (site.Title)
+"title" (site.Title)
 "description" (site.Params.description)
 "url" (site.BaseURL)
 )
 "page" (dict
-"name" ((.Page.Title) | plainify)
+"title" ((.Page.Title) | plainify)
 "images" (.Page.Params.images)
 "description" (((((.Page.Description) | default (.Page.Summary)) | plainify) | chomp) | base64Encode)
 "content" (((.Page.Plain) | chomp) | base64Encode)
