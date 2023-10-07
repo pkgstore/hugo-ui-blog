@@ -27,7 +27,7 @@ EXAMPLE:
 {{ $t := (.Type) }}
 {{ $i := (.Inner) }}
 
-<div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ ($t) }}
+<div class="card mb-3 overflow-hidden shortcode-codeblock shortcode-codeblock-{{ ($t) }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}" data-bs-theme="dark">
   <div class="card-header">

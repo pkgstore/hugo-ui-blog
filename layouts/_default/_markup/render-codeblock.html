@@ -5,7 +5,7 @@
 
 {{ if (or ($a.title) ($a.file)) }}
 
-  <div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ ($t) }}">
+  <div class="card mb-3 overflow-hidden shortcode-codeblock shortcode-codeblock-{{ ($t) }}">
     <div class="card-header">
       <div class="d-flex align-items-center">
         <div class="flex-shrink-0">
@@ -33,7 +33,7 @@
 
 {{ else }}
 
-  <div class="d-flex mb-3 shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="d-flex mb-3 overflow-hidden shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="flex-grow-1 overflow-hidden" id="{{ ($id) }}">{{ (highlight ($i) ($t)) }}</div>
     <div class="flex-shrink-0">
       <ul class="list-inline mb-0">
