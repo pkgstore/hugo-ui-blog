@@ -46,8 +46,6 @@ body {
               border-radius: unset;
 
               code {
-                padding: 0;
-
                 &:after {
                   content: ' _';
                   opacity: 0;
