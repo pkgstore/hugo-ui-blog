@@ -1,6 +1,9 @@
 {{ $a := (.Attributes) }}
+{{ $t := (.Type) }}
+{{ $i := (.Inner) }}
 
-<div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ (.Type) }}" data-bs-theme="dark">
+<div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ ($t) }}
+{{ with $a.mode }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}" data-bs-theme="dark">
   <div class="card-header">
     <div class="d-flex align-items-center">
       <div class="flex-shrink-0">
@@ -10,7 +13,7 @@
         <h5 class="mb-0">{{ (i18n "sc.code.terminal") }}</h5>
       </div>
       <div class="flex-shrink-0">
-        <ul class="list-inline mb-0 {{ if (eq ($a.mode) "root") }}text-danger{{ end }}">
+        <ul class="list-inline mb-0">
           <li class="list-inline-item">
             <i class="fas fa-circle fa-fw"></i>
           </li>
@@ -25,6 +28,6 @@
     </div>
   </div>
   <div class="card-body">
-      {{ (highlight (.Inner) (.Type)) }}
+      {{ (highlight ($i) ($t)) }}
   </div>
 </div>

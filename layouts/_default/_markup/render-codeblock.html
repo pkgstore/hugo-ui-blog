@@ -1,9 +1,11 @@
 {{ $a := (.Attributes) }}
+{{ $t := (.Type) }}
+{{ $i := (.Inner) }}
 {{ $id := (printf "codeblock-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
 {{ if (or ($a.title) ($a.file)) }}
 
-  <div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ (.Type) }}">
+  <div class="card mb-3 shortcode-codeblock shortcode-codeblock-{{ ($t) }}">
     <div class="card-header">
       <div class="d-flex align-items-center">
         <div class="flex-shrink-0">
@@ -21,7 +23,7 @@
         <div class="flex-shrink-0">
           <ul class="list-inline mb-0">
             <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
-              <a class="text-body-secondary" href="#"
+              <a class="text-body" href="#"
                  data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($id) }}"
                  role="button">
                 <i class="fas fa-copy fa-fw"></i>
@@ -32,20 +34,20 @@
       </div>
     </div>
     <div class="card-body" id="{{ ($id) }}">
-        {{ (highlight (.Inner) (.Type)) }}
+        {{ (highlight ($i) ($t)) }}
     </div>
   </div>
 
 {{ else }}
 
-  <div class="d-flex mb-3 shortcode-codeblock {{ with (.Type) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="d-flex mb-3 shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="flex-grow-1 overflow-hidden" id="{{ ($id) }}">
-        {{ (highlight (.Inner) (.Type)) }}
+        {{ (highlight ($i) ($t)) }}
     </div>
-    <div class="flex-shrink-0 codeblock-tools">
+    <div class="flex-shrink-0">
       <ul class="list-inline mb-0">
         <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
-          <a class="text-body-secondary" href="#"
+          <a class="text-body" href="#"
              data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($id) }}"
              role="button">
             <i class="fas fa-copy fa-fw"></i>

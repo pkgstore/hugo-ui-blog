@@ -23,16 +23,50 @@ body {
         }
 
         &-codeblock {
-          .codeblock-tools {
-            ul {
-              position: sticky;
-              top: 4rem;
-            }
+          .position-sticky {
+            top: 4rem;
           }
 
           &-terminal {
             pre {
               background-color: unset;
+
+              code:before {
+                content: 'user@localhost ~ % ';
+              }
+
+              code:after {
+                content: ' _';
+                opacity: 0;
+                animation: cursor 1s infinite;
+              }
+
+              @keyframes cursor {
+                0% {
+                  opacity: 0;
+                }
+                40% {
+                  opacity: 0;
+                }
+                50% {
+                  opacity: 1;
+                }
+                90% {
+                  opacity: 1;
+                }
+                100% {
+                  opacity: 0;
+                }
+              }
+            }
+
+            &-root {
+              pre {
+                code:before {
+                  content: 'root@localhost ~ # ';
+                  color: var(--bs-danger);
+                }
+              }
             }
           }
         }
