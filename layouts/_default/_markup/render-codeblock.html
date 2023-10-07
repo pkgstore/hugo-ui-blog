@@ -34,7 +34,7 @@
 {{ else }}
 
   <div class="d-flex mb-3 overflow-hidden shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
-    <div class="flex-grow-1 overflow-hidden" id="{{ ($id) }}">{{ (highlight ($i) ($t)) }}</div>
+    <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($id) }}">{{ (highlight ($i) ($t)) }}</div>
     <div class="flex-shrink-0">
       <ul class="list-inline mb-0">
         <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>

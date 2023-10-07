@@ -32,11 +32,9 @@ body {
       pre {
         @include font-mono();
         background-color: rgba(var(--bs-danger-rgb), 5%);
-        border-radius: var(--bs-border-radius);
         margin: 0;
 
         > code {
-          //font-size: var(--bs-body-font-size);
           background: unset;
           display: block;
           padding: 1rem;
