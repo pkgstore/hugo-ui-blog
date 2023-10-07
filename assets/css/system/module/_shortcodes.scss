@@ -2,6 +2,11 @@ body {
   .node {
     &-body {
       .shortcode {
+
+        // ---------------------------------------------------------------------------------------------------------- //
+        // Quote.
+        // ---------------------------------------------------------------------------------------------------------- //
+
         &-quote {
           border-left: .5rem solid var(--bs-gray-200);
           padding-left: 1rem;
@@ -11,6 +16,10 @@ body {
             padding-left: unset;
           }
         }
+
+        // ---------------------------------------------------------------------------------------------------------- //
+        // Spoiler (inline).
+        // ---------------------------------------------------------------------------------------------------------- //
 
         &-spi {
           cursor: pointer;
@@ -22,6 +31,10 @@ body {
           }
         }
 
+        // ---------------------------------------------------------------------------------------------------------- //
+        // CodeBlock.
+        // ---------------------------------------------------------------------------------------------------------- //
+
         &-codeblock {
           .position-sticky {
             top: 4rem;
@@ -30,15 +43,16 @@ body {
           &-terminal {
             pre {
               background-color: unset;
+              border-radius: unset;
 
-              code:before {
-                content: 'user@localhost ~ % ';
-              }
+              code {
+                padding: 0;
 
-              code:after {
-                content: ' _';
-                opacity: 0;
-                animation: cursor 1s infinite;
+                &:after {
+                  content: ' _';
+                  opacity: 0;
+                  animation: cursor 1s infinite;
+                }
               }
 
               @keyframes cursor {
@@ -60,11 +74,36 @@ body {
               }
             }
 
-            &-root {
+            &-linux {
               pre {
                 code:before {
-                  content: 'root@localhost ~ # ';
-                  color: var(--bs-danger);
+                  content: 'user@localhost ~ % ';
+                }
+              }
+
+              &-root {
+                pre {
+                  code:before {
+                    content: 'root@localhost ~ # ';
+                    color: var(--bs-danger);
+                  }
+                }
+              }
+            }
+
+            &-windows {
+              pre {
+                code:before {
+                  content: 'C:\\Users\\LocalUser> ';
+                }
+              }
+
+              &-root {
+                pre {
+                  code:before {
+                    content: 'C:\\Windows\\System32> ';
+                    color: var(--bs-danger);
+                  }
                 }
               }
             }
