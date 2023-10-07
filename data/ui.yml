@@ -47,8 +47,6 @@ styles:
       - 'css/vendor/bootstrap/bootstrap.min.css'
       # https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css
       - 'css/vendor/fancyapps/fancybox.min.css'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/
-      # - 'css/vendor/highlight/atom-one-dark.min.css'
   system:
     internal:
       - 'css/system.scss'
@@ -71,13 +69,6 @@ scripts:
       - 'js/vendor/fancyapps/fancybox.min.js'
       # https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js
       - 'js/vendor/clipboard/clipboard.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js
-      # - 'js/vendor/highlight/highlight.min.js'
-      # - 'js/vendor/highlight/lang.awk.min.js'
-      # - 'js/vendor/highlight/lang.excel.min.js'
-      # - 'js/vendor/highlight/lang.powershell.min.js'
-      # - 'js/vendor/highlight/lang.routeros.min.js'
-      # - 'js/vendor/highlight/lang.twig.min.js'
       # https://cdn.jsdelivr.net/npm/easyqrcodejs@4/dist/easy.qrcode.min.js
       - 'js/vendor/qrcode/qrcode.min.js'
   system:
