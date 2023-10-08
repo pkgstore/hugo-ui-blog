@@ -2,11 +2,11 @@
 {{- $cfg := (site.Params.manifest) -}}
 
 {
-  "id": "/",
+  "id": "{{ (("/") | absLangURL) }}",
   "name": "{{ (site.Title) }}",
   "short_name": "{{ (site.Title) }}",
   "description": "{{ (site.Params.description) }}",
-  "start_url": "{{ (("/") | absURL) }}",
+  "start_url": "{{ (("/") | absLangURL) }}",
   "scope": "/",
   "display": "minimal-ui",
   "background_color": "{{ ($cfg.color.background) }}",
