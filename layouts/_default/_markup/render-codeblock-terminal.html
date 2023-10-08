@@ -27,10 +27,12 @@ EXAMPLE:
 {{ $t := (.Type) }}
 {{ $i := (.Inner) }}
 {{ $id := (printf "codeblock-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
+{{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
 <div class="card mb-3 overflow-hidden shortcode-codeblock shortcode-codeblock-{{ ($t) }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}
-{{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}" data-bs-theme="dark">
+{{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}"
+     id="{{ ($id) }}" data-bs-theme="dark">
   <div class="card-header">
     <div class="d-flex align-items-center">
       <div class="flex-shrink-0 {{ if (eq ($a.mode) "root") }}text-danger{{ end }}">
@@ -43,7 +45,7 @@ EXAMPLE:
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
             <a class="text-body" href="#"
-               data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($id) }}"
+               data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
                role="button">
               <i class="fas fa-copy fa-fw"></i>
             </a>
@@ -52,5 +54,5 @@ EXAMPLE:
       </div>
     </div>
   </div>
-  <div class="card-body p-0" id="{{ ($id) }}">{{ (highlight ($i) ($t)) }}</div>
+  <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight ($i) ($t)) }}</div>
 </div>
