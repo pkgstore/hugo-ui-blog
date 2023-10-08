@@ -34,6 +34,7 @@ author:
   email: 'john.doe@example.com'
 
 manifest:
+  short_name: ''
   color:
     background: '#ffffff'
     theme: '#ffffff'

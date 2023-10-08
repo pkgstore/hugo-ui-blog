@@ -4,7 +4,7 @@
 {
   "id": "{{ (("/") | absLangURL) }}",
   "name": "{{ (site.Title) }}",
-  "short_name": "{{ (site.Title) }}",
+  "short_name": "{{ ($cfg.short_name) }}",
   "description": "{{ (site.Params.description) }}",
   "start_url": "{{ (("/") | absLangURL) }}",
   "scope": "/",
