@@ -7,8 +7,8 @@
   "short_name": "{{ ($cfg.short_name) }}",
   "description": "{{ (site.Params.description) }}",
   "start_url": "{{ (("/") | absLangURL) }}",
-  "scope": "/",
-  "display": "minimal-ui",
+  "scope": "{{ (("/") | absLangURL) }}",
+  "display": "standalone",
   "background_color": "{{ ($cfg.color.background) }}",
   "theme_color": "{{ ($cfg.color.theme) }}",
   "categories": [
