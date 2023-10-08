@@ -2,6 +2,8 @@
 # General.
 # -------------------------------------------------------------------------------------------------------------------- #
 
+about: { other: 'About' }
+archive: { other: 'Archive' }
 articles: { other: 'Articles' }
 authors: { other: 'Authors' }
 categories: { other: 'Categories' }
@@ -24,6 +26,7 @@ license_header: { other: 'License header' }
 license_text: { other: 'License text' }
 meta: { other: 'Meta' }
 minutes: { other: 'min.' }
+posts: { other: 'Posts' }
 reading_time: { other: 'Reading time' }
 search: { other: 'Search' }
 search_bing: { other: 'Bing Search' }

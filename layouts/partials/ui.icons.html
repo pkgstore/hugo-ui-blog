@@ -1,11 +1,11 @@
-{{ $sizes := (site.Data.ui.meta.icons.sizes) }}
+{{ $sizes := (site.Data.ui.icons.sizes) }}
 
 {{ range ($sizes) }}
   <link rel="icon" type="image/png" sizes="{{ . }}x{{ . }}" href='{{ ((printf "favicon-%s.png" .) | absURL) }}'/>
   <link rel="shortcut icon" type="image/png" sizes="{{ . }}x{{ . }}" href='{{ ((printf "favicon-%s.png" .) | absURL) }}'/>
   <link rel="apple-touch-icon" sizes="{{ . }}x{{ . }}" href='{{ ((printf "favicon-%s.png" .) | absURL) }}'/>
 {{ end }}
+
 <link rel="icon" type="image/svg+xml" sizes="any" href='{{ (("favicon.svg") | absURL) }}'/>
 <link rel="shortcut icon" type="image/x-icon" href='{{ (("favicon.ico") | absURL) }}'/>
 <link rel="shortcut icon" type="image/vnd.microsoft.icon" href='{{ (("favicon.ico") | absURL) }}'/>
-<meta name="theme-color" content="{{ (site.Data.ui.meta.color.theme) }}"/>

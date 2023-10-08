@@ -19,8 +19,8 @@ tags:
   - 'tag_02'
   - 'tag_03'
 authors:
-  - 'Author_01'
-  - 'Author_02'
+  - 'JohnDoe'
+  - 'JaneDoe'
 sources:
   - ''
 license: 'CC-BY-SA-4.0'

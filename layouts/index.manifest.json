@@ -1,0 +1,55 @@
+{{- $icons := (site.Data.ui.icons.sizes) -}}
+{{- $cfg := (site.Params.manifest) -}}
+
+{
+  "name": "{{ (site.Title) }}",
+  "short_name": "{{ (site.Title) }}",
+  "description": "{{ (site.Params.description) }}",
+  "start_url": "{{ (("/") | absURL) }}",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "{{ ($cfg.color.background) }}",
+  "theme_color": "{{ ($cfg.color.theme) }}",
+  "categories": [
+    {{ range $i, $e := ($cfg.categories) }}{{ if ($i) }},{{ end }}"{{ ($e) }}"{{ end }}
+  ],
+  "icons": [
+    {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","sizes":"{{ ($e) }}x{{ ($e) }}","type":"image/png"},{{ end }}
+    {
+      "src": "{{ (("favicon.ico") | absURL) }}",
+      "sizes": "{{ range $i, $e := ($icons) }}{{ if ($i) }} {{ end }}{{ ($e) }}x{{ ($e) }}{{ end }}",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "{{ (("favicon.svg") | absURL) }}",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "{{ (i18n "posts") }}",
+      "url": "{{ (("posts/") | absLangURL) }}"
+    },
+    {
+      "name": "{{ (i18n "archive") }}",
+      "url": "{{ (("archive/") | absLangURL) }}"
+    },
+    {
+      "name": "{{ (i18n "categories") }}",
+      "url": "{{ (("categories/") | absLangURL) }}"
+    },
+    {
+      "name": "{{ (i18n "tags") }}",
+      "url": "{{ (("tags/") | absLangURL) }}"
+    },
+    {
+      "name": "{{ (i18n "authors") }}",
+      "url": "{{ (("authors/") | absLangURL) }}"
+    },
+    {
+      "name": "{{ (i18n "about") }}",
+      "url": "{{ (("about/") | absLangURL) }}"
+    }
+  ]
+}
