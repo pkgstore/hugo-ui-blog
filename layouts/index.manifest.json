@@ -2,12 +2,13 @@
 {{- $cfg := (site.Params.manifest) -}}
 
 {
+  "id": "/",
   "name": "{{ (site.Title) }}",
   "short_name": "{{ (site.Title) }}",
   "description": "{{ (site.Params.description) }}",
   "start_url": "{{ (("/") | absURL) }}",
   "scope": "/",
-  "display": "browser",
+  "display": "minimal-ui",
   "background_color": "{{ ($cfg.color.background) }}",
   "theme_color": "{{ ($cfg.color.theme) }}",
   "categories": [
@@ -15,11 +16,6 @@
   ],
   "icons": [
     {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","sizes":"{{ ($e) }}x{{ ($e) }}","type":"image/png"},{{ end }}
-    {
-      "src": "{{ (("favicon.ico") | absURL) }}",
-      "sizes": "{{ range $i, $e := ($icons) }}{{ if ($i) }} {{ end }}{{ ($e) }}x{{ ($e) }}{{ end }}",
-      "type": "image/x-icon"
-    },
     {
       "src": "{{ (("favicon.svg") | absURL) }}",
       "sizes": "any",
@@ -29,27 +25,63 @@
   "shortcuts": [
     {
       "name": "{{ (i18n "posts") }}",
-      "url": "{{ (("posts/") | absLangURL) }}"
+      "url": "{{ (("posts/") | absLangURL) }}",
+      "icons": [
+        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
+        {
+          "src": "{{ (("favicon.svg") | absURL) }}",
+          "type": "image/svg+xml",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "{{ (i18n "archive") }}",
-      "url": "{{ (("archive/") | absLangURL) }}"
+      "url": "{{ (("archive/") | absLangURL) }}",
+      "icons": [
+        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
+        {
+          "src": "{{ (("favicon.svg") | absURL) }}",
+          "type": "image/svg+xml",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "{{ (i18n "categories") }}",
-      "url": "{{ (("categories/") | absLangURL) }}"
+      "url": "{{ (("categories/") | absLangURL) }}",
+      "icons": [
+        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
+        {
+          "src": "{{ (("favicon.svg") | absURL) }}",
+          "type": "image/svg+xml",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "{{ (i18n "tags") }}",
-      "url": "{{ (("tags/") | absLangURL) }}"
+      "url": "{{ (("tags/") | absLangURL) }}",
+      "icons": [
+        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
+        {
+          "src": "{{ (("favicon.svg") | absURL) }}",
+          "type": "image/svg+xml",
+          "sizes": "any"
+        }
+      ]
     },
     {
       "name": "{{ (i18n "authors") }}",
-      "url": "{{ (("authors/") | absLangURL) }}"
-    },
-    {
-      "name": "{{ (i18n "about") }}",
-      "url": "{{ (("about/") | absLangURL) }}"
+      "url": "{{ (("authors/") | absLangURL) }}",
+      "icons": [
+        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
+        {
+          "src": "{{ (("favicon.svg") | absURL) }}",
+          "type": "image/svg+xml",
+          "sizes": "any"
+        }
+      ]
     }
   ]
 }
