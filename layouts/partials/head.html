@@ -40,9 +40,6 @@
 {{ end }}
 <!--[ / pre-load-js ]-->
 
-<meta name="application-name" content="{{ (site.Title) }}"/>
-<meta name="theme-color" content="{{ (site.Params.ui.color.theme) }}"/>
-
 <!--[ canonical ]-->
 <link rel="canonical" href="{{ (.Permalink) }}"/>
 <!--[ / canonical ]-->
@@ -66,6 +63,18 @@
   <link rel="{{ (.Rel) }}" type="{{ (.MediaType.Type) }}" href="{{ ((.Permalink) | safeURL) }}" title="{{ (site.Title) }}"/>
 {{ end }}
 <!--[ / output-formats ]-->
+
+{{ with (site.Title) }}
+  <meta name="application-name" content="{{ (site.Title) }}"/>
+{{ end }}
+
+{{ with (site.Params.ui.color.theme.light) }}
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)"/>
+{{ end }}
+
+{{ with (site.Params.ui.color.theme.dark) }}
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)"/>
+{{ end }}
 
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/opengraph.html" . }}
