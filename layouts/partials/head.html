@@ -64,17 +64,21 @@
 {{ end }}
 <!--[ / output-formats ]-->
 
+<!--[ application-name ]-->
 {{ with (site.Title) }}
   <meta name="application-name" content="{{ (site.Title) }}"/>
 {{ end }}
+<!--[ / application-name ]-->
 
-{{ with (site.Params.ui.color.theme.light) }}
+<!--[ theme-color ]-->
+{{ $theme := (site.Params.ui.color.theme) }}
+{{ with ($theme.light) }}
   <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)"/>
 {{ end }}
-
-{{ with (site.Params.ui.color.theme.dark) }}
+{{ with ($theme.dark) }}
   <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)"/>
 {{ end }}
+<!--[ / theme-color ]-->
 
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/opengraph.html" . }}
