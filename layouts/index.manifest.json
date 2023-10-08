@@ -9,6 +9,7 @@
   "start_url": "{{ (("/") | absURL) }}",
   "scope": "/",
   "display": "minimal-ui",
+  "display_override": "minimal-ui",
   "background_color": "{{ ($cfg.color.background) }}",
   "theme_color": "{{ ($cfg.color.theme) }}",
   "categories": [
