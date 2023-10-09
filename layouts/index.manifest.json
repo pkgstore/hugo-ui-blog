@@ -1,10 +1,11 @@
 {{- $icons := (site.Data.ui.icons.sizes) -}}
 {{- $cfg := (site.Params.manifest) -}}
+{{- $lang := (site.Language.Lang) -}}
 
 {
   "id": "{{ (("/") | absLangURL) }}",
   "name": "{{ (site.Title) }}",
-  "short_name": "{{ ($cfg.short_name) }}",
+  "short_name": "{{ (index ($cfg.short_name) ($lang)) }}",
   "description": "{{ (site.Params.description) }}",
   "start_url": "{{ (("/") | absLangURL) }}",
   "scope": "{{ (("/") | absLangURL) }}",
