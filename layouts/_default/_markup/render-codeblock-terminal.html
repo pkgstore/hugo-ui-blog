@@ -24,15 +24,14 @@ EXAMPLE:
 */ -}}
 
 {{ $a := (.Attributes) }}
-{{ $t := (.Type) }}
+{{ $t := ((.Type) | default "text") }}
 {{ $i := (.Inner) }}
-{{ $id := (printf "codeblock-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
+
 {{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
 <div class="card mb-3 overflow-hidden shortcode-codeblock shortcode-codeblock-{{ ($t) }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}
-{{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}"
-     id="{{ ($id) }}" data-bs-theme="dark">
+{{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}" data-bs-theme="dark">
   <div class="card-header">
     <div class="d-flex align-items-center">
       <div class="flex-shrink-0 {{ if (eq ($a.mode) "root") }}text-danger{{ end }}">
