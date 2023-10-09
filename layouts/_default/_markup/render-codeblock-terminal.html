@@ -2,24 +2,29 @@
 DESCRIPTION:
   Terminal code block.
 
+SYNTAX:
+  ```terminal {os="OS",mode="MODE"}
+  <CODE>
+  ```
+
 EXAMPLE:
   ```terminal {os="windows"}
-  <CODE>
+  cd D:\Documents
   ```
 
 EXAMPLE:
   ```terminal {os="windows",mode="root"}
-  <CODE>
+  Dism /Get-ImageInfo /ImageFile:"C:\BuildFarm\WIM\install.wim"
   ```
 
 EXAMPLE:
   ```terminal {os="linux"}
-  <CODE>
+  bash favicon.sh png
   ```
 
 EXAMPLE:
   ```terminal {os="linux",mode="root"}
-  <CODE>
+  dd if=image.iso of=/dev/sdc bs=4M oflag=direct status=progress; sync
   ```
 */ -}}
 

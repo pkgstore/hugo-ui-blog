@@ -2,9 +2,14 @@
 DESCRIPTION:
   Highlight code block.
 
-EXAMPLE:
+SYNTAX:
   ```bash
   <CODE>
+  ```
+
+EXAMPLE:
+  ```bash
+  echo "ext_$(date +%s%N | sha512sum | fold -w 8 | head -n 1)"
   ```
 */ -}}
 
