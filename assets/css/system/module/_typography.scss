@@ -57,7 +57,7 @@ body {
     &-source {
       pre {
         > code {
-          white-space: normal;
+          white-space: pre-wrap;
         }
       }
     }
