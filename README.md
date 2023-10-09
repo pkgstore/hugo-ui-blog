@@ -117,6 +117,8 @@ node:
         width: '160'
         height: '160'
   tabs:
+    source:
+      enabled: true
     info:
       enabled: true
       categories:
