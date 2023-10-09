@@ -37,6 +37,7 @@ share: { other: 'Поделиться' }
 site_resize: { other: 'Изменить размер сайта' }
 size: { other: 'Размер' }
 social_networks: { other: 'Социальный сети' }
+source_code: { other: 'Исходный код' }
 sources: { other: 'Источники' }
 stats: { other: 'Статистика' }
 sys_path: { other: 'Системный путь' }

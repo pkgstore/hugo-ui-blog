@@ -37,6 +37,7 @@ share: { other: 'Share' }
 site_resize: { other: 'Resize site' }
 size: { other: 'Size' }
 social_networks: { other: 'Social networks' }
+source_code: { other: 'Source code' }
 sources: { other: 'Sources' }
 stats: { other: 'Statistics' }
 sys_path: { other: 'System path' }
