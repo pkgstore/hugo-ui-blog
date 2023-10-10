@@ -32,7 +32,7 @@
     <sy:updateFrequency>1</sy:updateFrequency>
     <image>
       <link>{{ (.Permalink) }}</link>
-      <url>{{ ("img/icon-128.png" | absURL) }}</url>
+      <url>{{ (("favicon-128.png") | absURL) }}</url>
       <width>128</width>
       <height>128</height>
       <title>
