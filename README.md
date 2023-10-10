@@ -133,8 +133,6 @@ node:
         enabled: true
       stats:
         enabled: true
-    license:
-      enabled: true
     comments:
       enabled: true
       giscus:

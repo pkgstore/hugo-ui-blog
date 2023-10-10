@@ -2,6 +2,28 @@
   <div class="card-body">
     <h5 class="card-title">{{ (i18n "meta") }}</h5>
     <div class="row row-cols-1 row-cols-sm-2 g-2 align-items-center">
+        {{ with (.Param "license") }}
+            {{ $id := (printf "modal-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
+            <div class="col">{{ (i18n "license") }}</div>
+            <div class="col">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#{{ ($id) }}" role="button">{{ . }}</a>
+              <div class="modal fade" id="{{ ($id) }}" tabindex="-1" aria-labelledby="{{ ($id) }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="{{ ($id) }}-label">{{ (i18n "license") }}</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="node-body">
+                          {{ (partial "module/node/license" .) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {{ end }}
         {{ with (.File) }}
           <div class="col">{{ (i18n "file_id") }}</div>
           <div class="col">
