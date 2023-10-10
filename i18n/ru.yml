@@ -23,7 +23,7 @@ info: { other: 'Информация' }
 languages: { other: 'Языки' }
 license: { other: 'Лицензия' }
 license_header: { other: 'Заголовок лицензии' }
-license_text: { other: 'Текст лицензия' }
+license_text: { other: 'Текст лицензии' }
 meta: { other: 'Мета' }
 minutes: { other: 'мин.' }
 posts: { other: 'Статьи' }

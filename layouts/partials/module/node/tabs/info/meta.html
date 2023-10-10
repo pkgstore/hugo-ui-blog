@@ -6,13 +6,19 @@
             {{ $id := (printf "modal-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
             <div class="col">{{ (i18n "license") }}</div>
             <div class="col">
-              <a href="#" data-bs-toggle="modal" data-bs-target="#{{ ($id) }}" role="button">{{ . }}</a>
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{ . }}" readonly/>
+                <button class="btn btn-primary" type="button"
+                        data-bs-toggle="modal" data-bs-target="#{{ ($id) }}"
+                        data-bs-tooltip data-bs-title="{{ (i18n "license_text") }}">
+                  <i class="far fa-file-lines fa-fw"></i></button>
+              </div>
               <div class="modal fade" id="{{ ($id) }}" tabindex="-1" aria-labelledby="{{ ($id) }}-label" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-xl">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h1 class="modal-title fs-5" id="{{ ($id) }}-label">{{ (i18n "license") }}</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ (i18n "close") }}"></button>
                     </div>
                     <div class="modal-body">
                       <div class="node-body">
@@ -27,7 +33,7 @@
         {{ with (.File) }}
           <div class="col">{{ (i18n "file_id") }}</div>
           <div class="col">
-            <input type="text" class="form-control" value="{{ .UniqueID }}" readonly/>
+            <input type="text" class="form-control" value="{{ (.UniqueID) }}" readonly/>
           </div>
         {{ end }}
         {{ with (.Param "uuid") }}
@@ -39,7 +45,7 @@
         {{ with (.File) }}
           <div class="col">{{ (i18n "sys_path") }}</div>
           <div class="col">
-            <input type="text" class="form-control" value="{{ .Path }}" readonly/>
+            <input type="text" class="form-control" value="{{ (.Path) }}" readonly/>
           </div>
         {{ end }}
         {{ with (.Type) }}
