@@ -11,7 +11,10 @@
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:atom="http://www.w3.org/2005/Atom"
-     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:yandex="http://news.yandex.ru"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:turbo="http://turbo.yandex.ru">
   <channel>
     <title>
         {{ if (eq (.Title) (site.Title)) }}
@@ -48,7 +51,8 @@
           {{ ((printf "<atom:link href=%q rel='self' type=%q/>" (.Permalink) (.MediaType)) | safeHTML) }}
       {{ end }}
       {{ range $posts }}
-        <item>
+        <item turbo="true">
+          <turbo:extendedHtml>true</turbo:extendedHtml>
           <title>{{ (.Title) }}</title>
           <link>{{ (.Permalink) }}</link>
             {{ range (.GetTerms "authors") }}
@@ -57,6 +61,7 @@
           <guid isPermaLink="true">{{ (.Permalink) }}</guid>
           <description>{{ ((.Summary) | plainify) }}</description>
           <content:encoded>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</content:encoded>
+          <turbo:content>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</turbo:content>
           <pubDate>{{ ((.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") | safeHTML) }}</pubDate>
             {{ range (.GetTerms "categories") }}
               <category>{{ (.LinkTitle) }}</category>
