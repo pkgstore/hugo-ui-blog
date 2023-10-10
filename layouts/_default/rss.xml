@@ -1,3 +1,4 @@
+{{ $image := (site.Params.node.cover.image) }}
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
@@ -60,7 +61,10 @@
             {{ end }}
           <guid isPermaLink="true">{{ (.Permalink) }}</guid>
           <description>{{ ((.Summary) | plainify) }}</description>
+          <media:content medium="image" url="{{ index (.Param "images") 0 }}" width="{{ ($image.lg.width) }}" height="{{ ($image.lg.height) }}" />
           <content:encoded>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</content:encoded>
+          <turbo:source/>
+          <turbo:topic>{{ (.Title) }}</turbo:topic>
           <turbo:content>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</turbo:content>
           <pubDate>{{ ((.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") | safeHTML) }}</pubDate>
             {{ range (.GetTerms "categories") }}
