@@ -1,7 +1,7 @@
 {{ define "main" }}
 
     {{ $cfg := (site.Params.node) }}
-    {{ $tabsID := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
+    {{ $id_tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
 
     <div class="section py-3">
       <div class="container">
@@ -48,7 +48,7 @@
                 {{ end }}
             </ul>
           </footer>
-          <ul class="nav nav-tabs mb-3" id="{{ ($tabsID) }}" data-fn="node-tabs" role="tablist">
+          <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
               <button class="nav-link active" id="tab-main-home" data-bs-toggle="tab" data-bs-target="#tab-pane-main-home" type="button" role="tab" aria-controls="tab-pane-main-home" aria-selected="true">
                 <i class="fas fa-home fa-fw"></i>
