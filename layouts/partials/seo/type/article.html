@@ -1,0 +1,55 @@
+{{ $date := ((.Date.UTC.Format "2006-01-02T15:04:05Z07:00") | default "") }}
+{{ $datePublished := ((.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $dateCreated := ((.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $dateModified := ((.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+
+{{ $description := (site.Params.description) }}
+{{ with (.Summary) }}{{ $description = . }}{{ end }}
+{{ with (.Description) }}{{ $description = . }}{{ end }}
+
+{{ $image := (index (.Param "images") 0) }}
+{{ $keywords := (delimit ((.Param "tags") | default (slice)) ", ") }}
+
+{{ $mainEntityOfPage := (dict
+"@type" "WebPage"
+"@id" "{{ (.Permalink) }}"
+) }}
+
+{{ $publisher := (dict
+"@type" "Organization"
+"name" (site.Title)
+"logo" (dict
+"@type" "ImageObject"
+"url" (("img/logo.svg") | absURL)
+)
+) }}
+
+{{ $author := (newScratch) }}
+{{ ($author.Add "authors" (slice)) }}
+{{ range (.GetTerms "authors") }}
+    {{ ($author.Add "authors" (dict
+    "@type" "Person"
+    "name" (.LinkTitle)
+    )) }}
+{{ end }}
+
+{{ $article := (dict
+"@context" "https://schema.org"
+"@type" "Article"
+"mainEntityOfPage" ($mainEntityOfPage)
+"headline" ((.Title) | truncate 110)
+"description" (($description) | plainify)
+"url" (.Permalink)
+"image" ($image)
+"author" ($author.Get "authors")
+"inLanguage" (.Lang)
+"wordCount" (.WordCount)
+"datePublished" ($datePublished)
+"dateCreated" ($dateCreated)
+"dateModified" ($dateModified)
+"keywords" ($keywords)
+"publisher" ($publisher)
+"articleBody" ((.Content) | plainify)
+) }}
+
+<script type="application/ld+json">{{ (jsonify ($article) | safeJS) }}</script>

@@ -80,5 +80,10 @@
 {{ end }}
 <!--[ / theme-color ]-->
 
+<!--[ seo ]-->
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/opengraph.html" . }}
+
+{{ (partial "seo/dc" .) }}
+{{ (partial "seo/schema" .) }}
+<!--[ / seo ]-->

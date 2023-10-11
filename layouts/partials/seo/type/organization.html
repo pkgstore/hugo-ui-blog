@@ -1,0 +1,31 @@
+{{ $address := (dict
+"@type" "PostalAddress"
+"streetAddress" ""
+"addressLocality" ""
+"addressRegion" ""
+"postalCode" ""
+"addressCountry" ""
+) }}
+
+{{ $contactPoint := (dict
+"@type" "ContactPoint"
+"contactType" ""
+"telephone" ""
+"email" ""
+) }}
+
+{{ $organization := (dict
+"@context" "https://schema.org"
+"@type" "Organization"
+"name" (site.Title)
+"legalName" (site.Title)
+"foundingDate" ""
+"url" (site.BaseURL)
+"logo" (("img/logo.svg") | absURL)
+"description" ((site.Params.description) | plainify)
+"address" ($address)
+"contactPoint" ($contactPoint)
+"sameAs" (slice)
+) }}
+
+<script type="application/ld+json">{{ (jsonify ($organization) | safeJS) }}</script>
