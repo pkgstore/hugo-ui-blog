@@ -12,7 +12,7 @@
         <ul class="list-inline">
             {{ range (.GetTerms "authors") }}
               <li class="list-inline-item">
-                <a href="{{ (.Permalink) }}">{{ (.LinkTitle) }}</a>
+                <a href="{{ (.Permalink) }}">{{ (.Title) }}</a>
               </li>
             {{ end }}
         </ul>

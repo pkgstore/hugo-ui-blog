@@ -12,7 +12,7 @@
 
 {{ $mainEntityOfPage := (dict
 "@type" "WebPage"
-"@id" "{{ (.Permalink) }}"
+"@id" (.Permalink)
 ) }}
 
 {{ $publisher := (dict
@@ -29,7 +29,8 @@
 {{ range (.GetTerms "authors") }}
     {{ ($author.Add "authors" (dict
     "@type" "Person"
-    "name" (.LinkTitle)
+    "name" (.Title)
+    "url" (.Permalink)
     )) }}
 {{ end }}
 
