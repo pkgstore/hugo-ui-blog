@@ -12,34 +12,35 @@
 
 {{ range ($icons.sizes) }}
     {{ ($data.Add "icons" (dict
-    "src" ((printf "favicon-%s.png" .) | relURL)
+    "src" ((printf "favicon-%s.png" .) | absURL)
     "sizes" (printf "%sx%s" . .)
     "type" "image/png"
     )) }}
 {{ end }}
 
 {{ ($data.Add "icons" (dict
-"src" (("favicon.ico") | relURL)
+"src" (("favicon.ico") | absURL)
 "sizes" "any"
 "type" "image/x-icon"
 )) }}
 
 {{ ($data.Add "icons" (dict
-"src" (("favicon.svg") | relURL)
+"src" (("favicon.svg") | absURL)
 "sizes" "any"
 "type" "image/svg+xml"
 )) }}
 
 {{ $mainfest := (dict
-"id" "/"
+"id" (("/") | absURL)
 "name" (site.Title)
 "short_name" (index ($cfg.short_name) ($lang))
 "description" (site.Params.description)
-"start_url" "/"
-"scope" "/"
+"start_url" (("/") | absURL)
+"scope" (("/") | absURL)
 "display" "standalone"
 "background_color" ($cfg.color.background)
 "theme_color" ($cfg.color.theme)
+"orientation" "any"
 "categories" ($data.Get "categories")
 "icons" ($data.Get "icons")
 ) }}
