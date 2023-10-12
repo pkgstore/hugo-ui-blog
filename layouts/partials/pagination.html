@@ -32,7 +32,7 @@
 
           {{ range ($p.Pagers) }}
               {{ if (eq . ($p)) }}
-                <li class="page-item active">
+                <li class="page-item active" aria-current="page">
                   <a href="{{ (.URL) }}" class="page-link">{{ (.PageNumber) }}</a>
                 </li>
               {{ else if (and (ge (.PageNumber) (sub ($p.PageNumber) 2)) (le (.PageNumber) (add ($p.PageNumber) 2))) }}
