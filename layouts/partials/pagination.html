@@ -1,73 +1,78 @@
 {{ $p := ($.Paginator) }}
 
 {{ if (gt ($p.TotalPages) (1)) }}
+    {{ $.Scratch.Set "dot_rendered" false }}
 
-  <nav class="mt-5">
-    <ul class="pagination justify-content-center">
+    <nav class="mt-5">
+      <ul class="pagination justify-content-center">
 
-        {{ if (and (ne ($p.PageNumber) (1)) (ne ($p.PageNumber) (2))) }}
-          <li class="page-item">
-            <a class="page-link" href="{{ ($p.First.URL) }}">
-              <i class="fas fa-angle-double-left fa-fw"></i>
-            </a>
-          </li>
-        {{ else }}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-              <i class="fas fa-angle-double-left fa-fw"></i>
-            </a>
-          </li>
-        {{ end }}
+          {{ if (and (ne ($p.PageNumber) (1)) (ne ($p.PageNumber) (2))) }}
+            <li class="page-item">
+              <a class="page-link" href="{{ ($p.First.URL) }}">
+                <i class="fas fa-angle-double-left fa-fw"></i>
+              </a>
+            </li>
+          {{ else }}
+            <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-angle-double-left fa-fw"></i></span>
+            </li>
+          {{ end }}
 
-        {{ if ($p.HasPrev) }}
-          <li class="page-item">
-            <a class="page-link" href="{{ ($p.Prev.URL) }}">
-              <i class="fas fa-angle-left fa-fw"></i>
-            </a>
-          </li>
-        {{ else }}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-              <i class="fas fa-angle-left fa-fw"></i>
-            </a>
-          </li>
-        {{ end }}
+          {{ if ($p.HasPrev) }}
+            <li class="page-item">
+              <a class="page-link" href="{{ ($p.Prev.URL) }}">
+                <i class="fas fa-angle-left fa-fw"></i>
+              </a>
+            </li>
+          {{ else }}
+            <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-angle-left fa-fw"></i></span>
+            </li>
+          {{ end }}
 
-      <li class="page-item disabled">
-        <a class="page-link font-weight-bold" href="#" tabindex="-1" aria-disabled="true">
-            {{ ($p.PageNumber) }} / {{ ($p.TotalPages) }}
-        </a>
-      </li>
+          {{ range ($p.Pagers) }}
+              {{ if (eq . ($p)) }}
+                <li class="page-item active">
+                  <a href="{{ (.URL) }}" class="page-link">{{ (.PageNumber) }}</a>
+                </li>
+              {{ else if (and (ge (.PageNumber) (sub ($p.PageNumber) 2)) (le (.PageNumber) (add ($p.PageNumber) 2))) }}
+                  {{ ($.Scratch.Set "dot_rendered" false) }}
+                  <li class="page-item">
+                    <a href="{{ (.URL) }}" class="page-link">{{ (.PageNumber) }}</a>
+                  </li>
+              {{ else if (eq ($.Scratch.Get "dot_rendered") false) }}
+                  {{ ($.Scratch.Set "dot_rendered" true) }}
+                  <li class="page-item disabled">
+                    <span class="page-link"><i class="fas fa-ellipsis fa-fw"></i></span>
+                  </li>
+              {{ end }}
+          {{ end }}
 
-        {{ if ($p.HasNext) }}
-          <li class="page-item">
-            <a class="page-link" href="{{ ($p.Next.URL) }}">
-              <i class="fas fa-angle-right fa-fw"></i>
-            </a>
-          </li>
-        {{ else }}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-              <i class="fas fa-angle-right fa-fw"></i>
-            </a>
-          </li>
-        {{ end }}
+          {{ if ($p.HasNext) }}
+            <li class="page-item">
+              <a class="page-link" href="{{ ($p.Next.URL) }}">
+                <i class="fas fa-angle-right fa-fw"></i>
+              </a>
+            </li>
+          {{ else }}
+            <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-angle-right fa-fw"></i></span>
+            </li>
+          {{ end }}
 
-        {{ if (and (ne ($p.PageNumber) ($p.TotalPages)) ((ne ($p.PageNumber) (sub ($p.TotalPages) (1))))) }}
-          <li class="page-item">
-            <a class="page-link" href="{{ ($p.Last.URL) }}">
-              <i class="fas fa-angle-double-right fa-fw"></i>
-            </a>
-          </li>
-        {{ else }}
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-              <i class="fas fa-angle-double-right fa-fw"></i>
-            </a>
-          </li>
-        {{ end }}
+          {{ if (and (ne ($p.PageNumber) ($p.TotalPages)) ((ne ($p.PageNumber) (sub ($p.TotalPages) (1))))) }}
+            <li class="page-item">
+              <a class="page-link" href="{{ ($p.Last.URL) }}">
+                <i class="fas fa-angle-double-right fa-fw"></i>
+              </a>
+            </li>
+          {{ else }}
+            <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-angle-double-right fa-fw"></i></span>
+            </li>
+          {{ end }}
 
-    </ul>
-  </nav>
+      </ul>
+    </nav>
 
 {{ end }}
