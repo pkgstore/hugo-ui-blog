@@ -1,7 +1,7 @@
-{{ $date := ((.Date.UTC.Format "2006-01-02T15:04:05Z07:00") | default "") }}
-{{ $datePublished := ((.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
-{{ $dateCreated := ((.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
-{{ $dateModified := ((.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $date := ((.Date.Format "2006-01-02T15:04:05Z07:00") | default "") }}
+{{ $datePublished := ((.PublishDate.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $dateCreated := ((.PublishDate.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $dateModified := ((.Lastmod.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
 
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}

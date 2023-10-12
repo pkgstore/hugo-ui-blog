@@ -1,0 +1,30 @@
+{{ $description := (site.Params.description) }}
+{{ with (.Summary) }}{{ $description = . }}{{ end }}
+{{ with (.Description) }}{{ $description = . }}{{ end }}
+{{ $image := (index (.Param "images") 0) }}
+
+<meta property="og:locale" content="{{ ((replace (site.LanguageCode) "-" "_") | default "en_US") }}"/>
+<meta property="og:site_name" content="{{ (site.Title) }}"/>
+
+{{ if ($.IsPage) }}
+  <meta name="aiturec:title" content="{{ (.Title) }}"/>
+  <meta property="aiturec:description" content="{{ ($description) }}"/>
+  <meta property="aiturec:image" content="{{ ($image) }}"/>
+  <meta property="aiturec:item_id" content="{{ (.Param "uuid") }}"/>
+  <meta property="aiturec:datetime" content="{{ (.Date.Format "2006-01-02T15:04:05Z07:00") }}"/>
+  <meta itemprop="description" content="{{ ($description) }}"/>
+  <meta itemprop="image" content="{{ ($image) }}"/>
+  <meta property="vk:image" content="{{ ($image) }}"/>
+
+  {{ with (.GetTerms "authors") }}
+      {{ range . }}
+        <meta property="article:author" content="{{ (.Title) }}"/>
+      {{ end }}
+  {{ end }}
+
+  {{ with (.GetTerms "tags") }}
+      {{ range . }}
+        <meta property="article:tag" content="{{ (.Title) }}"/>
+      {{ end }}
+  {{ end }}
+{{ end }}
