@@ -17,13 +17,11 @@
      xmlns:yandex="http://news.yandex.ru"
      xmlns:turbo="http://turbo.yandex.ru">
   <channel>
-    <title>
-        {{ if (eq (.Title) (site.Title)) }}
-            {{ (site.Title) }}
-        {{ else }}
-            {{ with (.Title) }}{{ . }} | {{ end }}{{ (site.Title) }}
-        {{ end }}
-    </title>
+      {{ if (eq (.Title) (site.Title)) }}
+        <title>{{ (site.Title) }}</title>
+      {{ else }}
+        <title>{{ with (.Title) }}{{ . }} / {{ end }}{{ (site.Title) }}</title>
+      {{ end }}
     <link>{{ (.Permalink) }}</link>
     <description>{{ ($description) }}</description>
       {{ with (site.LanguageCode) }}
@@ -36,13 +34,11 @@
       <url>{{ (("favicon-128.png") | absURL) }}</url>
       <width>128</width>
       <height>128</height>
-      <title>
-          {{ if (eq (.Title) (site.Title)) }}
-              {{ (site.Title) }}
-          {{ else }}
-              {{ with (.Title) }}{{ . }} | {{ end }}{{ (site.Title) }}
-          {{ end }}
-      </title>
+        {{ if (eq (.Title) (site.Title)) }}
+          <title>{{ (site.Title) }}</title>
+        {{ else }}
+          <title>{{ with (.Title) }}{{ . }} / {{ end }}{{ (site.Title) }}</title>
+        {{ end }}
       <description>{{ ($description) }}</description>
     </image>
       {{ if (not (.Date.IsZero)) }}
@@ -60,7 +56,7 @@
               <dc:creator>{{ ((printf "<![CDATA[%s]]>" (.Title)) | safeHTML) }}</dc:creator>
             {{ end }}
           <guid isPermaLink="true">{{ (.Permalink) }}</guid>
-          <description>{{ (($description) | plainify) }}</description>
+          <description>{{ ((.Summary) | plainify) }}</description>
             {{ with (index (.Param "images") 0) }}
               <media:content medium="image" url="{{ . }}" width="{{ ($image.lg.width) }}" height="{{ ($image.lg.height) }}"/>
             {{ end }}
