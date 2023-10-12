@@ -1,7 +1,23 @@
-{{ $date := ((.Date.Format "2006-01-02T15:04:05Z07:00") | default "") }}
-{{ $datePublished := ((.PublishDate.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
-{{ $dateCreated := ((.PublishDate.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
-{{ $dateModified := ((.Lastmod.Format "2006-01-02T15:04:05Z07:00") | default ($date)) }}
+{{ $dateCreated := (now.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $datePublished := (now.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $dateExpiry := (now.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $dateModified := (now.Format "2006-01-02T15:04:05Z07:00") }}
+
+{{ if (.Param "date") }}
+    {{ $dateCreated = (.Date.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
+
+{{ if (.Param "publishDate") }}
+    {{ $datePublished = (.PublishDate.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
+
+{{ if (.Param "expiryDate") }}
+    {{ $dateExpiry = (.ExpiryDate.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
+
+{{ if (.Param "lastmod") }}
+    {{ $dateModified = (.Lastmod.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
 
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}

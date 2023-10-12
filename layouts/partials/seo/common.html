@@ -9,12 +9,22 @@
 {{ if ($.IsPage) }}
   <meta name="aiturec:title" content="{{ (.Title) }}"/>
   <meta property="aiturec:description" content="{{ ($description) }}"/>
-  <meta property="aiturec:image" content="{{ ($image) }}"/>
-  <meta property="aiturec:item_id" content="{{ (.Param "uuid") }}"/>
-  <meta property="aiturec:datetime" content="{{ (.Date.Format "2006-01-02T15:04:05Z07:00") }}"/>
+
+  {{ with (.Param "uuid") }}
+    <meta property="aiturec:item_id" content="{{ . }}"/>
+  {{ end }}
+
+  {{ if (.Param "date") }}
+    <meta property="aiturec:datetime" content="{{ (.Date.Format "2006-01-02T15:04:05Z07:00") }}"/>
+  {{ end }}
+
   <meta itemprop="description" content="{{ ($description) }}"/>
-  <meta itemprop="image" content="{{ ($image) }}"/>
-  <meta property="vk:image" content="{{ ($image) }}"/>
+      
+  {{ with ($image) }}
+    <meta itemprop="image" content="{{ . }}"/>
+    <meta property="aiturec:image" content="{{ . }}"/>
+    <meta property="vk:image" content="{{ . }}"/>
+  {{ end }}
 
   {{ with (.GetTerms "authors") }}
       {{ range . }}

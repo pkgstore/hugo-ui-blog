@@ -1,8 +1,8 @@
 {{ (partial "seo/schema/type/website.html" .) }}
 {{ (partial "seo/schema/type/organization.html" .) }}
 {{ (partial "seo/schema/type/navigation.html" .) }}
+{{ (partial "seo/schema/type/breadcrumbList.html" .) }}
 
 {{ if ($.IsPage) }}
-    {{ (partial "seo/schema/type/breadcrumbList.html" .) }}
     {{ (partial "seo/schema/type/article.html" .) }}
 {{ end }}
