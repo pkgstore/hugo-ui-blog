@@ -5,17 +5,8 @@
 
 {{ if (.Param "date") }}
     {{ $dateCreated = (.Date.Format "2006-01-02T15:04:05Z07:00") }}
-{{ end }}
-
-{{ if (.Param "publishDate") }}
     {{ $datePublished = (.PublishDate.Format "2006-01-02T15:04:05Z07:00") }}
-{{ end }}
-
-{{ if (.Param "expiryDate") }}
     {{ $dateExpiry = (.ExpiryDate.Format "2006-01-02T15:04:05Z07:00") }}
-{{ end }}
-
-{{ if (.Param "lastmod") }}
     {{ $dateModified = (.Lastmod.Format "2006-01-02T15:04:05Z07:00") }}
 {{ end }}
 
