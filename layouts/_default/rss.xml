@@ -57,10 +57,10 @@
           <title>{{ (.Title) }}</title>
           <link>{{ (.Permalink) }}</link>
             {{ range (.GetTerms "authors") }}
-              <dc:creator>{{ ((printf "<![CDATA[%s]]>" (.LinkTitle)) | safeHTML) }}</dc:creator>
+              <dc:creator>{{ ((printf "<![CDATA[%s]]>" (.Title)) | safeHTML) }}</dc:creator>
             {{ end }}
           <guid isPermaLink="true">{{ (.Permalink) }}</guid>
-          <description>{{ ((.Summary) | plainify) }}</description>
+          <description>{{ (($description) | plainify) }}</description>
             {{ with (index (.Param "images") 0) }}
               <media:content medium="image" url="{{ . }}" width="{{ ($image.lg.width) }}" height="{{ ($image.lg.height) }}"/>
             {{ end }}
@@ -70,7 +70,7 @@
           <turbo:content>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</turbo:content>
           <pubDate>{{ ((.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") | safeHTML) }}</pubDate>
             {{ range (.GetTerms "categories") }}
-              <category>{{ (.LinkTitle) }}</category>
+              <category>{{ (.Title) }}</category>
             {{ end }}
         </item>
       {{ end }}
