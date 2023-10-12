@@ -15,6 +15,7 @@
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
 {{ $image := (index (.Param "images") 0) }}
+{{ $logo := (.Param "organization.logo") }}
 {{ $keywords := (delimit ((.Param "tags") | default (slice)) ", ") }}
 {{ $data := (newScratch) }}
 
@@ -28,7 +29,7 @@
 "name" (site.Title)
 "logo" (dict
 "@type" "ImageObject"
-"url" (("img/logo.min.svg") | absURL)
+"url" (($logo) | absURL)
 )
 ) }}
 

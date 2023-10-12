@@ -1,3 +1,5 @@
+{{ $logo := (.Param "organization.logo") }}
+
 {{ $address := (dict
 "@type" "PostalAddress"
 "streetAddress" ""
@@ -21,7 +23,7 @@
 "legalName" (site.Title)
 "foundingDate" ""
 "url" (site.BaseURL)
-"logo" (("img/logo.min.svg") | absURL)
+"logo" (($logo) | absURL)
 "description" ((site.Params.description) | plainify)
 "address" ($address)
 "contactPoint" ($contactPoint)
