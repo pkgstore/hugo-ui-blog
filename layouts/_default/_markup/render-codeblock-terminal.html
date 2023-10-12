@@ -34,7 +34,7 @@ EXAMPLE:
 
 {{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
-<div class="shortcode-codeblock shortcode-codeblock-{{ ($t) }}
+<div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($t) }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}
 {{ with ($a.os) }}shortcode-codeblock-{{ ($t) }}-{{ . }}{{ end }}{{ with ($a.mode) }}-{{ . }}{{ end }}">
   <div class="card mb-3 overflow-hidden" data-bs-theme="dark">
