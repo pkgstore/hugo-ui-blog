@@ -24,10 +24,10 @@
 )
 ) }}
 
-{{ $author := (newScratch) }}
-{{ ($author.Add "authors" (slice)) }}
+{{ $data := (newScratch) }}
+{{ ($data.Add "authors" (slice)) }}
 {{ range (.GetTerms "authors") }}
-    {{ ($author.Add "authors" (dict
+    {{ ($data.Add "authors" (dict
     "@type" "Person"
     "name" (.Title)
     "url" (.Permalink)
@@ -42,7 +42,7 @@
 "description" (($description) | plainify)
 "url" (.Permalink)
 "image" ($image)
-"author" ($author.Get "authors")
+"author" ($data.Get "authors")
 "inLanguage" (.Lang)
 "wordCount" (.WordCount)
 "datePublished" ($datePublished)
@@ -53,4 +53,4 @@
 "articleBody" ((.Content) | plainify)
 ) }}
 
-<script type="application/ld+json">{{ (jsonify ($article) | safeJS) }}</script>
+<script type="application/ld+json">{{ ((($article) | jsonify) | safeJS) }}</script>

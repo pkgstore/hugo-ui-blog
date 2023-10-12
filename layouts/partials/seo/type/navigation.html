@@ -1,9 +1,9 @@
 {{ $menu := (site.Menus.main) }}
+{{ $data := (newScratch) }}
+{{ ($data.Add "itemListElement" (slice)) }}
 
-{{ $itemListElement := (newScratch) }}
-{{ ($itemListElement.Add "itemListElement" (slice)) }}
 {{ range ($menu) }}
-    {{ ($itemListElement.Add "itemListElement" (dict
+    {{ ($data.Add "itemListElement" (dict
     "@type" "SiteNavigationElement"
     "position" (.Weight)
     "name" (.Name)
@@ -14,7 +14,7 @@
 {{ $itemList := (dict
 "@context" "https://schema.org"
 "@type" "ItemList"
-"itemListElement" ($itemListElement.Get "itemListElement")
+"itemListElement" ($data.Get "itemListElement")
 ) }}
 
-<script type="application/ld+json">{{ (jsonify ($itemList) | safeJS) }}</script>
+<script type="application/ld+json">{{ ((($itemList) | jsonify) | safeJS) }}</script>

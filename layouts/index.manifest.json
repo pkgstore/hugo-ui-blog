@@ -1,88 +1,47 @@
-{{- $icons := (site.Data.ui.icons.sizes) -}}
-{{- $cfg := (site.Params.manifest) -}}
-{{- $lang := (site.Language.Lang) -}}
+{{ $cfg := (site.Params.manifest) }}
+{{ $icons := (site.Data.ui.icons) }}
+{{ $lang := (site.Language.Lang) }}
+{{ $data := (newScratch) }}
 
-{
-  "id": "{{ (("/") | absLangURL) }}",
-  "name": "{{ (site.Title) }}",
-  "short_name": "{{ (index ($cfg.short_name) ($lang)) }}",
-  "description": "{{ (site.Params.description) }}",
-  "start_url": "{{ (("/") | absLangURL) }}",
-  "scope": "{{ (("/") | absLangURL) }}",
-  "display": "standalone",
-  "background_color": "{{ ($cfg.color.background) }}",
-  "theme_color": "{{ ($cfg.color.theme) }}",
-  "categories": [
-    {{ range $i, $e := ($cfg.categories) }}{{ if ($i) }},{{ end }}"{{ ($e) }}"{{ end }}
-  ],
-  "icons": [
-    {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","sizes":"{{ ($e) }}x{{ ($e) }}","type":"image/png"},{{ end }}
-    {
-      "src": "{{ (("favicon.svg") | absURL) }}",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "{{ (i18n "posts") }}",
-      "url": "{{ (("posts/") | absLangURL) }}",
-      "icons": [
-        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
-        {
-          "src": "{{ (("favicon.svg") | absURL) }}",
-          "type": "image/svg+xml",
-          "sizes": "any"
-        }
-      ]
-    },
-    {
-      "name": "{{ (i18n "archive") }}",
-      "url": "{{ (("archive/") | absLangURL) }}",
-      "icons": [
-        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
-        {
-          "src": "{{ (("favicon.svg") | absURL) }}",
-          "type": "image/svg+xml",
-          "sizes": "any"
-        }
-      ]
-    },
-    {
-      "name": "{{ (i18n "categories") }}",
-      "url": "{{ (("categories/") | absLangURL) }}",
-      "icons": [
-        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
-        {
-          "src": "{{ (("favicon.svg") | absURL) }}",
-          "type": "image/svg+xml",
-          "sizes": "any"
-        }
-      ]
-    },
-    {
-      "name": "{{ (i18n "tags") }}",
-      "url": "{{ (("tags/") | absLangURL) }}",
-      "icons": [
-        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
-        {
-          "src": "{{ (("favicon.svg") | absURL) }}",
-          "type": "image/svg+xml",
-          "sizes": "any"
-        }
-      ]
-    },
-    {
-      "name": "{{ (i18n "authors") }}",
-      "url": "{{ (("authors/") | absLangURL) }}",
-      "icons": [
-        {{ range $i, $e := ($icons) }}{"src":"{{ ((printf "favicon-%s.png" ($e)) | absURL) }}","type":"image/png","sizes":"{{ ($e) }}x{{ ($e) }}"},{{ end }}
-        {
-          "src": "{{ (("favicon.svg") | absURL) }}",
-          "type": "image/svg+xml",
-          "sizes": "any"
-        }
-      ]
-    }
-  ]
-}
+{{ ($data.Add "categories" (slice)) }}
+{{ range ($cfg.categories) }}
+    {{ ($data.Add "categories" .) }}
+{{ end }}
+
+{{ ($data.Add "icons" (slice)) }}
+
+{{ range ($icons.sizes) }}
+    {{ ($data.Add "icons" (dict
+    "src" ((printf "favicon-%s.png" .) | relURL)
+    "sizes" (printf "%sx%s" . .)
+    "type" "image/png"
+    )) }}
+{{ end }}
+
+{{ ($data.Add "icons" (dict
+"src" (("favicon.ico") | relURL)
+"sizes" "any"
+"type" "image/x-icon"
+)) }}
+
+{{ ($data.Add "icons" (dict
+"src" (("favicon.svg") | relURL)
+"sizes" "any"
+"type" "image/svg+xml"
+)) }}
+
+{{ $mainfest := (dict
+"id" "/"
+"name" (site.Title)
+"short_name" (index ($cfg.short_name) ($lang))
+"description" (site.Params.description)
+"start_url" "/"
+"scope" "/"
+"display" "standalone"
+"background_color" ($cfg.color.background)
+"theme_color" ($cfg.color.theme)
+"categories" ($data.Get "categories")
+"icons" ($data.Get "icons")
+) }}
+
+{{ (($mainfest) | jsonify) }}

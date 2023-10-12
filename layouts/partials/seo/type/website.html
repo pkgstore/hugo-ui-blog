@@ -5,4 +5,4 @@
 "url" (site.BaseURL))
 }}
 
-<script type="application/ld+json">{{ (jsonify ($website) | safeJS) }}</script>
+<script type="application/ld+json">{{ ((($website) | jsonify) | safeJS) }}</script>

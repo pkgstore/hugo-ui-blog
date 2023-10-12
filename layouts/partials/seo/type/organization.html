@@ -28,4 +28,4 @@
 "sameAs" (slice)
 ) }}
 
-<script type="application/ld+json">{{ (jsonify ($organization) | safeJS) }}</script>
+<script type="application/ld+json">{{ ((($organization) | jsonify) | safeJS) }}</script>
