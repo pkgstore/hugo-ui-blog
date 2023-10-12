@@ -51,7 +51,7 @@
 "dateModified" ($dateModified)
 "keywords" ($keywords)
 "publisher" ($publisher)
-"articleBody" (((.Content) | plainify) | chomp)
+"articleBody" ((.Plain) | chomp)
 ) }}
 
 <script type="application/ld+json">{{ ((($article) | jsonify) | safeJS) }}</script>
