@@ -1,5 +1,5 @@
 {{- $cfg := (site.Params) -}}
-{{- $url := (urls.Parse site.BaseURL) -}}
+{{- $url := (urls.Parse (site.BaseURL)) -}}
 
 {{ ((printf "<?xml version='1.0' encoding='utf-8'?>") | safeHTML) }}
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"

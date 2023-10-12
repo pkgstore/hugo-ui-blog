@@ -2,7 +2,9 @@
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 {{ $image := (index (.Param "images") 0) }}
+{{ $url := (urls.Parse (site.BaseURL)) }}
 
+<meta property="twitter:domain" content="{{ ($url.Host) }}">
 <meta property="twitter:url" content="{{ (.Permalink) }}"/>
 <meta property="og:locale" content="{{ ((replace (site.LanguageCode) "-" "_") | default "en_US") }}"/>
 <meta property="og:site_name" content="{{ (site.Title) }}"/>
