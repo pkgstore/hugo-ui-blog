@@ -4,6 +4,7 @@
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "categories" (slice)) }}
+
 {{ range ($cfg.categories) }}
     {{ ($data.Add "categories" .) }}
 {{ end }}

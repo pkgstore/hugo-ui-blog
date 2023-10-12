@@ -9,6 +9,7 @@
 
 {{ $image := (index (.Param "images") 0) }}
 {{ $keywords := (delimit ((.Param "tags") | default (slice)) ", ") }}
+{{ $data := (newScratch) }}
 
 {{ $mainEntityOfPage := (dict
 "@type" "WebPage"
@@ -24,8 +25,8 @@
 )
 ) }}
 
-{{ $data := (newScratch) }}
 {{ ($data.Add "authors" (slice)) }}
+
 {{ range (.GetTerms "authors") }}
     {{ ($data.Add "authors" (dict
     "@type" "Person"

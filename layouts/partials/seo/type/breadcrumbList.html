@@ -1,5 +1,6 @@
 {{ $position := 0 }}
 {{ $data := (newScratch) }}
+
 {{ ($data.Add "itemListElement" (slice)) }}
 
 {{ range (.Ancestors.Reverse) }}

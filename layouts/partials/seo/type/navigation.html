@@ -1,5 +1,6 @@
 {{ $menu := (site.Menus.main) }}
 {{ $data := (newScratch) }}
+
 {{ ($data.Add "itemListElement" (slice)) }}
 
 {{ range ($menu) }}
