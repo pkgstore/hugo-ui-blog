@@ -1,11 +1,15 @@
 {{ if ($.IsPage) }}
 
-    {{ range (.GetTerms "authors") }}
-      <meta property="article:author" content="{{ (.Title) }}"/>
+    {{ with (.GetTerms "authors") }}
+        {{ range . }}
+          <meta property="article:author" content="{{ (.Title) }}"/>
+        {{ end }}
     {{ end }}
 
-    {{ range (.GetTerms "tags") }}
-      <meta property="article:tag" content="{{ (.Title) }}"/>
+    {{ with (.GetTerms "authors") }}
+        {{ range . }}
+          <meta property="article:tag" content="{{ (.Title) }}"/>
+        {{ end }}
     {{ end }}
 
 {{ end }}
