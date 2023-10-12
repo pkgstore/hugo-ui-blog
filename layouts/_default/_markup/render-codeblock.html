@@ -51,7 +51,7 @@ EXAMPLE:
 
 {{ else }}
 
-  <div class="shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="shortcode shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex mb-3 overflow-hidden">
       <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight ($i) ($t)) }}</div>
       <div class="flex-shrink-0">
