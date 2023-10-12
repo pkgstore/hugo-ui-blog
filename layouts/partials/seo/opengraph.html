@@ -1,0 +1,11 @@
+{{ if ($.IsPage) }}
+
+    {{ range (.GetTerms "authors") }}
+      <meta property="article:author" content="{{ (.Title) }}"/>
+    {{ end }}
+
+    {{ range (.GetTerms "tags") }}
+      <meta property="article:tag" content="{{ (.Title) }}"/>
+    {{ end }}
+
+{{ end }}

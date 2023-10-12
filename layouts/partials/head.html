@@ -84,6 +84,8 @@
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/opengraph.html" . }}
 
+{{ (partial "seo/twitter" .) }}
+{{ (partial "seo/opengraph" .) }}
 {{ (partial "seo/dc" .) }}
 {{ (partial "seo/schema" .) }}
 <!--[ / seo ]-->
