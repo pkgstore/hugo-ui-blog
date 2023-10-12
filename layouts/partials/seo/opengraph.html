@@ -6,7 +6,7 @@
         {{ end }}
     {{ end }}
 
-    {{ with (.GetTerms "authors") }}
+    {{ with (.GetTerms "tags") }}
         {{ range . }}
           <meta property="article:tag" content="{{ (.Title) }}"/>
         {{ end }}
