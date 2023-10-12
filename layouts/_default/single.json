@@ -40,6 +40,11 @@
 "read_time" (.Page.ReadingTime)
 ) }}
 
+{{ $content := (dict
+"plain" (((.Page.Plain) | chomp) | base64Encode)
+"markdown" ((readFile (.File.Path) | chomp) | base64Encode)
+) }}
+
 {{ $site := (dict
 "title" (site.Title)
 "description" (site.Params.description)
@@ -52,7 +57,7 @@
 "title" ((.Page.Title) | plainify)
 "images" (.Page.Params.images)
 "description" (((((.Page.Description) | default (.Page.Summary)) | plainify) | chomp) | base64Encode)
-"content" (((.Page.Plain) | chomp) | base64Encode)
+"content" $content
 "authors" ($data.Get "authors")
 "categories" ($data.Get "categories")
 "tags" ($data.Get "tags")
