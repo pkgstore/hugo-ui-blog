@@ -1,4 +1,28 @@
 body {
+  .font {
+    &-base {
+      @include font-base();
+    }
+
+    &-cond {
+      @include font-cond();
+    }
+
+    &-mono {
+      @include font-mono();
+    }
+
+    &-serif {
+      @include font-serif();
+    }
+
+    &-brand {
+      @include font-brand();
+    }
+  }
+}
+
+body {
   @for $i from 1 through 6 {
     h#{$i},
     .h#{$i} {
