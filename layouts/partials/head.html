@@ -45,15 +45,11 @@
 <!--[ / canonical ]-->
 
 <!--[ languages ]-->
+<link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}"/>
+
 {{ if (.IsTranslated) }}
     {{ range (.Translations) }}
       <link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}"/>
-    {{ end }}
-{{ else }}
-    {{ range (.Site.Languages) }}
-        {{ if (ne (site.Language.Lang) (.Lang)) }}
-          <link rel="alternate" href="{{ ((.Lang) | absURL) }}" hreflang="{{ (.Lang) }}"/>
-        {{ end }}
     {{ end }}
 {{ end }}
 <!--[ / languages ]-->
