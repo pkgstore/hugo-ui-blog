@@ -1,0 +1,15 @@
+{{ $cfg := (site.Params.node) }}
+
+<article class="node-{{ .Type }}">
+  <header>
+      {{ if ($cfg.cover.image.enabled) }}
+        <div class="node-cover mb-3">
+            {{ (partial "module/node/cover/image.02" .) }}
+        </div>
+      {{ end }}
+    <div class="node-title">
+      <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+    </div>
+  </header>
+  <div class="node-body">{{ (.Render "summary") }}</div>
+</article>
