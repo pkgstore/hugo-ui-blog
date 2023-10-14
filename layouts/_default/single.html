@@ -3,207 +3,202 @@
     {{ $cfg := (site.Params.node) }}
     {{ $id_tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
 
-    <div class="section py-3">
-      <div class="container">
+    {{ (partial "breadcrumb" .) }}
 
-          {{ (partial "breadcrumb" .) }}
-
-        <article>
-          <header>
-              {{ if ($cfg.cover.image.enabled) }}
-                <div class="node-cover mb-3">
-                    {{ (partial "module/node/cover/image.02" .) }}
-                </div>
-              {{ end }}
-            <div class="node-title">
-              <h1 class="text-center">{{ (.Title) }}</h1>
+    <article>
+      <header>
+          {{ if ($cfg.cover.image.enabled) }}
+            <div class="node-cover mb-3">
+                {{ (partial "module/node/cover/image.02" .) }}
             </div>
-          </header>
-          <footer>
-            <ul class="list-inline text-center text-body-secondary small">
-                {{ with (.Param "date") }}
-                  <li class="list-inline-item">
-                    <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
-                        {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
-                    </time>
+          {{ end }}
+        <div class="node-title">
+          <h1 class="text-center">{{ (.Title) }}</h1>
+        </div>
+      </header>
+      <footer>
+        <ul class="list-inline text-center text-body-secondary small">
+            {{ with (.Param "date") }}
+              <li class="list-inline-item">
+                <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
+                    {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
+                </time>
+              </li>
+            {{ end }}
+            {{ with (.Param "complexity") }}
+                {{ with (eq . "0") }}
+                  <li class="list-inline-item">&bull;</li>
+                  <li class="list-inline-item text-success" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
+                    <i class="far fa-face-smile fa-fw"></i>
                   </li>
                 {{ end }}
-                {{ with (.Param "complexity") }}
-                    {{ with (eq . "0") }}
-                      <li class="list-inline-item">&bull;</li>
-                      <li class="list-inline-item text-success" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
-                        <i class="far fa-face-smile fa-fw"></i>
-                      </li>
-                    {{ end }}
-                    {{ with (eq . "1") }}
-                      <li class="list-inline-item">&bull;</li>
-                      <li class="list-inline-item text-warning" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
-                        <i class="far fa-face-meh fa-fw"></i>
-                      </li>
-                    {{ end }}
-                    {{ with (eq . "2") }}
-                      <li class="list-inline-item">&bull;</li>
-                      <li class="list-inline-item text-danger" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
-                        <i class="far fa-face-frown fa-fw"></i>
-                      </li>
-                    {{ end }}
+                {{ with (eq . "1") }}
+                  <li class="list-inline-item">&bull;</li>
+                  <li class="list-inline-item text-warning" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
+                    <i class="far fa-face-meh fa-fw"></i>
+                  </li>
                 {{ end }}
-            </ul>
-          </footer>
-          <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
-            <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
-              <button class="nav-link active" id="tab-main-home" data-bs-toggle="tab" data-bs-target="#tab-pane-main-home" type="button" role="tab" aria-controls="tab-pane-main-home" aria-selected="true">
-                <i class="fas fa-home fa-fw"></i>
+                {{ with (eq . "2") }}
+                  <li class="list-inline-item">&bull;</li>
+                  <li class="list-inline-item text-danger" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
+                    <i class="far fa-face-frown fa-fw"></i>
+                  </li>
+                {{ end }}
+            {{ end }}
+        </ul>
+      </footer>
+      <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
+        <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
+          <button class="nav-link active" id="tab-main-home" data-bs-toggle="tab" data-bs-target="#tab-pane-main-home" type="button" role="tab" aria-controls="tab-pane-main-home" aria-selected="true">
+            <i class="fas fa-home fa-fw"></i>
+          </button>
+        </li>
+          {{ if ($cfg.tabs.source.enabled) }}
+            <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "source_code") }}'>
+              <button class="nav-link" id="tab-main-source" data-bs-toggle="tab" data-bs-target="#tab-pane-main-source" type="button" role="tab" aria-controls="tab-pane-main-source" aria-selected="false">
+                <i class="fas fa-code fa-fw"></i>
               </button>
             </li>
-              {{ if ($cfg.tabs.source.enabled) }}
-                <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "source_code") }}'>
-                  <button class="nav-link" id="tab-main-source" data-bs-toggle="tab" data-bs-target="#tab-pane-main-source" type="button" role="tab" aria-controls="tab-pane-main-source" aria-selected="false">
-                    <i class="fas fa-code fa-fw"></i>
+          {{ end }}
+          {{ if ($cfg.tabs.info.enabled) }}
+            <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "info") }}'>
+              <button class="nav-link" id="tab-main-info" data-bs-toggle="tab" data-bs-target="#tab-pane-main-info" type="button" role="tab" aria-controls="tab-pane-main-info" aria-selected="false">
+                <i class="fas fa-info fa-fw"></i>
+              </button>
+            </li>
+          {{ end }}
+          {{ if ($cfg.tabs.comments.enabled) }}
+              {{ with (.Param "comments") }}
+                <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "comments") }}'>
+                  <button class="nav-link" id="tab-main-comments" data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments" type="button" role="tab" aria-controls="tab-pane-main-comments" aria-selected="false">
+                    <i class="far fa-comments fa-fw"></i>
                   </button>
                 </li>
               {{ end }}
-              {{ if ($cfg.tabs.info.enabled) }}
-                <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "info") }}'>
-                  <button class="nav-link" id="tab-main-info" data-bs-toggle="tab" data-bs-target="#tab-pane-main-info" type="button" role="tab" aria-controls="tab-pane-main-info" aria-selected="false">
-                    <i class="fas fa-info fa-fw"></i>
-                  </button>
-                </li>
+          {{ end }}
+          {{ if (.IsTranslated) }}
+            <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
+              <button class="nav-link" id="tab-main-languages" data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages" type="button" role="tab" aria-controls="tab-pane-main-languages" aria-selected="false">
+                <i class="fas fa-language fa-fw"></i>
+              </button>
+            </li>
+          {{ end }}
+          {{ if ($cfg.tabs.share.enabled) }}
+            <li class="nav-item ms-auto" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "share") }}'>
+              <button class="nav-link" id="tab-main-share" data-bs-toggle="tab" data-bs-target="#tab-pane-main-share" type="button" role="tab" aria-controls="tab-pane-main-share" aria-selected="false">
+                <i class="fas fa-share fa-fw"></i>
+              </button>
+            </li>
+          {{ end }}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home" tabindex="0">
+          <div class="node-body">
+              {{ if (in .Params.categories "InDev") }}
+                  {{ (partial "function/alert" (dict
+                  "type" "warning"
+                  "icon" "fas fa-edit"
+                  "msg" (i18n "alert.in_dev")
+                  )) }}
               {{ end }}
-              {{ if ($cfg.tabs.comments.enabled) }}
-                  {{ with (.Param "comments") }}
-                    <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "comments") }}'>
-                      <button class="nav-link" id="tab-main-comments" data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments" type="button" role="tab" aria-controls="tab-pane-main-comments" aria-selected="false">
-                        <i class="far fa-comments fa-fw"></i>
-                      </button>
-                    </li>
-                  {{ end }}
-              {{ end }}
-              {{ if (.IsTranslated) }}
-                <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
-                  <button class="nav-link" id="tab-main-languages" data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages" type="button" role="tab" aria-controls="tab-pane-main-languages" aria-selected="false">
-                    <i class="fas fa-language fa-fw"></i>
-                  </button>
-                </li>
-              {{ end }}
-              {{ if ($cfg.tabs.share.enabled) }}
-                <li class="nav-item ms-auto" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "share") }}'>
-                  <button class="nav-link" id="tab-main-share" data-bs-toggle="tab" data-bs-target="#tab-pane-main-share" type="button" role="tab" aria-controls="tab-pane-main-share" aria-selected="false">
-                    <i class="fas fa-share fa-fw"></i>
-                  </button>
-                </li>
-              {{ end }}
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home" tabindex="0">
-              <div class="node-body">
-                  {{ if (in .Params.categories "InDev") }}
-                      {{ (partial "function/alert" (dict
-                      "type" "warning"
-                      "icon" "fas fa-edit"
-                      "msg" (i18n "alert.in_dev")
-                      )) }}
-                  {{ end }}
 
-                  {{ if (in .Params.categories "Opinion") }}
-                      {{ (partial "function/alert" (dict
-                      "type" "warning"
-                      "icon" "fas fa-user-graduate"
-                      "msg" (i18n "alert.opinion")
-                      )) }}
-                  {{ end }}
+              {{ if (in .Params.categories "Opinion") }}
+                  {{ (partial "function/alert" (dict
+                  "type" "warning"
+                  "icon" "fas fa-user-graduate"
+                  "msg" (i18n "alert.opinion")
+                  )) }}
+              {{ end }}
 
-                  {{ (partial "module/node/toc" .) }}
+              {{ (partial "module/node/toc" .) }}
 
-                  {{ (.Content) }}
+              {{ (.Content) }}
+          </div>
+            {{ with (.Param "sources") }}
+                {{ if (not (eq (index . 0) "")) }}
+                  <div class="text-body-secondary font-italic border-top mt-5 pt-3 small">
+                    <p>{{ i18n "sources" }}:</p>
+                    <ul>
+                        {{ range . }}
+                          <li>
+                              {{ if (hasPrefix . "http") }}
+                                  {{ $url := (urls.Parse .) }}
+                                  <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">{{ $url.Host }}</a>
+                              {{ else }}
+                                  {{ . }}
+                              {{ end }}
+                          </li>
+                        {{ end }}
+                    </ul>
+                  </div>
+                {{ end }}
+            {{ end }}
+        </div>
+          {{ if ($cfg.tabs.source.enabled) }}
+            <div class="tab-pane" id="tab-pane-main-source" role="tabpanel" aria-labelledby="tab-main-source" tabindex="0">
+              <div class="node-body node-source">
+                  {{ (highlight (readFile (.File.Path)) "md") }}
               </div>
-                {{ with (.Param "sources") }}
-                    {{ if (not (eq (index . 0) "")) }}
-                      <div class="text-body-secondary font-italic border-top mt-5 pt-3 small">
-                        <p>{{ i18n "sources" }}:</p>
-                        <ul>
-                            {{ range . }}
-                              <li>
-                                  {{ if (hasPrefix . "http") }}
-                                      {{ $url := (urls.Parse .) }}
-                                      <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">{{ $url.Host }}</a>
-                                  {{ else }}
-                                      {{ . }}
-                                  {{ end }}
-                              </li>
-                            {{ end }}
-                        </ul>
+            </div>
+          {{ end }}
+          {{ if ($cfg.tabs.info.enabled) }}
+            <div class="tab-pane" id="tab-pane-main-info" role="tabpanel" aria-labelledby="tab-main-info" tabindex="0">
+              <div class="node-body">
+                <div class="row row-cols-1 row-cols-lg-2 g-3">
+                    {{ if ($cfg.tabs.info.categories.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/categories" .) }}
                       </div>
                     {{ end }}
-                {{ end }}
-            </div>
-              {{ if ($cfg.tabs.source.enabled) }}
-                <div class="tab-pane" id="tab-pane-main-source" role="tabpanel" aria-labelledby="tab-main-source" tabindex="0">
-                  <div class="node-body node-source">
-                      {{ (highlight (readFile (.File.Path)) "md") }}
-                  </div>
-                </div>
-              {{ end }}
-              {{ if ($cfg.tabs.info.enabled) }}
-                <div class="tab-pane" id="tab-pane-main-info" role="tabpanel" aria-labelledby="tab-main-info" tabindex="0">
-                  <div class="node-body">
-                    <div class="row row-cols-1 row-cols-lg-2 g-3">
-                        {{ if ($cfg.tabs.info.categories.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/categories" .) }}
-                          </div>
-                        {{ end }}
-                        {{ if ($cfg.tabs.info.tags.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/tags" .) }}
-                          </div>
-                        {{ end }}
-                        {{ if ($cfg.tabs.info.authors.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/authors" .) }}
-                          </div>
-                        {{ end }}
-                        {{ if ($cfg.tabs.info.related.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/related" .) }}
-                          </div>
-                        {{ end }}
-                        {{ if ($cfg.tabs.info.meta.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/meta" .) }}
-                          </div>
-                        {{ end }}
-                        {{ if ($cfg.tabs.info.stats.enabled) }}
-                          <div class="col">
-                              {{ (partial "module/node/tabs/info/stats" .) }}
-                          </div>
-                        {{ end }}
-                    </div>
-                  </div>
-                </div>
-              {{ end }}
-              {{ if ($cfg.tabs.comments.enabled) }}
-                  {{ with (.Param "comments") }}
-                    <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments" tabindex="0">
-                      <div class="node-body">
-                          {{ (partial "module/node/tabs/comments" .) }}
+                    {{ if ($cfg.tabs.info.tags.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/tags" .) }}
                       </div>
-                    </div>
-                  {{ end }}
-              {{ end }}
-              {{ if (.IsTranslated) }}
-                <div class="tab-pane" id="tab-pane-main-languages" role="tabpanel" aria-labelledby="tab-main-languages" tabindex="0">
-                    {{ (partial "module/node/tabs/languages" .) }}
+                    {{ end }}
+                    {{ if ($cfg.tabs.info.authors.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/authors" .) }}
+                      </div>
+                    {{ end }}
+                    {{ if ($cfg.tabs.info.related.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/related" .) }}
+                      </div>
+                    {{ end }}
+                    {{ if ($cfg.tabs.info.meta.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/meta" .) }}
+                      </div>
+                    {{ end }}
+                    {{ if ($cfg.tabs.info.stats.enabled) }}
+                      <div class="col">
+                          {{ (partial "module/node/tabs/info/stats" .) }}
+                      </div>
+                    {{ end }}
+                </div>
+              </div>
+            </div>
+          {{ end }}
+          {{ if ($cfg.tabs.comments.enabled) }}
+              {{ with (.Param "comments") }}
+                <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments" tabindex="0">
+                  <div class="node-body">
+                      {{ (partial "module/node/tabs/comments" .) }}
+                  </div>
                 </div>
               {{ end }}
-              {{ if ($cfg.tabs.share) }}
-                <div class="tab-pane" id="tab-pane-main-share" role="tabpanel" aria-labelledby="tab-main-share" tabindex="0">
-                    {{ (partial "module/node/tabs/share" .) }}
-                </div>
-              {{ end }}
-          </div>
-        </article>
+          {{ end }}
+          {{ if (.IsTranslated) }}
+            <div class="tab-pane" id="tab-pane-main-languages" role="tabpanel" aria-labelledby="tab-main-languages" tabindex="0">
+                {{ (partial "module/node/tabs/languages" .) }}
+            </div>
+          {{ end }}
+          {{ if ($cfg.tabs.share) }}
+            <div class="tab-pane" id="tab-pane-main-share" role="tabpanel" aria-labelledby="tab-main-share" tabindex="0">
+                {{ (partial "module/node/tabs/share" .) }}
+            </div>
+          {{ end }}
       </div>
-    </div>
+    </article>
 
 {{ end }}

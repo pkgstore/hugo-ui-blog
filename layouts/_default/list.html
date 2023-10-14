@@ -2,22 +2,16 @@
 
     {{ $cfg := (site.Params.node) }}
 
-    <div class="section py-3">
-      <div class="container">
+    {{ (partial "breadcrumb" .) }}
 
-          {{ (partial "breadcrumb" .) }}
-
-        <div class="row row-cols-1 row-cols-lg-2 }} g-3">
-            {{ range (.Paginator.Pages) }}
-              <div class="col">
-                {{ (.Render "view/article.01") }}
-              </div>
-            {{ end }}
-        </div>
-
-          {{ (partial "pagination" .) }}
-
-      </div>
+    <div class="row row-cols-1 row-cols-lg-2 }} g-3">
+        {{ range (.Paginator.Pages) }}
+          <div class="col">
+              {{ (.Render "view/article.01") }}
+          </div>
+        {{ end }}
     </div>
+
+    {{ (partial "pagination" .) }}
 
 {{ end }}

@@ -2,23 +2,18 @@
 
     {{ $tags := (site.Taxonomies.tags.Alphabetical) }}
 
-    <div class="section py-3">
-      <div class="container">
+    {{ (partial "breadcrumb" .) }}
 
-          {{ (partial "breadcrumb" .) }}
-
-        <div class="article">
-          <div class="node-body">
-            <ul class="list-inline">
-                {{ range ($tags) }}
-                  <li class="list-inline-item">
-                    <a href="{{ (.Page.RelPermalink) }}">{{ (.Page.Title) }}</a>
-                    <sup class="text-body-secondary">{{ (.Count) }}</sup>
-                  </li>
-                {{ end }}
-            </ul>
-          </div>
-        </div>
+    <div class="article">
+      <div class="node-body">
+        <ul class="list-inline">
+            {{ range ($tags) }}
+              <li class="list-inline-item">
+                <a href="{{ (.Page.RelPermalink) }}">{{ (.Page.Title) }}</a>
+                <sup class="text-body-secondary">{{ (.Count) }}</sup>
+              </li>
+            {{ end }}
+        </ul>
       </div>
     </div>
 
