@@ -1,15 +1,18 @@
-{{ $tocID := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
+{{ $id_toc := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
 
 {{ if (.Param "toc") }}
   <div class="node-toc mb-3">
-    <div class="accordion" id="accordion-{{ ($tocID) }}">
+    <div class="accordion" id="accordion-{{ ($id_toc) }}">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($tocID) }}" aria-expanded="false" aria-controls="collapse-{{ ($tocID) }}">
+          <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($id_toc) }}"
+                  aria-expanded="false" aria-controls="collapse-{{ ($id_toc) }}">
               {{ (i18n "toc") }}
           </button>
         </h2>
-        <div id="collapse-{{ ($tocID) }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ ($tocID) }}">
+        <div id="collapse-{{ ($id_toc) }}" class="accordion-collapse collapse"
+             data-bs-parent="#accordion-{{ ($id_toc) }}">
           <div class="accordion-body">
               {{ (.TableOfContents) }}
           </div>

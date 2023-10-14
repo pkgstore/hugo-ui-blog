@@ -11,6 +11,7 @@
 (dict "width" "1280" "height" "720")
 (dict "width" "1600" "height" "900")
 ) }}
+
 <a class="d-block" href="{{ (.RelPermalink) }}">
   <picture>
     <source srcset='{{ range $i, $e := ($srcset) }}{{ if $i }},{{ end }}{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ (.width) }}&amp;h={{ (.height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format {{ (.width) }}w{{ end }}' sizes="(min-width: 576px) 100vw"/>

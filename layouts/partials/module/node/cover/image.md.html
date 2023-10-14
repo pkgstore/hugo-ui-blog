@@ -4,6 +4,7 @@
 {{ $crop := ((.Param "cover.crop") | default ($cfg.crop)) }}
 {{ $fit := ((.Param "cover.fit") | default ($cfg.fit)) }}
 {{ $src := (index (.Param "images") 0) | default ($cfg.placeholder) }}
+
 <a class="d-block" href="{{ (.RelPermalink) }}">
   <img class="d-block rounded"
        src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
