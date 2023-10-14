@@ -1,16 +1,31 @@
+{{ $data := (newScratch) }}
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 
+<!--[ title ]-->
 {{ $title := "" }}
 {{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
+<title>{{ ($title) }} {{ (site.Title) }}</title>
+<meta name="title" content="{{ ($title) }} {{ (site.Title) }}"/>
+<!--[ / title ]-->
 
+<!--[ description ]-->
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
-
-<title>{{ ($title) }} {{ (site.Title) }}</title>
-<meta name="title" content="{{ ($title) }} {{ (site.Title) }}"/>
 <meta name="description" content="{{ ((($description) | plainify) | chomp) }}"/>
+<!--[ / description ]-->
+
+<!--[ keywords ]-->
+{{ ($data.Add "keywords" (slice)) }}
+{{ if ($.IsPage) }}
+    {{ range ((.GetTerms "tags") | first 20) }}{{ ($data.Add "keywords" (.Title)) }}{{ end }}
+{{ else }}
+    {{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
+{{ end }}
+<meta name="keywords" content="{{ ((delimit (($data.Get "keywords") | uniq) ",") | truncate 250) }}"/>
+<!--[ / keywords ]-->
 
 <!--[ pre-connect ]-->
 {{ $pre_connect := (site.Data.ui.network.pre_connect) }}
