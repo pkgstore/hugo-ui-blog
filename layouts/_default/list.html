@@ -12,12 +12,16 @@
               <div class="col">
                 <article class="node-{{ (.Type) }} d-flex">
                     {{ if ($cfg.cover.image.enabled) }}
-                        {{ (partial "module/node/cover/image.md" .) }}
+                      <div class="flex-shrink-0 me-3 d-none d-md-block">
+                        <div class="node-cover">
+                            {{ (partial "module/node/cover/image.md" .) }}
+                        </div>
+                      </div>
                     {{ end }}
                   <div class="flex-grow-1">
                     <header>
                       <div class="node-title">
-                        <h4 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h4>
+                        <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
                       </div>
                     </header>
                     <div class="node-body">{{ (.Render "summary") }}</div>

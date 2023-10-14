@@ -1,16 +1,12 @@
 {{ $cfg := (site.Params.node.cover.image) }}
 
-<div class="flex-shrink-0 me-3 d-none d-md-block">
-  <div class="node-cover">
-      {{ $width := ($cfg.md.width) }}{{ $height := ($cfg.md.height) }}
-      {{ $crop := ((.Param "cover.crop") | default ($cfg.crop)) }}
-      {{ $fit := ((.Param "cover.fit") | default ($cfg.fit)) }}
-      {{ $src := (index (.Param "images") 0) | default ($cfg.placeholder) }}
-    <a class="d-block" href="{{ (.RelPermalink) }}">
-      <img class="d-block rounded"
-           src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
-           width="{{ ($width) }}" height="{{ ($height) }}"
-           alt="{{ ((.Title) | htmlEscape) }}"/>
-    </a>
-  </div>
-</div>
+{{ $width := ($cfg.md.width) }}{{ $height := ($cfg.md.height) }}
+{{ $crop := ((.Param "cover.crop") | default ($cfg.crop)) }}
+{{ $fit := ((.Param "cover.fit") | default ($cfg.fit)) }}
+{{ $src := (index (.Param "images") 0) | default ($cfg.placeholder) }}
+<a class="d-block" href="{{ (.RelPermalink) }}">
+  <img class="d-block rounded"
+       src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
+       width="{{ ($width) }}" height="{{ ($height) }}"
+       alt="{{ ((.Title) | htmlEscape) }}"/>
+</a>

@@ -12,10 +12,12 @@
                   <article class="node-{{ .Type }}">
                     <header>
                         {{ if ($cfg.cover.image.enabled) }}
-                            {{ (partial "module/node/cover/image.lg" .) }}
+                          <div class="node-cover mb-3">
+                              {{ (partial "module/node/cover/image.lg" .) }}
+                          </div>
                         {{ end }}
                       <div class="node-title">
-                        <h3><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h3>
+                        <h2 class="h3"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
                       </div>
                     </header>
                     <div class="node-body">{{ (.Render "summary") }}</div>
@@ -29,10 +31,12 @@
                       <article class="node-{{ .Type }}">
                         <header>
                             {{ if ($cfg.cover.image.enabled) }}
-                                {{ (partial "module/node/cover/image.lg" .) }}
+                              <div class="node-cover mb-3">
+                                  {{ (partial "module/node/cover/image.lg" .) }}
+                              </div>
                             {{ end }}
                           <div class="node-title">
-                            <h4><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h4>
+                            <h2 class="h4"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
                           </div>
                         </header>
                         <div class="node-body">{{ (.Render "summary") }}</div>
@@ -48,10 +52,12 @@
                       <article class="node-{{ .Type }}">
                         <header>
                             {{ if ($cfg.cover.image.enabled) }}
-                                {{ (partial "module/node/cover/image.lg" .) }}
+                              <div class="node-cover mb-3">
+                                  {{ (partial "module/node/cover/image.lg" .) }}
+                              </div>
                             {{ end }}
                           <div class="node-title">
-                            <h4 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h4>
+                            <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
                           </div>
                         </header>
                         <div class="node-body">{{ (.Render "summary") }}</div>
