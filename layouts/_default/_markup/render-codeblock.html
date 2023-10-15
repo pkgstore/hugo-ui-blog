@@ -13,15 +13,15 @@ EXAMPLE:
   ```
 */ -}}
 
-{{ $a := (.Attributes) }}
-{{ $t := ((.Type) | default "text") }}
-{{ $i := (.Inner) }}
+{{ $attr := (.Attributes) }}
+{{ $type := ((.Type) | default "text") }}
+{{ $inner := (.Inner) }}
 
 {{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
-{{ if (or ($a.title) ($a.file)) }}
+{{ if (or ($attr.title) ($attr.file)) }}
 
-  <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($t) }}">
+  <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($type) }}">
     <div class="card mb-3 overflow-hidden">
       <div class="card-header">
         <div class="d-flex align-items-center">
@@ -29,8 +29,8 @@ EXAMPLE:
             <i class="fas fa-file-code fa-fw"></i>
           </div>
           <div class="flex-grow-1 mx-2">
-              {{ with ($a.title) }}<h5 class="mb-0">{{ . }}</h5>{{ end }}
-              {{ with ($a.file) }}<code>{{ . }}</code>{{ end }}
+              {{ with ($attr.title) }}<h5 class="mb-0">{{ . }}</h5>{{ end }}
+              {{ with ($attr.file) }}<code>{{ . }}</code>{{ end }}
           </div>
           <div class="flex-shrink-0">
             <ul class="list-inline mb-0">
@@ -45,15 +45,15 @@ EXAMPLE:
           </div>
         </div>
       </div>
-      <div class="card-body" id="{{ ($cp) }}">{{ (highlight ($i) ($t)) }}</div>
+      <div class="card-body" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
     </div>
   </div>
 
 {{ else }}
 
-  <div class="shortcode shortcode-codeblock {{ with ($t) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="shortcode shortcode-codeblock {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex mb-3 overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight ($i) ($t)) }}</div>
+      <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>

@@ -1,6 +1,17 @@
-{{ $title := ((.Title) | default "") }}
-{{ $alt := ((.Text) | default "") }}
-{{ $src := ((.Destination) | safeURL) }}
+{{- /*
+DESCRIPTION:
+  Image in markdown.
+
+SYNTAX:
+  ![TEXT](IMG_URL "TITLE")
+
+EXAMPLE:
+  ![Text](https://gohugo.io/images/hugo-logo-wide.svg "Title")
+*/ -}}
+
+{{- $title := ((.Title) | default "") -}}
+{{- $alt := ((.Text) | default "") -}}
+{{- $src := ((.Destination) | safeURL) -}}
 
 <img title="{{ ($title) }}" class="img-fluid d-block" src="{{ ($src) }}" alt="{{ ($alt) }}" loading="lazy"/>
 {{- /* This comment removes trailing newlines. */ -}}

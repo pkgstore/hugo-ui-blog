@@ -1,6 +1,8 @@
-{{ $anchor := ((.Anchor) | safeURL) }}
-<h{{ .Level }} id="{{ ($anchor) }}">
-    {{ ((.Text) | safeHTML) }}
-  <sup><a class="text-body-secondary small" href="#{{ ($anchor) }}"><i class="fas fa-link fa-fw"></i></a></sup>
-</h{{ (.Level) }}>
+{{- $level := (.Level) -}}
+{{- $anchor := ((.Anchor) | safeURL) -}}
+{{- $text := ((.Text) | safeHTML) -}}
+
+<h{{ ($level) }} id="{{ ($anchor) }}">
+  <a class="link-body-emphasis" href="#{{ ($anchor) }}">{{ ($text) }}</a>
+</h{{ ($level) }}>
 {{- /* This comment removes trailing newlines. */ -}}
