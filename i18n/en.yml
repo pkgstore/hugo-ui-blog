@@ -14,6 +14,7 @@ complexity-1: { other: 'Medium' }
 complexity-2: { other: 'Hard' }
 complexity: { other: 'Level of difficulty' }
 contacts: { other: 'Contacts' }
+copy: { other: 'Copy' }
 developers: { other: 'Developers' }
 egg: { other: 'Oops!' }
 email: { other: 'Email' }
@@ -42,6 +43,7 @@ sources: { other: 'Sources' }
 stats: { other: 'Statistics' }
 sys_path: { other: 'System path' }
 tags: { other: 'Tags' }
+terminal: { other: 'Terminal' }
 toc: { other: 'Contents' }
 type: { other: 'Type' }
 uuid: { other: 'UUID' }
@@ -106,11 +108,3 @@ social:
   wordpress: { other: 'WordPress' }
   youtube: { other: 'YouTube' }
 
-# -------------------------------------------------------------------------------------------------------------------- #
-# ShortCodes.
-# -------------------------------------------------------------------------------------------------------------------- #
-
-sc:
-  code:
-    copy: { other: 'Copy to clipboard' }
-    terminal: { other: 'Terminal' }

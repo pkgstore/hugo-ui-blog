@@ -14,6 +14,7 @@ complexity-1: { other: 'Средний' }
 complexity-2: { other: 'Сложный' }
 complexity: { other: 'Уровень сложности' }
 contacts: { other: 'Контакты' }
+copy: { other: 'Копировать' }
 developers: { other: 'Разработчики' }
 egg: { other: 'Oops!' }
 email: { other: 'Email' }
@@ -42,6 +43,7 @@ sources: { other: 'Источники' }
 stats: { other: 'Статистика' }
 sys_path: { other: 'Системный путь' }
 tags: { other: 'Теги' }
+terminal: { other: 'Терминал' }
 toc: { other: 'Содержание' }
 type: { other: 'Тип' }
 uuid: { other: 'UUID' }
@@ -105,12 +107,3 @@ social:
   whatsapp: { other: 'WhatsApp' }
   wordpress: { other: 'WordPress' }
   youtube: { other: 'YouTube' }
-
-# -------------------------------------------------------------------------------------------------------------------- #
-# ShortCodes.
-# -------------------------------------------------------------------------------------------------------------------- #
-
-sc:
-  code:
-    copy: { other: 'Скопировать в буфер обмена' }
-    terminal: { other: 'Терминал' }

@@ -34,7 +34,7 @@ EXAMPLE:
           </div>
           <div class="flex-shrink-0">
             <ul class="list-inline mb-0">
-              <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
+              <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
                 <a class="text-body" href="#"
                    data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
                    role="button">
@@ -56,7 +56,7 @@ EXAMPLE:
       <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
-          <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.code.copy") }}'>
+          <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
             <a class="text-body" href="#"
                data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
                role="button">
