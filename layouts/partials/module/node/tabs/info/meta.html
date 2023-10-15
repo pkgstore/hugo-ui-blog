@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ (i18n "meta") }}</h5>
     <div class="row row-cols-1 row-cols-sm-2 g-2 align-items-center">
-        {{ with (.Param "license") }}
+        {{ with (.Params.license) }}
             {{ $id := (printf "modal-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
             <div class="col">{{ (i18n "license") }}</div>
             <div class="col">
@@ -36,7 +36,7 @@
             <input type="text" class="form-control" value="{{ (.UniqueID) }}" readonly/>
           </div>
         {{ end }}
-        {{ with (.Param "uuid") }}
+        {{ with (.Params.uuid) }}
           <div class="col">{{ (i18n "uuid") }}</div>
           <div class="col">
             <input type="text" class="form-control" value="{{ . }}" readonly/>

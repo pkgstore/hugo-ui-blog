@@ -18,14 +18,14 @@
       </header>
       <footer>
         <ul class="list-inline text-center text-body-secondary small">
-            {{ with (.Param "date") }}
+            {{ with (.Params.date) }}
               <li class="list-inline-item">
                 <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
                     {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
                 </time>
               </li>
             {{ end }}
-            {{ with (.Param "complexity") }}
+            {{ with (.Params.complexity) }}
                 {{ with (eq . "0") }}
                   <li class="list-inline-item">&bull;</li>
                   <li class="list-inline-item text-success" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
@@ -68,7 +68,7 @@
             </li>
           {{ end }}
           {{ if ($cfg.tabs.comments.enabled) }}
-              {{ with (.Param "comments") }}
+              {{ with (.Params.comments) }}
                 <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "comments") }}'>
                   <button class="nav-link" id="tab-main-comments" data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments" type="button" role="tab" aria-controls="tab-pane-main-comments" aria-selected="false">
                     <i class="far fa-comments fa-fw"></i>
@@ -114,7 +114,7 @@
 
               {{ (.Content) }}
           </div>
-            {{ with (.Param "sources") }}
+            {{ with (.Params.sources) }}
                 {{ if (not (eq (index . 0) "")) }}
                   <div class="text-body-secondary font-italic border-top mt-5 pt-3 small">
                     <p>{{ i18n "sources" }}:</p>
@@ -180,7 +180,7 @@
             </div>
           {{ end }}
           {{ if ($cfg.tabs.comments.enabled) }}
-              {{ with (.Param "comments") }}
+              {{ with (.Params.comments) }}
                 <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments" tabindex="0">
                   <div class="node-body">
                       {{ (partial "module/node/tabs/comments" .) }}

@@ -31,7 +31,7 @@
 <!--[ / system-internal ]-->
 
 <!--[ github-comments ]-->
-{{ if (and ($cfg.node.tabs.comments.enabled) (.Param "comments")) }}
+{{ if (and ($cfg.node.tabs.comments.enabled) (.Params.comments)) }}
     {{ $cfg := (site.Params.node.tabs.comments.giscus) }}
     <script src="https://giscus.app/client.js"
             data-repo="{{ ($cfg.repo) }}"

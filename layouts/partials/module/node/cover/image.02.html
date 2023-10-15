@@ -1,9 +1,9 @@
 {{ $cfg := (site.Params.node.cover.image) }}
 
 {{ $width := ($cfg.lg.width) }}{{ $height := ($cfg.lg.height) }}
-{{ $crop := ((.Param "cover.crop") | default ($cfg.crop)) }}
-{{ $fit := ((.Param "cover.fit") | default ($cfg.fit)) }}
-{{ $src := (index (.Param "images") 0) | default ($cfg.placeholder) }}
+{{ $crop := ((.Params.cover.crop) | default ($cfg.crop)) }}
+{{ $fit := ((.Params.cover.fit) | default ($cfg.fit)) }}
+{{ $src := ((index (.Params.images) 0) | default ($cfg.placeholder)) }}
 {{ $srcset := (slice
 (dict "width" "640" "height" "360")
 (dict "width" "768" "height" "432")

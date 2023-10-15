@@ -1,6 +1,6 @@
 {{ $tags := 0 }}
 {{ if (isset .Params "tags") }}
-    {{ if (not (eq (index (.Param "tags") 0) "")) }}
+    {{ if (not (eq (index (.Params.tags) 0) "")) }}
         {{ $tags = 1 }}
     {{ end }}
 {{ end }}

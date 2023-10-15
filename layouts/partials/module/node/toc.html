@@ -1,6 +1,6 @@
 {{ $id_toc := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
 
-{{ if (.Param "toc") }}
+{{ if (.Params.toc) }}
   <div class="node-toc mb-3">
     <div class="accordion" id="accordion-{{ ($id_toc) }}">
       <div class="accordion-item">

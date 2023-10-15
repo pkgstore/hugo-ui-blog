@@ -1,6 +1,6 @@
 {{ $authors := 0 }}
 {{ if (isset .Params "authors") }}
-    {{ if (not (eq (index (.Param "authors") 0) "")) }}
+    {{ if (not (eq (index (.Params.authors) 0) "")) }}
         {{ $authors = 1 }}
     {{ end }}
 {{ end }}

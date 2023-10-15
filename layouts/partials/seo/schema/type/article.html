@@ -3,7 +3,7 @@
 {{ $dateExpiry := (now.Format "2006-01-02T15:04:05Z07:00") }}
 {{ $dateModified := (now.Format "2006-01-02T15:04:05Z07:00") }}
 
-{{ if (.Param "date") }}
+{{ if (.Params.date) }}
     {{ $dateCreated = (.Date.Format "2006-01-02T15:04:05Z07:00") }}
     {{ $datePublished = (.PublishDate.Format "2006-01-02T15:04:05Z07:00") }}
     {{ $dateExpiry = (.ExpiryDate.Format "2006-01-02T15:04:05Z07:00") }}
@@ -14,9 +14,9 @@
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
-{{ $image := (index (.Param "images") 0) }}
-{{ $logo := (.Param "organization.logo") }}
-{{ $keywords := (delimit ((.Param "tags") | default (slice)) ", ") }}
+{{ $image := (index (.Params.images) 0) }}
+{{ $logo := (.Params.organization.logo) }}
+{{ $keywords := (delimit ((.Params.tags) | default (slice)) ", ") }}
 {{ $data := (newScratch) }}
 
 {{ $mainEntityOfPage := (dict
