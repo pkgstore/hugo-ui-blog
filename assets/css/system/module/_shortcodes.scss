@@ -83,14 +83,14 @@ body {
             &-linux {
               pre {
                 code:before {
-                  content: 'user@localhost ~ % ';
+                  content: 'user@host ~ % ';
                 }
               }
 
               &-root {
                 pre {
                   code:before {
-                    content: 'root@localhost ~ # ';
+                    content: 'root@host ~ # ';
                     color: var(--bs-danger);
                   }
                 }
@@ -100,7 +100,7 @@ body {
             &-windows {
               pre {
                 code:before {
-                  content: 'C:\\Users\\LocalUser> ';
+                  content: 'C:\\Users\\User> ';
                 }
               }
 
