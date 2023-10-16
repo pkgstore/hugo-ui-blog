@@ -29,6 +29,10 @@ toc: 1
 comments: 1
 
 date: '{{ (.Date) }}'
+publishDate: '{{ (.Date) }}'
+expiryDate: ''
+lastMod: '{{ (.Date) }}'
+
 hash: '{{ ($hash) }}'
 uuid: '{{ ($uuid) }}'
 slug: '{{ ($uuid) }}'
