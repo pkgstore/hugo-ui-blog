@@ -107,7 +107,7 @@ body {
               &-root {
                 pre {
                   code:before {
-                    content: 'C:\\Windows\\System32> ';
+                    content: 'C:\\Users\\Admin> ';
                     color: var(--bs-danger);
                   }
                 }
