@@ -29,19 +29,22 @@
             {{ with (.Params.complexity) }}
                 {{ with (eq . "0") }}
                   <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-success" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
+                  <li class="list-inline-item text-success"
+                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
                     <i class="far fa-face-smile fa-fw"></i>
                   </li>
                 {{ end }}
                 {{ with (eq . "1") }}
                   <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-warning" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
+                  <li class="list-inline-item text-warning"
+                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
                     <i class="far fa-face-meh fa-fw"></i>
                   </li>
                 {{ end }}
                 {{ with (eq . "2") }}
                   <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-danger" data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
+                  <li class="list-inline-item text-danger"
+                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
                     <i class="far fa-face-frown fa-fw"></i>
                   </li>
                 {{ end }}
@@ -50,13 +53,17 @@
       </footer>
       <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
         <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
-          <button class="nav-link active" id="tab-main-home" data-bs-toggle="tab" data-bs-target="#tab-pane-main-home" type="button" role="tab" aria-controls="tab-pane-main-home" aria-selected="true">
+          <button class="nav-link active" id="tab-main-home" type="button" role="tab"
+                  data-bs-toggle="tab" data-bs-target="#tab-pane-main-home"
+                  aria-controls="tab-pane-main-home" aria-selected="true" aria-label='{{ (i18n "home") }}'>
             <i class="fas fa-home fa-fw"></i>
           </button>
         </li>
           {{ if ($cfg.tabs.source.enabled) }}
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "source_code") }}'>
-              <button class="nav-link" id="tab-main-source" data-bs-toggle="tab" data-bs-target="#tab-pane-main-source" type="button" role="tab" aria-controls="tab-pane-main-source" aria-selected="false">
+              <button class="nav-link" id="tab-main-source" type="button" role="tab"
+                      data-bs-toggle="tab" data-bs-target="#tab-pane-main-source"
+                      aria-controls="tab-pane-main-source" aria-selected="false" aria-label='{{ (i18n "source_code") }}'>
                 <i class="fas fa-code fa-fw"></i>
               </button>
             </li>
@@ -64,14 +71,18 @@
 
           {{ if (and ($cfg.tabs.changelog.enabled) (fileExists ($changelog))) }}
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "changelog") }}'>
-              <button class="nav-link" id="tab-main-changelog" data-bs-toggle="tab" data-bs-target="#tab-pane-main-changelog" type="button" role="tab" aria-controls="tab-pane-main-changelog" aria-selected="false">
+              <button class="nav-link" id="tab-main-changelog" type="button" role="tab"
+                      data-bs-toggle="tab" data-bs-target="#tab-pane-main-changelog"
+                      aria-controls="tab-pane-main-changelog" aria-selected="false" aria-label='{{ (i18n "changelog") }}'>
                 <i class="far fa-clock fa-fw"></i>
               </button>
             </li>
           {{ end }}
           {{ if ($cfg.tabs.info.enabled) }}
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "info") }}'>
-              <button class="nav-link" id="tab-main-info" data-bs-toggle="tab" data-bs-target="#tab-pane-main-info" type="button" role="tab" aria-controls="tab-pane-main-info" aria-selected="false">
+              <button class="nav-link" id="tab-main-info" type="button" role="tab"
+                      data-bs-toggle="tab" data-bs-target="#tab-pane-main-info"
+                      aria-controls="tab-pane-main-info" aria-selected="false" aria-label='{{ (i18n "info") }}'>
                 <i class="fas fa-info fa-fw"></i>
               </button>
             </li>
@@ -79,7 +90,9 @@
           {{ if ($cfg.tabs.comments.enabled) }}
               {{ with (.Params.comments) }}
                 <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "comments") }}'>
-                  <button class="nav-link" id="tab-main-comments" data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments" type="button" role="tab" aria-controls="tab-pane-main-comments" aria-selected="false">
+                  <button class="nav-link" id="tab-main-comments" type="button" role="tab"
+                          data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments"
+                          aria-controls="tab-pane-main-comments" aria-selected="false" aria-label='{{ (i18n "comments") }}'>
                     <i class="far fa-comments fa-fw"></i>
                   </button>
                 </li>
@@ -87,14 +100,18 @@
           {{ end }}
           {{ if (.IsTranslated) }}
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
-              <button class="nav-link" id="tab-main-languages" data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages" type="button" role="tab" aria-controls="tab-pane-main-languages" aria-selected="false">
+              <button class="nav-link" id="tab-main-languages" type="button" role="tab"
+                      data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages"
+                      aria-controls="tab-pane-main-languages" aria-selected="false" aria-label='{{ (i18n "languages") }}'>
                 <i class="fas fa-language fa-fw"></i>
               </button>
             </li>
           {{ end }}
           {{ if ($cfg.tabs.share.enabled) }}
             <li class="nav-item ms-auto" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "share") }}'>
-              <button class="nav-link" id="tab-main-share" data-bs-toggle="tab" data-bs-target="#tab-pane-main-share" type="button" role="tab" aria-controls="tab-pane-main-share" aria-selected="false">
+              <button class="nav-link" id="tab-main-share" type="button" role="tab"
+                      data-bs-toggle="tab" data-bs-target="#tab-pane-main-share"
+                      aria-controls="tab-pane-main-share" aria-selected="false" aria-label='{{ (i18n "share") }}'>
                 <i class="fas fa-share fa-fw"></i>
               </button>
             </li>

@@ -14,8 +14,8 @@
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
+{{ $logo := (site.Params.organization.logo) }}
 {{ $image := (index (.Params.images) 0) }}
-{{ $logo := (.Params.organization.logo) }}
 {{ $keywords := (delimit ((.Params.tags) | default (slice)) ", ") }}
 {{ $data := (newScratch) }}
 
