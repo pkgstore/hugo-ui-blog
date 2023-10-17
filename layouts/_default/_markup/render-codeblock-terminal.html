@@ -51,7 +51,7 @@ EXAMPLE:
             <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
               <a class="text-body" href="#"
                  data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
-                 role="button">
+                 role="button" aria-label='{{ (i18n "copy") }}'>
                 <i class="fas fa-copy fa-fw"></i>
               </a>
             </li>
