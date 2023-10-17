@@ -27,6 +27,7 @@ languages: { other: 'Languages' }
 license: { other: 'License' }
 license_header: { other: 'License header' }
 license_text: { other: 'License text' }
+logo: { other: 'Logotype' }
 meta: { other: 'Meta' }
 minutes: { other: 'min.' }
 posts: { other: 'Posts' }
@@ -47,6 +48,7 @@ sys_path: { other: 'System path' }
 tags: { other: 'Tags' }
 terminal: { other: 'Terminal' }
 toc: { other: 'Contents' }
+toggle_navigation: { other: 'Toggle navigation' }
 type: { other: 'Type' }
 uuid: { other: 'UUID' }
 word_count: { other: 'Word count' }
