@@ -22,6 +22,7 @@ email: { other: 'Email' }
 file_id: { other: 'ID файла' }
 home: { other: 'Главная' }
 info: { other: 'Информация' }
+kB: { other: 'kB' }
 languages: { other: 'Языки' }
 license: { other: 'Лицензия' }
 license_header: { other: 'Заголовок лицензии' }

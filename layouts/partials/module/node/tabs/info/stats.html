@@ -9,16 +9,22 @@
           </div>
         {{ end }}
         {{ with (.ReadingTime) }}
-          <div class="col">{{ (i18n "reading_time") }} ({{ (i18n "minutes") }})</div>
+          <div class="col">{{ (i18n "reading_time") }}</div>
           <div class="col">
-            <input type="text" class="form-control" value="{{ . }}" readonly/>
+            <div class="input-group">
+              <input type="text" class="form-control" value="{{ . }}" readonly/>
+              <span class="input-group-text">{{ (i18n "minutes") }}</span>
+            </div>
           </div>
         {{ end }}
         {{ with (.File) }}
             {{ $f := (os.Stat .) }}
             <div class="col">{{ (i18n "size") }}</div>
             <div class="col">
-              <input type="text" class="form-control" value="{{ ($f.Size) }}" readonly/>
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{ (div ($f.Size) 1000) }}" readonly/>
+                <span class="input-group-text">{{ (i18n "kB") }}</span>
+              </div>
             </div>
         {{ end }}
     </div>
