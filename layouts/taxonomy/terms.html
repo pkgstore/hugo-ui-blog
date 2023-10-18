@@ -26,7 +26,7 @@
                            href="{{ (.RelPermalink) }}"
                            style="width: {{ ($size) }}; height: {{ ($size) }};">
                             {{ if (eq ($type) "authors") }}
-                              <img class="img-fluid" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
+                              <img class="img-fluid rounded" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
                             {{ else }}
                               <i class="{{ ($icon_id) }} fa-fw fa-{{ ($icon_size) }}"></i>
                             {{ end }}
