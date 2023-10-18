@@ -16,12 +16,14 @@
                 {{ $icon_size := ($cfg.cover.icon.size) }}
                 {{ $avatar_id := (($email) | md5) }}
                 {{ $avatar_size := ($cfg.cover.avatar.size) }}
+                {{ $bg := ((.Params.background) | default ("bg-light")) }}
+                {{ $clr := ((.Params.color) | default ("link-secondary")) }}
                 <div class="col">
                   <article class="d-flex">
                     <div class="flex-shrink-0">
                       <div class="node-cover">
-                        <a href="{{ (.RelPermalink) }}"
-                           class="d-flex justify-content-center align-items-center border rounded p-1 text-decoration-none text-body-secondary bg-light"
+                        <a class="d-flex justify-content-center align-items-center rounded p-1 {{ ($bg) }} {{ ($clr) }}"
+                           href="{{ (.RelPermalink) }}"
                            style="width: {{ ($size) }}; height: {{ ($size) }};">
                             {{ if (eq ($type) "authors") }}
                               <img class="img-fluid" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
