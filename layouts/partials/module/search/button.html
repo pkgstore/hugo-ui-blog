@@ -1,6 +1,14 @@
-<a class="link-secondary" href="#"
-   data-bs-toggle="modal" data-bs-target="#search-modal"
-   data-bs-tooltip data-bs-title='{{ (i18n "search") }}'
-   aria-label='{{ (i18n "search") }}'>
-  <i class="fas fa-search fa-fw"></i>
-</a>
+<li class="nav-item">
+  <a class="nav-link d-lg-none" href="#"
+     data-bs-toggle="modal" data-bs-target="#search-modal"
+     aria-label='{{ (i18n "search") }}'>
+    <i class="fas fa-search fa-fw"></i>
+    <span>{{ (i18n "search") }}</span>
+  </a>
+  <a class="nav-link d-none d-lg-block" href="#"
+     data-bs-toggle="modal" data-bs-target="#search-modal"
+     data-bs-tooltip data-bs-title='{{ (i18n "search") }}'
+     aria-label='{{ (i18n "search") }}'>
+    <i class="fas fa-search fa-fw"></i>
+  </a>
+</li>
