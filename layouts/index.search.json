@@ -1,6 +1,6 @@
-{{ $cfg := (site.Params.search.internal) }}
+{{ $cfg := (site.Params.search) }}
 
-{{ if ($cfg.enabled) }}
+{{ if ($cfg.internal.enabled) }}
     {{ $posts := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
     {{ $data := (newScratch) }}
 
@@ -12,7 +12,7 @@
         "tags" (.Params.tags)
         "categories" (.Params.categories)
         "url" (.Permalink)
-        "date" (.Date.UTC.Format "2006-01-02T15:04:05Z07:00")
+        "date" (.Date.Format "2006-01-02T15:04:05Z07:00")
         )) }}
     {{ end }}
 
