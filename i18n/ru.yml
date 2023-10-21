@@ -35,8 +35,8 @@ reading_time: { other: 'Время чтения' }
 search: { other: 'Поиск' }
 search_bing: { other: 'Поиск Bing' }
 search_google: { other: 'Поиск Google' }
-search_yandex: { other: 'Поиск Яндекс' }
 search_internal: { other: 'Внутренний поиск' }
+search_yandex: { other: 'Поиск Яндекс' }
 see_also: { other: 'Смотрите также' }
 share: { other: 'Поделиться' }
 site_resize: { other: 'Изменить размер сайта' }

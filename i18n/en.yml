@@ -35,6 +35,7 @@ reading_time: { other: 'Reading time' }
 search: { other: 'Search' }
 search_bing: { other: 'Bing Search' }
 search_google: { other: 'Google Search' }
+search_internal: { other: 'Internal search' }
 search_yandex: { other: 'Yandex Search' }
 see_also: { other: 'See also' }
 share: { other: 'Share' }
