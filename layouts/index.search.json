@@ -1,0 +1,22 @@
+{{ $cfg := (site.Params.search.internal) }}
+
+{{ if ($cfg.enabled) }}
+    {{ $posts := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
+    {{ $data := (newScratch) }}
+
+    {{ ($data.Add "pages" slice) }}
+
+    {{ range ($posts) }}
+        {{ ($data.Add "pages" (dict
+        "title" (.Title)
+        "tags" (.Params.tags)
+        "categories" (.Params.categories)
+        "url" (.Permalink)
+        "date" (.Date.UTC.Format "2006-01-02T15:04:05Z07:00")
+        )) }}
+    {{ end }}
+
+    {{ $search := ($data.Get "pages") }}
+
+    {{ (($search) | jsonify) }}
+{{ end }}

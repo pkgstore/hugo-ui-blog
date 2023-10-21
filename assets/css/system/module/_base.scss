@@ -9,6 +9,12 @@ body {
   a {
     text-decoration: none;
   }
+
+  #search {
+    &-results {
+      max-height: calc(100vh - 16.3em)
+    }
+  }
 }
 
 body {

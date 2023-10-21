@@ -46,13 +46,9 @@ function search($path) {
         $results.forEach((v, i) => {
           $url = $results[i].item.url;
           $title = $results[i].item.title;
-          $type = $results[i].item.type;
 
           $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}">`
-            + `<span class="d-block fw-bold">${$title}</span>`
-            + `<span class="row row-cols-1 text-muted">`
-            + `<span class="col">{{ (i18n "type") }}: ${$type}</span>`
-            + `</span>`
+            + `<span class="d-block">${$title}</span>`
             + `</a>`
         });
 
@@ -70,7 +66,7 @@ function _fetch($path, $callback) {
   fetch($path).then(($response) => {
     return $response.json();
   }).then(($data) => {
-    if ($callback) $callback($data.data);
+    if ($callback) $callback($data);
   });
 }
 

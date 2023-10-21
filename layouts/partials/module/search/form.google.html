@@ -1,14 +1,11 @@
-{{ $cfg := (site.Params.search.google) }}
 {{ $url := (urls.Parse (site.BaseURL)) }}
 
-{{ if ($cfg.enabled) }}
-  <form action="https://google.com/search" method="get" class="d-flex" target="_blank">
-    <input type="hidden" name="domains" value="{{ $url.Host }}"/>
-    <input type="hidden" name="sitesearch" value="{{ $url.Host }}"/>
-    <div class="input-group">
-      <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
-      <input type="search" class="form-control" name="q" placeholder='{{ (i18n "search_google") }}' aria-label='{{ (i18n "search_google") }}'/>
-      <span class="input-group-text"><i class="fab fa-google fa-fw"></i></span>
-    </div>
-  </form>
-{{ end }}
+<form action="https://google.com/search" method="get" class="d-flex" target="_blank">
+  <input type="hidden" name="domains" value="{{ $url.Host }}"/>
+  <input type="hidden" name="sitesearch" value="{{ $url.Host }}"/>
+  <div class="input-group">
+    <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
+    <input type="search" class="form-control" name="q" placeholder='{{ (i18n "search_google") }}' aria-label='{{ (i18n "search_google") }}'/>
+    <span class="input-group-text"><i class="fab fa-google fa-fw"></i></span>
+  </div>
+</form>

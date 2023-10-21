@@ -5,10 +5,10 @@ import * as select from './module/select';
 import * as share from './module/share';
 import * as qrcode from './module/qrcode';
 import * as navbar from './module/navbar';
-// import * as hljs from './module/hljs';
 import * as fancybox from './module/fancybox'
 import * as clipboard from './module/clipboard'
 import * as prevent_default from './module/prevent_default'
+import * as search from './module/search';
 
 export function init() {
   modal.init();
@@ -18,8 +18,8 @@ export function init() {
   share.init();
   qrcode.init();
   navbar.init();
-  // hljs.init();
   fancybox.init();
   clipboard.init();
   prevent_default.init();
+  search.init();
 }

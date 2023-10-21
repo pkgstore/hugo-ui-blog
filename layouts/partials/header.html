@@ -16,9 +16,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           {{ (partial "module/menu/item" (dict "context" . "id" "main")) }}
       </ul>
-        {{ (partial "module/search/form.bing" .) }}
-        {{ (partial "module/search/form.google" .) }}
-        {{ (partial "module/search/form.yandex" .) }}
+        {{ (partial "module/search/button" .) }}
     </div>
   </div>
 </nav>

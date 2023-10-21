@@ -1,0 +1,53 @@
+{{ $cfg := (site.Params.search) }}
+
+<div class="modal fade" id="search-modal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">{{ (i18n "search") }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ (i18n "close") }}"></button>
+      </div>
+      <div class="modal-body node-body">
+        <div class="row row-cols-1 g-3">
+            {{ if (or ($cfg.google.enabled) ($cfg.yandex.enabled) ($cfg.bing.enabled)) }}
+              <div class="col">
+                <div class="row g-3">
+                    {{ if ($cfg.google.enabled) }}
+                      <div class="col-lg">{{ (partial "module/search/form.google" .) }}</div>
+                    {{ end }}
+                    {{ if ($cfg.yandex.enabled) }}
+                      <div class="col-lg">{{ (partial "module/search/form.yandex" .) }}</div>
+                    {{ end }}
+                    {{ if ($cfg.bing.enabled) }}
+                      <div class="col-lg">{{ (partial "module/search/form.bing" .) }}</div>
+                    {{ end }}
+                </div>
+              </div>
+            {{ end }}
+
+            {{ if ($cfg.internal.enabled) }}
+              <div class="col">
+                <form id="search-form" method="get" class="d-flex" autocomplete="off">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
+                    <input id="search-input" type="search" class="form-control" name="q" placeholder='{{ (i18n "search_internal") }}' aria-label='{{ (i18n "search_internal") }}'/>
+                    <span class="input-group-text"><i class="fas fa-brain fa-fw"></i></span>
+                  </div>
+                </form>
+              </div>
+              <div class="col">
+                <div class="list-group list-group-flush d-none overflow-auto" id="search-results"></div>
+                <div id="search-help">
+                    {{ (partial "function/alert" (dict
+                    "type" "info"
+                    "icon" "fas fa-search"
+                    "msg" (i18n "alert.search_help")
+                    )) }}
+                </div>
+              </div>
+            {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

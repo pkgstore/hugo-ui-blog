@@ -1,13 +1,11 @@
-{{ $cfg := (site.Params.search.bing) }}
 {{ $url := (urls.Parse (site.BaseURL)) }}
 
-{{ if ($cfg.enabled) }}
-  <form action="https://bing.com/search" method="get" class="d-flex" target="_blank">
-    <input type="hidden" name="q1" value="site:{{ ($url.Host) }}"/>
-    <div class="input-group">
-      <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
-      <input type="search" class="form-control" name="q" placeholder='{{ (i18n "search_bing") }}' aria-label='{{ (i18n "search_bing") }}'/>
-      <span class="input-group-text"><i class="fab fa-microsoft fa-fw"></i></span>
-    </div>
-  </form>
-{{ end }}
+<form action="https://bing.com/search" method="get" class="d-flex" target="_blank">
+  <input type="hidden" name="q1" value="site:{{ ($url.Host) }}"/>
+  <div class="input-group">
+    <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
+    <input type="search" class="form-control" name="q" placeholder='{{ (i18n "search_bing") }}' aria-label='{{ (i18n "search_bing") }}'/>
+    <span class="input-group-text"><i class="fab fa-microsoft fa-fw"></i></span>
+  </div>
+</form>
+
