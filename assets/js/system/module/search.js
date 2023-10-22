@@ -35,7 +35,7 @@ function search($path) {
 
         // Build our html if result exists.
         let $resultSet = ''; // Our results bucket.
-        let $url, $title, $type;
+        let $url, $title;
 
         $results.forEach((v, i) => {
           $url = $results[i].item.url;
