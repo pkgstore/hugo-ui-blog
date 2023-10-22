@@ -14,16 +14,10 @@ function search($path) {
 
   _fetch($path, ($data) => {
     let $options = {
-      shouldSort: true,
-      location: 0,
-      distance: 100,
-      threshold: 0.4,
-      minMatchCharLength: 3,
-      keys: [
-        {name: 'title', weight: 0.8},
-        {name: 'tags', weight: 0.3},
-        {name: 'categories', weight: 0.3}
-      ]
+      includeScore: true,
+      threshold: 0.0,
+      minMatchCharLength: 4,
+      keys: ['title', 'categories', 'tags']
     };
 
     $fuse = new Fuse($data, $options);
