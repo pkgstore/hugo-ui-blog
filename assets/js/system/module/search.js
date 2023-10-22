@@ -60,7 +60,9 @@ function _fetch($path, $callback) {
   fetch($path).then(($response) => {
     return $response.json();
   }).then(($data) => {
-    if ($callback) $callback($data);
+    if ($callback) $callback($data.data);
+  }).catch((err) => {
+    console.error(err);
   });
 }
 

@@ -16,7 +16,7 @@
         )) }}
     {{ end }}
 
-    {{ $search := ($data.Get "pages") }}
+    {{ $search := (($data.Get "pages") | uniq) }}
 
-    {{ (($search) | jsonify) }}
+    {{ ((dict "data" ($search)) | jsonify) }}
 {{ end }}
