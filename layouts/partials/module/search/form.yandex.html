@@ -1,21 +1,19 @@
 {{ $url := (urls.Parse (site.BaseURL)) }}
 
-{{ $urlYa := "" }}
-{{ $iconYa := "" }}
-
+{{ $domain := "" }}{{ $icon := "" }}
 {{ if (eq ($.Language.Lang) ("ru")) }}
-    {{ $urlYa = "https://yandex.ru" }}
-    {{ $iconYa = "yandex" }}
+    {{ $domain = "yandex.ru" }}
+    {{ $icon = "yandex" }}
 {{ else }}
-    {{ $urlYa = "https://yandex.com" }}
-    {{ $iconYa = "yandex-international" }}
+    {{ $domain = "yandex.com" }}
+    {{ $icon = "yandex-international" }}
 {{ end }}
 
-<form action="{{ ($urlYa) }}/yandsearch" method="get" class="d-flex" target="_blank">
+<form action="https://{{ ($domain) }}/yandsearch" method="get" class="d-flex" target="_blank">
   <input type="hidden" name="site" value="{{ ($url.Host) }}"/>
   <div class="input-group">
     <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
     <input type="search" class="form-control" name="text" placeholder='{{ (i18n "search_yandex") }}' aria-label='{{ (i18n "search_yandex") }}'/>
-    <span class="input-group-text"><i class="fab fa-{{ ($iconYa) }} fa-fw"></i></span>
+    <span class="input-group-text"><i class="fab fa-{{ ($icon) }} fa-fw"></i></span>
   </div>
 </form>
