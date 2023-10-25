@@ -9,7 +9,7 @@
           </a>
         </li>
       {{ end }}
-    <li class="breadcrumb-item active" aria-current="page" aria-label="{{ ((.Title) | plainify) }}">
+    <li class="breadcrumb-item active">
         {{ if (.IsHome) }}<i class="fas fa-home fa-fw"></i>{{ else }}{{ (.Title) }}{{ end }}
     </li>
   </ol>
