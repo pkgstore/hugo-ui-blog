@@ -4,12 +4,12 @@
   <ol class="breadcrumb bg-light p-2 rounded">
       {{ range (.Ancestors.Reverse) }}
         <li class="breadcrumb-item">
-          <a href="{{ (.RelPermalink) }}" aria-label="{{ ((.Title) | htmlEscape) }}">
+          <a href="{{ (.RelPermalink) }}" aria-label="{{ ((.Title) | plainify) }}">
               {{ if (.IsHome) }}<i class="fas fa-home fa-fw"></i>{{ else }}{{ (.Title) }}{{ end }}
           </a>
         </li>
       {{ end }}
-    <li class="breadcrumb-item active" aria-current="page" aria-label="{{ ((.Title) | htmlEscape) }}">
+    <li class="breadcrumb-item active" aria-current="page" aria-label="{{ ((.Title) | plainify) }}">
         {{ if (.IsHome) }}<i class="fas fa-home fa-fw"></i>{{ else }}{{ (.Title) }}{{ end }}
     </li>
   </ol>

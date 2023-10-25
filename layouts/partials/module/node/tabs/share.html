@@ -1,8 +1,8 @@
 {{ $cfg := (site.Params.node.tabs.share) }}
 
 {{ $url := (.Permalink) }}
-{{ $title := ((.Title) | htmlEscape) }}
-{{ $summary := ((.Summary) | htmlEscape) }}
+{{ $title := ((.Title) | plainify) }}
+{{ $summary := ((.Summary) | plainify) }}
 {{ $tags := ((.Params.tags) | default "") }}
 {{ $tags = (delimit ($tags) ",") }}
 
