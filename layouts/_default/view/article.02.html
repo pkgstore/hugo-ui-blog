@@ -1,6 +1,6 @@
 {{ $cfg := (site.Params.node) }}
 
-<article class="node-{{ .Type }}">
+<article class="node-{{ (.Type) }}">
   <header>
       {{ if (and ($cfg.cover.image.enabled) (.Params.images)) }}
         <div class="node-cover mb-3">
@@ -8,7 +8,7 @@
         </div>
       {{ end }}
     <div class="node-title">
-      <h2 class="h3"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+      <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
     </div>
   </header>
   <div class="node-body">{{ (.Render "summary") }}</div>

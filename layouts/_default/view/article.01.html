@@ -2,7 +2,7 @@
 
 <article class="node-{{ (.Type) }} d-flex overflow-hidden">
     {{ if (and ($cfg.cover.image.enabled)) }}
-      <div class="flex-shrink-0 me-3 d-none d-md-block">
+      <div class="flex-shrink-0 me-3">
         <div class="node-cover">
             {{ (partial "module/node/cover/image.01" .) }}
         </div>
