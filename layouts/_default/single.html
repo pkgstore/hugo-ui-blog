@@ -49,6 +49,14 @@
                   </li>
                 {{ end }}
             {{ end }}
+            {{ with .File }}
+                {{ with (index (split .ContentBaseName "_") 1) }}
+                  <li class="list-inline-item">&bull;</li>
+                  <li class="list-inline-item">
+                    #{{ . }}
+                  </li>
+                {{ end }}
+            {{ end }}
         </ul>
       </footer>
       <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
