@@ -1,13 +1,14 @@
 {{ $id := ((.id) | default (printf "alert-%s" (delimit (shuffle (seq 999)) "" | md5))) }}
 {{ $type := ((.type) | default "primary") }}
 {{ $icon := ((.icon) | default "fas fa-info") }}
-{{ $msg := ((.msg) | default "") }}
+{{ $msg := (((.msg) | markdownify) | default "") }}
 
 <div class="alert alert-{{ ($type) }} d-flex align-items-center overflow-hidden node-body" id="{{ ($id) }}" role="alert">
   <div class="flex-shrink-0">
     <i class="{{ ($icon) }} fa-fw fa-2x"></i>
   </div>
   <div class="flex-grow-1 ms-3 overflow-hidden">
-    <p class="mb-0">{{ ($msg) }}</p>
+      {{ $hasP := (strings.Contains ($msg) "<p>") }}
+      {{ if (not ($hasP)) }}<p>{{ ($msg) }}</p>{{ else }}{{ ($msg) }}{{ end }}
   </div>
 </div>

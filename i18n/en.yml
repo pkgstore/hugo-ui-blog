@@ -74,14 +74,24 @@ alert:
   license_deprecated_id: { other: 'License ID is deprecated!' }
   license_fsf_libre: { other: 'License is considered free by the FSF.' }
   license_osi_approved: { other: 'License is OSI-approved.' }
-  opinion: { other: 'Information on this page is the subjective opinion of author and may constitute a value judgment.' }
   related_not_found: { other: 'Related not found.' }
   tags_not_found: { other: 'Tags not found.' }
 
+  opinion:
+    other: |
+      The information on this page may be:
+      
+      - the author's subjective opinion and value judgment;
+      - research work for personal use.
+      
+      The reader is obliged to use the information received exclusively for legal purposes
+      that do not contradict moral principles and generally accepted values.
+
   search_help:
-    other: >
+    other: |
       Fuzzy search (rough string matching) is used.
       This is a method for finding strings that approximately match search pattern.
+      
       Search results are sorted by exact match to search pattern.
       Search results that most closely match a query are at the top, approximate results are at bottom.
 
