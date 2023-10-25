@@ -15,7 +15,7 @@ function search($path) {
   _fetch($path, ($data) => {
     let $options = {
       includeScore: true,
-      minMatchCharLength: 4,
+      minMatchCharLength: 3,
       useExtendedSearch: true,
       keys: ['title', 'categories', 'tags']
     };

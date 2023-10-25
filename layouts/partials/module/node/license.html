@@ -1,8 +1,7 @@
 {{ $api := (site.Params.api) }}
-{{ $ts := (now.Format "2006-01-02") }}
 {{ $headers := (dict "User-Agent" ($api.user_agent)) }}
 {{ $url := "https://raw.githubusercontent.com/spdx/license-list-data/main/json/details" }}
-{{ $license := (getJSON ($url) "/" . ".json?ts=" ($ts) ($headers)) }}
+{{ $license := (getJSON ($url) "/" . ".json" ($headers)) }}
 {{ with ($license) }}
     {{ if (.isDeprecatedLicenseId) }}
         {{ (partial "function/alert" (dict
