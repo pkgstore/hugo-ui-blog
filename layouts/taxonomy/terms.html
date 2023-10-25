@@ -23,7 +23,7 @@
                     <div class="flex-shrink-0">
                       <div class="node-cover">
                         <a class="d-flex justify-content-center align-items-center rounded p-1 {{ ($bg) }} {{ ($clr) }}"
-                           href="{{ (.RelPermalink) }}"
+                           href="{{ (.RelPermalink) }}" aria-label="{{ ((.Title) | htmlEscape) }}"
                            style="width: {{ ($size) }}; height: {{ ($size) }};">
                             {{ if (eq ($type) "authors") }}
                               <img class="img-fluid rounded" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
