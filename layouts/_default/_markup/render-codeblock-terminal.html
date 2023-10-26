@@ -59,6 +59,6 @@ EXAMPLE:
         </div>
       </div>
     </div>
-    <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
+    <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
   </div>
 </div>

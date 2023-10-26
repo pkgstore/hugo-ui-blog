@@ -45,7 +45,7 @@ EXAMPLE:
           </div>
         </div>
       </div>
-      <div class="card-body" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
+      <div class="card-body" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
     </div>
   </div>
 
@@ -53,7 +53,7 @@ EXAMPLE:
 
   <div class="shortcode shortcode-codeblock {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex mb-3 overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
+      <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
