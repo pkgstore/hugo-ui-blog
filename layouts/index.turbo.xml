@@ -1,11 +1,9 @@
-{{ $image := (site.Params.node.cover.image) }}
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
 {{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
-
-{{ $pages = (($pages) | first 500) }}
+{{ $pages = (($pages) | first 100) }}
 
 {{ ((printf "<?xml version='1.0' encoding='UTF-8'?>") | safeHTML) }}
 <rss version="2.0"
