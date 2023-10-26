@@ -1,6 +1,14 @@
 {{ define "main" }}
 
-    {{ $tags := (site.Taxonomies.tags.Alphabetical) }}
+    {{ $tags := (site.Taxonomies.tags) }}
+    {{ $fontUnit := "rem" }}
+    {{ $lgFontSize := 2.6 }}
+    {{ $smFontSize := 1.0 }}
+    {{ $fontSpread := (sub ($lgFontSize) ($smFontSize)) }}
+    {{ $max := (add (len (index $tags.ByCount 0).Pages) 1) }}
+    {{ $min := (len (index $tags.ByCount.Reverse 0).Pages) }}
+    {{ $spread := (sub ($max) ($min)) }}
+    {{ $fontStep := (div ($fontSpread) ($spread)) }}
 
     {{ (partial "breadcrumb" .) }}
 
@@ -8,10 +16,14 @@
       <div class="node-body">
         <ul class="list-inline">
             {{ range ($tags) }}
-              <li class="list-inline-item">
-                <a href="{{ (.Page.RelPermalink) }}">{{ (.Page.Title) }}</a>
-                <sup class="text-body-secondary">{{ (.Count) }}</sup>
-              </li>
+                {{ $weigth := (div (sub (math.Log (.Count)) (math.Log ($min))) (sub (math.Log ($max)) (math.Log ($min)))) }}
+                {{ $currentFontSize := (add ($smFontSize) (mul (sub ($lgFontSize) ($smFontSize)) ($weigth))) }}
+                <li class="list-inline-item">
+                  <a href="{{ (.Page.RelPermalink) }}" style="font-size: {{ ($currentFontSize) }}{{ ($fontUnit) }};">
+                      {{ (.Page.Title) }}
+                    <sup>{{ (.Count) }}</sup>
+                  </a>
+                </li>
             {{ end }}
         </ul>
       </div>
