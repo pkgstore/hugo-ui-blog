@@ -1,7 +1,6 @@
 {{ $x := . }}
 {{ if ($.IsHome) }}{{ $x = (site) }}{{ end }}
 
-{{ $image := (site.Params.node.cover.image) }}
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
