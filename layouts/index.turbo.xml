@@ -18,8 +18,6 @@
       {{ with (site.LanguageCode) }}
         <language>{{ . }}</language>
       {{ end }}
-    <turbo:analytics></turbo:analytics>
-    <turbo:adNetwork></turbo:adNetwork>
       {{ range ($pages) }}
         <item turbo="true">
           <title>{{ (.Title) }}</title>
