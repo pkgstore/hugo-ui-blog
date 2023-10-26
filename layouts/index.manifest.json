@@ -5,9 +5,7 @@
 
 {{ ($data.Add "categories" (slice)) }}
 
-{{ range ($cfg.categories) }}
-    {{ ($data.Add "categories" .) }}
-{{ end }}
+{{ range ($cfg.categories) }}{{ ($data.Add "categories" .) }}{{ end }}
 
 {{ ($data.Add "icons" (slice)) }}
 
@@ -16,20 +14,22 @@
     "src" ((printf "favicon-%s.png" .) | absURL)
     "sizes" (printf "%sx%s" . .)
     "type" "image/png"
+    "purpose" "any"
     )) }}
 {{ end }}
+{{ ($data.Add "icons" (dict "src" (("favicon.ico") | absURL) "sizes" "any" "type" "image/x-icon" "purpose" "any" )) }}
+{{ ($data.Add "icons" (dict "src" (("favicon.svg") | absURL) "sizes" "any" "type" "image/svg+xml" "purpose" "any" )) }}
 
-{{ ($data.Add "icons" (dict
-"src" (("favicon.ico") | absURL)
-"sizes" "any"
-"type" "image/x-icon"
-)) }}
-
-{{ ($data.Add "icons" (dict
-"src" (("favicon.svg") | absURL)
-"sizes" "any"
-"type" "image/svg+xml"
-)) }}
+{{ $maskable := (slice "48" "72" "96" "128" "192" "384" "512") }}
+{{ range ($maskable) }}
+    {{ ($data.Add "icons" (dict
+    "src" ((printf "mi-%s.png" .) | absURL)
+    "sizes" (printf "%sx%s" . .)
+    "type" "image/png"
+    "purpose" "maskable"
+    )) }}
+{{ end }}
+{{ ($data.Add "icons" (dict "src" (("mi.png") | absURL) "sizes" "any" "type" "image/png" "purpose" "maskable" )) }}
 
 {{ $ya := "" }}
 {{ if (eq ($lang) ("ru")) }}{{ $ya = "yandex.ru" }}{{ else }}{{ $ya = "yandex.com" }}{{ end }}
