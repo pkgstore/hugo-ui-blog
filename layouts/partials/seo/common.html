@@ -18,7 +18,7 @@
   {{ end }}
 
   {{ if (.Params.date) }}
-    <meta property="aiturec:datetime" content="{{ (.Date.Format "2006-01-02T15:04:05Z07:00") }}"/>
+    <meta property="aiturec:datetime" content="{{ (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}"/>
   {{ end }}
 
   <!-- <meta itemprop="description" content="{{ ($description) }}"/> -->

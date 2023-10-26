@@ -1,0 +1,51 @@
+{{ $image := (site.Params.node.cover.image) }}
+{{ $description := (site.Params.description) }}
+{{ with (.Summary) }}{{ $description = . }}{{ end }}
+{{ with (.Description) }}{{ $description = . }}{{ end }}
+
+{{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
+
+{{ $pages = (($pages) | first 500) }}
+
+{{ ((printf "<?xml version='1.0' encoding='UTF-8'?>") | safeHTML) }}
+<rss version="2.0"
+     xmlns:yandex="http://news.yandex.ru"
+     xmlns:turbo="http://turbo.yandex.ru">
+  <channel>
+    <title>{{ (site.Title) }}</title>
+    <link>{{ (.Permalink) }}</link>
+    <description>{{ ($description) }}</description>
+      {{ with (site.LanguageCode) }}
+        <language>{{ . }}</language>
+      {{ end }}
+    <turbo:analytics></turbo:analytics>
+    <turbo:adNetwork></turbo:adNetwork>
+      {{ range ($pages) }}
+        <item turbo="true">
+          <title>{{ (.Title) }}</title>
+          <link>{{ (.Permalink) }}</link>
+          <pubDate>{{ (.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") }}</pubDate>
+            {{ range (.Params.authors) }}
+                {{ with (site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .))) }}
+                  <author>{{ (.Params.email) }} ({{ (.Title) }})</author>
+                {{ end }}
+            {{ end }}
+            {{ range (.GetTerms "categories") }}
+              <category>{{ (.Title) }}</category>
+            {{ end }}
+            {{ $related := ((where (site.RegularPages.Related .) "Type" "in" (.Type)) | first 30) }}
+            {{ with ($related) }}
+              <yandex:related>
+                  {{ range . }}
+                    <link url="{{ (.Permalink) }}">{{ (.Title) }}</link>
+                  {{ end }}
+              </yandex:related>
+            {{ end }}
+          <turbo:extendedHtml>true</turbo:extendedHtml>
+          <turbo:source>{{ (.Permalink) }}</turbo:source>
+          <turbo:topic>{{ (.Title) }}</turbo:topic>
+          <turbo:content>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</turbo:content>
+        </item>
+      {{ end }}
+  </channel>
+</rss>

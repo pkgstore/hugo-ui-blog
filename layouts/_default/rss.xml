@@ -18,13 +18,8 @@
 
 {{ ((printf "<?xml version='1.0' encoding='UTF-8' standalone='yes'?>") | safeHTML) }}
 <rss version="2.0"
-     xmlns:content="http://purl.org/rss/1.0/modules/content/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
      xmlns:atom="http://www.w3.org/2005/Atom"
-     xmlns:media="http://search.yahoo.com/mrss/"
-     xmlns:yandex="http://news.yandex.ru"
-     xmlns:turbo="http://turbo.yandex.ru">
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
       {{ if (eq (.Title) (site.Title)) }}
         <title>{{ (site.Title) }}</title>
@@ -36,46 +31,38 @@
       {{ with (site.LanguageCode) }}
         <language>{{ . }}</language>
       {{ end }}
-    <sy:updatePeriod>weekly</sy:updatePeriod>
-    <sy:updateFrequency>1</sy:updateFrequency>
     <image>
       <link>{{ (.Permalink) }}</link>
       <url>{{ (("favicon-128.png") | absURL) }}</url>
-      <width>128</width>
-      <height>128</height>
         {{ if (eq (.Title) (site.Title)) }}
           <title>{{ (site.Title) }}</title>
         {{ else }}
           <title>{{ with (.Title) }}{{ . }} / {{ end }}{{ (site.Title) }}</title>
         {{ end }}
-      <description>{{ ($description) }}</description>
     </image>
       {{ if (not (.Date.IsZero)) }}
         <lastBuildDate>{{ (.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") }}</lastBuildDate>
       {{ end }}
-      {{ with (.OutputFormats.Get "rss") }}
+      {{ with (.OutputFormats.Get "RSS") }}
           {{ ((printf "<atom:link href=%q rel='self' type=%q/>" (.Permalink) (.MediaType)) | safeHTML) }}
       {{ end }}
       {{ range ($pages) }}
-        <item turbo="true">
-          <turbo:extendedHtml>true</turbo:extendedHtml>
+        <item>
           <title>{{ (.Title) }}</title>
           <link>{{ (.Permalink) }}</link>
-            {{ range (.GetTerms "authors") }}
-              <dc:creator>{{ ((printf "<![CDATA[%s]]>" (.Title)) | safeHTML) }}</dc:creator>
-            {{ end }}
-          <guid isPermaLink="true">{{ (.Permalink) }}</guid>
           <description>{{ ((.Summary) | plainify) }}</description>
-            {{ with (index (.Params.images) 0) }}
-              <media:content medium="image" url="{{ . }}" width="{{ ($image.lg.width) }}" height="{{ ($image.lg.height) }}"/>
-            {{ end }}
-          <content:encoded>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</content:encoded>
-          <turbo:source/>
-          <turbo:topic>{{ (.Title) }}</turbo:topic>
-          <turbo:content>{{ ((printf "<![CDATA[%s]]>" (.Content)) | safeHTML) }}</turbo:content>
           <pubDate>{{ (.Date.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700") }}</pubDate>
+            {{ range (.Params.authors) }}
+                {{ with (site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .))) }}
+                  <author>{{ (.Params.email) }} ({{ (.Title) }})</author>
+                {{ end }}
+            {{ end }}
             {{ range (.GetTerms "categories") }}
               <category>{{ (.Title) }}</category>
+            {{ end }}
+          <guid>{{ (.Permalink) }}</guid>
+            {{ range (.GetTerms "authors") }}
+              <dc:creator>{{ (.Title) }}</dc:creator>
             {{ end }}
         </item>
       {{ end }}
