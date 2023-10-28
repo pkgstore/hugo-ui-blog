@@ -157,7 +157,10 @@
                           <li>
                               {{ if (hasPrefix . "http") }}
                                   {{ $url := (urls.Parse .) }}
-                                  <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">{{ $url.Host }}</a>
+                                  {{ $path := (delimit ((split ($url.Path) "/") | last 2) "/") }}
+                                  <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">
+                                      {{ ($url.Host) }} {{ with ($path) }}({{ . }}){{ end }}
+                                  </a>
                               {{ else }}
                                   {{ . }}
                               {{ end }}
