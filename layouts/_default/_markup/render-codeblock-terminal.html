@@ -59,6 +59,13 @@ EXAMPLE:
         </div>
       </div>
     </div>
-    <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
+      {{ $lang := "" }}
+      {{ if (eq ($attr.hl) "false") }}
+          {{ $lang = "plaintext" }}
+      {{ else }}
+          {{ if (eq ($attr.os) "windows") }}{{ $lang = "powershell" }}{{ end }}
+          {{ if (eq ($attr.os) "linux") }}{{ $lang = "bash" }}{{ end }}
+      {{ end }}
+    <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($lang)) }}</div>
   </div>
 </div>

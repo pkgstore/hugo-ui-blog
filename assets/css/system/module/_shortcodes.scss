@@ -54,7 +54,7 @@ body {
               border-radius: unset;
 
               code {
-                &:after {
+                .line:last-child:after {
                   content: ' _';
                   opacity: 0;
                   animation: cursor 1s infinite;
@@ -82,16 +82,20 @@ body {
 
             &-linux {
               pre {
-                code:before {
-                  content: 'user@host ~ % ';
+                code {
+                  .line:first-child:before {
+                    content: 'user@host ~ % ';
+                  }
                 }
               }
 
               &-root {
                 pre {
-                  code:before {
-                    content: 'root@host ~ # ';
-                    color: var(--bs-danger);
+                  code {
+                    .line:first-child:before {
+                      content: 'root@host ~ # ';
+                      color: var(--bs-danger);
+                    }
                   }
                 }
               }
@@ -99,16 +103,20 @@ body {
 
             &-windows {
               pre {
-                code:before {
-                  content: 'C:\\Users\\User> ';
+                code {
+                  .line:first-child:before {
+                    content: 'C:\\Users\\User> ';
+                  }
                 }
               }
 
               &-root {
                 pre {
-                  code:before {
-                    content: 'C:\\Users\\Admin> ';
-                    color: var(--bs-danger);
+                  code {
+                    .line:first-child:before {
+                      content: 'C:\\Users\\Admin> ';
+                      color: var(--bs-danger);
+                    }
                   }
                 }
               }
