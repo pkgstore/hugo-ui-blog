@@ -60,7 +60,7 @@ EXAMPLE:
       </div>
     </div>
       {{ $lang := "" }}
-      {{ if (eq ($attr.hl) "false") }}
+      {{ if (or (eq ($attr.hl) "false") (eq ($attr.hl) "0")) }}
           {{ $lang = "plaintext" }}
       {{ else }}
           {{ if (eq ($attr.os) "windows") }}{{ $lang = "powershell" }}{{ end }}
