@@ -31,10 +31,11 @@ EXAMPLE:
 {{ $attr := (.Attributes) }}
 {{ $type := ((.Type) | default "text") }}
 {{ $inner := (.Inner) }}
+{{ $ordinal := (.Ordinal) }}
 
 {{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
-<div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($type) }}
+<div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}
 {{ with ($attr.os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}
 {{ with ($attr.os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}{{ with ($attr.mode) }}-{{ . }}{{ end }}">
   <div class="card mb-3 overflow-hidden" data-bs-theme="dark">
@@ -59,13 +60,10 @@ EXAMPLE:
         </div>
       </div>
     </div>
-      {{ $lang := "" }}
-      {{ if (or (eq ($attr.hl) "false") (eq ($attr.hl) "0")) }}
-          {{ $lang = "plaintext" }}
-      {{ else }}
-          {{ if (eq ($attr.os) "windows") }}{{ $lang = "powershell" }}{{ end }}
-          {{ if (eq ($attr.os) "linux") }}{{ $lang = "bash" }}{{ end }}
-      {{ end }}
+      {{ $lang := "plaintext" }}
+      {{ if (eq ($attr.os) "windows") }}{{ $lang = "powershell" }}{{ end }}
+      {{ if (eq ($attr.os) "linux") }}{{ $lang = "bash" }}{{ end }}
+      {{ with ($attr.hl) }}{{ $lang = . }}{{ end }}
     <div class="card-body p-0" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($lang)) }}</div>
   </div>
 </div>

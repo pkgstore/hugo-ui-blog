@@ -16,12 +16,13 @@ EXAMPLE:
 {{ $attr := (.Attributes) }}
 {{ $type := ((.Type) | default "text") }}
 {{ $inner := (.Inner) }}
+{{ $ordinal := (.Ordinal) }}
 
 {{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
 
 {{ if (or ($attr.title) ($attr.file)) }}
 
-  <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($type) }}">
+  <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}">
     <div class="card mb-3 overflow-hidden">
       <div class="card-header">
         <div class="d-flex align-items-center">
@@ -51,7 +52,7 @@ EXAMPLE:
 
 {{ else }}
 
-  <div class="shortcode shortcode-codeblock {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex mb-3 overflow-hidden">
       <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
       <div class="flex-shrink-0">
