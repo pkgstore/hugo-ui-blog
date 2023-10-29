@@ -55,7 +55,7 @@ body {
 
               code {
                 .line:last-child:after {
-                  content: ' _';
+                  content: ' _ ';
                   opacity: 0;
                   animation: cursor 1s infinite;
                 }
