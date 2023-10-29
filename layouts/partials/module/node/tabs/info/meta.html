@@ -3,7 +3,7 @@
     <h5 class="card-title">{{ (i18n "meta") }}</h5>
     <div class="row row-cols-1 row-cols-sm-2 g-2 align-items-center">
         {{ with (.Params.license) }}
-            {{ $id := (printf "modal-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
+            {{ $id := (printf "modal-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
             <div class="col">{{ (i18n "license") }}</div>
             <div class="col">
               <div class="input-group">

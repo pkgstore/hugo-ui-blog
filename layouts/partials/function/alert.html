@@ -1,4 +1,4 @@
-{{ $id := ((.id) | default (printf "alert-%s" (delimit (shuffle (seq 999)) "" | md5))) }}
+{{ $id := ((.id) | default (printf "alert-%s" ((delimit (shuffle (seq 11 99)) "") | md5))) }}
 {{ $type := ((.type) | default "primary") }}
 {{ $icon := ((.icon) | default "fas fa-info") }}
 {{ $msg := (((.msg) | markdownify) | default "") }}

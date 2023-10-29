@@ -18,7 +18,7 @@ EXAMPLE:
 {{ $inner := (.Inner) }}
 {{ $ordinal := (.Ordinal) }}
 
-{{ $cp := (printf "clipboard-%s" (delimit (shuffle (seq 999)) "" | md5)) }}
+{{ $cp := (printf "clipboard-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
 
 {{ if (or ($attr.title) ($attr.file)) }}
 
