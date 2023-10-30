@@ -1,11 +1,11 @@
 {{ define "main" }}
 
-    {{ $posts := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
+    {{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.content.sections)) }}
 
     {{ (partial "breadcrumb" .) }}
 
-    {{ if ($posts) }}
-        {{ range (.Paginate ($posts.GroupByDate "2006") 50).PageGroups }}
+    {{ if ($pages) }}
+        {{ range ($pages.GroupByDate "2006") }}
           <div class="row mb-3">
             <div class="col">
               <article>
@@ -25,7 +25,5 @@
           </div>
         {{ end }}
     {{ end }}
-
-    {{ (partial "pagination" .) }}
 
 {{ end }}

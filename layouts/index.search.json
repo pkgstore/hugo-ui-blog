@@ -1,12 +1,12 @@
 {{ $cfg := (site.Params.search) }}
 
 {{ if ($cfg.internal.enabled) }}
-    {{ $posts := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
+    {{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.content.sections)) }}
     {{ $data := (newScratch) }}
 
     {{ ($data.Add "pages" slice) }}
 
-    {{ range ($posts) }}
+    {{ range ($pages) }}
         {{ ($data.Add "pages" (dict
         "title" (.Title)
         "tags" (.Params.tags)

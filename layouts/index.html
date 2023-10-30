@@ -1,11 +1,10 @@
 {{ define "main" }}
 
-    {{ $posts := ((where site.RegularPages "Type" "in" "posts") | first 11) }}
-    {{ $cfg := ((site.Params.node) | default "") }}
+    {{ $pages := ((where (site.RegularPages) "Type" "in" (site.Params.content.sections)) | first 11) }}
 
     {{ (partial "breadcrumb" .) }}
 
-    {{ with ($posts) }}
+    {{ with ($pages) }}
       <div class="row row-cols-1 g-3">
         <div class="col">
             {{ range (first 1 .) }}

@@ -2,7 +2,7 @@
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
-{{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
+{{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.content.sections)) }}
 {{ $pages = (($pages) | first 100) }}
 
 {{ ((printf "<?xml version='1.0' encoding='UTF-8'?>") | safeHTML) }}

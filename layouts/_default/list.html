@@ -2,8 +2,10 @@
 
     {{ (partial "breadcrumb" .) }}
 
+    {{ $pages := (.Paginator.Pages) }}
+
     <div class="row row-cols-1 row-cols-lg-2 g-3">
-        {{ range (.Paginator.Pages) }}
+        {{ range ($pages) }}
           <div class="col">
             <div class="d-sm-block d-md-none">
                 {{ (.Render "view/article.02") }}
