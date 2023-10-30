@@ -59,6 +59,8 @@
 {{ $canonical := (.Permalink) }}
 {{ with ($.Paginator) }}
     {{ $canonical = ((.URL) | absURL) }}
+    <link rel="first" href="{{ ((.First.URL) | absURL) }}"/>
+    <link rel="last" href="{{ ((.Last.URL) | absURL) }}"/>
     {{ if (.HasPrev) }}
       <link rel="prev" href="{{ ((.Prev.URL) | absURL) }}"/>
     {{ end }}
