@@ -8,16 +8,20 @@
     {{ ($data.Add "itemListElement" (dict
     "@type" "ListItem"
     "position" ($position)
+    "item" (dict
+    "@id" (.Permalink)
     "name" (.Title)
-    "item" (.Permalink)
+    )
     )) }}
 {{ end }}
 
 {{ ($data.Add "itemListElement" (dict
 "@type" "ListItem"
 "position" (add ($position) 1)
+"item" (dict
+"@id" (.Permalink)
 "name" (.Title)
-"item" (.Permalink)
+)
 )) }}
 
 {{ $breadcrumb := (dict
