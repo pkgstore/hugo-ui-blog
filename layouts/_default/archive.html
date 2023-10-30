@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $posts := (where site.RegularPages "Type" "in" "posts") }}
+    {{ $posts := (where (site.RegularPages) "Type" "in" (site.Params.sections)) }}
 
     {{ (partial "breadcrumb" .) }}
 
