@@ -3,6 +3,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 
+<!--[ generator ]-->
+{{ with (.GitInfo) }}
+  <meta name="generator" content="Library Online {{ (.AbbreviatedHash) }}"/>
+{{ end }}
+<!--[ / generator ]-->
+
 <!--[ title ]-->
 {{ $title := "" }}
 {{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
