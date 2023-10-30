@@ -56,7 +56,17 @@
 <!--[ / pre-load-js ]-->
 
 <!--[ canonical ]-->
-<link rel="canonical" href="{{ (.Permalink) }}"/>
+{{ $canonical := (.Permalink) }}
+{{ with ($.Paginator) }}
+    {{ $canonical = ((.URL) | absURL) }}
+    {{ if (.HasPrev) }}
+      <link rel="prev" href="{{ ((.Prev.URL) | absURL) }}"/>
+    {{ end }}
+    {{ if (.HasNext) }}
+      <link rel="next" href="{{ ((.Next.URL) | absURL) }}"/>
+    {{ end }}
+{{ end }}
+<link rel="canonical" href="{{ ($canonical) }}"/>
 <!--[ / canonical ]-->
 
 <!--[ languages ]-->
