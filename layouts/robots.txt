@@ -1,5 +1,9 @@
 User-agent: *
-Disallow: /*.json$
-Disallow: /*.xml$
+Disallow: /*/index.json
+Disallow: /*/index.xml
+Disallow: /*/manifest.json
+Disallow: /*/opensearch.xml
+Disallow: /*/search.json
+Disallow: /*/turbo.json
 
 Sitemap: {{ ("sitemap.xml" | absURL) }}
