@@ -5,5 +5,9 @@ Disallow: /*/manifest.json
 Disallow: /*/opensearch.xml
 Disallow: /*/search.json
 Disallow: /*/turbo.json
+Disallow: /*/authors/
+Disallow: /*/categories/
+Disallow: /*/footer/
+Disallow: /*/tags/
 
 Sitemap: {{ ("sitemap.xml" | absURL) }}
