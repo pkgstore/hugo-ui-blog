@@ -5,11 +5,11 @@
     <div class="accordion" id="accordion-{{ ($id_toc) }}">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($id_toc) }}"
-                  aria-expanded="false" aria-controls="collapse-{{ ($id_toc) }}">
+          <a class="accordion-button collapsed" href="#" role="button"
+             data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($id_toc) }}"
+             aria-expanded="false" aria-controls="collapse-{{ ($id_toc) }}" aria-label='{{ (i18n "toc") }}'>
               {{ (i18n "toc") }}
-          </button>
+          </a>
         </h2>
         <div id="collapse-{{ ($id_toc) }}" class="accordion-collapse collapse"
              data-bs-parent="#accordion-{{ ($id_toc) }}">
