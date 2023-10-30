@@ -14,8 +14,8 @@
     {{ $bundle := slice }}
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
     {{ $bundle = (($bundle) | resources.Concat "js/vendor.bundle.js") }}
-    {{ $bundle = ((($bundle) | minify) | resources.Fingerprint "sha512") }}
-    <script src="{{ ($bundle.RelPermalink) }}" integrity="{{ ($bundle.Data.Integrity) }}" defer></script>
+    {{ $bundle = (($bundle) | minify) }}
+    <script src="{{ ($bundle.RelPermalink) }}" defer></script>
 {{ end }}
 <!--[ / vendor-internal ]-->
 
@@ -25,8 +25,8 @@
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
     {{ $bundle = ((($bundle) | resources.Concat "js/system.bundle.js") | js.Build) }}
     {{ $bundle = (($bundle) | resources.ExecuteAsTemplate ("js/system.bundle.js" | relLangURL) .) }}
-    {{ $bundle = ((($bundle) | minify) | resources.Fingerprint "sha512") }}
-    <script src="{{ ($bundle.RelPermalink) }}" integrity="{{ ($bundle.Data.Integrity) }}" defer></script>
+    {{ $bundle = (($bundle) | minify) }}
+    <script src="{{ ($bundle.RelPermalink) }}" defer></script>
 {{ end }}
 <!--[ / system-internal ]-->
 
