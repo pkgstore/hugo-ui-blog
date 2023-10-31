@@ -1,14 +1,7 @@
-{{ $authors := 0 }}
-{{ if (isset .Params "authors") }}
-    {{ if (not (eq (index (.Params.authors) 0) "")) }}
-        {{ $authors = 1 }}
-    {{ end }}
-{{ end }}
-
 <section class="card node-authors h-100">
   <div class="card-body">
     <h5 class="card-title">{{ (i18n "authors") }}</h5>
-      {{ if ($authors) }}
+      {{ if (.Params.authors) }}
         <ul>
             {{ range (.GetTerms "authors") }}
               <li>

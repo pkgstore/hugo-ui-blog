@@ -18,3 +18,9 @@
 .optional-license-text {
   color: var(--bs-gray);
 }
+
+.fancybox {
+  &__container {
+    z-index: var(--fancybox-zIndex, 2050);
+  }
+}

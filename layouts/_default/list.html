@@ -8,11 +8,20 @@
         {{ range ($pages) }}
           <div class="col">
             <div class="d-sm-block d-md-none">
-                {{ (.Render "view/article.02") }}
+                {{ if (eq (.Section) "faq") }}
+                    {{ (.Render "view/question.02") }}
+                {{ else }}
+                    {{ (.Render "view/article.02") }}
+                {{ end }}
             </div>
             <div class="d-none d-md-block">
-                {{ (.Render "view/article.01") }}
+                {{ if (eq (.Section) "faq") }}
+                    {{ (.Render "view/question.01") }}
+                {{ else }}
+                    {{ (.Render "view/article.01") }}
+                {{ end }}
             </div>
+              {{ (partial "module/node/modal/article" .) }}
           </div>
         {{ end }}
     </div>

@@ -1,14 +1,7 @@
-{{ $tags := 0 }}
-{{ if (isset .Params "tags") }}
-    {{ if (not (eq (index (.Params.tags) 0) "")) }}
-        {{ $tags = 1 }}
-    {{ end }}
-{{ end }}
-
 <section class="card node-tags h-100">
   <div class="card-body">
     <h5 class="card-title">{{ (i18n "tags") }}</h5>
-      {{ if ($tags) }}
+      {{ if (.Params.tags) }}
         <ul class="list-inline">
             {{ range (.GetTerms "tags") }}
               <li class="list-inline-item">

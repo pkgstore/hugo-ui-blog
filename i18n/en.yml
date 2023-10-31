@@ -30,7 +30,6 @@ license_text: { other: 'License text' }
 logo: { other: 'Logotype' }
 meta: { other: 'Meta' }
 minutes: { other: 'min.' }
-posts: { other: 'Posts' }
 reading_time: { other: 'Reading time' }
 search: { other: 'Search' }
 search_bing: { other: 'Bing Search' }

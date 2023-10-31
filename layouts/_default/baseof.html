@@ -1,10 +1,10 @@
 <!doctype html>
 {{ $lang := ((site.LanguageCode) | default "en-US") }}
-{{ $type := (($.Type) | default "") }}
+{{ $type := ((.Type) | default "") }}
 {{ $home := "" }}{{ $node := "" }}{{ $page := "" }}
-{{ if ($.IsHome) }}{{ $home = "is-home" }}{{ end }}
-{{ if ($.IsNode) }}{{ $node = "is-node" }}{{ end }}
-{{ if ($.IsPage) }}{{ $page = "is-page" }}{{ end }}
+{{ if (.IsHome) }}{{ $home = "is-home" }}{{ end }}
+{{ if (.IsNode) }}{{ $node = "is-node" }}{{ end }}
+{{ if (.IsPage) }}{{ $page = "is-page" }}{{ end }}
 
 <html class="h-100" dir="ltr" lang="{{ ($lang) }}"
       prefix="og: http://ogp.me/ns#

@@ -30,7 +30,6 @@ license_text: { other: 'Текст лицензии' }
 logo: { other: 'Логотип' }
 meta: { other: 'Мета' }
 minutes: { other: 'мин.' }
-posts: { other: 'Статьи' }
 reading_time: { other: 'Время чтения' }
 search: { other: 'Поиск' }
 search_bing: { other: 'Поиск Bing' }

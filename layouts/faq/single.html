@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+    {{ $cfg := (site.Params.node) }}
+    {{ $id_tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
+    {{ $changelog := (path.Join (.File.Dir) ("changelog.md")) }}
+
+    {{ (partial "breadcrumb" .) }}
+
+    <article>
+      <header>
+
+        <div class="node-title">
+          <h1 class="text-center">{{ (.Title) }}</h1>
+        </div>
+      </header>
+      <footer>
+        <ul class="list-inline text-center text-body-secondary small">
+            {{ with (.Params.date) }}
+              <li class="list-inline-item">
+                <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
+                    {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
+                </time>
+              </li>
+            {{ end }}
+            {{ if (.Params.tags) }}
+              <li class="list-inline-item">&bull;</li>
+              {{ range (.GetTerms "tags") }}
+                <li class="list-inline-item">
+                  <a href="{{ (.Permalink) }}">#{{ (.Title) }}</a>
+                </li>
+              {{ end }}
+            {{ end }}
+        </ul>
+      </footer>
+      <div class="node-body">
+        <div class="node-question mb-3">
+            {{ $question := (path.Join ("content") (.Page.File.Lang) (.Page.File.Dir) "question.md") }}
+            {{ ((readFile ($question)) | markdownify) }}
+        </div>
+        <div class="node-answer">
+            {{ (.Content) }}
+        </div>
+
+          {{ (partial "module/node/sources" .) }}
+      </div>
+    </article>
+
+{{ end }}

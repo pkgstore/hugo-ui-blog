@@ -11,13 +11,12 @@
   <div class="flex-grow-1 overflow-hidden">
     <header>
       <div class="node-title">
-        <h2 class="h5">
-          <a href="{{ (.RelPermalink) }}"
-             data-bs-toggle="modal"
-             data-bs-target="#modal-{{ (.File.UniqueID) }}">{{ (.Title) }}</a>
-        </h2>
+        <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
       </div>
     </header>
-    <div class="node-body">{{ (.Render "summary") }}</div>
+    <div class="node-body">
+        {{ $question := (path.Join ("content") (.Page.File.Lang) (.Page.File.Dir) "question.md") }}
+        {{ (((readFile ($question)) | markdownify) | truncate 250) }}
+    </div>
   </div>
 </article>

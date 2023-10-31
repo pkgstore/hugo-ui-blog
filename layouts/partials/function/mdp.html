@@ -1,0 +1,3 @@
+{{ $text := ((.text) | markdownify) }}
+{{ $hasP := (strings.Contains ($text) "<p>") }}
+{{ if (not ($hasP)) }}<p>{{ ($text) }}</p>{{ else }}{{ ($text) }}{{ end }}

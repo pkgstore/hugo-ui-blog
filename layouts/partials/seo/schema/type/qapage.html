@@ -1,0 +1,46 @@
+{{ $dateCreated := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $datePublished := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $dateExpiry := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+{{ $dateModified := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+
+{{ if (.Params.date) }}
+    {{ $dateCreated = (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+    {{ $datePublished = (.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+    {{ $dateExpiry = (.ExpiryDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+    {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
+
+{{ $question := (path.Join ("content") (.Page.File.Lang) (.Page.File.Dir) "question.md") }}
+{{ $keywords := (delimit ((.Params.tags) | default (slice)) ", ") }}
+{{ $data := (newScratch) }}
+
+{{ ($data.Add "authors" (slice)) }}
+
+{{ range (.GetTerms "authors") }}
+    {{ ($data.Add "authors" (dict
+    "@type" "Person"
+    "name" (.Title)
+    "url" (.Permalink)
+    )) }}
+{{ end }}
+
+{{ $qapage := (dict
+"@context" "https://schema.org"
+"@type" "Question"
+"name" (.Title)
+"text" (((readFile ($question)) | plainify) | chomp)
+"datePublished" ($datePublished)
+"dateCreated" ($dateCreated)
+"dateModified" ($dateModified)
+"keywords" ($keywords)
+"acceptedAnswer" (dict
+"@type" "Answer"
+"text" ((.Plain) | chomp)
+"datePublished" ($datePublished)
+"dateCreated" ($dateCreated)
+"dateModified" ($dateModified)
+"author" ($data.Get "authors")
+"url" (.Permalink)
+)) }}
+
+<script type="application/ld+json">{{ ((($qapage) | jsonify) | safeJS) }}</script>
