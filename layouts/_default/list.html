@@ -9,14 +9,14 @@
           <div class="col">
             <div class="d-sm-block d-md-none">
                 {{ if (eq (.Section) "faq") }}
-                    {{ (.Render "view/question.02") }}
+                    {{ (.Render "view/faq.02") }}
                 {{ else }}
                     {{ (.Render "view/article.02") }}
                 {{ end }}
             </div>
             <div class="d-none d-md-block">
                 {{ if (eq (.Section) "faq") }}
-                    {{ (.Render "view/question.01") }}
+                    {{ (.Render "view/faq.01") }}
                 {{ else }}
                     {{ (.Render "view/article.01") }}
                 {{ end }}

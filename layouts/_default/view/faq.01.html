@@ -14,9 +14,6 @@
         <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
       </div>
     </header>
-    <div class="node-body">
-        {{ $question := (path.Join ("content") (.Page.File.Lang) (.Page.File.Dir) "question.md") }}
-        {{ (((readFile ($question)) | markdownify) | truncate 250) }}
-    </div>
+    <div class="node-body">{{ ((.Render "summary") | truncate 200) }}</div>
   </div>
 </article>

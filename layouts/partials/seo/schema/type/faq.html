@@ -10,12 +10,10 @@
     {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
 {{ end }}
 
-{{ $question := (path.Join ("content") (.Page.File.Lang) (.Page.File.Dir) "question.md") }}
-{{ $keywords := (delimit ((.Params.tags) | default (slice)) ", ") }}
+{{ $answer := (path.Join ("content") (.File.Lang) (.File.Dir) "answer.md") }}
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "authors" (slice)) }}
-
 {{ range (.GetTerms "authors") }}
     {{ ($data.Add "authors" (dict
     "@type" "Person"
@@ -24,18 +22,21 @@
     )) }}
 {{ end }}
 
+{{ ($data.Add "tags" (slice)) }}
+{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
+
 {{ $qapage := (dict
 "@context" "https://schema.org"
 "@type" "Question"
 "name" (.Title)
-"text" (((readFile ($question)) | plainify) | chomp)
+"text" ((.Plain) | chomp)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)
-"keywords" ($keywords)
+"keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
 "acceptedAnswer" (dict
 "@type" "Answer"
-"text" ((.Plain) | chomp)
+"text" (((readFile ($answer)) | plainify) | chomp)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)

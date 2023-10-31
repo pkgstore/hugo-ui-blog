@@ -2,7 +2,6 @@
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "itemListElement" (slice)) }}
-
 {{ range (.Ancestors.Reverse) }}
     {{ $position = (add ($position) 1) }}
     {{ ($data.Add "itemListElement" (dict

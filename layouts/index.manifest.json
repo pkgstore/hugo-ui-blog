@@ -4,11 +4,9 @@
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "categories" (slice)) }}
-
 {{ range ($cfg.categories) }}{{ ($data.Add "categories" .) }}{{ end }}
 
 {{ ($data.Add "icons" (slice)) }}
-
 {{ range ($icons.sizes) }}
     {{ ($data.Add "icons" (dict
     "src" ((printf "favicon-%s.png" .) | absURL)
@@ -31,14 +29,11 @@
 {{ end }}
 {{ ($data.Add "icons" (dict "src" (("mi.png") | absURL) "sizes" "any" "type" "image/png" "purpose" "maskable" )) }}
 
-{{ $ya := "" }}
-{{ if (eq ($lang) ("ru")) }}{{ $ya = "yandex.ru" }}{{ else }}{{ $ya = "yandex.com" }}{{ end }}
-
 {{ $search_provider := (dict
 "name" (site.Title)
 "search_url" (printf "https://google.com/search?as_sitesearch=%s&q={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 "alternate_urls" (slice
-(printf "https://%s/yandsearch?site=%s&text={searchTerms}" ($ya) ((urls.Parse (site.BaseURL)).Host))
+(printf "https://ya.ru/search?site=%s&text={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 (printf "https://bing.com/search?q1=site:%s&q={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 )
 "favicon_url" (("favicon.ico") | absURL)

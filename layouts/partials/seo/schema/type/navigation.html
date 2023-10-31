@@ -2,7 +2,6 @@
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "itemListElement" (slice)) }}
-
 {{ range ($menu) }}
     {{ ($data.Add "itemListElement" (dict
     "@type" "SiteNavigationElement"

@@ -63,8 +63,14 @@
                     {{ end }}
                 {{ end }}
             {{ end }}
-            {{ range (.GetTerms "categories") }}
-              <category>{{ (.Title) }}</category>
+            {{ if .Params.categories }}
+                {{ range (.GetTerms "categories") }}
+                  <category>{{ (.Title) }}</category>
+                {{ end }}
+            {{ else }}
+                {{ range (.GetTerms "tags") }}
+                  <category>{{ (.Title) }}</category>
+                {{ end }}
             {{ end }}
           <guid>{{ (.Permalink) }}</guid>
         </item>

@@ -16,7 +16,6 @@
 
 {{ $logo := (site.Params.organization.logo) }}
 {{ $image := (index (.Params.images) 0) }}
-{{ $keywords := (delimit ((.Params.tags) | default (slice)) ", ") }}
 {{ $data := (newScratch) }}
 
 {{ $mainEntityOfPage := (dict
@@ -34,7 +33,6 @@
 ) }}
 
 {{ ($data.Add "authors" (slice)) }}
-
 {{ range (.GetTerms "authors") }}
     {{ ($data.Add "authors" (dict
     "@type" "Person"
@@ -42,6 +40,9 @@
     "url" (.Permalink)
     )) }}
 {{ end }}
+
+{{ ($data.Add "tags" (slice)) }}
+{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
 
 {{ $article := (dict
 "@context" "https://schema.org"
@@ -57,7 +58,7 @@
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)
-"keywords" ($keywords)
+"keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
 "publisher" ($publisher)
 "articleBody" ((.Plain) | chomp)
 ) }}

@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $pages := ((where (site.RegularPages) "Type" "in" (site.Params.content.sections)) | first 11) }}
+    {{ $pages := ((where (site.RegularPages) "Type" "in" (site.Params.home.sections)) | first 11) }}
 
     {{ (partial "breadcrumb" .) }}
 

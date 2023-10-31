@@ -7,13 +7,20 @@
     {{ ($data.Add "pages" slice) }}
 
     {{ range ($pages) }}
+
+        {{ $tags := (newScratch) }}{{ ($tags.Add "tags" slice) }}
+        {{ range (.GetTerms "tags") }}{{ ($tags.Add "tags" (.Title)) }}{{ end }}
+        {{ $categories := (newScratch) }}{{ ($categories.Add "categories" slice) }}
+        {{ range (.GetTerms "categories") }}{{ ($categories.Add "categories" (.Title)) }}{{ end }}
+
         {{ ($data.Add "pages" (dict
         "title" (.Title)
-        "tags" (.Params.tags)
-        "categories" (.Params.categories)
+        "tags" ($tags.Get "tags")
+        "categories" ($categories.Get "categories")
         "url" (.Permalink)
-        "date" (.Date.Format "2006-01-02T15:04:05Z07:00")
+        "date" (.Date.UTC.Format "2006-01-02T15:04:05Z07:00")
         )) }}
+
     {{ end }}
 
     {{ $search := (($data.Get "pages") | uniq) }}
