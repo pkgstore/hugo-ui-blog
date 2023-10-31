@@ -10,7 +10,8 @@
     {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
 {{ end }}
 
-{{ $answer := (path.Join ("content") (.File.Lang) (.File.Dir) "answer.md") }}
+{{ $answer := "" }}
+{{ with (.Resources.GetMatch "answer.md") }}{{ $answer = ((.Plain) | chomp) }}{{ end }}
 {{ $data := (newScratch) }}
 
 {{ ($data.Add "authors" (slice)) }}
@@ -36,7 +37,7 @@
 "keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
 "acceptedAnswer" (dict
 "@type" "Answer"
-"text" (((readFile ($answer)) | plainify) | chomp)
+"text" ($answer)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)

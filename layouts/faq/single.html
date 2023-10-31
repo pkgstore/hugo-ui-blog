@@ -35,8 +35,7 @@
       <div class="node-body">
         <div class="node-question border-start border-danger-subtle border-3 ps-3 mb-3">{{ (.Content) }}</div>
         <div class="node-answer border-start border-success-subtle border-3 ps-3">
-            {{ $answer := (path.Join ("content") (.File.Lang) (.File.Dir) "answer.md") }}
-            {{ ((readFile ($answer)) | markdownify) }}
+            {{ with (.Resources.GetMatch "answer.md") }}{{ (.Content) }}{{ end }}
         </div>
 
           {{ (partial "module/node/sources" .) }}
