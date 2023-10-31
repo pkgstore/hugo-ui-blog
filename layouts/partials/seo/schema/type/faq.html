@@ -10,9 +10,10 @@
     {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
 {{ end }}
 
+{{ $data := (newScratch) }}
+
 {{ $answer := "" }}
 {{ with (.Resources.GetMatch "answer.md") }}{{ $answer = ((.Plain) | chomp) }}{{ end }}
-{{ $data := (newScratch) }}
 
 {{ ($data.Add "authors" (slice)) }}
 {{ range (.GetTerms "authors") }}
