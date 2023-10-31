@@ -7,6 +7,6 @@
     {{ (partial "seo/schema/type/article.html" .) }}
 {{ end }}
 
-{{ if (and (.IsPage) (eq (.Section) "qna")) }}
-    {{ (partial "seo/schema/type/qapage.html" .) }}
+{{ if (and (.IsPage) (eq (.Section) "faq")) }}
+    {{ (partial "seo/schema/type/faq.html" .) }}
 {{ end }}
