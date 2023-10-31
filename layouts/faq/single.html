@@ -33,8 +33,8 @@
         </ul>
       </footer>
       <div class="node-body">
-        <div class="node-question border-start border-info border-3 ps-3 mb-3">{{ (.Content) }}</div>
-        <div class="node-answer">
+        <div class="node-question border-start border-danger-subtle border-3 ps-3 mb-3">{{ (.Content) }}</div>
+        <div class="node-answer border-start border-success-subtle border-3 ps-3">
             {{ $answer := (path.Join ("content") (.File.Lang) (.File.Dir) "answer.md") }}
             {{ ((readFile ($answer)) | markdownify) }}
         </div>
