@@ -5,9 +5,7 @@
 {{ $fit := ((.Params.cover.fit) | default ($cfg.fit)) }}
 {{ $src := ((index (.Params.images) 0) | default ($cfg.placeholder)) }}
 
-<a title="{{ ((.Title) | plainify) }}" class="d-block" href="{{ (.RelPermalink) }}"
-   data-bs-toggle="modal"
-   data-bs-target="#modal-{{ (.File.UniqueID) }}">
+<a title="{{ ((.Title) | plainify) }}" class="d-block" href="{{ (.RelPermalink) }}">
   <img class="d-block rounded"
        src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
        width="{{ ($width) }}" height="{{ ($height) }}"

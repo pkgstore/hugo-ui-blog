@@ -9,7 +9,6 @@
         <div class="col">
             {{ range (first 1 .) }}
                 {{ (.Render "view/article.02") }}
-                {{ (partial "module/node/modal/article" .) }}
             {{ end }}
         </div>
         <div class="col">
@@ -17,7 +16,6 @@
               {{ range ((after 1 .) | first 4) }}
                 <div class="col">
                     {{ (.Render "view/article.02") }}
-                    {{ (partial "module/node/modal/article" .) }}
                 </div>
               {{ end }}
           </div>
@@ -27,7 +25,6 @@
               {{ range (after 5 .) }}
                 <div class="col">
                     {{ (.Render "view/article.02") }}
-                    {{ (partial "module/node/modal/article" .) }}
                 </div>
               {{ end }}
           </div>
