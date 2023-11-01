@@ -1,31 +1,3 @@
-{{ $person := (dict
-"@context" "https://schema.org"
-"@type" "Person"
-"name" (.Title)
-"alternateName" (.Params.info.alternateName)
-"gender" (.Params.info.gender)
-"birthDate" (.Params.info.birthDate)
-"birthPlace" (dict
-"@type" "Place"
-"address" (dict
-"@type" "PostalAddress"
-"addressLocality" (.Params.info.birthPlace.city)
-"addressRegion" (.Params.info.birthPlace.region)
-"addressCountry" (.Params.info.birthPlace.country)
-))
-"address" (dict
-"@type" "PostalAddress"
-"addressLocality" (.Params.info.address.city)
-"addressRegion" (.Params.info.address.region)
-"addressCountry" (.Params.info.address.country)
-)
-"image" (printf "https://gravatar.com/avatar/%s?s=%s" ((.Params.info.email) | md5) ("256"))
-"jobTitle" (.Params.info.job)
-"email" (.Params.info.email)
-"telephone" (.Params.info.telephone)
-"url" (.Params.info.url)
-"award" (.Params.info.awards)
-"sameAs" (.Params.info.sameAs)
-)}}
+{{ $person := (partial "seo/schema/function/person" .)}}
 
 <script type="application/ld+json">{{ ((($person) | jsonify) | safeJS) }}</script>

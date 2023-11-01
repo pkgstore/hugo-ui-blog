@@ -1,28 +1,7 @@
-{{ $dateCreated := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $datePublished := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $dateExpiry := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $dateModified := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-
-{{ if (.Params.date) }}
-    {{ $dateCreated = (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $datePublished = (.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $dateExpiry = (.ExpiryDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ end }}
-
 {{ $data := (newScratch) }}
 
 {{ $answer := "" }}
 {{ with (.Resources.GetMatch "answer.md") }}{{ $answer = ((.Plain) | chomp) }}{{ end }}
-
-{{ ($data.Add "authors" (slice)) }}
-{{ range (.GetTerms "authors") }}
-    {{ ($data.Add "authors" (dict
-    "@type" "Person"
-    "name" (.Title)
-    "url" (.Permalink)
-    )) }}
-{{ end }}
 
 {{ ($data.Add "tags" (slice)) }}
 {{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
@@ -33,18 +12,18 @@
 "name" (.Title)
 "text" ((.Plain) | chomp)
 "inLanguage" (.Language.LanguageCode)
-"datePublished" ($datePublished)
-"dateCreated" ($dateCreated)
-"dateModified" ($dateModified)
+"datePublished" (partial "seo/schema/function/date.published" .)
+"dateCreated" (partial "seo/schema/function/date.created" .)
+"dateModified" (partial "seo/schema/function/date.modified" .)
 "keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
 "acceptedAnswer" (dict
 "@type" "Answer"
 "text" ($answer)
 "inLanguage" (.Language.LanguageCode)
-"datePublished" ($datePublished)
-"dateCreated" ($dateCreated)
-"dateModified" ($dateModified)
-"author" ($data.Get "authors")
+"datePublished" (partial "seo/schema/function/date.published" .)
+"dateCreated" (partial "seo/schema/function/date.created" .)
+"dateModified" (partial "seo/schema/function/date.modified" .)
+"author" (partial "seo/schema/function/author" .)
 "url" (.Permalink)
 )) }}
 

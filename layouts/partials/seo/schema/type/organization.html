@@ -1,33 +1,3 @@
-{{ $logo := (.Params.organization.logo) }}
-
-{{ $address := (dict
-"@type" "PostalAddress"
-"streetAddress" ""
-"addressLocality" ""
-"addressRegion" ""
-"postalCode" ""
-"addressCountry" ""
-) }}
-
-{{ $contactPoint := (dict
-"@type" "ContactPoint"
-"contactType" ""
-"telephone" ""
-"email" ""
-) }}
-
-{{ $organization := (dict
-"@context" "https://schema.org"
-"@type" "Organization"
-"name" (site.Title)
-"legalName" (site.Title)
-"foundingDate" ""
-"url" (site.BaseURL)
-"logo" (($logo) | absURL)
-"description" ((site.Params.description) | plainify)
-"address" ($address)
-"contactPoint" ($contactPoint)
-"sameAs" (slice)
-) }}
+{{ $organization := (partial "seo/schema/function/organization" .) }}
 
 <script type="application/ld+json">{{ ((($organization) | jsonify) | safeJS) }}</script>

@@ -1,16 +1,7 @@
 {{ $data := (newScratch) }}
-{{ $logo := (site.Params.organization.logo) }}
 
 {{ ($data.Add "keywords" (slice)) }}
 {{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
-
-{{ $publisher := (dict
-"@type" "Organization"
-"name" (site.Title)
-"logo" (dict
-"@type" "ImageObject"
-"url" (($logo) | absURL)
-)) }}
 
 {{ $WPHeader := (dict
 "@context" "https://schema.org"
@@ -23,8 +14,8 @@
 "@context" "https://schema.org"
 "@type" "WPFooter"
 "cssSelector" "#site-footer"
-"copyrightHolder" ($publisher)
-"publisher" ($publisher)
+"copyrightHolder" (partial "seo/schema/function/organization" .)
+"publisher" (partial "seo/schema/function/organization" .)
 "copyrightYear" (now.UTC.Format "2006")
 ) }}
 
@@ -35,7 +26,7 @@
 "url" (site.BaseURL)
 "description" (site.Params.description)
 "inLanguage" (site.LanguageCode)
-"publisher" ($publisher)
+"publisher" (partial "seo/schema/function/organization" .)
 "keywords" (($data.Get "keywords") | uniq)
 "hasPart" (slice ($WPHeader) ($WPFooter))
 ) }}

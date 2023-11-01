@@ -1,65 +1,30 @@
-{{ $dateCreated := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $datePublished := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $dateExpiry := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ $dateModified := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-
-{{ if (.Params.date) }}
-    {{ $dateCreated = (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $datePublished = (.PublishDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $dateExpiry = (.ExpiryDate.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-    {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
-{{ end }}
-
-{{ $description := (site.Params.description) }}
-{{ with (.Summary) }}{{ $description = . }}{{ end }}
-{{ with (.Description) }}{{ $description = . }}{{ end }}
-
-{{ $logo := (site.Params.organization.logo) }}
 {{ $image := (index (.Params.images) 0) }}
 {{ $data := (newScratch) }}
+
+{{ ($data.Add "tags" (slice)) }}
+{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
 
 {{ $mainEntityOfPage := (dict
 "@type" "WebPage"
 "@id" (.Permalink)
 ) }}
 
-{{ $publisher := (dict
-"@type" "Organization"
-"name" (site.Title)
-"logo" (dict
-"@type" "ImageObject"
-"url" (($logo) | absURL)
-)
-) }}
-
-{{ ($data.Add "authors" (slice)) }}
-{{ range (.GetTerms "authors") }}
-    {{ ($data.Add "authors" (dict
-    "@type" "Person"
-    "name" (.Title)
-    "url" (.Permalink)
-    )) }}
-{{ end }}
-
-{{ ($data.Add "tags" (slice)) }}
-{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
-
 {{ $article := (dict
 "@context" "https://schema.org"
 "@type" "Article"
 "mainEntityOfPage" ($mainEntityOfPage)
 "headline" ((.Title) | truncate 110)
-"description" (($description) | plainify)
+"description" ((partial "seo/schema/function/description" .) | plainify)
 "url" (.Permalink)
 "image" ($image)
-"author" ($data.Get "authors")
+"author" (partial "seo/schema/function/author" .)
 "inLanguage" (.Language.LanguageCode)
 "wordCount" (.WordCount)
-"datePublished" ($datePublished)
-"dateCreated" ($dateCreated)
-"dateModified" ($dateModified)
+"datePublished" (partial "seo/schema/function/date.published" .)
+"dateCreated" (partial "seo/schema/function/date.created" .)
+"dateModified" (partial "seo/schema/function/date.modified" .)
 "keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
-"publisher" ($publisher)
+"publisher" (partial "seo/schema/function/organization" .)
 ) }}
 
 <script type="application/ld+json">{{ ((($article) | jsonify) | safeJS) }}</script>

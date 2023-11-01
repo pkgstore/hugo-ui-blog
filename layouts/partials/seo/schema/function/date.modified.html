@@ -1,0 +1,7 @@
+{{ $dateModified := (now.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+
+{{ if (.Params.date) }}
+    {{ $dateModified = (.Lastmod.UTC.Format "2006-01-02T15:04:05Z07:00") }}
+{{ end }}
+
+{{ return ($dateModified) }}

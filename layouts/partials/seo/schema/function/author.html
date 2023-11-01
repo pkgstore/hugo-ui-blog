@@ -1,0 +1,8 @@
+{{ $data := (newScratch) }}
+
+{{ ($data.Add "authors" (slice)) }}
+{{ range (.GetTerms "authors") }}
+    {{ ($data.Add "authors" (partial "seo/schema/function/person" .)) }}
+{{ end }}
+
+{{ return ($data.Get "authors") }}
