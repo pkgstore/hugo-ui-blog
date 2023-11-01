@@ -2,30 +2,30 @@
 "@context" "https://schema.org"
 "@type" "Person"
 "name" (.Title)
-"alternateName" (.Params.info.alternateName)
-"gender" (.Params.info.gender)
-"birthDate" (.Params.info.birthDate)
+"alternateName" (.Page.Params.info.alternateName)
+"gender" (.Page.Params.info.gender)
+"birthDate" (.Page.Params.info.birthDate)
 "birthPlace" (dict
 "@type" "Place"
 "address" (dict
 "@type" "PostalAddress"
-"addressLocality" (.Params.info.birthPlace.city)
-"addressRegion" (.Params.info.birthPlace.region)
-"addressCountry" (.Params.info.birthPlace.country)
+"addressLocality" (.Page.Params.info.birthPlace.city)
+"addressRegion" (.Page.Params.info.birthPlace.region)
+"addressCountry" (.Page.Params.info.birthPlace.country)
 ))
 "address" (dict
 "@type" "PostalAddress"
-"addressLocality" (.Params.info.address.city)
-"addressRegion" (.Params.info.address.region)
-"addressCountry" (.Params.info.address.country)
+"addressLocality" (.Page.Params.info.address.city)
+"addressRegion" (.Page.Params.info.address.region)
+"addressCountry" (.Page.Params.info.address.country)
 )
-"image" (printf "https://gravatar.com/avatar/%s?s=%s" ((.Params.info.email) | md5) ("256"))
-"jobTitle" (.Params.info.job)
-"email" (.Params.info.email)
-"telephone" (.Params.info.telephone)
-"url" (.Params.info.url)
-"award" (.Params.info.awards)
-"sameAs" (.Params.info.sameAs)
-)}}
+"image" (printf "https://gravatar.com/avatar/%s?s=%s" ((.Page.Params.info.email) | md5) ("256"))
+"jobTitle" (.Page.Params.info.job)
+"email" (.Page.Params.info.email)
+"telephone" (.Page.Params.info.telephone)
+"url" (.Page.Params.info.url)
+"award" (.Page.Params.info.awards)
+"sameAs" (.Page.Params.info.sameAs)
+) }}
 
 {{ return ($person) }}

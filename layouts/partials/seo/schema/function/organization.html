@@ -1,19 +1,15 @@
-{{ $logo := (.Params.organization.logo) }}
-
 {{ $address := (dict
 "@type" "PostalAddress"
-"streetAddress" ""
-"addressLocality" ""
-"addressRegion" ""
-"postalCode" ""
-"addressCountry" ""
+"addressLocality" (site.Params.organization.address.city)
+"addressRegion" (site.Params.organization.address.region)
+"addressCountry" (site.Params.organization.address.country)
 ) }}
 
 {{ $contactPoint := (dict
 "@type" "ContactPoint"
-"contactType" ""
-"telephone" ""
-"email" ""
+"contactType" (site.Params.organization.contacts.type)
+"email" (site.Params.organization.contacts.email)
+"telephone" (site.Params.organization.contacts.telephone)
 ) }}
 
 {{ $organization := (dict
@@ -21,16 +17,13 @@
 "@type" "Organization"
 "name" (site.Title)
 "legalName" (site.Title)
-"foundingDate" ""
+"foundingDate" (site.Params.organization.foundingDate)
 "url" (site.BaseURL)
-"logo" (dict
-"@type" "ImageObject"
-"url" (($logo) | absURL)
-)
+"logo" (partial "seo/schema/function/logo" .)
 "description" ((site.Params.description) | plainify)
 "address" ($address)
 "contactPoint" ($contactPoint)
-"sameAs" (slice)
+"sameAs" (site.Params.organization.sameAs)
 ) }}
 
 {{ return ($organization) }}

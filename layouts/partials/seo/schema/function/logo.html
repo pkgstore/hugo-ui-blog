@@ -1,0 +1,8 @@
+{{ $logo := (site.Params.organization.logo) }}
+
+{{ $logo = (dict
+"@type" "ImageObject"
+"url" (($logo) | absURL)
+) }}
+
+{{ return ($logo) }}
