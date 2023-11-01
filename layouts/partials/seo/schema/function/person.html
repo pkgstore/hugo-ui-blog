@@ -19,7 +19,7 @@
 "addressRegion" (.Page.Params.info.address.region)
 "addressCountry" (.Page.Params.info.address.country)
 )
-"image" (printf "https://gravatar.com/avatar/%s?s=%s" ((.Page.Params.info.email) | md5) ("256"))
+"image" (printf "https://gravatar.com/avatar/%s?s=%d" ((.Page.Params.info.email) | md5) (512))
 "jobTitle" (.Page.Params.info.job)
 "email" (.Page.Params.info.email)
 "telephone" (.Page.Params.info.telephone)
