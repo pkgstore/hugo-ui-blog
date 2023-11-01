@@ -1,6 +1,24 @@
 ---
 title: '{{ ((replace .Name "-" " ") | title) }}'
-email: 'mail@example.com'
+info:
+  gender: ''
+  birthDate: 'YYYY-MM-DD'
+  birthPlace:
+    city: ''
+    region: ''
+    country: ''
+  address:
+    city: ''
+    region: ''
+    country: ''
+  job: ''
+  email: 'mail@example.com'
+  telephone: ''
+  url: ''
+  awards:
+    - ''
+  sameAs:
+    - ''
 ---
 
 Description.

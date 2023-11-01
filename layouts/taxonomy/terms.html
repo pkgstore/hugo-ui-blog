@@ -11,7 +11,7 @@
             {{ with (site.GetPage (printf "/%s/%s" ($type) ($name))) }}
                 {{ $cfg := (index (site.Params.taxonomy) ($type)) }}
                 {{ $size := ($cfg.cover.size) }}
-                {{ $email := ((.Params.email) | default ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+                {{ $email := ((.Params.info.email) | default ((delimit (shuffle (seq 11 99)) "") | md5)) }}
                 {{ $icon_id := ((.Params.icon) | default ($cfg.cover.icon.name)) }}
                 {{ $icon_size := ($cfg.cover.icon.size) }}
                 {{ $avatar_id := (($email) | md5) }}

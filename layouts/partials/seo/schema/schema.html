@@ -10,3 +10,7 @@
 {{ if (and (.IsPage) (eq (.Section) "faq")) }}
     {{ (partial "seo/schema/type/faq.html" .) }}
 {{ end }}
+
+{{ if (and (eq (.Section) "authors") (eq (.Kind) "term")) }}
+    {{ (partial "seo/schema/type/person.html" .) }}
+{{ end }}
