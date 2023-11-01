@@ -13,13 +13,13 @@
       fb: http://ogp.me/ns/fb#">
 <head>{{ (partial "head" .) }}</head>
 <body class="d-flex flex-column h-100 {{ ($home) }} {{ ($node) }} {{ ($page) }} type-{{ ($type) }}">
-<header>{{ (partial "header" .) }}</header>
-<main class="wrapper flex-shrink-0">
+<header id="site-header">{{ (partial "header" .) }}</header>
+<main class="wrapper flex-shrink-0" id="site-main">
   <div class="section py-3">
     <div class="container">{{ block "main" . }}{{ end }}</div>
   </div>
 </main>
-<footer class="mt-auto border-top bg-light">{{ (partial "footer" .) }}</footer>
+<footer class="mt-auto border-top bg-light" id="site-footer">{{ (partial "footer" .) }}</footer>
 {{ (partial "module/search/modal" .) }}
 {{ (partial "ui.js" .) }}
 </body>

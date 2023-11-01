@@ -1,8 +1,43 @@
-{{ $website := (dict
+{{ $data := (newScratch) }}
+{{ $logo := (site.Params.organization.logo) }}
+
+{{ ($data.Add "keywords" (slice)) }}
+{{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
+
+{{ $publisher := (dict
+"@type" "Organization"
+"name" (site.Title)
+"logo" (dict
+"@type" "ImageObject"
+"url" (($logo) | absURL)
+)) }}
+
+{{ $WPHeader := (dict
+"@context" "https://schema.org"
+"@type" "WPHeader"
+"headline" "headline-string"
+"cssSelector" "#site-header"
+) }}
+
+{{ $WPFooter := (dict
+"@context" "https://schema.org"
+"@type" "WPFooter"
+"cssSelector" "#site-footer"
+"copyrightHolder" ($publisher)
+"publisher" ($publisher)
+"copyrightYear" (now.UTC.Format "2006")
+) }}
+
+{{ $WebSite := (dict
 "@context" "https://schema.org"
 "@type" "WebSite"
 "name" (site.Title)
-"url" (site.BaseURL))
-}}
+"url" (site.BaseURL)
+"description" (site.Params.description)
+"inLanguage" (site.LanguageCode)
+"publisher" ($publisher)
+"keywords" (($data.Get "keywords") | uniq)
+"hasPart" (slice ($WPHeader) ($WPFooter))
+) }}
 
-<script type="application/ld+json">{{ ((($website) | jsonify) | safeJS) }}</script>
+<script type="application/ld+json">{{ ((($WebSite) | jsonify) | safeJS) }}</script>

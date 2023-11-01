@@ -53,14 +53,13 @@
 "url" (.Permalink)
 "image" ($image)
 "author" ($data.Get "authors")
-"inLanguage" (.Lang)
+"inLanguage" (.Language.LanguageCode)
 "wordCount" (.WordCount)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)
 "keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
 "publisher" ($publisher)
-"articleBody" ((.Plain) | chomp)
 ) }}
 
 <script type="application/ld+json">{{ ((($article) | jsonify) | safeJS) }}</script>

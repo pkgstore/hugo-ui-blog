@@ -32,6 +32,7 @@
 "@type" "Question"
 "name" (.Title)
 "text" ((.Plain) | chomp)
+"inLanguage" (.Language.LanguageCode)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)
@@ -39,6 +40,7 @@
 "acceptedAnswer" (dict
 "@type" "Answer"
 "text" ($answer)
+"inLanguage" (.Language.LanguageCode)
 "datePublished" ($datePublished)
 "dateCreated" ($dateCreated)
 "dateModified" ($dateModified)
