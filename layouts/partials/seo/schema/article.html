@@ -1,8 +1,4 @@
 {{ $image := (index (.Params.images) 0) }}
-{{ $data := (newScratch) }}
-
-{{ ($data.Add "tags" (slice)) }}
-{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
 
 {{ $article := (dict
 "@context" "https://schema.org"

@@ -1,15 +1,5 @@
-{{ $data := (newScratch) }}
-
 {{ $answer := "" }}
 {{ with (.Resources.GetMatch "answer.md") }}{{ $answer = ((.Plain) | chomp) }}{{ end }}
-
-{{ ($data.Add "authors" (slice)) }}
-{{ range (.GetTerms "authors") }}
-    {{ ($data.Add "authors" (partial "seo/schema/function/author" .)) }}
-{{ end }}
-
-{{ ($data.Add "tags" (slice)) }}
-{{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
 
 {{ $qapage := (dict
 "@context" "https://schema.org"
