@@ -20,7 +20,7 @@
 "name" (site.Title)
 "legalName" (site.Title)
 "foundingDate" (site.Params.organization.foundingDate)
-"url" (site.BaseURL)
+"url" ("/" | absURL)
 "logo" (partial "seo/schema/function/logo" .)
 "description" ((site.Params.description) | plainify)
 "address" ($address)
