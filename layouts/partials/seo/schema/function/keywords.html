@@ -1,0 +1,11 @@
+{{ $data := (newScratch) }}
+{{ $keywords := slice }}
+
+{{ ($data.Add "keywords" (slice)) }}
+{{ range (.GetTerms "tags") }}
+    {{ ($data.Add "keywords" (.Title)) }}
+{{ end }}
+
+{{ $keywords = (($data.Get "keywords") | uniq) }}
+
+{{ return ($keywords) }}

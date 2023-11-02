@@ -1,8 +1,7 @@
-{{ $logo := (site.Params.organization.logo) }}
+{{ $logo := "" }}
 
-{{ $logo = (dict
-"@type" "ImageObject"
-"url" (($logo) | absURL)
-) }}
+{{ with (site.Params.organization.logo) }}
+    {{ $logo = (dict "@type" "ImageObject" "url" (. | absURL)) }}
+{{ end }}
 
 {{ return ($logo) }}

@@ -9,7 +9,7 @@
 "@type" "Article"
 "mainEntityOfPage" (.Permalink)
 "headline" ((.Title) | truncate 110)
-"description" ((partial "seo/schema/function/description" .) | plainify)
+"description" (partial "seo/schema/function/description" .)
 "url" (.Permalink)
 "image" ($image)
 "text" ((.Plain) | chomp)
@@ -20,7 +20,7 @@
 "datePublished" (partial "seo/schema/function/date.published" .)
 "dateCreated" (partial "seo/schema/function/date.created" .)
 "dateModified" (partial "seo/schema/function/date.modified" .)
-"keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
+"keywords" (partial "seo/schema/function/keywords" .)
 "publisher" (printf "%s%s" ("/" | absURL) ("#organization"))
 "pageStart" 1
 "pageEnd" 1

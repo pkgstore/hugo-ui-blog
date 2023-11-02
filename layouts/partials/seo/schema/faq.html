@@ -21,7 +21,7 @@
 "datePublished" (partial "seo/schema/function/date.published" .)
 "dateCreated" (partial "seo/schema/function/date.created" .)
 "dateModified" (partial "seo/schema/function/date.modified" .)
-"keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
+"keywords" (partial "seo/schema/function/keywords" .)
 "acceptedAnswer" (dict
 "@type" "Answer"
 "mainEntityOfPage" (.Permalink)

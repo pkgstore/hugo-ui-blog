@@ -1,0 +1,8 @@
+{{ $data := (newScratch) }}
+{{ $keywords := slice }}
+
+{{ ($data.Add "keywords" (slice)) }}
+{{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
+{{ $keywords = (($data.Get "keywords") | uniq) }}
+
+{{ return ($keywords) }}

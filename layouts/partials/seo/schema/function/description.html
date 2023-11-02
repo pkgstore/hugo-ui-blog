@@ -2,4 +2,4 @@
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
 
-{{ return ($description) }}
+{{ return (($description) | plainify) }}

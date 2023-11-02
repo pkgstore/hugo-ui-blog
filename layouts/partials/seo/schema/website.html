@@ -1,8 +1,5 @@
 {{ $data := (newScratch) }}
 
-{{ ($data.Add "keywords" (slice)) }}
-{{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
-
 {{ $WPHeader := (dict
 "@context" "https://schema.org"
 "@type" "WPHeader"
@@ -29,7 +26,7 @@
 "description" (site.Params.description)
 "inLanguage" (partial "seo/schema/function/language" .)
 "publisher" (printf "%s%s" ("/" | absURL) ("#organization"))
-"keywords" (($data.Get "keywords") | uniq)
+"keywords" (partial "seo/schema/function/keywords.website" .)
 "hasPart" (slice ($WPHeader) ($WPFooter))
 ) }}
 
