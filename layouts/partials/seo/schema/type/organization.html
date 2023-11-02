@@ -1,3 +1,0 @@
-{{ $organization := (partial "seo/schema/function/organization" .) }}
-
-<script type="application/ld+json">{{ ((($organization) | jsonify) | safeJS) }}</script>

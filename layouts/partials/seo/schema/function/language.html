@@ -1,0 +1,19 @@
+{{ $data := (newScratch) }}
+
+{{ ($data.Add "language" (slice)) }}
+{{ ($data.Add "language" (dict
+"@type" "Language"
+"name" (.Language.LanguageName)
+"alternateName" (.Language.LanguageCode)
+)) }}
+{{ if (.IsTranslated) }}
+    {{ range (.Translations) }}
+        {{ ($data.Add "language" (dict
+        "@type" "Language"
+        "name" (.Language.LanguageName)
+        "alternateName" (.Language.LanguageCode)
+        )) }}
+    {{ end }}
+{{ end }}
+
+{{ return ($data.Get "language") }}

@@ -1,6 +1,7 @@
 {{ $person := (dict
 "@context" "https://schema.org"
 "@type" "Person"
+"mainEntityOfPage" (.Permalink)
 "name" (.Title)
 "alternateName" (.Page.Params.info.alternateName)
 "gender" (.Page.Params.info.gender)

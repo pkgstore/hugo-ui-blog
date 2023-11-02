@@ -1,0 +1,16 @@
+{{ if (and (.IsPage) (eq (.Section) "articles")) }}
+    {{ (partial "seo/schema/article.html" .) }}
+{{ end }}
+
+{{ if (and (.IsPage) (eq (.Section) "faq")) }}
+    {{ (partial "seo/schema/faq.html" .) }}
+{{ end }}
+
+{{ if (and (eq (.Section) "authors") (eq (.Kind) "term")) }}
+    {{ (partial "seo/schema/person.html" .) }}
+{{ end }}
+
+{{ (partial "seo/schema/website.html" .) }}
+{{ (partial "seo/schema/organization.html" .) }}
+{{ (partial "seo/schema/navigation.html" .) }}
+{{ (partial "seo/schema/breadcrumbList.html" .) }}

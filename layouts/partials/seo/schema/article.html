@@ -4,27 +4,26 @@
 {{ ($data.Add "tags" (slice)) }}
 {{ range (.GetTerms "tags") }}{{ ($data.Add "tags" (.Title)) }}{{ end }}
 
-{{ $mainEntityOfPage := (dict
-"@type" "WebPage"
-"@id" (.Permalink)
-) }}
-
 {{ $article := (dict
 "@context" "https://schema.org"
 "@type" "Article"
-"mainEntityOfPage" ($mainEntityOfPage)
+"mainEntityOfPage" (.Permalink)
 "headline" ((.Title) | truncate 110)
 "description" ((partial "seo/schema/function/description" .) | plainify)
 "url" (.Permalink)
 "image" ($image)
+"text" ((.Plain) | chomp)
+"articleBody" ((.Plain) | chomp)
 "author" (partial "seo/schema/function/author" .)
-"inLanguage" (.Language.LanguageCode)
+"inLanguage" (partial "seo/schema/function/language" .)
 "wordCount" (.WordCount)
 "datePublished" (partial "seo/schema/function/date.published" .)
 "dateCreated" (partial "seo/schema/function/date.created" .)
 "dateModified" (partial "seo/schema/function/date.modified" .)
 "keywords" (delimit (($data.Get "tags") | default (slice)) ", ")
-"publisher" (partial "seo/schema/function/organization" .)
+"publisher" (printf "%s%s" ("/" | absURL) ("#organization"))
+"pageStart" 1
+"pageEnd" 1
 ) }}
 
 <script type="application/ld+json">{{ ((($article) | jsonify) | safeJS) }}</script>

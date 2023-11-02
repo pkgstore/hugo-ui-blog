@@ -15,6 +15,8 @@
 {{ $organization := (dict
 "@context" "https://schema.org"
 "@type" "Organization"
+"@id" (printf "%s%s" ("/" | absURL) ("#organization"))
+"mainEntityOfPage" ("/" | absURL)
 "name" (site.Title)
 "legalName" (site.Title)
 "foundingDate" (site.Params.organization.foundingDate)
@@ -26,4 +28,4 @@
 "sameAs" (site.Params.organization.sameAs)
 ) }}
 
-{{ return ($organization) }}
+<script type="application/ld+json">{{ ((($organization) | jsonify) | safeJS) }}</script>
