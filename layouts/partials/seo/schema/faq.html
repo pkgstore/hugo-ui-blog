@@ -32,6 +32,8 @@
 "dateModified" (partial "seo/schema/function/date.modified" .)
 "author" (partial "seo/schema/function/author" .)
 "url" (.Permalink)
-)) }}
+)
+"publisher" (printf "%s%s" ("/" | absURL) ("#organization"))
+) }}
 
 <script type="application/ld+json">{{ ((($qapage) | jsonify) | safeJS) }}</script>
