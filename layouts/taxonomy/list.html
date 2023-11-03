@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+    {{ (partial "breadcrumb" .) }}
+
+    <div class="row row-cols-1 row-cols-xl-2 g-3">
+        {{ range (.Paginator.Pages) }}
+            {{ $type := ((.Type) | singularize) }}
+            <div class="col">
+              <div class="d-sm-block d-md-none">
+                  {{ (.Render (printf "view/%s.02" ($type))) }}
+              </div>
+              <div class="d-none d-md-block">
+                  {{ (.Render (printf "view/%s.01" ($type))) }}
+              </div>
+                {{ if (in ($type) "faq") }}
+                    {{ (partial (printf "module/node/modal/%s" ($type)) .) }}
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+
+    {{ (partial "pagination" .) }}
+
+{{ end }}

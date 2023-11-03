@@ -2,7 +2,7 @@
 
 <article class="node-{{ (.Type) }}">
   <header>
-      {{ if (and ($cfg.cover.image.enabled) (.Params.images)) }}
+      {{ if (and ($cfg.cover.enabled) (.Params.images)) }}
         <div class="node-cover mb-3">
             {{ (partial "module/node/cover/image.02" .) }}
         </div>

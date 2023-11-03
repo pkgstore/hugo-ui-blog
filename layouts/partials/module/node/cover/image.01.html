@@ -1,9 +1,9 @@
-{{ $cfg := (site.Params.node.cover.image) }}
+{{ $cfg := (site.Params.node.cover) }}
 
 {{ $width := ($cfg.md.width) }}{{ $height := ($cfg.md.height) }}
-{{ $crop := ((.Params.cover.crop) | default ($cfg.crop)) }}
-{{ $fit := ((.Params.cover.fit) | default ($cfg.fit)) }}
-{{ $src := ((index (.Params.images) 0) | default ($cfg.placeholder)) }}
+{{ $crop := ((.Params.cover.crop) | default ($cfg.image.crop)) }}
+{{ $fit := ((.Params.cover.fit) | default ($cfg.image.fit)) }}
+{{ $src := ((index (.Params.images) 0) | default ($cfg.image.placeholder)) }}
 
 <a title="{{ ((.Title) | plainify) }}" class="d-block rounded overflow-hidden" href="{{ (.RelPermalink) }}">
   <img class="img-fluid"

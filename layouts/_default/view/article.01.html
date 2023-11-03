@@ -1,9 +1,9 @@
 {{ $cfg := (site.Params.node) }}
 
 <article class="node-{{ (.Type) }} d-flex overflow-hidden">
-    {{ if (and ($cfg.cover.image.enabled)) }}
+    {{ if (and ($cfg.cover.enabled)) }}
       <div class="flex-shrink-0 me-3">
-        <div class="node-cover position-relative">
+        <div class="node-cover">
             {{ (partial "module/node/cover/image.01" .) }}
         </div>
       </div>
