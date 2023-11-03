@@ -5,9 +5,9 @@
 {{ $fit := ((.Params.cover.fit) | default ($cfg.fit)) }}
 {{ $src := ((index (.Params.images) 0) | default ($cfg.placeholder)) }}
 
-<a title="{{ ((.Title) | plainify) }}" class="d-block" href="{{ (.RelPermalink) }}">
-  <img class="d-block rounded"
+<a title="{{ ((.Title) | plainify) }}" class="d-block rounded overflow-hidden" href="{{ (.RelPermalink) }}">
+  <img class="img-fluid"
        src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
        width="{{ ($width) }}" height="{{ ($height) }}"
-       alt="{{ ((.Title) | plainify) }}"/>
+       alt="{{ ((.Title) | plainify) }}" loading="lazy"/>
 </a>

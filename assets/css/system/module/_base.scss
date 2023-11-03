@@ -45,6 +45,14 @@ body {
 
 body {
   main {
+    .node {
+      &-cover {
+        a {
+          max-height: 50vh;
+        }
+      }
+    }
+
     > .section {
       &:nth-child(even) {
       }

@@ -8,9 +8,6 @@ title: '{{ ($title) }}'
 description: ''
 images:
   - 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a'
-cover:
-  crop: 'entropy'
-  fit: 'crop'
 categories:
   - 'cat_01'
   - 'cat_02'
