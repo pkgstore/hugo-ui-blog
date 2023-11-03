@@ -26,6 +26,7 @@ publishDate: '{{ ($date) }}'
 expiryDate: ''
 lastMod: '{{ ($date) }}'
 
+type: 'faq'
 hash: '{{ ($hash) }}'
 uuid: '{{ ($uuid) }}'
 slug: '{{ ($uuid) }}'

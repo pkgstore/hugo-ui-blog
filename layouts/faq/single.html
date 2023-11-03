@@ -33,10 +33,22 @@
         </ul>
       </footer>
       <div class="node-body">
+          {{ if (in (.Section) "drafts") }}
+              {{ (partial "function/alert" (dict
+              "type" "danger"
+              "icon" "fas fa-file-pen"
+              "msg" (i18n "alert.draft")
+              )) }}
+          {{ end }}
+
         <div class="node-question border-start border-danger-subtle border-3 ps-3 mb-3">{{ (.Content) }}</div>
-        <div class="node-answer border-start border-success-subtle border-3 ps-3">
-            {{ with (.Resources.GetMatch "answer.md") }}{{ (.Content) }}{{ end }}
-        </div>
+          {{ with (.Resources.Match "answer.*.md") }}
+              {{ range . }}
+                <div class="node-answer border-start border-success-subtle border-3 ps-3">
+                    {{ (.Content) }}
+                </div>
+              {{ end }}
+          {{ end }}
 
           {{ (partial "module/node/sources" .) }}
       </div>

@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.archive.sections)) }}
+    {{ $pages := (where (site.RegularPages) "Section" "in" (site.Params.archive.sections)) }}
 
     {{ (partial "breadcrumb" .) }}
 

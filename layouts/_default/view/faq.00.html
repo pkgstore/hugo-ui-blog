@@ -1,8 +1,21 @@
+{{ $id := (.File.UniqueID) }}
+{{ $answer := (.Resources.Match "answer.*.md") }}
+
 <article class="node-{{ (.Type) }}">
   <header>
     <div class="node-title">
       <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
     </div>
   </header>
-  <div class="node-body">{{ (.Render "summary") }}</div>
+  <div class="node-body">
+      {{ (.Render "summary") }}
+  </div>
+    {{ with (($answer) | len) }}
+      <a class="btn btn-sm btn-success d-inline-flex align-items-center" href="#" role="button"
+         data-bs-toggle="modal" data-bs-target="#modal-{{ ($id) }}">
+        <span class="pe-1"><i class="fas fa-check fa-fw"></i></span>
+        <span>{{ (i18n "answer_count" .) }}</span>
+      </a>
+    {{ end }}
+    {{ (partial "module/node/modal/faq" .) }}
 </article>

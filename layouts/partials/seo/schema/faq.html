@@ -1,10 +1,22 @@
-{{ $answer := "" }}
-{{ with (.Resources.GetMatch "answer.md") }}{{ $answer = ((.Plain) | chomp) }}{{ end }}
+{{ $data := (newScratch) }}
+
+{{ ($data.Add "suggestedAnswer" (slice)) }}
+{{ with (.Resources.Match "answer.*.md") }}
+    {{ range . }}
+        {{ ($data.Add "suggestedAnswer" (dict
+        "@type" "Answer"
+        "text" ((.Plain) | chomp)
+        "inLanguage" (partial "seo/schema/function/language" .)
+        "url" (.Permalink)
+        )) }}
+    {{ end }}
+{{ end }}
 
 {{ $qapage := (dict
 "@context" "https://schema.org"
+"@type" "QAPage"
+"mainEntity" (dict
 "@type" "Question"
-"mainEntityOfPage" (.Permalink)
 "name" (.Title)
 "text" ((.Plain) | chomp)
 "inLanguage" (partial "seo/schema/function/language" .)
@@ -12,16 +24,8 @@
 "dateCreated" (partial "seo/schema/function/date.created" .)
 "dateModified" (partial "seo/schema/function/date.modified" .)
 "keywords" (partial "seo/schema/function/keywords" .)
-"acceptedAnswer" (dict
-"@type" "Answer"
-"mainEntityOfPage" (.Permalink)
-"text" ($answer)
-"inLanguage" (partial "seo/schema/function/language" .)
-"datePublished" (partial "seo/schema/function/date.published" .)
-"dateCreated" (partial "seo/schema/function/date.created" .)
-"dateModified" (partial "seo/schema/function/date.modified" .)
-"author" (partial "seo/schema/function/author" .)
-"url" (.Permalink)
+"answerCount" ((.Resources.Match "answer.*.md") | len)
+"suggestedAnswer" ($data.Get "suggestedAnswer")
 )
 "publisher" (printf "%s%s" ("/" | absURL) ("#organization"))
 ) }}

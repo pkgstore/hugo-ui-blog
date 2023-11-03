@@ -2,24 +2,14 @@
 
     {{ (partial "breadcrumb" .) }}
 
-    {{ $pages := (.Paginator.Pages) }}
-
-    <div class="row row-cols-1 row-cols-lg-2 g-3">
-        {{ range ($pages) }}
+    <div class="row row-cols-1 row-cols-xl-2 g-3">
+        {{ range (.Paginator.Pages) }}
           <div class="col">
             <div class="d-sm-block d-md-none">
-                {{ if (eq (.Section) "faq") }}
-                    {{ (.Render "view/faq.02") }}
-                {{ else }}
-                    {{ (.Render "view/article.02") }}
-                {{ end }}
+                {{ (.Render "view/article.02") }}
             </div>
             <div class="d-none d-md-block">
-                {{ if (eq (.Section) "faq") }}
-                    {{ (.Render "view/faq.01") }}
-                {{ else }}
-                    {{ (.Render "view/article.01") }}
-                {{ end }}
+                {{ (.Render "view/article.01") }}
             </div>
           </div>
         {{ end }}

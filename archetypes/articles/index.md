@@ -34,6 +34,7 @@ publishDate: '{{ ($date) }}'
 expiryDate: ''
 lastMod: '{{ ($date) }}'
 
+type: 'articles'
 hash: '{{ ($hash) }}'
 uuid: '{{ ($uuid) }}'
 slug: '{{ ($uuid) }}'

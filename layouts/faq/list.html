@@ -2,12 +2,10 @@
 
     {{ (partial "breadcrumb" .) }}
 
-    {{ $pages := (.Paginator.Pages) }}
-
-    <div class="row row-cols-1 row-cols-lg-1 g-3">
-        {{ range ($pages) }}
+    <div class="row row-cols-1 g-3">
+        {{ range (.Paginator.Pages) }}
           <div class="col">
-              {{ (.Render "view/faq.02") }}
+              {{ (.Render "view/faq.00") }}
           </div>
         {{ end }}
     </div>

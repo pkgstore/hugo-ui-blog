@@ -3,6 +3,7 @@
 # -------------------------------------------------------------------------------------------------------------------- #
 
 about: { other: 'About' }
+answer: { other: 'Answer' }
 archive: { other: 'Archive' }
 articles: { other: 'Articles' }
 authors: { other: 'Authors' }
@@ -17,6 +18,7 @@ complexity: { other: 'Level of difficulty' }
 contacts: { other: 'Contacts' }
 copy: { other: 'Copy' }
 developers: { other: 'Developers' }
+draft: { other: 'Draft' }
 egg: { other: 'Oops!' }
 email: { other: 'Email' }
 file_id: { other: 'File ID' }
@@ -68,6 +70,7 @@ console:
 alert:
   authors_not_found: { other: 'Authors not found.' }
   categories_not_found: { other: 'Categories not found.' }
+  draft: { other: 'The material is a draft. You can use the information in the material only at your own peril and risk.' }
   in_dev: { other: 'Information on this page is under revision. Information may be added (and / or) changed.' }
   in_history: { other: 'This material is an artifact of the past. It was found in old works and teleported here to be preserved in history.' }
   license_deprecated_id: { other: 'License ID is deprecated!' }

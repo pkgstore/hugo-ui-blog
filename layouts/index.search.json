@@ -1,7 +1,7 @@
 {{ $cfg := (site.Params.search) }}
 
 {{ if ($cfg.internal.enabled) }}
-    {{ $pages := (where (site.RegularPages) "Type" "in" (site.Params.content.sections)) }}
+    {{ $pages := (where (site.RegularPages) "Section" "in" (site.Params.content.sections)) }}
     {{ $data := (newScratch) }}
 
     {{ ($data.Add "pages" slice) }}

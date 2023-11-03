@@ -1,0 +1,43 @@
+<div class="modal fade" id="modal-{{ (.File.UniqueID) }}" tabindex="-1"
+     aria-labelledby="modal-{{ (.File.UniqueID) }}-label" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5 text-truncate" id="modal-{{ (.File.UniqueID) }}-label">
+          <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+        </h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label='{{ (i18n "close") }}'></button>
+      </div>
+      <div class="modal-body">
+        <div class="node-body">
+            {{ with (.Resources.Match "answer.*.md") }}
+                {{ range . }}
+                  <div class="node-answer border-start border-success-subtle border-3 ps-3">
+                      {{ (.Content) }}
+                  </div>
+                {{ end }}
+            {{ end }}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <ul class="list-inline text-center text-body-secondary small">
+            {{ if (.Params.tags) }}
+                {{ range (.GetTerms "tags") }}
+                  <li class="list-inline-item">
+                    <a href="{{ (.Permalink) }}">#{{ (.Title) }}</a>
+                  </li>
+                {{ end }}
+                <li class="list-inline-item">&bull;</li>
+            {{ end }}
+            {{ with (.Params.date) }}
+              <li class="list-inline-item">
+                <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
+                    {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
+                </time>
+              </li>
+            {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

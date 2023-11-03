@@ -7,7 +7,7 @@
 
 {{ $pages := (slice) }}
 {{ if (or ($.IsHome) ($.IsSection)) }}
-    {{ $pages = (where ($x.RegularPages) "Type" "in" (site.Params.content.sections)) }}
+    {{ $pages = (where ($x.RegularPages) "Section" "in" (site.Params.content.sections)) }}
 {{ else }}
     {{ $pages = ($x.Pages) }}
 {{ end }}
