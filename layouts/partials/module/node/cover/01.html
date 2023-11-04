@@ -1,11 +1,13 @@
 {{ $cfg := (site.Params.node.cover) }}
+{{ $id := (.File.UniqueID) }}
 
 {{ $width := ($cfg.md.width) }}{{ $height := ($cfg.md.height) }}
 {{ $crop := ((.Params.cover.crop) | default ($cfg.image.crop)) }}
 {{ $fit := ((.Params.cover.fit) | default ($cfg.image.fit)) }}
 {{ $src := ((index (.Params.images) 0) | default ($cfg.image.placeholder)) }}
 
-<a title="{{ ((.Title) | plainify) }}" class="d-flex align-items-center rounded overflow-hidden" href="{{ (.RelPermalink) }}">
+<a title="{{ ((.Title) | plainify) }}" class="d-flex align-items-center rounded overflow-hidden"
+   href="{{ (.RelPermalink) }}" data-bs-toggle="modal" data-bs-target="#modal-{{ ($id) }}">
   <img class="img-fluid"
        src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
        width="{{ ($width) }}" height="{{ ($height) }}"

@@ -9,6 +9,7 @@
         <div class="col">
             {{ range (first 1 .) }}
                 {{ (.Render "view/02") }}
+                {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
             {{ end }}
         </div>
         <div class="col">
@@ -16,6 +17,7 @@
               {{ range ((after 1 .) | first 4) }}
                 <div class="col">
                     {{ (.Render "view/02") }}
+                    {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
                 </div>
               {{ end }}
           </div>
@@ -25,6 +27,7 @@
               {{ range (after 5 .) }}
                 <div class="col">
                     {{ (.Render "view/02") }}
+                    {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
                 </div>
               {{ end }}
           </div>

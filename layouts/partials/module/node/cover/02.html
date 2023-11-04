@@ -1,4 +1,5 @@
 {{ $cfg := (site.Params.node.cover) }}
+{{ $id := (.File.UniqueID) }}
 
 {{ $width := ($cfg.lg.width) }}{{ $height := ($cfg.lg.height) }}
 {{ $crop := ((.Params.cover.crop) | default ($cfg.image.crop)) }}
@@ -12,7 +13,8 @@
 (dict "width" "1600" "height" "900")
 ) }}
 
-<a title="{{ ((.Title) | plainify) }}" class="d-flex align-items-center rounded overflow-hidden" href="{{ (.RelPermalink) }}">
+<a title="{{ ((.Title) | plainify) }}" class="d-flex align-items-center rounded overflow-hidden"
+   href="{{ (.RelPermalink) }}" data-bs-toggle="modal" data-bs-target="#modal-{{ ($id) }}">
   <picture>
     <source srcset='{{ range $i, $e := ($srcset) }}{{ if $i }},{{ end }}{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ (.width) }}&amp;h={{ (.height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format {{ (.width) }}w{{ end }}' sizes="(min-width: 576px) 100vw"/>
     <img class="img-fluid"

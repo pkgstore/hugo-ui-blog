@@ -4,18 +4,15 @@
 
     <div class="row row-cols-1 row-cols-xl-2 g-3">
         {{ range (.Paginator.Pages) }}
-            {{ $type := ((.Type) | singularize) }}
-            <div class="col">
-              <div class="d-sm-block d-md-none">
-                  {{ (.Render "view/02") }}
-              </div>
-              <div class="d-none d-md-block">
-                  {{ (.Render "view/01") }}
-              </div>
-                {{ if (in ($type) "faq") }}
-                    {{ (partial (printf "module/node/modal/%s" ($type)) .) }}
-                {{ end }}
+          <div class="col">
+            <div class="d-sm-block d-md-none">
+                {{ (.Render "view/02") }}
             </div>
+            <div class="d-none d-md-block">
+                {{ (.Render "view/01") }}
+            </div>
+              {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
+          </div>
         {{ end }}
     </div>
 

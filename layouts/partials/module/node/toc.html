@@ -1,20 +1,23 @@
-{{ $id_toc := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
+{{ $id := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
+{{ $hid := (((.Params.uuid) | default (.File.UniqueID)) | crypto.FNV32a) }}
 
-{{ if (.Params.toc) }}
+{{ $toc := (replaceRE `<nav id="(.*)">` (printf "<nav id='%d-%s'>" ($hid) ("$1")) (.TableOfContents)) }}
+{{ $toc = ((replaceRE `<a href="#(.*)">(.*)<\/a>` (printf "<a href='#%d-%s'>%s</a>" ($hid) ("$1") ("$2")) ($toc)) | safeHTML) }}
+
+{{ if and (.Params.toc) (ne ((.TableOfContents) | strings.Count "<li>") 0) }}
   <div class="node-toc mb-3">
-    <div class="accordion" id="accordion-{{ ($id_toc) }}">
+    <div class="accordion" id="accordion-{{ ($id) }}">
       <div class="accordion-item">
         <h2 class="accordion-header">
           <a class="accordion-button collapsed" href="#" role="button" tabindex="0"
-             data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($id_toc) }}"
-             aria-expanded="false" aria-controls="collapse-{{ ($id_toc) }}" aria-label='{{ (i18n "toc") }}'>
+             data-bs-toggle="collapse" data-bs-target="#collapse-{{ ($id) }}"
+             aria-expanded="false" aria-controls="collapse-{{ ($id) }}" aria-label='{{ (i18n "toc") }}'>
               {{ (i18n "toc") }}
           </a>
         </h2>
-        <div id="collapse-{{ ($id_toc) }}" class="accordion-collapse collapse"
-             data-bs-parent="#accordion-{{ ($id_toc) }}">
+        <div id="collapse-{{ ($id) }}" class="accordion-collapse collapse">
           <div class="accordion-body">
-              {{ (.TableOfContents) }}
+              {{ ($toc) }}
           </div>
         </div>
       </div>

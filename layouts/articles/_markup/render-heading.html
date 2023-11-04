@@ -1,0 +1,9 @@
+{{- $level := (.Level) -}}
+{{- $anchor := ((.Anchor) | safeURL) -}}
+{{- $text := ((.Text) | safeHTML) -}}
+{{ $hid := (((.Page.Params.uuid) | default (.Page.File.UniqueID)) | crypto.FNV32a) }}
+
+<h{{ ($level) }} id="{{ ($hid) }}-{{ ($anchor) }}">
+  <a class="link-body-emphasis" href="#{{ ($hid) }}-{{ ($anchor) }}">{{ ($text) }}</a>
+</h{{ ($level) }}>
+{{- /* This comment removes trailing newlines. */ -}}
