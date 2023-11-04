@@ -11,7 +11,9 @@
             <div class="d-none d-md-block">
                 {{ (.Render "view/01") }}
             </div>
-              {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
+              {{ if (in ((.Type) | singularize) "faq") }}
+                  {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
+              {{ end }}
           </div>
         {{ end }}
     </div>

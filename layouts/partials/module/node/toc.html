@@ -1,8 +1,7 @@
 {{ $id := (printf "toc-%s" ((.File.UniqueID) | default "")) }}
-{{ $hid := (((.Params.uuid) | default (.File.UniqueID)) | crypto.FNV32a) }}
-
-{{ $toc := (replaceRE `<nav id="(.*)">` (printf "<nav id='%d-%s'>" ($hid) ("$1")) (.TableOfContents)) }}
-{{ $toc = ((replaceRE `<a href="#(.*)">(.*)<\/a>` (printf "<a href='#%d-%s'>%s</a>" ($hid) ("$1") ("$2")) ($toc)) | safeHTML) }}
+{{/* $hid := (((.Params.uuid) | default (.File.UniqueID)) | crypto.FNV32a) */}}
+{{/* $toc := (replaceRE `<nav id="(.*)">` (printf "<nav id='%d-%s'>" ($hid) ("$1")) (.TableOfContents)) */}}
+{{/* $toc = ((replaceRE `<a href="#(.*)">(.*)<\/a>` (printf "<a href='#%d-%s'>%s</a>" ($hid) ("$1") ("$2")) ($toc)) | safeHTML) */}}
 
 {{ if and (.Params.toc) (ne ((.TableOfContents) | strings.Count "<li>") 0) }}
   <div class="node-toc mb-3">
@@ -17,7 +16,7 @@
         </h2>
         <div id="collapse-{{ ($id) }}" class="accordion-collapse collapse">
           <div class="accordion-body">
-              {{ ($toc) }}
+              {{ (.TableOfContents) }}
           </div>
         </div>
       </div>
