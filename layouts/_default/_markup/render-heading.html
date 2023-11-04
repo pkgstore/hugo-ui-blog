@@ -2,7 +2,7 @@
 {{- $anchor := ((.Anchor) | safeURL) -}}
 {{- $text := ((.Text) | safeHTML) -}}
 
-{{- if (in (site.Params.toc.sections) (.Page.Section)) -}}
+{{- if (.Page.Params.toc) -}}
   <h{{ ($level) }} id="{{ ($anchor) }}">
     <a class="link-body-emphasis" href="#{{ ($anchor) }}">{{ ($text) }}</a>
   </h{{ ($level) }}>
