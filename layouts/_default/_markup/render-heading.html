@@ -2,7 +2,11 @@
 {{- $anchor := ((.Anchor) | safeURL) -}}
 {{- $text := ((.Text) | safeHTML) -}}
 
-<h{{ ($level) }} id="{{ ($anchor) }}">
-  <a class="link-body-emphasis" href="#{{ ($anchor) }}">{{ ($text) }}</a>
-</h{{ ($level) }}>
+{{- if (in (site.Params.toc.sections) (.Page.Section)) -}}
+  <h{{ ($level) }} id="{{ ($anchor) }}">
+    <a class="link-body-emphasis" href="#{{ ($anchor) }}">{{ ($text) }}</a>
+  </h{{ ($level) }}>
+{{- else -}}
+  <h{{ ($level) }}>{{ ($text) }}</h{{ ($level) }}>
+{{- end -}}
 {{- /* This comment removes trailing newlines. */ -}}
