@@ -1,0 +1,30 @@
+{{ $cfg := (site.Params.node) }}
+{{ $id := (.File.UniqueID) }}
+{{ $answer := (.Resources.Match "answer.*.md") }}
+
+<article class="node-{{ (.Type) }}">
+  <header>
+      {{ if (and ($cfg.cover.enabled)) }}
+        <div class="node-cover mb-3">
+            {{ (partial "module/node/cover/02" .) }}
+        </div>
+      {{ end }}
+    <div class="node-title">
+      <h2 class="h5">
+        <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+      </h2>
+    </div>
+  </header>
+  <div class="node-body">
+      {{ ((.Render "summary") | truncate 200) }}
+  </div>
+    {{ with (($answer) | len) }}
+      <div class="text-end">
+        <a class="btn btn-sm btn-success d-inline-flex align-items-center" href="#" role="button"
+           data-bs-toggle="modal" data-bs-target="#modal-{{ ($id) }}">
+          <span class="pe-1"><i class="fas fa-check fa-fw"></i></span>
+          <span>{{ (i18n "answer_count" .) }}</span>
+        </a>
+      </div>
+    {{ end }}
+</article>

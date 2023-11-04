@@ -4,12 +4,16 @@
   <header>
       {{ if (and ($cfg.cover.enabled) (.Params.images)) }}
         <div class="node-cover mb-3">
-            {{ (partial "module/node/cover/image.02" .) }}
+            {{ (partial "module/node/cover/02" .) }}
         </div>
       {{ end }}
     <div class="node-title">
-      <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+      <h2 class="h5">
+        <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+      </h2>
     </div>
   </header>
-  <div class="node-body">{{ ((.Render "summary") | truncate 200) }}</div>
+  <div class="node-body">
+      {{ ((.Render "summary") | truncate 200) }}
+  </div>
 </article>

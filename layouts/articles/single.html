@@ -10,7 +10,7 @@
       <header>
           {{ if ($cfg.cover.enabled) }}
             <div class="node-cover mb-3">
-                {{ (partial "module/node/cover/image.02" .) }}
+                {{ (partial "module/node/cover/02" .) }}
             </div>
           {{ end }}
         <div class="node-title">
@@ -68,7 +68,6 @@
               </button>
             </li>
           {{ end }}
-
           {{ if (and ($cfg.tabs.changelog.enabled) (fileExists ($changelog))) }}
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "changelog") }}'>
               <button class="nav-link" id="tab-main-changelog" type="button" role="tab"
@@ -127,7 +126,6 @@
                   "msg" (i18n "alert.draft")
                   )) }}
               {{ end }}
-
               {{ if (in (.Params.categories) "inDev") }}
                   {{ (partial "function/alert" (dict
                   "type" "warning"
@@ -135,7 +133,6 @@
                   "msg" (i18n "alert.in_dev")
                   )) }}
               {{ end }}
-
               {{ if (in (.Params.categories) "inHistory") }}
                   {{ (partial "function/alert" (dict
                   "type" "warning"
@@ -143,7 +140,6 @@
                   "msg" (i18n "alert.in_history")
                   )) }}
               {{ end }}
-
               {{ if (in (.Params.categories) "opinion") }}
                   {{ (partial "function/alert" (dict
                   "type" "warning"

@@ -2,7 +2,5 @@
 {{- $anchor := ((.Anchor) | safeURL) -}}
 {{- $text := ((.Text) | safeHTML) -}}
 
-<h{{ ($level) }} id="{{ ($anchor) }}">
-  <a class="link-body-emphasis" href="#{{ ($anchor) }}">{{ ($text) }}</a>
-</h{{ ($level) }}>
+<h{{ ($level) }}>{{ ($text) }}</h{{ ($level) }}>
 {{- /* This comment removes trailing newlines. */ -}}

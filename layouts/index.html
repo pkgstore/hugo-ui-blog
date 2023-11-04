@@ -8,14 +8,14 @@
       <div class="row row-cols-1 g-3">
         <div class="col">
             {{ range (first 1 .) }}
-                {{ (.Render "view/article.02") }}
+                {{ (.Render "view/02") }}
             {{ end }}
         </div>
         <div class="col">
           <div class="row row-cols-1 row-cols-lg-2 g-3">
               {{ range ((after 1 .) | first 4) }}
                 <div class="col">
-                    {{ (.Render "view/article.02") }}
+                    {{ (.Render "view/02") }}
                 </div>
               {{ end }}
           </div>
@@ -24,7 +24,7 @@
           <div class="row row-cols-1 row-cols-lg-3 g-3">
               {{ range (after 5 .) }}
                 <div class="col">
-                    {{ (.Render "view/article.02") }}
+                    {{ (.Render "view/02") }}
                 </div>
               {{ end }}
           </div>

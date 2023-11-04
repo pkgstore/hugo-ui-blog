@@ -4,9 +4,11 @@
 
     <div class="row row-cols-1 g-3">
         {{ range (.Paginator.Pages) }}
-          <div class="col">
-              {{ (.Render "view/faq.00") }}
-          </div>
+            {{ $type := ((.Type) | singularize) }}
+            <div class="col">
+                {{ (.Render "view/00") }}
+                {{ (partial (printf "module/node/modal/%s" ($type)) .) }}
+            </div>
         {{ end }}
     </div>
 

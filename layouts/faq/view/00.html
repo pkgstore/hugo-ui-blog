@@ -4,7 +4,9 @@
 <article class="node-{{ (.Type) }}">
   <header>
     <div class="node-title">
-      <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+      <h2 class="h5">
+        <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+      </h2>
     </div>
   </header>
   <div class="node-body">
@@ -17,5 +19,4 @@
         <span>{{ (i18n "answer_count" .) }}</span>
       </a>
     {{ end }}
-    {{ (partial "module/node/modal/faq" .) }}
 </article>

@@ -4,16 +4,20 @@
     {{ if (and ($cfg.cover.enabled)) }}
       <div class="flex-shrink-0 me-3">
         <div class="node-cover">
-            {{ (partial "module/node/cover/image.01" .) }}
+            {{ (partial "module/node/cover/01" .) }}
         </div>
       </div>
     {{ end }}
   <div class="flex-grow-1 overflow-hidden">
     <header>
       <div class="node-title">
-        <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+        <h2 class="h5">
+          <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+        </h2>
       </div>
     </header>
-    <div class="node-body">{{ ((.Render "summary") | truncate 200) }}</div>
+    <div class="node-body">
+        {{ ((.Render "summary") | truncate 200) }}
+    </div>
   </div>
 </article>

@@ -8,7 +8,6 @@
 
     <article>
       <header>
-
         <div class="node-title">
           <h1 class="text-center">{{ (.Title) }}</h1>
         </div>
@@ -40,7 +39,6 @@
               "msg" (i18n "alert.draft")
               )) }}
           {{ end }}
-
         <div class="node-question border-start border-danger-subtle border-3 ps-3 mb-3">{{ (.Content) }}</div>
           {{ with (.Resources.Match "answer.*.md") }}
               {{ range . }}

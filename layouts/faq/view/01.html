@@ -6,7 +6,7 @@
     {{ if (and ($cfg.cover.enabled)) }}
       <div class="flex-shrink-0 me-3">
         <div class="node-cover">
-            {{ (partial "module/node/cover/image.01" .) }}
+            {{ (partial "module/node/cover/01" .) }}
         </div>
       </div>
     {{ end }}
@@ -14,12 +14,16 @@
     <div class="d-flex flex-column h-100">
       <header>
         <div class="node-title">
-          <h2 class="h5"><a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a></h2>
+          <h2 class="h5">
+            <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
+          </h2>
         </div>
       </header>
-      <div class="node-body">{{ ((.Render "summary") | truncate 100) }}</div>
+      <div class="node-body">
+          {{ ((.Render "summary") | truncate 100) }}
+      </div>
         {{ with (($answer) | len) }}
-          <div class="mt-auto">
+          <div class="mt-auto text-end">
             <a class="btn btn-sm btn-success d-inline-flex align-items-center" href="#" role="button"
                data-bs-toggle="modal" data-bs-target="#modal-{{ ($id) }}">
               <span class="pe-1"><i class="fas fa-check fa-fw"></i></span>

@@ -2,15 +2,10 @@
 
     {{ (partial "breadcrumb" .) }}
 
-    <div class="row row-cols-1 row-cols-xl-2 g-3">
+    <div class="row row-cols-1 g-3">
         {{ range (.Paginator.Pages) }}
           <div class="col">
-            <div class="d-sm-block d-md-none">
-                {{ (.Render "view/article.02") }}
-            </div>
-            <div class="d-none d-md-block">
-                {{ (.Render "view/article.01") }}
-            </div>
+              {{ (.Render "view/list") }}
           </div>
         {{ end }}
     </div>
