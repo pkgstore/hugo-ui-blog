@@ -5,7 +5,7 @@ export function init() {
 function selectAll($selector) {
   const $el = document.querySelectorAll($selector);
 
-  for (let $i = 0; $i < $el.length; $i++) {
+  for (let $i = 0; $i < $el.length; ++$i) {
     _eventSelectAll($el[$i]);
   }
 }

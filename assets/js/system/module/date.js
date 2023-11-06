@@ -7,7 +7,7 @@ function local($selector, $view = 0) {
   const $el = document.querySelectorAll($selector);
   let $utcDate, $localDate;
 
-  for (let $i = 0; $i < $el.length; $i++) {
+  for (let $i = 0; $i < $el.length; ++$i) {
     $utcDate = $el[$i].getAttribute('datetime');
     $localDate = _date($utcDate, $view);
     $el[$i].textContent = $localDate;
