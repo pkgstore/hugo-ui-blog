@@ -7,28 +7,27 @@ function search($path) {
   const $eResList = document.getElementById('search-results');
   const $eInput = document.getElementById('search-input');
   const $eHelp = document.getElementById('search-help');
+  const $options = {
+    includeScore: true,
+    minMatchCharLength: 3,
+    useExtendedSearch: true,
+    keys: ['title', 'categories', 'tags']
+  };
 
   if (!$eInput) return 0;
 
   _keyboard();
 
-  _fetch($path, ($data) => {
-    let $options = {
-      includeScore: true,
-      minMatchCharLength: 3,
-      useExtendedSearch: true,
-      keys: ['title', 'categories', 'tags']
-    };
-
+  _fetch($path).then(($data) => {
     $fuse = new Fuse($data, $options);
   });
 
   // Execute search as each character is typed.
   $eInput.onkeyup = function (e) {
-    // Run a search query (for "term") every time a letter is typed
-    // in the search box.
+    // Run a search query (for "term") every time a letter is typed in the search box.
     if ($fuse) {
-      const $results = $fuse.search(this.value.trim()); // the actual query being run using fuse.js
+      const $results = $fuse.search(this.value.trim()); // The actual query being run using "fuse.js".
+
       if ($results.length !== 0) {
         $eResList.classList.remove('d-none');
         $eHelp.classList.add('d-none');
@@ -37,14 +36,11 @@ function search($path) {
         let $resultSet = ''; // Our results bucket.
         let $url, $title;
 
-        $results.forEach((v, i) => {
-          $url = $results[i].item.url;
-          $title = $results[i].item.title;
-
-          $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0">`
-            + `<span class="d-block">${$title}</span>`
-            + `</a>`
-        });
+        for (let $i in $results) {
+          $url = $results[$i].item.url;
+          $title = $results[$i].item.title;
+          $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0"><span class="d-block">${$title}</span></a>`
+        }
 
         $eResList.innerHTML = $resultSet;
       } else {
@@ -56,12 +52,10 @@ function search($path) {
   }
 }
 
-function _fetch($path, $callback) {
-  fetch($path).then(($response) => {
-    return $response.json();
-  }).then(($data) => {
-    if ($callback) $callback($data.data);
-  });
+async function _fetch($path, $callback) {
+  const $response = await fetch($path);
+  const $data = await $response.json();
+  return $data.data;
 }
 
 function _keyboard() {
