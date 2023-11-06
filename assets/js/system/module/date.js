@@ -7,11 +7,11 @@ function local($selector, $view = 0) {
   const $el = document.querySelectorAll($selector);
   let $utcDate, $localDate;
 
-  $el.forEach(($i) => {
-    $utcDate = $i.getAttribute('datetime');
+  for (let $i = 0; $i < $el.length; $i++) {
+    $utcDate = $el[$i].getAttribute('datetime');
     $localDate = _date($utcDate, $view);
-    $i.textContent = $localDate;
-  });
+    $el[$i].textContent = $localDate;
+  }
 }
 
 function _date($iso, $view) {

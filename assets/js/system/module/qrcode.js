@@ -6,10 +6,10 @@ function generator($selector) {
   const $el = document.querySelectorAll($selector);
   let $text;
 
-  $el.forEach(($i) => {
-    $text = $i.getAttribute('data-qr-text');
-    _qrcode($i, $text);
-  });
+  for (let $i = 0; $i < $el.length; $i++) {
+    $text = $el[$i].getAttribute('data-qr-text');
+    _qrcode($el[$i], $text);
+  }
 }
 
 function _qrcode($selector, $text, $size = 128) {

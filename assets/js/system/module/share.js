@@ -5,9 +5,9 @@ export function init() {
 function popUp($selector) {
   const $el = document.querySelectorAll($selector);
 
-  $el.forEach(($i) => {
-    _eventPopUp($i);
-  });
+  for (let $i = 0; $i < $el.length; $i++) {
+    _eventPopUp($el[$i]);
+  }
 }
 
 function _eventPopUp($i) {

@@ -36,7 +36,7 @@ function search($path) {
         let $resultSet = ''; // Our results bucket.
         let $url, $title;
 
-        for (let $i in $results) {
+        for (let $i = 0; $i < $results.length; $i++) {
           $url = $results[$i].item.url;
           $title = $results[$i].item.title;
           $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0"><span class="d-block">${$title}</span></a>`

@@ -5,9 +5,9 @@ export function init() {
 function selectAll($selector) {
   const $el = document.querySelectorAll($selector);
 
-  $el.forEach(($i) => {
-    _eventSelectAll($i);
-  });
+  for (let $i = 0; $i < $el.length; $i++) {
+    _eventSelectAll($el[$i]);
+  }
 }
 
 function _eventSelectAll($i) {
