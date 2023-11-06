@@ -33,7 +33,7 @@
       {{ end }}
     <image>
       <link>{{ (.Permalink) }}</link>
-      <url>{{ (("favicon-128.png") | absURL) }}</url>
+      <url>{{ ("favicon-128.png" | absURL) }}</url>
         {{ if (eq (.Title) (site.Title)) }}
           <title>{{ (site.Title) }}</title>
         {{ else }}

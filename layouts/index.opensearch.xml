@@ -8,8 +8,8 @@
   <Description>{{ ($cfg.description) }}</Description>
   <Contact>{{ ($cfg.author.email) }}</Contact>
   <LongName>{{ (site.Title) }} | {{ ((site.Language.Lang) | upper) }}</LongName>
-  <Image height="64" width="64" type="image/png">{{ (("favicon-64.png") | absURL) }}</Image>
-  <Image height="16" width="16" type="image/png">{{ (("favicon-16.png") | absURL) }}</Image>
+  <Image height="64" width="64" type="image/png">{{ ("favicon-64.png" | absURL) }}</Image>
+  <Image height="16" width="16" type="image/png">{{ ("favicon-16.png" | absURL) }}</Image>
   <Developer>{{ ($cfg.author.name) }}</Developer>
   <Attribution>{{ (site.Title) }} © {{ (now.UTC.Format "2006") }}</Attribution>
   <SyndicationRight>open</SyndicationRight>
@@ -21,5 +21,5 @@
   <Url type="text/html" method="get"
        template="https://google.com/search?as_sitesearch={{ ((urls.Parse (site.BaseURL)).Host) }}&amp;q={searchTerms}"/>
   <Url type="application/opensearchdescription+xml" rel="self"
-       template='{{ (("opensearch.xml") | absLangURL) }}'/>
+       template='{{ ("opensearch.xml" | absLangURL) }}'/>
 </OpenSearchDescription>

@@ -15,8 +15,8 @@
     "purpose" "any"
     )) }}
 {{ end }}
-{{ ($data.Add "icons" (dict "src" (("favicon.ico") | absURL) "sizes" "any" "type" "image/x-icon" "purpose" "any" )) }}
-{{ ($data.Add "icons" (dict "src" (("favicon.svg") | absURL) "sizes" "any" "type" "image/svg+xml" "purpose" "any" )) }}
+{{ ($data.Add "icons" (dict "src" ("favicon.ico" | absURL) "sizes" "any" "type" "image/x-icon" "purpose" "any" )) }}
+{{ ($data.Add "icons" (dict "src" ("favicon.svg" | absURL) "sizes" "any" "type" "image/svg+xml" "purpose" "any" )) }}
 
 {{ $maskable := (slice "48" "72" "96" "128" "192" "384" "512") }}
 {{ range ($maskable) }}
@@ -27,7 +27,7 @@
     "purpose" "maskable"
     )) }}
 {{ end }}
-{{ ($data.Add "icons" (dict "src" (("mi.png") | absURL) "sizes" "any" "type" "image/png" "purpose" "maskable" )) }}
+{{ ($data.Add "icons" (dict "src" ("mi.png" | absURL) "sizes" "any" "type" "image/png" "purpose" "maskable" )) }}
 
 {{ $search_provider := (dict
 "name" (site.Title)
@@ -36,17 +36,17 @@
 (printf "https://ya.ru/search?site=%s&text={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 (printf "https://bing.com/search?q1=site:%s&q={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 )
-"favicon_url" (("favicon.ico") | absURL)
+"favicon_url" ("favicon.ico" | absURL)
 "encoding" "UTF-8"
 ) }}
 
 {{ $mainfest := (dict
-"id" (("/") | absURL)
+"id" ("/" | absURL)
 "name" (site.Title)
 "short_name" (index ($cfg.short_name) ($lang))
 "description" (site.Params.description)
-"start_url" (("/") | absURL)
-"scope" (("/") | absURL)
+"start_url" ("/" | absURL)
+"scope" ("/" | absURL)
 "display" "standalone"
 "background_color" ($cfg.color.background)
 "theme_color" ($cfg.color.theme)

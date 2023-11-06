@@ -16,8 +16,8 @@
                 {{ $icon_size := ($cfg.cover.icon.size) }}
                 {{ $avatar_id := (($email) | md5) }}
                 {{ $avatar_size := ($cfg.cover.avatar.size) }}
-                {{ $bg := ((.Params.background) | default ("bg-light")) }}
-                {{ $clr := ((.Params.color) | default ("link-secondary")) }}
+                {{ $bg := ((.Params.background) | default "bg-light") }}
+                {{ $clr := ((.Params.color) | default "link-secondary") }}
                 <div class="col">
                   <article class="d-flex">
                     <div class="flex-shrink-0">

@@ -39,7 +39,7 @@
             data-category="{{ ($cfg.category) }}"
             data-category-id="{{ ($cfg.category_id) }}"
             data-mapping="{{ ($cfg.mapping) }}"
-            {{ if (eq ($cfg.mapping) ("specific")) }}
+            {{ if (eq ($cfg.mapping) "specific") }}
               data-term="{{ printf "%s/%s/" (site.Language.Lang) (.Page.Params.uuid) }}"
             {{ end }}
             data-strict="{{ ($cfg.strict) }}"

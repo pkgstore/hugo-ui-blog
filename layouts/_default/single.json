@@ -48,9 +48,9 @@
 {{ $site := (dict
 "title" (site.Title)
 "description" (site.Params.description)
-"url" (("/") | absURL)
-"manifest" (("manifest.json") | absLangURL)
-"rss" (("index.xml") | absLangURL)
+"url" ("/" | absURL)
+"manifest" ("manifest.json" | absLangURL)
+"rss" ("index.xml" | absLangURL)
 ) }}
 
 {{ $page := (dict

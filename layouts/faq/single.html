@@ -1,9 +1,5 @@
 {{ define "main" }}
 
-    {{ $cfg := (site.Params.node) }}
-    {{ $id_tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
-    {{ $changelog := (path.Join (.File.Dir) ("changelog.md")) }}
-
     {{ (partial "breadcrumb" .) }}
 
     <article>
