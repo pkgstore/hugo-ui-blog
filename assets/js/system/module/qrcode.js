@@ -4,9 +4,10 @@ export function init() {
 
 function generator($selector) {
   const $el = document.querySelectorAll($selector);
+  const $length = $el.length;
   let $text;
 
-  for (let $i = 0; $i < $el.length; ++$i) {
+  for (let $i = 0; $i < $length; ++$i) {
     $text = $el[$i].getAttribute('data-qr-text');
     _qrcode($el[$i], $text);
   }

@@ -4,8 +4,9 @@ export function init() {
 
 function selectAll($selector) {
   const $el = document.querySelectorAll($selector);
+  const $length = $el.length;
 
-  for (let $i = 0; $i < $el.length; ++$i) {
+  for (let $i = 0; $i < $length; ++$i) {
     _eventSelectAll($el[$i]);
   }
 }

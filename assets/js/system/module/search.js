@@ -27,8 +27,9 @@ function search($path) {
     // Run a search query (for "term") every time a letter is typed in the search box.
     if ($fuse) {
       const $results = $fuse.search(this.value.trim()); // The actual query being run using "fuse.js".
+      const $length = $results.length;
 
-      if ($results.length !== 0) {
+      if ($length !== 0) {
         $eResList.classList.remove('d-none');
         $eHelp.classList.add('d-none');
 
@@ -36,7 +37,7 @@ function search($path) {
         let $resultSet = ''; // Our results bucket.
         let $url, $title;
 
-        for (let $i = 0; $i < $results.length; ++$i) {
+        for (let $i = 0; $i < $length; ++$i) {
           $url = $results[$i].item.url;
           $title = $results[$i].item.title;
           $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0"><span class="d-block">${$title}</span></a>`
