@@ -8,7 +8,7 @@
                   {{ if (hasPrefix . "http") }}
                       {{ $url := (urls.Parse .) }}
                       {{ $path := (delimit ((split ($url.Path) "/") | last 2) "/") }}
-                      <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener nofollow">
+                      <a class="text-reset" href="{{ . }}" target="_blank" rel="noopener noreferrer nofollow">
                           {{ ($url.Host) }} {{ with ($path) }}({{ . }}){{ end }}
                       </a>
                   {{ else }}
