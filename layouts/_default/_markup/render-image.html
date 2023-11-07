@@ -1,17 +1,19 @@
 {{- /*
-DESCRIPTION:
-  Image in markdown.
+Image in markdown.
 
-SYNTAX:
-  ![TEXT](IMG_URL "TITLE")
+@returns {template.HTML}
 
-EXAMPLE:
+@examples
+
   ![Text](https://gohugo.io/images/hugo-logo-wide.svg "Title")
 */ -}}
 
-{{- $title := ((.Title) | default "") -}}
-{{- $alt := ((.Text) | default "") -}}
 {{- $src := ((.Destination) | safeURL) -}}
+{{- $alt := ((.Text) | default ($src)) -}}
+{{- $title := ((.Title) | default "") -}}
 
-<img title="{{ ($title) }}" class="img-fluid d-block" src="{{ ($src) }}" alt="{{ ($alt) }}" loading="lazy"/>
+<a title="{{ ($title) }}" class="d-block" href="{{ ($src) }}"
+   data-fancybox="gallery" data-caption="{{ ($title) }}">
+  <img class="img-fluid rounded" src="{{ ($src) }}" alt="{{ ($alt) }}" loading="lazy"/>
+</a>
 {{- /* This comment removes trailing newlines. */ -}}

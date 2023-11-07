@@ -1,29 +1,26 @@
 {{- /*
-DESCRIPTION:
-  This shortcode allows you to create a simulation of an OS terminal window.
+This shortcode allows you to create a simulation of an OS terminal window.
 
-SYNTAX:
-  ```terminal {os="[linux|windows]",mode="root"}
-  <CODE>
-  ```
+@param {string} os [linux|windows]
+@param {string} mode [root]
 
-EXAMPLE:
+@returns {template.HTML}
+
+@examples
+
   ```terminal {os="windows"}
   cd D:\Documents
   ```
 
-EXAMPLE:
-  ```terminal {os="windows",mode="root"}
+  ```terminal {os="windows", mode="root"}
   Dism /Get-ImageInfo /ImageFile:"C:\BuildFarm\WIM\install.wim"
   ```
 
-EXAMPLE:
   ```terminal {os="linux"}
   bash favicon.sh png
   ```
 
-EXAMPLE:
-  ```terminal {os="linux",mode="root"}
+  ```terminal {os="linux", mode="root"}
   dd if=image.iso of=/dev/sdc bs=4M oflag=direct status=progress; sync
   ```
 */ -}}

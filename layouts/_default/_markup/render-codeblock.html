@@ -1,13 +1,10 @@
 {{- /*
-DESCRIPTION:
-  This shortcode creates a block of code with syntax highlighting.
+This shortcode creates a block of code with syntax highlighting.
 
-SYNTAX:
-  ```LANG
-  <CODE>
-  ```
+@returns {template.HTML}
 
-EXAMPLE:
+@examples
+
   ```bash
   echo "ext_$(date +%s%N | sha512sum | fold -w 8 | head -n 1)"
   ```
