@@ -12,10 +12,10 @@
                 {{ $cfg := (index (site.Params.taxonomy) ($type)) }}
                 {{ $size := ($cfg.cover.size) }}
                 {{ $email := ((.Params.info.email) | default ((delimit (shuffle (seq 11 99)) "") | md5)) }}
-                {{ $icon_id := ((.Params.icon) | default ($cfg.cover.icon.name)) }}
-                {{ $icon_size := ($cfg.cover.icon.size) }}
-                {{ $avatar_id := (($email) | md5) }}
-                {{ $avatar_size := ($cfg.cover.avatar.size) }}
+                {{ $iconID := ((.Params.icon) | default ($cfg.cover.icon.name)) }}
+                {{ $iconSize := ($cfg.cover.icon.size) }}
+                {{ $avatarID := (($email) | md5) }}
+                {{ $avatarSize := ($cfg.cover.avatar.size) }}
                 {{ $bg := ((.Params.background) | default "bg-light") }}
                 {{ $clr := ((.Params.color) | default "link-secondary") }}
                 <div class="col">
@@ -26,9 +26,9 @@
                            href="{{ (.RelPermalink) }}" aria-label="{{ ((.Title) | plainify) }}"
                            style="width: {{ ($size) }}; height: {{ ($size) }};">
                             {{ if (eq ($type) "authors") }}
-                              <img class="img-fluid rounded" src='https://gravatar.com/avatar/{{ ($avatar_id) }}?s={{ ($avatar_size) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
+                              <img class="img-fluid rounded" src='https://gravatar.com/avatar/{{ ($avatarID) }}?s={{ ($avatarSize) }}&amp;d=monsterid' alt="Avatar" loading="lazy"/>
                             {{ else }}
-                              <i class="{{ ($icon_id) }} fa-fw fa-{{ ($icon_size) }}"></i>
+                              <i class="{{ ($iconID) }} fa-fw fa-{{ ($iconSize) }}"></i>
                             {{ end }}
                         </a>
                       </div>

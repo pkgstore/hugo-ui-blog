@@ -125,3 +125,20 @@ social:
   whatsapp: { other: 'WhatsApp' }
   wordpress: { other: 'WordPress' }
   youtube: { other: 'YouTube' }
+
+# -------------------------------------------------------------------------------------------------------------------- #
+# Resources.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+resource:
+  author: { other: 'Автор' }
+  authoremail: { other: 'Email' }
+  companyname: { other: 'Организация' }
+  copyright: { other: 'Авторские права' }
+  guid: { other: 'GUID' }
+  license: { other: 'Лицензия' }
+  licenseuri: { other: 'Лицензия' }
+  link: { other: 'Ссылка' }
+  package: { other: 'Пакет' }
+  projecturi: { other: 'Проект' }
+  version: { other: 'Версия' }

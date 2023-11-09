@@ -1,7 +1,7 @@
 {{ define "main" }}
 
     {{ $cfg := (site.Params.node) }}
-    {{ $id_tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
+    {{ $tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
     {{ $changelog := (path.Join (.File.Dir) "changelog.md") }}
 
     {{ (partial "breadcrumb" .) }}
@@ -27,31 +27,29 @@
               </li>
             {{ end }}
             {{ with (.Params.complexity) }}
-                {{ with (eq . "0") }}
-                  <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-success"
-                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
-                    <i class="far fa-face-smile fa-fw"></i>
-                  </li>
-                {{ end }}
-                {{ with (eq . "1") }}
-                  <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-warning"
-                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
-                    <i class="far fa-face-meh fa-fw"></i>
-                  </li>
-                {{ end }}
-                {{ with (eq . "2") }}
-                  <li class="list-inline-item">&bull;</li>
-                  <li class="list-inline-item text-danger"
-                      data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
-                    <i class="far fa-face-frown fa-fw"></i>
-                  </li>
-                {{ end }}
+              <li class="list-inline-item">&bull;</li>
+              {{ with (eq . "0") }}
+                <li class="list-inline-item text-success"
+                    data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-0") }}'>
+                  <i class="far fa-face-smile fa-fw"></i>
+                </li>
+              {{ end }}
+              {{ with (eq . "1") }}
+                <li class="list-inline-item text-warning"
+                    data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-1") }}'>
+                  <i class="far fa-face-meh fa-fw"></i>
+                </li>
+              {{ end }}
+              {{ with (eq . "2") }}
+                <li class="list-inline-item text-danger"
+                    data-bs-tooltip data-bs-title='{{ (i18n "complexity") }}: {{ (i18n "complexity-2") }}'>
+                  <i class="far fa-face-frown fa-fw"></i>
+                </li>
+              {{ end }}
             {{ end }}
         </ul>
       </footer>
-      <ul class="nav nav-tabs mb-3" id="{{ ($id_tabs) }}" data-fn="node-tabs" role="tablist">
+      <ul class="nav nav-tabs mb-3" id="{{ ($tabs) }}" data-fn="node-tabs" role="tablist">
         <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
           <button class="nav-link active" id="tab-main-home" type="button" role="tab"
                   data-bs-toggle="tab" data-bs-target="#tab-pane-main-home"

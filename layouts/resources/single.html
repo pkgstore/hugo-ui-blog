@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+    {{ $accordion := (printf "accordion-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+    {{ $cp := (printf "clipboard-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+
+    {{ (partial "breadcrumb" .) }}
+
+    <article>
+      <header>
+        <div class="node-title">
+          <h1 class="text-center">{{ (.Title) }}</h1>
+        </div>
+      </header>
+      <footer>
+        <ul class="list-inline text-center text-body-secondary small">
+            {{ with (.Params.date) }}
+              <li class="list-inline-item">
+                <time datetime='{{ (.UTC.Format "2006-01-02T15:04:05Z07:00") }}' data-fn="date-local">
+                    {{ (.UTC.Format "2006/01/02 15:04:05 MST") }}
+                </time>
+              </li>
+            {{ end }}
+            {{ with (.Params.uuid) }}
+              <li class="list-inline-item">&bull;</li>
+              <li class="list-inline-item">
+                <span id="{{ ($cp) }}">{{ . }}</span>
+                <a class="text-body" href="#"
+                   data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
+                   data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'
+                   role="button" aria-label='{{ (i18n "copy") }}'>
+                  <i class="fas fa-copy fa-fw"></i>
+                </a>
+              </li>
+            {{ end }}
+        </ul>
+      </footer>
+      <div class="node-body">
+          {{ (.Content) }}
+
+        <div class="accordion" id="{{ ($accordion) }}">
+            {{ with (.Resources.Match "*.*") }}
+                {{ range . }}
+                    {{ $accordionItem := (printf "accordion-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+                    {{ $cp = (printf "clipboard-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+                    {{ if (in (slice ".bat" ".cmd" ".ps1" ".sh") (path.Ext (.Name))) }}
+                      <div class="accordion-item">
+                        <div class="accordion-header">
+                          <a class="accordion-button collapsed" href="#" role="button" tabindex="0"
+                             data-bs-toggle="collapse" data-bs-target="#{{ ($accordionItem) }}"
+                             aria-expanded="false" aria-controls="{{ ($accordionItem) }}" aria-label="{{ (.Name) }}">
+                            <code>{{ (.Name) }}</code>
+                          </a>
+                        </div>
+                        <div id="{{ ($accordionItem) }}" class="accordion-collapse collapse" data-bs-parent="#{{ ($accordion) }}">
+                          <div class="accordion-body">
+                            <table class="table table-striped table-bordered">
+                              <tbody>
+                              {{ if (in (slice ".bat" ".cmd") (path.Ext (.Name))) }}
+                                  {{ range (findRE `((::)( +)(@)(.+?)( +)(.+))` (.Content)) }}
+                                    <tr>
+                                      <td>
+                                          {{ (i18n (printf "resource.%s" ((replaceRE `((::)( +)(@)(.+?)( +)(.+))` "$5" .) | lower))) }}
+                                      </td>
+                                      <td>
+                                          {{ ((replaceRE `((::)( +)(@)(.+?)( +)(.+))` "$7" .) | markdownify) }}
+                                      </td>
+                                    </tr>
+                                  {{ end }}
+                              {{ end }}
+                              {{ if (eq (path.Ext (.Name)) ".ps1") }}
+                                  {{ range (findRE `(?s)((<#PSScriptInfo)(.+?)(#>))` (.Content) 1) }}
+                                      {{ range (findRE `((\.)(.+?)( +)(.+))` .) }}
+                                        <tr>
+                                          <td>
+                                              {{ (i18n (printf "resource.%s" ((replaceRE `((\.)(.+?)( +)(.+))` "$3" .) | lower))) }}
+                                          </td>
+                                          <td>
+                                              {{ ((replaceRE `((\.)(.+?)( +)(.+))` "$5" .) | markdownify) }}
+                                          </td>
+                                        </tr>
+                                      {{ end }}
+                                  {{ end }}
+                              {{ end }}
+                              {{ if (eq (path.Ext (.Name)) ".sh") }}
+                                  {{ range (findRE `((#)( +)(@)(.+?)( +)(.+))` (.Content)) }}
+                                    <tr>
+                                      <td>
+                                          {{ (i18n (printf "resource.%s" ((replaceRE `((#)( +)(@)(.+?)( +)(.+))` "$5" .) | lower))) }}
+                                      </td>
+                                      <td>
+                                          {{ ((replaceRE `((#)( +)(@)(.+?)( +)(.+))` "$7" .) | markdownify) }}
+                                      </td>
+                                    </tr>
+                                  {{ end }}
+                              {{ end }}
+                              </tbody>
+                            </table>
+                            <div class="shortcode shortcode-file mb-3">
+                              <div class="card overflow-hidden">
+                                <div class="card-header">
+                                  <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                      <i class="far fa-file-code fa-fw"></i>
+                                    </div>
+                                    <div class="flex-grow-1 mx-2">
+                                      <code>{{ (.Name) }}</code>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                      <ul class="list-inline mb-0">
+                                        <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.file.copy") }}'>
+                                          <a class="text-body" href="#"
+                                             data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
+                                             role="button" aria-label='{{ (i18n "sc.file.copy") }}'>
+                                            <i class="fas fa-copy fa-fw"></i>
+                                          </a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.file.download") }}'>
+                                          <a class="text-body" href="{{ (.RelPermalink) }}" download
+                                             role="button" aria-label='{{ (i18n "sc.file.download") }}'>
+                                            <i class="fas fa-download fa-fw"></i>
+                                          </a>
+                                        </li>
+                                        <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "sc.file.link") }}'>
+                                          <a class="text-body" href="{{ (.RelPermalink) }}" target="_blank"
+                                             role="button" aria-label='{{ (i18n "sc.file.link") }}'>
+                                            <i class="fas fa-arrow-up-right-from-square fa-fw"></i>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card-body" id="{{ ($cp) }}">
+                                    {{ $lang := ((replace (path.Ext (.Name)) "." "") | default "plaintext") }}
+                                    {{ (highlight ((.Content) | chomp) ($lang)) }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </div>
+      </div>
+    </article>
+
+{{ end }}

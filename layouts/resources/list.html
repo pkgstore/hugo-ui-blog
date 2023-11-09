@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+    {{ (partial "breadcrumb" .) }}
+
+    <table class="table table-striped table-bordered">
+      <tbody class="node-body">
+      {{ range (.Paginator.Pages) }}
+        <tr>
+          <td>{{ (.Render "view/00") }}</td>
+        </tr>
+      {{ end }}
+      </tbody>
+    </table>
+
+    {{ (partial "pagination" .) }}
+
+{{ end }}

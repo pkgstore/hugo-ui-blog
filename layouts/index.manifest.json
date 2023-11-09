@@ -29,7 +29,7 @@
 {{ end }}
 {{ ($data.Add "icons" (dict "src" ("mi.png" | absURL) "sizes" "any" "type" "image/png" "purpose" "maskable" )) }}
 
-{{ $search_provider := (dict
+{{ $searchProvider := (dict
 "name" (site.Title)
 "search_url" (printf "https://google.com/search?as_sitesearch=%s&q={searchTerms}" ((urls.Parse (site.BaseURL)).Host))
 "alternate_urls" (slice
@@ -54,7 +54,7 @@
 "categories" ($data.Get "categories")
 "icons" ($data.Get "icons")
 "chrome_settings_overrides" (dict
-"search_provider" ($search_provider)
+"search_provider" ($searchProvider)
 )) }}
 
 {{ (($mainfest) | jsonify) }}
