@@ -1,5 +1,4 @@
 {{ $cfg := (site.Params.node) }}
-{{ $id := (.File.UniqueID) }}
 
 <article class="node-{{ (.Type) }} d-flex overflow-hidden">
     {{ if (and ($cfg.cover.enabled)) }}

@@ -1,7 +1,7 @@
 {{ define "main" }}
 
     {{ $cfg := (site.Params.node) }}
-    {{ $tabs := (printf "node-tabs-%s" ((.File.UniqueID) | default "")) }}
+    {{ $tabsID := ((printf "node-tabs-%s" (.File.UniqueID)) | md5) }}
     {{ $changelog := (path.Join (.File.Dir) "changelog.md") }}
 
     {{ (partial "breadcrumb" .) }}
@@ -49,7 +49,7 @@
             {{ end }}
         </ul>
       </footer>
-      <ul class="nav nav-tabs mb-3" id="{{ ($tabs) }}" data-fn="node-tabs" role="tablist">
+      <ul class="nav nav-tabs mb-3" id="node-tabs-{{ ($tabsID) }}" data-fn="node-tabs" role="tablist">
         <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "home") }}'>
           <button class="nav-link active" id="tab-main-home" type="button" role="tab"
                   data-bs-toggle="tab" data-bs-target="#tab-pane-main-home"

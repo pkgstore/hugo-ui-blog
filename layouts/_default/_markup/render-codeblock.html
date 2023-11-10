@@ -15,7 +15,7 @@ This shortcode creates a block of code with syntax highlighting.
 {{ $inner := (.Inner) }}
 {{ $ordinal := (.Ordinal) }}
 
-{{ $cp := (printf "clipboard-%s" ((delimit (shuffle (seq 11 99)) "") | md5)) }}
+{{ $cp := ((printf "clipboard-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
 
 {{ if (or ($attr.title) ($attr.file)) }}
 
@@ -34,7 +34,7 @@ This shortcode creates a block of code with syntax highlighting.
             <ul class="list-inline mb-0">
               <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
                 <a class="text-body" href="#"
-                   data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
+                   data-fn="clipboard preventDefault" data-clipboard-target="#cp-{{ ($cp) }}"
                    role="button" aria-label='{{ (i18n "copy") }}'>
                   <i class="fas fa-copy fa-fw"></i>
                 </a>
@@ -43,7 +43,7 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
         </div>
       </div>
-      <div class="card-body" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
+      <div class="card-body" id="cp-{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
     </div>
   </div>
 
@@ -51,12 +51,12 @@ This shortcode creates a block of code with syntax highlighting.
 
   <div class="shortcode shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex mb-3 overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden" id="{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
+      <div class="flex-grow-1 rounded overflow-hidden" id="cp-{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
             <a class="text-body" href="#"
-               data-fn="clipboard preventDefault" data-clipboard-target="#{{ ($cp) }}"
+               data-fn="clipboard preventDefault" data-clipboard-target="#cp-{{ ($cp) }}"
                role="button" aria-label='{{ (i18n "copy") }}'>
               <i class="fas fa-copy fa-fw"></i>
             </a>

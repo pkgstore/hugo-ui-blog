@@ -1,0 +1,26 @@
+{{ $x := ((.x) | default .) }}
+{{ $id := (.id) }}
+{{ $body := (.body) }}
+
+<div class="modal fade" id="modal-{{ ($id) }}" tabindex="-1"
+     aria-labelledby="modal-{{ ($id) }}-label" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5 text-truncate" id="modal-{{ ($id) }}-label">
+            {{ ($x.Name) }} / {{ (i18n "resource.readme") }}
+        </h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label='{{ (i18n "close") }}'></button>
+      </div>
+      <div class="modal-body">
+        <div class="node-body">{{ ($body) }}</div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" role="button" data-bs-dismiss="modal" aria-label='{{ (i18n "close") }}'
+           data-bs-tooltip data-bs-title='{{ (i18n "close") }}'>
+          <i class="fas fa-xmark fa-fw"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

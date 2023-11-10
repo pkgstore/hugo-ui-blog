@@ -18,6 +18,7 @@ complexity: { other: 'Уровень сложности' }
 contacts: { other: 'Контакты' }
 copy: { other: 'Копировать' }
 developers: { other: 'Разработчики' }
+download: { other: 'Скачать' }
 draft: { other: 'Черновик' }
 egg: { other: 'Oops!' }
 email: { other: 'Email' }
@@ -130,7 +131,7 @@ social:
 # Resources.
 # -------------------------------------------------------------------------------------------------------------------- #
 
-resource:
+resources:
   author: { other: 'Автор' }
   authoremail: { other: 'Email' }
   companyname: { other: 'Организация' }
@@ -141,4 +142,7 @@ resource:
   link: { other: 'Ссылка' }
   package: { other: 'Пакет' }
   projecturi: { other: 'Проект' }
+  readme: { other: 'Описание' }
+  resource: { other: 'Ресурс' }
   version: { other: 'Версия' }
+  view: { other: 'Посмотреть' }

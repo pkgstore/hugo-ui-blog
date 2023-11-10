@@ -1,0 +1,36 @@
+{{ $x := ((.x) | default .) }}
+{{ $id := (.id) }}
+{{ $cp := ((printf "clipboard-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
+
+<div class="modal fade" id="modal-{{ ($id) }}" tabindex="-1"
+     aria-labelledby="modal-{{ ($id) }}-label" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5 text-truncate" id="modal-{{ ($id) }}-label">{{ ($x.Name) }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label='{{ (i18n "close") }}'></button>
+      </div>
+      <div class="modal-body">
+        <div class="node-body" id="cp-{{ ($cp) }}">
+            {{ $lang := ((replace (path.Ext ($x.Name)) "." "") | default "plaintext") }}
+            {{ (highlight (($x.Content) | chomp) ($lang)) }}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="#" role="button" aria-label='{{ (i18n "copy") }}'
+           data-fn="clipboard preventDefault" data-clipboard-target="#cp-{{ ($cp) }}"
+           data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
+          <i class="fas fa-copy fa-fw"></i>
+        </a>
+        <a class="btn btn-primary" href="{{ ($x.RelPermalink) }}" download role="button" aria-label='{{ (i18n "download") }}'
+           data-bs-tooltip data-bs-title='{{ (i18n "download") }}'>
+          <i class="fas fa-download fa-fw"></i>
+        </a>
+        <a class="btn btn-secondary" role="button" data-bs-dismiss="modal" aria-label='{{ (i18n "close") }}'
+           data-bs-tooltip data-bs-title='{{ (i18n "close") }}'>
+          <i class="fas fa-xmark fa-fw"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
