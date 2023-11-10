@@ -35,12 +35,33 @@ function search($path) {
 
         // Build our html if result exists.
         let $resultSet = ''; // Our results bucket.
-        let $url, $title;
+        let $url, $title, $section, $icon;
 
         for (let $i = 0; $i < $length; ++$i) {
           $url = $results[$i].item.url;
           $title = $results[$i].item.title;
-          $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0"><span class="d-block">${$title}</span></a>`
+          $section = $results[$i].item.section;
+
+          switch ($section) {
+            case 'articles':
+              $icon = 'fas fa-book';
+              break;
+            case 'faq':
+              $icon = 'fas fa-circle-question';
+              break;
+            case 'resources':
+              $icon = 'fas fa-cubes';
+              break;
+            default:
+              $icon = '';
+          }
+
+          $resultSet += '<a class="list-group-item list-group-item-action" href="' + $url + '" tabindex="0">'
+            + '<span class="d-flex">'
+            + '<span class="flex-shrink-0"><i class="' + $icon + ' fa-fw"></i></span>'
+            + '<span class="flex-grow-1 ms-3 overflow-hidden">' + $title + '</span>'
+            + '</span>'
+            + '</a>';
         }
 
         $eResList.innerHTML = $resultSet;

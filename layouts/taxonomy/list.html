@@ -1,20 +1,40 @@
 {{ define "main" }}
 
+    {{ $cfg := (index (site.Params.taxonomy) "list") }}
+    {{ $coverSize := ($cfg.cover.size) }}
+    {{ $iconSize := ($cfg.cover.icon.size) }}
+    {{ $icon := ($cfg.cover.icon.name) }}
+
     {{ (partial "breadcrumb" .) }}
 
-    <div class="row row-cols-1 row-cols-xl-2 g-3">
+    <div class="row row-cols-1 g-3">
         {{ range (.Paginator.Pages) }}
-          <div class="col">
-            <div class="d-sm-block d-md-none">
-                {{ (.Render "view/02") }}
+            {{ with (eq (.Section) "articles") }}{{ $icon = "fas fa-book" }}{{ end }}
+            {{ with (eq (.Section) "faq") }}{{ $icon = "fas fa-circle-question" }}{{ end }}
+            {{ with (eq (.Section) "resources") }}{{ $icon = "fas fa-cubes" }}{{ end }}
+            {{ with (eq (.Section) "drafts") }}{{ $icon = "fas fa-file-pen" }}{{ end }}
+
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <a class="d-flex justify-content-center align-items-center rounded p-1 bg-light link-secondary"
+                         href="{{ (.RelPermalink) }}"
+                         style="width: {{ ($coverSize) }}; height: {{ ($coverSize) }}">
+                        <i class="{{ ($icon) }} fa-fw fa-{{ ($iconSize) }}"></i>
+                      </a>
+                    </div>
+                    <div class="flex-grow-1 ms-3 overflow-hidden">
+                        {{ (.Render "view/00") }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+                {{ if (in ((.Type) | singularize) "faq") }}
+                    {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
+                {{ end }}
             </div>
-            <div class="d-none d-md-block">
-                {{ (.Render "view/01") }}
-            </div>
-              {{ if (in ((.Type) | singularize) "faq") }}
-                  {{ (partial (printf "module/node/modal/%s" ((.Type) | singularize)) .) }}
-              {{ end }}
-          </div>
         {{ end }}
     </div>
 
