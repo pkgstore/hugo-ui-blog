@@ -141,8 +141,10 @@ resources:
   licenseuri: { other: 'Лицензия' }
   link: { other: 'Ссылка' }
   package: { other: 'Пакет' }
+  parameter: { other: 'Параметр' }
   projecturi: { other: 'Проект' }
   readme: { other: 'Описание' }
   resource: { other: 'Ресурс' }
+  value: { other: 'Значение' }
   version: { other: 'Версия' }
   view: { other: 'Посмотреть' }

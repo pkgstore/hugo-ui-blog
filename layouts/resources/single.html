@@ -39,23 +39,39 @@
 
         <div class="accordion mb-3" id="accordion-{{ ($accordionID) }}">
             {{ with (.Resources.ByType "text") }}
-                {{ range . }}
+                {{ range $k, $v := . }}
                     {{ $modalFileID := ((printf "modal-file-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
                     {{ $modalReadmeID := ((printf "modal-readme-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
                     {{ $accordionItemID := ((printf "accordion-item-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
                     {{ $readmeFile := (printf "%s.md" (strings.TrimSuffix (path.Ext (.Name)) (.Name))) }}
+
+                    {{ $btnCSS := "collapsed" }}
+                    {{ $ariaExpanded := "false" }}
+                    {{ $itemCSS := "" }}
+                    {{ if (eq $k 0) }}
+                        {{ $btnCSS = "" }}
+                        {{ $ariaExpanded = "true" }}
+                        {{ $itemCSS = "show" }}
+                    {{ end }}
+
                     <div class="accordion-item">
                       <div class="accordion-header">
-                        <a class="accordion-button collapsed" href="#" role="button" tabindex="0"
+                        <a class="accordion-button {{ ($btnCSS) }}" href="#" role="button" tabindex="0"
                            data-bs-toggle="collapse" data-bs-target="#accordion-item-{{ ($accordionItemID) }}"
-                           aria-expanded="false" aria-controls="accordion-item-{{ ($accordionItemID) }}" aria-label="{{ (.Name) }}">
+                           aria-expanded="{{ ($ariaExpanded) }}" aria-controls="accordion-item-{{ ($accordionItemID) }}" aria-label="{{ (.Name) }}">
                           <code>{{ (.Name) }}</code>
                         </a>
                       </div>
-                      <div id="accordion-item-{{ ($accordionItemID) }}" class="accordion-collapse collapse" data-bs-parent="#accordion-{{ ($accordionID) }}">
+                      <div id="accordion-item-{{ ($accordionItemID) }}" class="accordion-collapse collapse {{ ($itemCSS) }}" data-bs-parent="#accordion-{{ ($accordionID) }}">
                         <div class="accordion-body">
                           <div class="table-responsive">
                             <table class="table table-striped table-bordered mb-0">
+                              <thead>
+                              <tr>
+                                <th class="w-25" scope="col">{{ (i18n "resources.parameter") }}</th>
+                                <th scope="col">{{ (i18n "resources.value") }}</th>
+                              </tr>
+                              </thead>
                               <tbody>
                               <tr>
                                 <td>

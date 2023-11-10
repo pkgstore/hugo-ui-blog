@@ -18,6 +18,7 @@ complexity: { other: 'Level of difficulty' }
 contacts: { other: 'Contacts' }
 copy: { other: 'Copy' }
 developers: { other: 'Developers' }
+download: { other: 'Download' }
 draft: { other: 'Draft' }
 egg: { other: 'Oops!' }
 email: { other: 'Email' }
@@ -126,3 +127,24 @@ social:
   wordpress: { other: 'WordPress' }
   youtube: { other: 'YouTube' }
 
+# -------------------------------------------------------------------------------------------------------------------- #
+# Resources.
+# -------------------------------------------------------------------------------------------------------------------- #
+
+resources:
+  author: { other: 'Author' }
+  authoremail: { other: 'Email' }
+  companyname: { other: 'Company' }
+  copyright: { other: 'Copyright' }
+  guid: { other: 'GUID' }
+  license: { other: 'License' }
+  licenseuri: { other: 'License' }
+  link: { other: 'Link' }
+  package: { other: 'Package' }
+  parameter: { other: 'Parameter' }
+  projecturi: { other: 'Project' }
+  readme: { other: 'Readme' }
+  resource: { other: 'Resource' }
+  value: { other: 'Value' }
+  version: { other: 'Version' }
+  view: { other: 'View' }
