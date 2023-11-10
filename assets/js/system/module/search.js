@@ -50,7 +50,7 @@ function search($path) {
               $icon = 'fas fa-circle-question';
               break;
             case 'resources':
-              $icon = 'fas fa-cubes';
+              $icon = 'fas fa-cube';
               break;
             default:
               $icon = '';

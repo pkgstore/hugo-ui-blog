@@ -11,9 +11,8 @@
         {{ range (.Paginator.Pages) }}
             {{ with (eq (.Section) "articles") }}{{ $icon = "fas fa-file-lines" }}{{ end }}
             {{ with (eq (.Section) "faq") }}{{ $icon = "fas fa-circle-question" }}{{ end }}
-            {{ with (eq (.Section) "resources") }}{{ $icon = "fas fa-cubes" }}{{ end }}
+            {{ with (eq (.Section) "resources") }}{{ $icon = "fas fa-cube" }}{{ end }}
             {{ with (eq (.Section) "drafts") }}{{ $icon = "fas fa-file-pen" }}{{ end }}
-
             <div class="col">
               <div class="card">
                 <div class="card-body">
