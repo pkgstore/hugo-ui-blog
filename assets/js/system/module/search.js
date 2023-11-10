@@ -44,7 +44,7 @@ function search($path) {
 
           switch ($section) {
             case 'articles':
-              $icon = 'fas fa-book';
+              $icon = 'fas fa-file-lines';
               break;
             case 'faq':
               $icon = 'fas fa-circle-question';

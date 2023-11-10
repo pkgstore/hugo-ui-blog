@@ -9,7 +9,7 @@
 
     <div class="row row-cols-1 g-3">
         {{ range (.Paginator.Pages) }}
-            {{ with (eq (.Section) "articles") }}{{ $icon = "fas fa-book" }}{{ end }}
+            {{ with (eq (.Section) "articles") }}{{ $icon = "fas fa-file-lines" }}{{ end }}
             {{ with (eq (.Section) "faq") }}{{ $icon = "fas fa-circle-question" }}{{ end }}
             {{ with (eq (.Section) "resources") }}{{ $icon = "fas fa-cubes" }}{{ end }}
             {{ with (eq (.Section) "drafts") }}{{ $icon = "fas fa-file-pen" }}{{ end }}
