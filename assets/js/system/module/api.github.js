@@ -53,7 +53,8 @@ const _fetch = async ($url) => {
   const $token = atob('{{ (site.Params.api.github.token) }}');
   const $headers = new Headers({
     'Accept': 'application/vnd.github+json',
-    'Authorization': 'Bearer ' + $token
+    'Authorization': 'Bearer ' + $token,
+    'User-Agent': '{{ (site.Params.api.user_agent) }}'
   });
   const $CACHE_TIMEOUT = 300000;
   const $nowTime = new Date().getTime();
