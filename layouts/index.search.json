@@ -26,5 +26,5 @@
 
     {{ $search := (($data.Get "pages") | uniq) }}
 
-    {{ ((dict "data" ($search)) | jsonify) }}
+    {{ (($search) | jsonify) }}
 {{ end }}

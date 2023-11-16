@@ -1,13 +1,13 @@
-export function init() {
+export const init = () => {
   resize();
 }
 
-function resize() {
+const resize = () => {
   _event('load');
   _event('click');
 }
 
-function _event($action) {
+const _event = ($action) => {
   if ($action === 'load') {
     document.addEventListener("DOMContentLoaded", ($e) => {
       if (localStorage.getItem('site-container')) {
@@ -33,7 +33,7 @@ function _event($action) {
   }
 }
 
-function _fluid($action) {
+const _fluid = ($action) => {
   if ($action === 'on') {
     const $el = document.querySelectorAll('.wrapper .container');
 
@@ -58,7 +58,7 @@ function _fluid($action) {
   }
 }
 
-function _button($action) {
+const _button = ($action) => {
   if ($action === 'on' && document.querySelector('#ext-site-resize .fa-expand-alt')) {
     const $elSiteResize = document.querySelector('#ext-site-resize .fa-expand-alt');
 

@@ -1,14 +1,14 @@
-export function init() {
+export const init = () => {
   konami('#modal-egg');
 }
 
-function konami($selector) {
+const konami = ($selector) => {
   document.addEventListener('DOMContentLoaded', () => {
     _generator($selector);
   });
 }
 
-function _generator($selector) {
+const _generator = ($selector) => {
   const $eModal = document.querySelector($selector);
   if (!$eModal) return 0;
 

@@ -1,14 +1,14 @@
-export function init() {
+export const init = () => {
   msg([
     '㊙️ ⬆️ ⬆️ ⬇️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ 🅱️ 🅰️'
   ]);
 }
 
-function msg($message) {
+const msg = ($message) => {
   const $item = $message[Math.floor(Math.random() * $message.length)];
   _log($item, 'font-size: 2em;');
 }
 
-function _log($text, $style = '') {
+const _log = ($text, $style = '') => {
   console.log('%c' + $text, $style);
 }

@@ -1,7 +1,7 @@
-export function init() {
+export const init = () => {
   fancybox('[data-fancybox]');
 }
 
-function fancybox($selector) {
+const fancybox = ($selector) => {
   Fancybox.bind($selector);
 }

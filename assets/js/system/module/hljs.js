@@ -1,8 +1,8 @@
-export function init() {
+export const init = () => {
   highlight();
 }
 
-function highlight() {
+const highlight = () => {
   const $code = document.querySelectorAll('pre code');
 
   document.addEventListener('DOMContentLoaded', (event) => {

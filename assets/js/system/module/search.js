@@ -1,9 +1,8 @@
-export function init() {
-  search('{{ "search.json" | relLangURL }}');
+export const init = () => {
+  search('{{ "search.json" | relLangURL }}').catch(console.error);
 }
 
-function search($path) {
-  let $fuse;
+const search = async ($path) => {
   const $eResList = document.getElementById('search-results');
   const $eInput = document.getElementById('search-input');
   const $eHelp = document.getElementById('search-help');
@@ -16,20 +15,19 @@ function search($path) {
 
   if (!$eInput) return 0;
 
-  _keyboard();
+  await _keyboard();
 
-  _fetch($path).then(($data) => {
-    $fuse = new Fuse($data, $options);
-  });
+  const $json = await _fetch($path)
+  const $fuse = new Fuse($json, $options);
 
   // Execute search as each character is typed.
   $eInput.onkeyup = function (e) {
     // Run a search query (for "term") every time a letter is typed in the search box.
     if ($fuse) {
       const $results = $fuse.search(this.value.trim()); // The actual query being run using "fuse.js".
-      const $length = $results.length;
+      const $len = $results.length;
 
-      if ($length !== 0) {
+      if ($len !== 0) {
         $eResList.classList.remove('d-none');
         $eHelp.classList.add('d-none');
 
@@ -37,7 +35,7 @@ function search($path) {
         let $resultSet = ''; // Our results bucket.
         let $url, $title, $section, $icon;
 
-        for (let $i = 0; $i < $length; ++$i) {
+        for (let $i = 0; $i < $len; ++$i) {
           $url = $results[$i].item.url;
           $title = $results[$i].item.title;
           $section = $results[$i].item.section;
@@ -56,12 +54,12 @@ function search($path) {
               $icon = '';
           }
 
-          $resultSet += '<a class="list-group-item list-group-item-action" href="' + $url + '" tabindex="0">'
-            + '<span class="d-flex">'
-            + '<span class="flex-shrink-0"><i class="' + $icon + ' fa-fw"></i></span>'
-            + '<span class="flex-grow-1 ms-3 overflow-hidden">' + $title + '</span>'
-            + '</span>'
-            + '</a>';
+          $resultSet += `<a class="list-group-item list-group-item-action" href="${$url}" tabindex="0">
+            <span class="d-flex">
+            <span class="flex-shrink-0"><i class="${$icon} fa-fw"></i></span>
+            <span class="flex-grow-1 ms-3 overflow-hidden">${$title}</span>
+            </span>
+            </a>`;
         }
 
         $eResList.innerHTML = $resultSet;
@@ -74,13 +72,20 @@ function search($path) {
   }
 }
 
-async function _fetch($path, $callback) {
+const _fetch = async ($path) => {
+  const $CACHE_TIMEOUT = 300000;
+  const $nowTime = new Date().getTime();
+  const $prevResponse = JSON.parse(localStorage.getItem($path));
+  if ($prevResponse && Math.abs($nowTime - $prevResponse.time) < $CACHE_TIMEOUT) {
+    return $prevResponse.data;
+  }
   const $response = await fetch($path);
-  const $data = await $response.json();
-  return $data.data;
+  const $json = await $response.json();
+  localStorage.setItem($path, JSON.stringify({time: $nowTime, data: $json}));
+  return $json;
 }
 
-function _keyboard() {
+const _keyboard = async () => {
   const $eForm = document.getElementById('search-form');
   const $eInput = document.getElementById('search-input');
   const $eModal = document.getElementById('search-modal');

@@ -9,6 +9,7 @@ import * as fancybox from './module/fancybox'
 import * as clipboard from './module/clipboard'
 import * as prevent_default from './module/prevent_default'
 import * as search from './module/search';
+import * as github from './module/api.github';
 
 export function init() {
   modal.init();
@@ -22,4 +23,5 @@ export function init() {
   clipboard.init();
   prevent_default.init();
   search.init();
+  github.init();
 }

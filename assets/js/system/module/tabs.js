@@ -1,8 +1,8 @@
-export function init() {
+export const init = () => {
   active('[data-fn="node-tabs"]', 'button[data-bs-toggle="tab"]');
 }
 
-function active($selector, $button) {
+const active = ($selector, $button) => {
   if (!document.querySelector($selector)) return 0;
 
   const $elID = document.querySelector($selector).getAttribute('id');
@@ -22,7 +22,7 @@ function active($selector, $button) {
   }
 }
 
-function _eventActive($i, $s) {
+const _eventActive = ($i, $s) => {
   $i.addEventListener('show.bs.tab', ($e) => {
     localStorage.setItem($s, $i.dataset.bsTarget);
   });

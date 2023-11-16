@@ -1,8 +1,8 @@
-export function init() {
+export const init = () => {
   toggle('.navbar');
 }
 
-function toggle($selector) {
+const toggle = ($selector) => {
   const $header = document.querySelector($selector);
   const $headroom = new Headroom($header);
   $headroom.init();

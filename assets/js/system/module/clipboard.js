@@ -1,7 +1,7 @@
-export function init() {
+export const init = () => {
   clipboard('[data-fn*="clipboard"]');
 }
 
-function clipboard($selector) {
+const clipboard = ($selector) => {
   new ClipboardJS($selector);
 }
