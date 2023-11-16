@@ -50,7 +50,7 @@ const github = async ($selector, $type) => {
 }
 
 const _fetch = async ($url) => {
-  const $token = atob('{{ (site.Params.api.github.token) }}');
+  const $token = atob(atob('{{ (site.Params.api.github.token) }}'));
   const $headers = new Headers({
     'Accept': 'application/vnd.github+json',
     'Authorization': 'Bearer ' + $token,
