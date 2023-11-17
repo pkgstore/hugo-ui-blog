@@ -28,13 +28,6 @@
         </ul>
       </footer>
       <div class="node-body">
-          {{ if (in (.Section) "drafts") }}
-              {{ (partial "function/alert" (dict
-              "type" "danger"
-              "icon" "fas fa-file-pen"
-              "msg" (i18n "alert.draft")
-              )) }}
-          {{ end }}
         <div class="node-question border-start border-danger-subtle border-3 ps-3 mb-3">{{ (.Content) }}</div>
           {{ with (.Resources.Match "answer.*.md") }}
               {{ range . }}

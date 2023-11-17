@@ -117,13 +117,6 @@
       <div class="tab-content">
         <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home" tabindex="0">
           <div class="node-body">
-              {{ if (in (.Section) "drafts") }}
-                  {{ (partial "function/alert" (dict
-                  "type" "danger"
-                  "icon" "fas fa-file-pen"
-                  "msg" (i18n "alert.draft")
-                  )) }}
-              {{ end }}
               {{ if (in (.Params.categories) "inDev") }}
                   {{ (partial "function/alert" (dict
                   "type" "warning"

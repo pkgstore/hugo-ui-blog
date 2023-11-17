@@ -13,11 +13,6 @@
       <div class="node-title">
         <h2 class="h5">
           <a href="{{ (.RelPermalink) }}">{{ (.Title) }}</a>
-            {{ if (in (.Section) "drafts") }}
-              <sup class="text-danger" data-bs-tooltip data-bs-title='{{ (i18n "draft") }}'>
-                <i class="fas fa-pen-to-square fa-fw"></i>
-              </sup>
-            {{ end }}
         </h2>
       </div>
     </header>
