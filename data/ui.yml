@@ -12,8 +12,6 @@ icons:
 
 network:
   pre_connect:
-    - 'https://fonts.googleapis.com'
-    - 'https://fonts.gstatic.com'
     - 'https://gravatar.com'
     - 'https://images.unsplash.com'
 
