@@ -14,7 +14,6 @@
     {{ $bundle := slice }}
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
     {{ $bundle = (($bundle) | resources.Concat "css/vendor.bundle.css") }}
-    {{/* $bundle = (($bundle) | minify) */}}
     <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
     <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
 {{ end }}
