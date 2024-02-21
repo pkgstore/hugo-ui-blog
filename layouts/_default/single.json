@@ -42,7 +42,6 @@
 
 {{ $content := (dict
 "plain" (((.Page.Plain) | chomp) | base64Encode)
-"markdown" ((readFile (.File.Path) | chomp) | base64Encode)
 ) }}
 
 {{ $site := (dict

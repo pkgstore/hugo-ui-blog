@@ -17,16 +17,6 @@
             </div>
           </div>
         {{ end }}
-        {{ with (.File) }}
-            {{ $f := (os.Stat .) }}
-            <div class="col">{{ (i18n "size") }}</div>
-            <div class="col">
-              <div class="input-group">
-                <input type="text" class="form-control" value="{{ (div ($f.Size) 1000) }}" readonly/>
-                <span class="input-group-text">{{ (i18n "kB") }}</span>
-              </div>
-            </div>
-        {{ end }}
     </div>
   </div>
 </section>
