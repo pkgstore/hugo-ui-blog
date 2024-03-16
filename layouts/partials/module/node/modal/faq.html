@@ -24,7 +24,7 @@
             {{ if (.Params.tags) }}
                 {{ range (.GetTerms "tags") }}
                   <li class="list-inline-item">
-                    <a href="{{ (.Permalink) }}">#{{ (.Title) }}</a>
+                    <a href="{{ (.Permalink) }}">#{{ ((.Title) | lower) }}</a>
                   </li>
                 {{ end }}
                 <li class="list-inline-item">&bull;</li>

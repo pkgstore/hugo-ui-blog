@@ -9,7 +9,7 @@
     {{ range ($pages) }}
 
         {{ $tags := (newScratch) }}{{ ($tags.Add "tags" slice) }}
-        {{ range (.GetTerms "tags") }}{{ ($tags.Add "tags" (.Title)) }}{{ end }}
+        {{ range (.GetTerms "tags") }}{{ ($tags.Add "tags" ((.Title) | lower)) }}{{ end }}
         {{ $categories := (newScratch) }}{{ ($categories.Add "categories" slice) }}
         {{ range (.GetTerms "categories") }}{{ ($categories.Add "categories" (.Title)) }}{{ end }}
 
