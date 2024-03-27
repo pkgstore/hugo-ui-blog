@@ -69,7 +69,7 @@
                 {{ end }}
             {{ else }}
                 {{ range (.GetTerms "tags") }}
-                  <category>{{ (.Title) }}</category>
+                  <category>{{ ((.Title) | lower) }}</category>
                 {{ end }}
             {{ end }}
           <guid>{{ (.Permalink) }}</guid>

@@ -37,7 +37,7 @@
 
   {{ with (.GetTerms "tags") }}
       {{ range . }}
-        <meta property="article:tag" content="{{ (.Title) }}"/>
+        <meta property="article:tag" content="{{ ((.Title) | lower) }}"/>
       {{ end }}
   {{ end }}
 {{ end }}

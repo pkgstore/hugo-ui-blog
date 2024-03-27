@@ -3,7 +3,7 @@
 
 {{ ($data.Add "keywords" (slice)) }}
 {{ range (.GetTerms "tags") }}
-    {{ ($data.Add "keywords" (.Title)) }}
+    {{ ($data.Add "keywords" ((.Title) | lower)) }}
 {{ end }}
 
 {{ $keywords = (($data.Get "keywords") | uniq) }}

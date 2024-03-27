@@ -20,7 +20,7 @@
                 {{ $currentFontSize := (add ($smFontSize) (mul (sub ($lgFontSize) ($smFontSize)) ($weigth))) }}
                 <li class="list-inline-item">
                   <a href="{{ (.Page.RelPermalink) }}" style="font-size: {{ ($currentFontSize) }}{{ ($fontUnit) }};">
-                      {{ (.Page.Title) }}
+                      {{ ((.Page.Title) | lower) }}
                     <sup class="text-body-secondary">{{ (.Count) }}</sup>
                   </a>
                 </li>

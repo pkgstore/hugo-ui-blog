@@ -19,7 +19,7 @@
 {{ ($data.Add "tags" (slice)) }}
 {{ range (.GetTerms "tags") }}
     {{ ($data.Add "tags" (dict
-    "name" (.Title)
+    "name" ((.Title) | lower)
     "url" (.Permalink)
     )) }}
 {{ end }}
