@@ -12,16 +12,12 @@
 
   const $getPreferredTheme = () => {
     const $storedTheme = $getStoredTheme()
-
     if ($storedTheme) {
       return $storedTheme
     }
 
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   }
-
-  const $el = document.querySelectorAll('[data-bs-theme-value]')
-  const $len = $el.length
 
   const $setTheme = $theme => {
     if ($theme === 'auto') {
@@ -44,6 +40,9 @@
 
     const $btnToActive = document.querySelector(`[data-bs-theme-value="${$theme}"]`)
 
+    const $el = document.querySelectorAll('[data-bs-theme-value]')
+    const $len = $el.length
+
     for (let $i = 0; $i < $len; ++$i) {
       $el[$i].classList.remove('active')
       $el[$i].setAttribute('aria-pressed', 'false')
@@ -59,7 +58,6 @@
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     const $storedTheme = $getStoredTheme()
-
     if ($storedTheme !== 'light' && $storedTheme !== 'dark') {
       $setTheme($getPreferredTheme())
     }
@@ -67,6 +65,9 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     $showActiveTheme($getPreferredTheme())
+
+    const $el = document.querySelectorAll('[data-bs-theme-value]')
+    const $len = $el.length
 
     for (let $i = 0; $i < $len; ++$i) {
       $el[$i].addEventListener('click', () => {
