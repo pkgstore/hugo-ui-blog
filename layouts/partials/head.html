@@ -90,6 +90,16 @@
 {{ end }}
 <!--[ / application-name ]-->
 
+<!--[ theme-color ]-->
+{{ $theme := (site.Params.ui.color.theme) }}
+{{ with ($theme.light) }}
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)"/>
+{{ end }}
+{{ with ($theme.dark) }}
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)"/>
+{{ end }}
+<!--[ / theme-color ]-->
+
 <!--[ seo ]-->
 {{ template "_internal/twitter_cards.html" . }}
 {{ template "_internal/opengraph.html" . }}
