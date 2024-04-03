@@ -65,4 +65,3 @@ scripts:
   system:
     internal:
       - 'js/system.js'
-      - 'js/theme.js'

@@ -34,6 +34,10 @@
 {{ end }}
 <!--[ / pre-connect ]-->
 
+<!--[ theme-color ]-->
+<script src="{{ (((resources.Get "js/theme.js") | minify).RelPermalink) }}"></script>
+<!--[ / theme-color ]-->
+
 <!--[ ui-fonts ]-->
 {{ (partial "ui.fonts" .) }}
 <!--[ / ui-fonts ]-->
