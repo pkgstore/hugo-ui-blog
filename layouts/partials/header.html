@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom shadow-sm text-lg-center bg-light">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom shadow-sm text-lg-center bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href='{{ ("/" | relLangURL) }}'>
       <img src='{{ ("img/logo.min.svg" | absURL) }}' alt="{{ (i18n "logo") }}" width="30" height="24" class="d-inline-block align-text-top"/>
@@ -18,6 +18,9 @@
       </ul>
       <ul class="navbar-nav">
           {{ (partial "module/search/button" .) }}
+      </ul>
+      <ul class="navbar-nav">
+          {{ (partial "module/menu/theme" .) }}
       </ul>
     </div>
   </div>

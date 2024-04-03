@@ -13,7 +13,7 @@
             {{ with (site.GetPage (printf "/%s/%s" ($type) ($name))) }}
                 {{ $email := ((.Params.info.email) | default ((delimit (shuffle (seq 11 99)) "") | md5)) }}
                 {{ $avatarID := (($email) | md5) }}
-                {{ $bg := ((.Params.background) | default "bg-light") }}
+                {{ $bg := ((.Params.background) | default "bg-body-tertiary") }}
                 {{ $clr := ((.Params.color) | default "link-secondary") }}
                 <div class="col">
                   <article class="d-flex">

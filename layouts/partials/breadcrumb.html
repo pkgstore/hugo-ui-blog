@@ -1,7 +1,7 @@
 {{ $cfg := (site.Params.breadcrumb) }}
 
 <nav style="--bs-breadcrumb-divider:'{{ ($cfg.divider) }}';" class="small" aria-label="breadcrumb">
-  <ol class="breadcrumb bg-light p-2 rounded">
+  <ol class="breadcrumb p-2 rounded bg-body-tertiary">
       {{ range (.Ancestors.Reverse) }}
         <li class="breadcrumb-item">
           <a href="{{ (.RelPermalink) }}" aria-label="{{ ((.Title) | plainify) }}">

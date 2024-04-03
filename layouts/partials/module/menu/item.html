@@ -22,7 +22,7 @@
             {{ if (.Pre) }}<i class="{{ (.Pre) }} fa-fw"></i>{{ end }}
           <span>{{ (.Name) }}</span>
         </a>
-        <div class="dropdown-menu shadow">
+        <ul class="dropdown-menu shadow">
             {{ range (.Children) }}
                 {{ $active = (or ($x.IsMenuCurrent .Menu .) ($x.HasMenuCurrent .Menu .)) }}
                 {{ if ($x.File) }}
@@ -37,12 +37,14 @@
                     (or ($active) (eq (.Identifier) ($x.Section)))
                     ) }}
                 {{ end }}
-                <a class="dropdown-item {{ if ($active) }}active{{ end }}" href="{{ ((.URL) | relURL) }}">
-                    {{ if (.Pre) }}<i class="{{ (.Pre) }} fa-fw"></i>{{ end }}
-                  <span>{{ (.Name) }}</span>
-                </a>
+                <li>
+                  <a class="dropdown-item {{ if ($active) }}active{{ end }}" href="{{ ((.URL) | relURL) }}">
+                      {{ if (.Pre) }}<i class="{{ (.Pre) }} fa-fw"></i>{{ end }}
+                    <span>{{ (.Name) }}</span>
+                  </a>
+                </li>
             {{ end }}
-        </div>
+        </ul>
       </li>
     {{ else }}
       <li class="nav-item">

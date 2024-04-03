@@ -12,7 +12,7 @@
             {{ $name := (.Name) }}{{ $count := (.Count) }}
             {{ with (site.GetPage (printf "/%s/%s" ($type) ($name))) }}
                 {{ $iconID := ((.Params.icon) | default ($cfg.cover.icon.name)) }}
-                {{ $bg := ((.Params.background) | default "bg-light") }}
+                {{ $bg := ((.Params.background) | default "bg-body-tertiary") }}
                 {{ $clr := ((.Params.color) | default "link-secondary") }}
                 <div class="col">
                   <article class="d-flex">

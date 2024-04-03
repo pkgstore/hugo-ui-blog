@@ -6,7 +6,7 @@
 {{ if (.IsNode) }}{{ $node = "is-node" }}{{ end }}
 {{ if (.IsPage) }}{{ $page = "is-page" }}{{ end }}
 
-<html class="h-100" dir="ltr" lang="{{ ($lang) }}"
+<html class="h-100" dir="ltr" lang="{{ ($lang) }}" data-bs-theme="auto"
       prefix="og: http://ogp.me/ns#
       article: http://ogp.me/ns/article#
       profile: http://ogp.me/ns/profile#
@@ -19,7 +19,7 @@
     <div class="container">{{ block "main" . }}{{ end }}</div>
   </div>
 </main>
-<footer class="mt-auto border-top bg-light" id="site-footer">{{ (partial "footer" .) }}</footer>
+<footer class="mt-auto border-top bg-body-tertiary" id="site-footer">{{ (partial "footer" .) }}</footer>
 {{ (partial "module/search/modal" .) }}
 {{ (partial "ui.js" .) }}
 {{ (partial "seo/schema" .) }}
