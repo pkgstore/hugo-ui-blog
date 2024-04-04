@@ -65,7 +65,7 @@ theme:
   dark: { other: 'Dark' }
   label: { other: 'Toggle theme' }
   light: { other: 'Light' }
-  tooltip: { other: 'Toggle theme' }
+  theme: { other: 'UI Theme' }
 
 # -------------------------------------------------------------------------------------------------------------------- #
 # Browser console.

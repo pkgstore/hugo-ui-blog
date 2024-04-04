@@ -1,5 +1,11 @@
 <li class="nav-item dropdown">
-  <a title='{{ (i18n "theme.tooltip") }}' class="nav-link dropdown-toggle" id="bd-theme"
+  <a class="nav-link dropdown-toggle d-lg-none ui-theme"
+     href="#" role="button" data-bs-toggle="dropdown"
+     aria-expanded="false" aria-label='{{ (i18n "theme.label") }}'>
+    <i class="fas fa-circle-half-stroke fa-fw"></i>
+    <span>{{ (i18n "theme.theme") }}</span>
+  </a>
+  <a title='{{ (i18n "theme.theme") }}' class="nav-link dropdown-toggle d-none d-lg-block ui-theme"
      href="#" role="button" data-bs-toggle="dropdown"
      aria-expanded="false" aria-label='{{ (i18n "theme.label") }}'>
     <i class="fas fa-circle-half-stroke fa-fw"></i>

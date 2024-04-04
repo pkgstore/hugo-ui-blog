@@ -7,8 +7,8 @@
 (() => {
   'use strict'
 
-  const $getStoredTheme = () => localStorage.getItem('theme')
-  const $setStoredTheme = $theme => localStorage.setItem('theme', $theme)
+  const $getStoredTheme = () => localStorage.getItem('ui.theme')
+  const $setStoredTheme = $theme => localStorage.setItem('ui.theme', $theme)
 
   const $getPreferredTheme = () => {
     const $storedTheme = $getStoredTheme()
@@ -32,7 +32,7 @@
   $setTheme($getPreferredTheme())
 
   const $showActiveTheme = ($theme, $focus = false) => {
-    const $themeSwitcher = document.querySelector('#bd-theme')
+    const $themeSwitcher = document.querySelector('.ui-theme')
 
     if (!$themeSwitcher) {
       return
