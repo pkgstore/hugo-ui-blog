@@ -6,7 +6,7 @@
 {{ $src := ((index (.Params.images) 0) | default ($cfg.image.placeholder)) }}
 
 <a title="{{ ((.Title) | plainify) }}"
-   class="d-flex align-items-center rounded overflow-hidden"
+   class="d-flex align-items-center rounded overflow-hidden bg-body-tertiary"
    href="{{ (.RelPermalink) }}">
   <img class="img-fluid"
        src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
