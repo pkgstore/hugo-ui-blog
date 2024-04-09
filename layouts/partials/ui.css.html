@@ -1,4 +1,5 @@
 {{ $styles := (site.Data.ui.styles) }}
+{{ $ts := (now.Unix) }}
 
 <!--[ vendor-external ]-->
 {{ with ($styles.vendor.external) }}
@@ -15,8 +16,8 @@
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
     {{ $bundle = (($bundle) | resources.Concat "css/vendor.bundle.css") }}
     {{ $bundle = (($bundle) | minify) }}
-    <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
-    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
+    <link rel="preload" href="{{ ($bundle.RelPermalink) }}?ver={{ ($ts) }}" as="style"/>
+    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}?ver={{ ($ts) }}"/>
 {{ end }}
 <!--[ / vendor-internal ]-->
 
@@ -27,7 +28,7 @@
     {{ $bundle = (($bundle) | resources.Concat "css/system.bundle.scss") }}
     {{ $bundle = (($bundle) | resources.ExecuteAsTemplate ("css/system.bundle.scss" | relLangURL) .) }}
     {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
-    <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style"/>
-    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}"/>
+    <link rel="preload" href="{{ ($bundle.RelPermalink) }}?ver={{ ($ts) }}" as="style"/>
+    <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}?ver={{ ($ts) }}"/>
 {{ end }}
 <!--[ / system-internal ]-->

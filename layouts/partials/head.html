@@ -35,7 +35,10 @@
 <!--[ / pre-connect ]-->
 
 <!--[ theme-color ]-->
-<script src="{{ (((resources.Get "js/theme.js") | minify).RelPermalink) }}"></script>
+{{ $uiTheme := ((resources.Get "js/theme.js") | minify) }}
+{{ $uiTheme = (($uiTheme) | resources.Fingerprint) }}
+<script src="{{ ($uiTheme.RelPermalink) }}" integrity="{{ ($uiTheme.Data.Integrity) }}"
+        crossorigin="anonymous"></script>
 <!--[ / theme-color ]-->
 
 <!--[ ui-fonts ]-->

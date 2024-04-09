@@ -1,11 +1,13 @@
 export const init = () => {
-  hljs.registerAliases(['rsc'], { languageName: 'routeros' });
   highlight();
 }
 
 const highlight = () => {
   const $el = document.querySelectorAll('pre code');
   const $len = $el.length;
+
+  // Aliases.
+  hljs.registerAliases(['rsc'], {languageName: 'routeros'});
 
   document.addEventListener('DOMContentLoaded', (event) => {
     for (let $i = 0; $i < $len; ++$i) {

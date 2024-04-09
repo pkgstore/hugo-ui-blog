@@ -1,4 +1,5 @@
 {{ $fonts := (site.Data.ui.fonts) }}
+{{ $ts := (now.Unix) }}
 
 <!--[ fonts: external ]-->
 {{ with ($fonts.external) }}
@@ -14,9 +15,9 @@
 <!--[ fonts: internal ]-->
 {{ with ($fonts.internal) }}
     {{ range . }}
-      <link rel="preload" href="{{ . }}" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'"/>
+      <link rel="preload" href="{{ . }}?ver={{ ($ts) }}" crossorigin="anonymous" as="style" onload="this.rel='stylesheet'"/>
       <noscript>
-        <link rel="stylesheet" href="{{ . }}" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="{{ . }}?ver={{ ($ts) }}" crossorigin="anonymous"/>
       </noscript>
     {{ end }}
 {{ end }}
