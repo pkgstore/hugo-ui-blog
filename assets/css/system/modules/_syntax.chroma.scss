@@ -1,6 +1,5 @@
 .highlight {
   @import 'syntax.chroma.theme';
-  @include font-mono();
 
   .chroma {
     .lntable {
