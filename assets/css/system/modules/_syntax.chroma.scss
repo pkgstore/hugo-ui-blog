@@ -2,6 +2,10 @@
   @import 'syntax.chroma.theme';
   @include font-mono();
 
+  pre {
+    margin: 0;
+  }
+
   .chroma {
     .lntable {
       table-layout: fixed;
