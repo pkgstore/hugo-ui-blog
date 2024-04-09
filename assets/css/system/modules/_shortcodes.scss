@@ -56,8 +56,8 @@ body {
               background-color: unset;
               border-radius: unset;
 
-              code {
-                .line:last-child:after {
+              > code {
+                &:after {
                   content: ' _ ';
                   opacity: 0;
                   animation: cursor 1s infinite;
@@ -85,17 +85,18 @@ body {
 
             &-linux {
               pre {
-                code {
-                  .line:first-child:before {
+                > code {
+                  &:before {
                     content: 'user@host ~ % ';
+                    color: var(--bs-primary);
                   }
                 }
               }
 
               &-root {
                 pre {
-                  code {
-                    .line:first-child:before {
+                  > code {
+                    &:before {
                       content: 'root@host ~ # ';
                       color: var(--bs-danger);
                     }
@@ -106,17 +107,18 @@ body {
 
             &-windows {
               pre {
-                code {
-                  .line:first-child:before {
+                > code {
+                  &:before {
                     content: 'C:\\User> ';
+                    color: var(--bs-primary);
                   }
                 }
               }
 
               &-root {
                 pre {
-                  code {
-                    .line:first-child:before {
+                  > code {
+                    &:before {
                       content: 'C:\\Admin> ';
                       color: var(--bs-danger);
                     }

@@ -64,9 +64,18 @@ scripts:
       - 'js/vendor/fuse/fuse.min.js'
       # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/
       - 'js/vendor/hljs/_highlight.min.js'
+      - 'js/vendor/hljs/dns.min.js'
+      - 'js/vendor/hljs/dockerfile.min.js'
       - 'js/vendor/hljs/dos.min.js'
+      - 'js/vendor/hljs/excel.min.js'
+      - 'js/vendor/hljs/http.min.js'
+      - 'js/vendor/hljs/nginx.min.js'
+      - 'js/vendor/hljs/pf.min.js'
+      - 'js/vendor/hljs/pgsql.min.js'
       - 'js/vendor/hljs/powershell.min.js'
+      - 'js/vendor/hljs/properties.min.js'
       - 'js/vendor/hljs/routeros.min.js'
+      - 'js/vendor/hljs/twig.min.js'
   system:
     internal:
       - 'js/system.js'
