@@ -1,4 +1,5 @@
 export const init = () => {
+  hljs.registerAliases(['rsc'], { languageName: 'routeros' });
   highlight();
 }
 

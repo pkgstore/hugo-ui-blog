@@ -63,7 +63,8 @@ scripts:
       # https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js
       - 'js/vendor/fuse/fuse.min.js'
       # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/
-      - 'js/vendor/hljs/highlight.min.js'
+      - 'js/vendor/hljs/_highlight.min.js'
+      - 'js/vendor/hljs/dos.min.js'
       - 'js/vendor/hljs/powershell.min.js'
       - 'js/vendor/hljs/routeros.min.js'
   system:

@@ -133,8 +133,9 @@ body {
 
         &-file, &-ghFile, &-glFile, &-resource {
           pre {
-            max-height: calc(100vh - 10rem);
+            border-radius: 0;
             margin: 0;
+            max-height: calc(100vh - 10rem);
           }
         }
 

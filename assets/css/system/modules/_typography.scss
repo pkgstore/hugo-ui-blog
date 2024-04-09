@@ -55,12 +55,14 @@ body {
       pre {
         @include font-mono();
         background-color: rgba(var(--bs-danger-rgb), 5%);
+        border-radius: var(--bs-border-radius);
 
         > code {
           background: unset;
           display: block;
           padding: 1rem;
           white-space: pre;
+          font-size: 1.2em;
         }
       }
 
