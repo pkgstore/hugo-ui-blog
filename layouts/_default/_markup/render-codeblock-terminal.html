@@ -12,7 +12,7 @@ This shortcode allows you to create a simulation of an OS terminal window.
   cd D:\Documents
   ```
 
-  ```terminal {os="windows", mode="root"}
+  ```terminal {os="windows",mode="root"}
   Dism /Get-ImageInfo /ImageFile:"C:\BuildFarm\WIM\install.wim"
   ```
 
@@ -20,25 +20,29 @@ This shortcode allows you to create a simulation of an OS terminal window.
   bash favicon.sh png
   ```
 
-  ```terminal {os="linux", mode="root"}
+  ```terminal {os="linux",mode="root"}
   dd if=image.iso of=/dev/sdc bs=4M oflag=direct status=progress; sync
   ```
 */ -}}
 
 {{ $attr := (.Attributes) }}
-{{ $type := ((.Type) | default "text") }}
+{{ $type := (.Type) }}
 {{ $inner := (.Inner) }}
 {{ $ordinal := (.Ordinal) }}
+
+{{ $os := (($attr.os) | default "linux") }}
+{{ $mode := (($attr.mode) | default "user") }}
+{{ $lang := (($attr.lang) | default "plaintext") }}
 
 {{ $cp := ((printf "clipboard-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
 
 <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}
-{{ with ($attr.os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}
-{{ with ($attr.os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}{{ with ($attr.mode) }}-{{ . }}{{ end }}">
+{{ with ($os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}
+{{ with ($os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}{{ with ($mode) }}-{{ . }}{{ end }}">
   <div class="card overflow-hidden" data-bs-theme="dark">
     <div class="card-header">
       <div class="d-flex align-items-center">
-        <div class="flex-shrink-0 {{ if (eq ($attr.mode) "root") }}text-danger{{ end }}">
+        <div class="flex-shrink-0 {{ if (eq ($mode) "root") }}text-danger{{ end }}">
           <i class="fas fa-terminal fa-fw"></i>
         </div>
         <div class="flex-grow-1 mx-2">
@@ -57,10 +61,8 @@ This shortcode allows you to create a simulation of an OS terminal window.
         </div>
       </div>
     </div>
-      {{ $lang := "plaintext" }}
-      {{ if (eq ($attr.os) "windows") }}{{ $lang = "powershell" }}{{ end }}
-      {{ if (eq ($attr.os) "linux") }}{{ $lang = "bash" }}{{ end }}
-      {{ with ($attr.hl) }}{{ $lang = . }}{{ end }}
-    <div class="card-body p-0" id="cp-{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($lang)) }}</div>
+    <div class="card-body p-0" id="cp-{{ ($cp) }}">
+      <pre><code class="language-{{ ($lang) }}">{{ (trim (.Inner) "\n\r") }}</code></pre>
+    </div>
   </div>
 </div>

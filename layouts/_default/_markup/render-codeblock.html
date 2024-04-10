@@ -11,7 +11,7 @@ This shortcode creates a block of code with syntax highlighting.
 */ -}}
 
 {{ $attr := (.Attributes) }}
-{{ $type := ((.Type) | default "text") }}
+{{ $type := (.Type) }}
 {{ $inner := (.Inner) }}
 {{ $ordinal := (.Ordinal) }}
 
@@ -51,7 +51,10 @@ This shortcode creates a block of code with syntax highlighting.
 
   <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden" id="cp-{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
+      <div class="flex-grow-1 rounded overflow-hidden" id="cp-{{ ($cp) }}">
+          {{ if ($type) }}{{ $type = (printf "class='language-%s'" ($type)) }}{{ end }}
+        <pre><code {{ (($type) | safeHTMLAttr) }}>{{ (trim (.Inner) "\n\r") }}</code></pre>
+      </div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
