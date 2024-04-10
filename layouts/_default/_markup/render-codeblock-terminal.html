@@ -34,7 +34,7 @@ This shortcode allows you to create a simulation of an OS terminal window.
 {{ $mode := (($attr.mode) | default "user") }}
 {{ $lang := (($attr.lang) | default "plaintext") }}
 
-{{ $cp := ((printf "clipboard-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
+{{ $cp := ((printf "clipboard-%s-%d" (delimit (shuffle (seq 11 99)) "") ($ordinal)) | md5) }}
 
 <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}
 {{ with ($os) }}shortcode-codeblock-{{ ($type) }}-{{ . }}{{ end }}

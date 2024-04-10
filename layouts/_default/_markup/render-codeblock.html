@@ -15,7 +15,7 @@ This shortcode creates a block of code with syntax highlighting.
 {{ $inner := (.Inner) }}
 {{ $ordinal := (.Ordinal) }}
 
-{{ $cp := ((printf "clipboard-%s" (delimit (shuffle (seq 11 99)) "")) | md5) }}
+{{ $cp := ((printf "clipboard-%s-%d" (delimit (shuffle (seq 11 99)) "") ($ordinal)) | md5) }}
 
 {{ if (or ($attr.title) ($attr.file)) }}
 
@@ -43,7 +43,10 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
         </div>
       </div>
-      <div class="card-body" id="cp-{{ ($cp) }}">{{ (highlight (($inner) | chomp) ($type)) }}</div>
+      <div class="card-body" id="cp-{{ ($cp) }}">
+          {{ if ($type) }}{{ $type = (printf "class='language-%s'" ($type)) }}{{ end }}
+        <pre><code {{ (($type) | safeHTMLAttr) }}>{{ (trim (.Inner) "\n\r") }}</code></pre>
+      </div>
     </div>
   </div>
 
