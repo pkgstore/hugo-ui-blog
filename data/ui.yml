@@ -63,33 +63,25 @@ scripts:
       # https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js
       - 'js/vendor/fuse/fuse.min.js'
       # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js
-      - 'js/vendor/hljs/_highlight.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/awk.min.js
+      - 'js/vendor/hljs/highlight.min.js'
+      - 'js/vendor/hljs/apache.min.js'
+      - 'js/vendor/hljs/autohotkey.min.js'
+      - 'js/vendor/hljs/autoit.min.js'
       - 'js/vendor/hljs/awk.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/dns.min.js
+      - 'js/vendor/hljs/cmake.min.js'
       - 'js/vendor/hljs/dns.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/dockerfile.min.js
       - 'js/vendor/hljs/dockerfile.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/dos.min.js
       - 'js/vendor/hljs/dos.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/excel.min.js
       - 'js/vendor/hljs/excel.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/http.min.js
       - 'js/vendor/hljs/http.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/nginx.min.js
       - 'js/vendor/hljs/nginx.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/pf.min.js
       - 'js/vendor/hljs/pf.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/pgsql.min.js
       - 'js/vendor/hljs/pgsql.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/powershell.min.js
       - 'js/vendor/hljs/powershell.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/properties.min.js
       - 'js/vendor/hljs/properties.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/routeros.min.js
       - 'js/vendor/hljs/routeros.min.js'
-      # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/twig.min.js
       - 'js/vendor/hljs/twig.min.js'
+      - 'js/vendor/hljs/vbscript.min.js'
   system:
     internal:
       - 'js/system.js'
