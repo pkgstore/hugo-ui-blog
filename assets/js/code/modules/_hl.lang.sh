@@ -23,10 +23,8 @@ lang=(
   'vbscript'
 )
 
-${curl} -o 'highlight.min.js' 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'
-
 for i in "${lang[@]}"; do
-  ${curl} -O "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/${i}.min.js"
+  ${curl} -O "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/es/languages/${i}.min.js"
 done
 
 exit 0

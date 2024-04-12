@@ -5,12 +5,11 @@ import * as select from './modules/select';
 import * as share from './modules/share';
 import * as qrcode from './modules/qrcode';
 import * as navbar from './modules/navbar';
-import * as fancybox from './modules/fancybox'
-import * as clipboard from './modules/clipboard'
-import * as prevent_default from './modules/prevent_default'
+import * as fancybox from './modules/fancybox';
+import * as clipboard from './modules/clipboard';
+import * as prevent_default from './modules/prevent_default';
 import * as search from './modules/search';
 import * as github from './modules/api.github';
-import * as hljs from './modules/hl';
 
 export function init() {
   modal.init();
@@ -25,5 +24,4 @@ export function init() {
   prevent_default.init();
   search.init();
   github.init();
-  hljs.init();
 }
