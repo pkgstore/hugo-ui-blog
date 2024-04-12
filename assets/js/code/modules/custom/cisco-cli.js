@@ -1,13 +1,14 @@
 const hljsGrammar = (() => {
   'use strict';
   return () => {
-    const $command = /(?=^\s*[a-z0-9A-Z_]+(?:\(([a-zA-Z\-]*)\)#|#)|[a-zA-Z]+[0-9]\/[0-9]\z)/;
+    const $COMMAND = /(?=^\s*[a-z0-9A-Z_]+(?:\(([a-zA-Z\-]*)\)#|#)|[a-zA-Z]+[0-9]\/[0-9]\z)/;
     /* regex for IPv4 address */
-    const $ip4 = /(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|9[0-9]|[1-8][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|9[0-9]|[1-8][0-9]|[0-9])(?:\/\d{1,2})?/;
+    const $IP4 = /(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|9[0-9]|[1-8][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|9[0-9]|[1-8][0-9]|[0-9])(?:\/\d{1,2})?/;
     /* regex for IPv6 address, from: https://www.regextester.com/104187*/
-    const $ip6 = /(?![^\w:])(([0-9a-f]{1,4}:){1,7}:|:(:[0-9a-f]{1,4}){1,7}|([0-9a-f]{1,4}:){1,7}[0-9a-f]{0,4}(:[0-9a-f]{1,4}){1,7})(?![\w:])/;
+    const $IP6 = /(?![^\w:])(([0-9a-f]{1,4}:){1,7}:|:(:[0-9a-f]{1,4}){1,7}|([0-9a-f]{1,4}:){1,7}[0-9a-f]{0,4}(:[0-9a-f]{1,4}){1,7})(?![\w:])/;
     /* regex for MAC address in Cicso IOS notation */
-    const $mac = /(?:[aA0-fF9]{4}\.){2}(?:[aA0-fF9]{4})/;
+    const $MAC = /(?:[aA0-fF9]{4}\.){2}[aA0-fF9]{4}/;
+
     return {
       name: 'cisco-cli',
       aliases: ['cisco-cli'],
@@ -18,7 +19,7 @@ const hljsGrammar = (() => {
           variants: [
             {
               begin: /^VLAN\s*Name/,
-              end: $command,
+              end: $COMMAND,
               returnBegin: true,
               contains: [{className: 'string', begin: /(?:Fa|Gig)\d\/\d+/}, {
                 className: 'number',
@@ -39,8 +40,8 @@ const hljsGrammar = (() => {
               }]
             },
             {
-              begin: /Interface\s+IP\-Address/,
-              end: $command,
+              begin: /Interface\s+IP-Address/,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
                 variants: [{begin: /^\w+((\d\/)+\d?|\d+)/}, {begin: /(manual|DHCP|up)/}]
@@ -51,28 +52,28 @@ const hljsGrammar = (() => {
             },
             {
               begin: /Capability\sCodes/,
-              end: $command,
-              contains: [{className: 'keyword', begin: /\s(\w|\*)(\d|\w?)\s(?=\-)/}, {
+              end: $COMMAND,
+              contains: [{className: 'keyword', begin: /\s(\w|\*)(\d|\w?)\s(?=-)/}, {
                 className: 'comment',
                 begin: /Port\sID/,
                 end: /(?=^[a-zA-Z]+(\(([a-zA-Z\-]*)\)#|#)|[a-zA-Z]+[0-9]\/[0-9]\z)/,
                 contains: [{
                   className: 'keyword',
-                  variants: [{begin: /^[\w\.]+(?=\s)/}, {begin: /\b\w\b/}]
+                  variants: [{begin: /^[\w.]+(?=\s)/}, {begin: /\b\w\b/}]
                 }, {className: 'string', begin: /\s\w{1,3}\s[\d\/]+\d?/}, {className: 'number', begin: /\b\d+\b/}]
               }]
             },
             {
               begin: /(?<=show\sip\snat\stranslations)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}/}, {
                 className: 'keyword',
-                begin: /(?<=\:)\d+(?=\s)/
+                begin: /(?<=:)\d+(?=\s)/
               }, {className: 'string', begin: /(?<=^)\w+(?=\s)/}]
             },
             {
               begin: /(?<=show\sip\snat\sstatistics)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
                 variants: [{begin: /(?<=pool\s)\w+(?=\srefCount)/}, {begin: /(?<=Interfaces:\s).+(?=$)/}]
@@ -80,18 +81,18 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sinterface\s[aA-zZ]+\s*\d+(\/\d+(\/\d+)?)?)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
-                variants: [{begin: /\bup\b/}, {begin: /Full\-duplex|Half\-duplex/i}, {begin: /(?<=type\sis).+(?=$)/}]
+                variants: [{begin: /\bup\b/}, {begin: /Full-duplex|Half-duplex/i}, {begin: /(?<=type\sis).+(?=$)/}]
               }, {
                 className: 'number',
-                variants: [{begin: /\d+.b\/s/}, {begin: /(?:.{4}\.){2}(?:.{4})/}, {begin: /\b\d+\b/}]
+                variants: [{begin: /\d+.b\/s/}, {begin: /(?:.{4}\.){2}.{4}/}, {begin: /\b\d+\b/}]
               }]
             },
             {
               begin: /(?<=show\s(?:ip\s)?ssh)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=Session\sStarted).+(?=$)/}, {
                 className: 'number',
                 variants: [{begin: /\b\d+\.\d+\b/}, {begin: /\b\d+\b/}]
@@ -99,71 +100,71 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\sdhcp\sbinding)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}/}, {
                 className: 'string',
-                begin: /(?:.{4}\.){2}(?:.{4})/
+                begin: /(?:.{4}\.){2}.{4}/
               }]
             },
             {
               begin: /(?<=show\sip\sdhcp\spool)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}/}, {
                 className: 'string',
-                variants: [{begin: /\b\d+\b/}, {begin: /(?<=Pool).+(?=\:)/}]
+                variants: [{begin: /\b\d+\b/}, {begin: /(?<=Pool).+(?=:)/}]
               }]
             },
             {
-              begin: /(?<=show\smac\saddress\-table)/,
-              end: $command,
+              begin: /(?<=show\smac\saddress-table)/,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=\s)[\w\/]+\d(?=\s*$)/}, {
                 className: 'number',
-                variants: [{begin: /(?:.{4}\.){2}(?:.{4})/}, {begin: /\b\d+\b/}]
+                variants: [{begin: /(?:.{4}\.){2}.{4}/}, {begin: /\b\d+\b/}]
               }]
             },
             {
               begin: /(?<=show\sinterfaces\strunk)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=\s*)[aA-zZ]+\d+(\/\d+(?:\/\d+)?)?/}, {
                 className: 'keyword',
                 begin: /802\.1q/
               }, {className: 'number', begin: /\b\d+\b/}]
             },
             {
-              begin: /(?<=show\sinterfaces\s[aA-zZ]+\s*\d+(\/\d+(\/\d+)?)?\sswitchport)/, //--------------------------------------------------------------------------------------------TREBA PREROBIT NEJAK DYNAMICKY NA ROZNE INT
-              end: $command,
+              begin: /(?<=show\sinterfaces\s[aA-zZ]+\s*\d+(\/\d+(\/\d+)?)?\sswitchport)/,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
-                begin: /(?<=(?:Name|Administrative\sMode|Operational\sMode|Access\sMode\sVLAN|Trunking\sNative\sMode\sVLAN)\:).+(?=$)/
+                begin: /(?<=(?:Name|Administrative\sMode|Operational\sMode|Access\sMode\sVLAN|Trunking\sNative\sMode\sVLAN):).+(?=$)/
               }, {className: 'number', begin: /\b\d+\b/}]
             },
             {
-              begin: /(?<=show\sport\-security)/,
-              end: $command,
+              begin: /(?<=show\sport-security)/,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
                 variants: [{begin: /(?<=^)\s+[\w\/]+(?=\s)/}, {begin: /(?<=\d)\s+\w+(?=$)/}]
               }, {className: 'number', begin: /\b\d+\b/}]
             },
             {
-              begin: /(?<=show\sport\-security\sinterface\s[aA-zZ]+\s*\d+(\/\d+(\/\d+)?)?)/,
-              end: $command,
+              begin: /(?<=show\sport-security\sinterface\s[aA-zZ]+\s*\d+(\/\d+(\/\d+)?)?)/,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
-                begin: /(?<=(?:Port\s(?:Security|Status)|Violation\sMode)\s+\:).+(?=$)/
-              }, {className: 'number', variants: [{begin: /(?:.{4}\.){2}(?:.{4})/}, {begin: /\b\d+\b/}]}] // WARNING NON FIXED REGEX
+                begin: /(?<=(?:Port\s(?:Security|Status)|Violation\sMode)\s+:).+(?=$)/
+              }, {className: 'number', variants: [{begin: /(?:.{4}\.){2}.{4}/}, {begin: /\b\d+\b/}]}]
             },
             {
-              begin: /(?<=show\sport\-security\saddress)/,
-              end: $command,
+              begin: /(?<=show\sport-security\saddress)/,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /\b[aA-zZ]+\d\/\d(\/\d)?\b/}, {
                 className: 'number',
-                variants: [{begin: /(?:.{4}\.){2}(?:.{4})/}, {begin: /\b\d+\b/}]
+                variants: [{begin: /(?:.{4}\.){2}.{4}/}, {begin: /\b\d+\b/}]
               }]
             },
             {
               begin: /(?<=show\sipv6\sinterface\sbrief)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
                 variants: [{begin: /(?<=).+(?=\[)/}, {begin: /up/}]
@@ -174,21 +175,21 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip(v6)?\sroute(\s\w+)?)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
-                variants: [{begin: /^[aA-zZ]\s(?:[aA-zZ]+)?/}, {begin: /\s(\w|\*)(\d|(\w\w?|\w?))\s(?=\-)/}]
+                variants: [{begin: /^[aA-zZ]\s(?:[aA-zZ]+)?/}, {begin: /\s(\w|\*)(\d|(\w\w?|\w?))\s(?=-)/}]
               }, {
                 className: 'number',
                 variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /(?![^\w:])(([0-9a-fA-F]{1,4}:){1,7}:|:(:[0-9a-fA-F]{1,4}){1,7}|([0-9a-fA-F]{1,4}:){1,7}[0-9a-fA-F]{0,4}(:[0-9a-fA-F]{1,4}){1,7})(?![\w:])(\/\d+)?/}]
               }, {
                 className: 'string',
-                variants: [{begin: /\b([aA-zZ]+\d\/\d(\/\d)?)|(Null|\w{5,})\d+\b/}, {begin: /(?<=\[).+(?=\])/}]
+                variants: [{begin: /\b([aA-zZ]+\d\/\d(\/\d)?)|(Null|\w{5,})\d+\b/}, {begin: /(?<=\[).+(?=])/}]
               }]
             },
             {
               begin: /(?<=show\sipv6\sprotocols)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
                 variants: [{begin: '"', end: '"'}, {begin: /\b(\w+\d\/\d(\/\d)?)|\w{4,}\d+\b/}]
@@ -196,44 +197,44 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\svtp\sstatus)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /Server|Client|Transparent/}, {
                 className: 'number',
-                variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /(?:[\daA-fF]{4}\.){2}(?:[\daA-fF]{4})/}, {begin: /\s\d+\s/}]
+                variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /(?:[\daA-fF]{4}\.){2}[\daA-fF]{4}/}, {begin: /\s\d+\s/}]
               }, {className: 'string', begin: /(?<=VTP\sDomain\sName\s+:).+(?=$)/}]
             },
             {
               begin: /(?<=show\svtp\scounter)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /\s\d+\s/}]
             },
             {
               begin: /(?<=show\svtp\spassword)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=Password:\s)\w+(?=\s)/}]
             },
             {
               begin: /(?<=show\ssdm\sprefer)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=")\w+(?=")/}, {
                 className: 'number',
-                variants: [{begin: /\b[\d\.]+K/}, {begin: /\b\d+\b/}]
+                variants: [{begin: /\b[\d.]+K/}, {begin: /\b\d+\b/}]
               }]
             },
             {
               begin: /(?<=show\setherchannel\ssummary)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'comment', begin: /\(LACP\sonly\)/}, {
                 className: 'keyword',
                 variants: [{begin: /PAgP|LACP/}, {begin: /(?<=\s).\s(?=-)/}, {begin: /(?<=\().*?(?=\))/}]
-              }, {className: 'string', begin: /(?<=\s)[\w\d\/]*?(?=\()/}, {className: 'number', begin: /\s\d+\s/}]
+              }, {className: 'string', begin: /(?<=\s)[\w\/]*?(?=\()/}, {className: 'number', begin: /\s\d+\s/}]
             },
             {
               begin: /(?<=show\sstandby)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'number',
-                variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /(?:[\daA-fF]{4}\.){2}(?:[\daA-fF]{4})/}]
+                variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /(?:[\daA-fF]{4}\.){2}[\daA-fF]{4}/}]
               }, {
                 className: 'string',
                 variants: [{begin: /(?<=State\sis\s).+(?=$)/}, {begin: /(?<=Group\sname\sis\s).+(?=\()/}]
@@ -241,7 +242,7 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sstandby\sbrief)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'number',
                 variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /\s\d+\s/}]
@@ -249,18 +250,18 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sspanning-tree\svlan\s\d+)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
                 variants: [{begin: /^\s*[aA-zZ]{1,4}[\d\/]+\s/}]
               }, {className: 'keyword', begin: /(?<=\.)\d+(?=\s)/}, {
                 className: 'number',
-                variants: [{begin: /(?:[\daA-fF]{4}\.){2}(?:[\daA-fF]{4})/}, {begin: /(?<=\s)\d+(?=\.)/}, {begin: /\s\d+\s/}]
+                variants: [{begin: /(?:[\daA-fF]{4}\.){2}[\daA-fF]{4}/}, {begin: /(?<=\s)\d+(?=\.)/}, {begin: /\s\d+\s/}]
               }]
             },
             {
               begin: /(?<=show\sspanning-tree\sinterface\s.+\n)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /VLAN\d{4}/}, {
                 className: 'number',
                 variants: [{begin: /(?<=\s)\d+(?=\.)/}, {begin: /\s\d+\s/}]
@@ -268,10 +269,10 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\sprotocols)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: "string",
-                variants: [{begin: '"', end: '"'}, {begin: /K\d=1/}, {begin: /(?<=Redistributing\:).+(?=,)/}]
+                variants: [{begin: '"', end: '"'}, {begin: /K\d=1/}, {begin: /(?<=Redistributing:).+(?=,)/}]
               }, {
                 className: 'number',
                 variants: [{begin: /\s\d+\s/}, {begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}]
@@ -279,15 +280,15 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\seigrp\stopology)/,
-              end: $command,
-              contains: [{className: 'string', begin: /(?<=via).+?(?=\(|,)/}, {
+              end: $COMMAND,
+              contains: [{className: 'string', begin: /(?<=via).+?(?=[(,])/}, {
                 className: 'keyword',
                 variants: [{begin: /(?<=\s).\s(?=-)/}, {begin: /^\w\s/}, {begin: /FD is \d+\s/}]
               }, {className: 'number', variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}]}]
             },
             {
               begin: /(?<=show\sip\sospf\sneighbors)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /\s[aA-zZ]+[\d\/]+\s/}, {
                 className: 'number',
                 begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/
@@ -295,15 +296,15 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\sospf\sinterface)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /\s[aA-zZ]+[\d\/]+\s/}, {
                 className: 'keyword',
                 variants: [{begin: /\bup\b/}, {begin: /(?<=Network\sType|State).+(?<=,)/}]
               }, {className: 'number', variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}]}] //{begin:/\s\d+\s/}
             },
             {
-              begin: /(?<=show\sip\sospf\sborder\-routers)/,
-              end: $command,
+              begin: /(?<=show\sip\sospf\sborder-routers)/,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
                 variants: [{begin: /(?<=\s).\s(?=-)/}, {begin: /^\w\s/}, {begin: /Area\s\d+/}]
@@ -314,7 +315,7 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\sospf\sdatabase)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'keyword',
                 variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /Area\s\d+/}]
@@ -322,7 +323,7 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\scache\sflow)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'number',
                 variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /\b\d+(\.\d+)?\b/}]
@@ -333,12 +334,12 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\sflow\sexport)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /\b\d+\b/}]
             },
             {
               begin: /(?<=show\sip\sinterface\s[aA-zZ]+\s*[\d\/]+)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'number',
                 variants: [{begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {begin: /\s\d+\s/}]
@@ -349,29 +350,29 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\ssnmp\scommunity)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /(?<=:).+?(?=\s)/}]
             },
             {
               begin: /(?<=show\ssnmp)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /\s\d+\s/}]
             },
             {
               begin: /(?<=show\sip\sbgp\ssummary)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /(?:[0-9]{1,3}\.){3}[0-9]{1,3}(\/\d+)?/}, {
                 className: 'number',
                 begin: /\b\d+\b/
               }]
             },
             {
-              begin: /(?<=show\saccess\-lists)/,
-              end: $command,
+              begin: /(?<=show\saccess-lists)/,
+              end: $COMMAND,
               contains: [{
                 className: 'string',
                 variants: [{begin: /any/}, {begin: /(?<=access\slist|eq).+(?=$)/}]
-              }, {className: 'number', variants: [{begin: $ip4}, {begin: /\b\d+\b/}]}, {
+              }, {className: 'number', variants: [{begin: $IP4}, {begin: /\b\d+\b/}]}, {
                 className: 'keyword',
                 begin: /(?<=(permit|deny)\s).+?(?=\s)/
               }]
@@ -380,22 +381,22 @@ const hljsGrammar = (() => {
               begin: /(Current configuration|Building configuration)/,
               end: /^end\s/,
               contains: [
-                {className: 'string', begin: /^ntp/, end: /$/, contains: [{className: 'number', begin: $ip4}]},
+                {className: 'string', begin: /^ntp/, end: /$/, contains: [{className: 'number', begin: $IP4}]},
                 {
                   className: 'string',
                   begin: /^ip\sflow/,
                   end: /$/,
-                  contains: [{className: 'number', variants: [{begin: $ip4}, {begin: /\b\d+\b/}]}]
+                  contains: [{className: 'number', variants: [{begin: $IP4}, {begin: /\b\d+\b/}]}]
                 },
                 {
                   className: 'string',
                   begin: /^logging/,
                   end: /$/,
-                  contains: [{className: 'keyword', begin: /(?<=trap).+(?=$)/}, {className: 'number', begin: $ip4}]
+                  contains: [{className: 'keyword', begin: /(?<=trap).+(?=$)/}, {className: 'number', begin: $IP4}]
                 },
                 {
                   className: 'string',
-                  begin: /^spanning\-tree/,
+                  begin: /^spanning-tree/,
                   end: /$/,
                   contains: [{
                     className: 'keyword',
@@ -407,13 +408,13 @@ const hljsGrammar = (() => {
                   begin: /^ip\sdhcp\spool/,
                   end: /!/,
                   excludeEnd: true,
-                  contains: [{className: 'keyword', begin: /(?<=pool).+(?=$)/}, {className: 'number', begin: $ip4}]
+                  contains: [{className: 'keyword', begin: /(?<=pool).+(?=$)/}, {className: 'number', begin: $IP4}]
                 },
                 {
                   className: 'string',
                   begin: /^ip\sdhcp\sex/,
                   end: /$/,
-                  contains: [{className: 'number', begin: $ip4}]
+                  contains: [{className: 'number', begin: $IP4}]
                 },
                 {
                   className: 'string',
@@ -422,13 +423,13 @@ const hljsGrammar = (() => {
                   contains: [{
                     className: 'keyword',
                     variants: [{begin: /(?<=list).+(?=pool|interface)/}, {begin: /(?<=interface).+(?=overload)/}, {begin: /(?<=pool\s).+?(?=\s)/}]
-                  }, {className: 'number', begin: $ip4}]
+                  }, {className: 'number', begin: $IP4}]
                 },
                 {
                   className: 'string',
                   begin: /^access-list/,
                   end: /$/,
-                  contains: [{className: 'number', variants: [{begin: $ip4}, {begin: /\b\d+\b/}]}]
+                  contains: [{className: 'number', variants: [{begin: $IP4}, {begin: /\b\d+\b/}]}]
                 },
                 {
                   className: 'string',
@@ -442,12 +443,12 @@ const hljsGrammar = (() => {
                   end: /$/,
                   contains: [{className: 'keyword', begin: /(?<=motd).+(?=$)/}]
                 },
-                {className: 'string', begin: /^ip\sroute/, end: /$/, contains: [{className: 'number', begin: $ip4}]},
+                {className: 'string', begin: /^ip\sroute/, end: /$/, contains: [{className: 'number', begin: $IP4}]},
                 {
                   className: 'string',
                   begin: /^ip\slocal\spool/,
                   end: /$/,
-                  contains: [{className: 'number', begin: $ip4}, {
+                  contains: [{className: 'number', begin: $IP4}, {
                     className: 'keyword',
                     begin: /(?<=pool\s).+?(?=\s)/
                   }]
@@ -475,7 +476,7 @@ const hljsGrammar = (() => {
                   excludeEnd: true,
                   contains: [{
                     className: 'number',
-                    variants: [{begin: $ip6}, {begin: /\b\d+\b/}]
+                    variants: [{begin: $IP6}, {begin: /\b\d+\b/}]
                   }, {className: 'keyword', begin: /(?<=(name|pool)).+(?<=$)/}]
                 },
                 {
@@ -501,7 +502,7 @@ const hljsGrammar = (() => {
                 },
                 {
                   className: 'string',
-                  begin: /^(?:interface|bba\-group)/,
+                  begin: /^(?:interface|bba-group)/,
                   end: /!/,
                   excludeEnd: true,
                   contains: [{
@@ -509,7 +510,7 @@ const hljsGrammar = (() => {
                     variants: [{begin: /(?<=interface|server|duplex|speed|group|pool|chap\s(?:hostname|password)|encapsulation|description|ip\snat|switchport\smode).+(?<=$)/}, {begin: /(?<=ipv6).+(?=enable)/}]
                   }, {
                     className: 'number',
-                    variants: [{begin: /dhcp|negotiated/}, {begin: $mac}, {begin: $ip4}, {begin: $ip6}, {begin: /\b\d+\b/}]
+                    variants: [{begin: /dhcp|negotiated/}, {begin: $MAC}, {begin: $IP4}, {begin: $IP6}, {begin: /\b\d+\b/}]
                   }]
                 },
                 {
@@ -519,14 +520,14 @@ const hljsGrammar = (() => {
                   excludeEnd: true,
                   contains: [{
                     className: 'keyword',
-                    begin: /(?<=router|passive\-interface|default\-information).+(?=$)/
-                  }, {className: 'number', variants: [{begin: $ip4}, {begin: $ip6}, {begin: /\b\d+\b/}]}]
+                    begin: /(?<=router|passive-interface|default-information).+(?=$)/
+                  }, {className: 'number', variants: [{begin: $IP4}, {begin: $IP6}, {begin: /\b\d+\b/}]}]
                 }
               ]
             },
             {
               begin: /(?<=show\sppp\smultilink)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /^\s*\w+(?=,)/}, {
                 className: 'string',
                 variants: [{begin: /(?<=(?:name|discriminator)\sis).+(?=$)/}, {begin: /\b[aA-zZ]+\d+(\/\d+(\/\d+)?)?\b/}]
@@ -534,49 +535,49 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\sip\slocal\spool)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /(?<=^)\s*(?!Pool)\w+?(?=\s)/}, {
                 className: 'number',
-                variants: [{begin: $ip4}, {begin: /\b\d+/}]
+                variants: [{begin: $IP4}, {begin: /\b\d+/}]
               }]
             },
             {
               begin: /(?<=show\spppoe\ssession)/,
-              end: $command,
-              contains: [{className: 'number', variants: [{begin: $mac}, {begin: /\b\d+/}]}, {
+              end: $COMMAND,
+              contains: [{className: 'number', variants: [{begin: $MAC}, {begin: /\b\d+/}]}, {
                 className: 'string',
                 begin: /\b[aA-zZ\-]+\d+(\/\d+(\/\d+)?)?\b/
               }]
             },
             {
               begin: /(?<=show\sntp\sstatus)/,
-              end: $command,
-              contains: [{className: 'keyword', begin: $ip4}, {
+              end: $COMMAND,
+              contains: [{className: 'keyword', begin: $IP4}, {
                 className: 'number',
                 variants: [{begin: /\b\d+(\.\d+)?/}]
               }]
             },
             {
               begin: /(?<=show\sclock)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'string', begin: /\b[aA-zZ]+\b/}, {className: 'number', begin: /\b\d+/}]
             },
             {
               begin: /(?<=show\sntp\sassociations)/,
-              end: $command,
-              contains: [{className: 'keyword', begin: $ip4}, {className: 'number', begin: /\b\d+(\.\d+)?/}]
+              end: $COMMAND,
+              contains: [{className: 'keyword', begin: $IP4}, {className: 'number', begin: /\b\d+(\.\d+)?/}]
             },
             {
               begin: /(?<=show\scontrollers(?:\s*[aA-zZ\-]+\d+(?:\/\d+(?:\/\d+)?)?)?)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{
                 className: 'number',
-                variants: [{begin: /0(x|X)[0-9a-fA-F]+/}, {begin: /\b[\da-fA-F]{4}\b/}, {begin: /\b\d+(\.\d+)?/}]
+                variants: [{begin: /0([xX])[0-9a-fA-F]+/}, {begin: /\b[\da-fA-F]{4}\b/}, {begin: /\b\d+(\.\d+)?/}]
               }]
             },
             {
               begin: /(?<=show\sip\sdhcp\sserver\sstatistics)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /(?<=^\s*)(?!Message).+?(?=\d)/}, {
                 className: 'number',
                 begin: /\b\d+/
@@ -584,12 +585,12 @@ const hljsGrammar = (() => {
             },
             {
               begin: /(?<=show\slogging)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'number', begin: /\b\d+/}, {className: 'keyword', begin: /\b[aA-zZ]+\slogging:/}]
             },
             {
               begin: /(?<=show\smonitor)/,
-              end: $command,
+              end: $COMMAND,
               contains: [{className: 'keyword', begin: /session\s+\d+/}, {
                 className: 'string',
                 variants: [{begin: /\b[aA-zZ\-]+\d+(\/\d+(\/\d+)?)?\b/}, {begin: /(?<=Type\s+:).+(?=$)/}]
@@ -597,7 +598,7 @@ const hljsGrammar = (() => {
             },
             /* Section of cisco command keywords, argument, etc. */
             {
-              begin: /^\s*[a-zA-Z0-9_\-]+(?:\(([a-zA-Z0-9\-]*)\)#|(?:>|#))/,
+              begin: /^\s*[a-zA-Z0-9_\-]+(?:\(([a-zA-Z0-9\-]*)\)#|[>#])/,
               returnBegin: true,
               end: /$/,
               contains:
@@ -614,13 +615,13 @@ const hljsGrammar = (() => {
                           variants:
                             [
                               {
-                                begin: $ip4
+                                begin: $IP4
                               },
                               {
-                                begin: $ip6
+                                begin: $IP6
                               },
                               {
-                                begin: $mac
+                                begin: $MAC
                               },
                               {
                                 className: 'string',
@@ -642,11 +643,11 @@ const hljsGrammar = (() => {
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=(access\-group|traffic\-filter)).+(?=in|out)/
+                                begin: /(?<=(access-group|traffic-filter)).+(?=in|out)/
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=(secret|password|router|remark|passive\-interface|eq|range|key\-string|key\schain|#\s*name|description|hostname|standard|domain-name|dhcp\s(pool|server))\s+).*(?=$|\W)/
+                                begin: /(?<=(secret|password|router|remark|passive-interface|eq|range|key-string|key\schain|#\s*name|description|hostname|standard|domain-name|dhcp\s(pool|server))\s+).*(?=$|\W)/
                               },
                               {
                                 className: 'string',
@@ -654,7 +655,7 @@ const hljsGrammar = (() => {
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=ip(v6)?\saccess\-list\s).+(?=$)/
+                                begin: /(?<=ip(v6)?\saccess-list\s).+(?=$)/
                               },
                               {
                                 className: 'string',
@@ -666,7 +667,7 @@ const hljsGrammar = (() => {
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=digest\-key).+(?=md5)/
+                                begin: /(?<=digest-key).+(?=md5)/
                               },
                               {
                                 className: 'string',
@@ -678,11 +679,11 @@ const hljsGrammar = (() => {
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=snmp\-server\s(location|contact)).+(?=$)/
+                                begin: /(?<=snmp-server\s(location|contact)).+(?=$)/
                               },
                               {
                                 className: 'string',
-                                begin: /(?<=snmp\-server\scommunity).+(?=ro)/
+                                begin: /(?<=snmp-server\scommunity).+(?=ro)/
                               },
                               {
                                 className: 'string',
