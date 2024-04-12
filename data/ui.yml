@@ -62,6 +62,11 @@ scripts:
       - 'js/vendor/qrcode/qrcode.min.js'
       # https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js
       - 'js/vendor/fuse/fuse.min.js'
+  system:
+    internal:
+      - 'js/system.js'
+  code:
+    internal:
       # https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js
       - 'js/vendor/hljs/highlight.min.js'
       - 'js/vendor/hljs/apache.min.js'
@@ -85,6 +90,3 @@ scripts:
       - 'js/vendor/hljs/rpm-spec.js'
       - 'js/vendor/hljs/twig.min.js'
       - 'js/vendor/hljs/vbscript.min.js'
-  system:
-    internal:
-      - 'js/system.js'
