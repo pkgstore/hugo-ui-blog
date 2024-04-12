@@ -68,6 +68,7 @@ scripts:
       - 'js/vendor/hljs/autohotkey.min.js'
       - 'js/vendor/hljs/autoit.min.js'
       - 'js/vendor/hljs/awk.min.js'
+      - 'js/vendor/hljs/cisco-cli.js'
       - 'js/vendor/hljs/cmake.min.js'
       - 'js/vendor/hljs/dns.min.js'
       - 'js/vendor/hljs/dockerfile.min.js'
