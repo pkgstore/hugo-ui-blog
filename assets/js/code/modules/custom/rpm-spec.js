@@ -22,6 +22,7 @@ const hljsGrammar = (() => {
     return {
       name: 'rpm-spec',
       aliases: ['rpm', 'spec', 'rpm-spec', 'specfile'],
+      disableAutodetect: true,
       contains: [
         $COMMENT,
         $HCM,

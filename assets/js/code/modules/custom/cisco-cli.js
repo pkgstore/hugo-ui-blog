@@ -12,6 +12,7 @@ const hljsGrammar = (() => {
     return {
       name: 'cisco-cli',
       aliases: ['cisco-cli'],
+      disableAutodetect: true,
       case_insensitive: true,
       contains: [
         {
