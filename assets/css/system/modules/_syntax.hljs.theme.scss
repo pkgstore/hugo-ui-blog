@@ -1,111 +1,89 @@
-code {
-  .hljs {
-    &-keyword,
-    &-name,
-    &-selector-attr,
-    &-variable,
-    &-variable.language_ {
-      color: #cba6f7
-    }
+/**
+  Atom One Dark by Daniel Gamage
+  Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
 
-    &-built_in,
-    &-doctag {
-      color: #f38ba8
-    }
+  base:    #282c34
+  mono-1:  #abb2bf
+  mono-2:  #818896
+  mono-3:  #5c6370
+  hue-1:   #56b6c2
+  hue-2:   #61aeee
+  hue-3:   #c678dd
+  hue-4:   #98c379
+  hue-5:   #e06c75
+  hue-5-2: #be5046
+  hue-6:   #d19a66
+  hue-6-2: #e6c07b
+*/
 
-    &-selector-tag,
-    &-title.class_,
-    &-type {
-      color: #f9e2af
-    }
+.hljs {
+  &-comment,
+  &-quote {
+    color: #5c6370;
+    font-style: italic
+  }
 
-    &-literal,
-    &-meta,
-    &-number,
-    &-variable.constant_ {
-      color: #fab387
-    }
+  &-doctag,
+  &-formula,
+  &-keyword {
+    color: #c678dd
+  }
 
-    &-bullet,
-    &-formula,
-    &-operator,
-    &-property,
-    &-selector-class,
-    &-selector-pseudo {
-      color: #94e2d5
-    }
+  &-deletion,
+  &-name,
+  &-section,
+  &-selector-tag,
+  &-subst {
+    color: #e06c75
+  }
 
-    &-punctuation {
-      color: #bac2de
-    }
+  &-literal {
+    color: #56b6c2
+  }
 
-    &-regexp {
-      color: #f5c2e7
-    }
+  &-addition,
+  &-attribute,
+  &-meta &-string,
+  &-regexp,
+  &-string {
+    color: #98c379
+  }
 
-    &-attribute,
-    &-char.escape_,
-    &-code,
-    &-string {
-      color: #a6e3a1
-    }
+  &-attr,
+  &-number,
+  &-selector-attr,
+  &-selector-class,
+  &-selector-pseudo,
+  &-template-variable,
+  &-type,
+  &-variable {
+    color: #d19a66
+  }
 
-    &-subst,
-    &-tag {
-      color: #a6adc8
-    }
+  &-bullet,
+  &-link,
+  &-meta,
+  &-selector-id,
+  &-symbol,
+  &-title {
+    color: #61aeee
+  }
 
-    &-symbol,
-    &-template-tag,
-    &-template-variable {
-      color: #f2cdcd
-    }
+  &-built_in,
+  &-class &-title,
+  &-title.class_ {
+    color: #e6c07b
+  }
 
-    &-attr,
-    &-section,
-    &-selector-id,
-    &-title,
-    &-title.function_ {
-      color: #89b4fa
-    }
+  &-emphasis {
+    font-style: italic
+  }
 
-    &-params {
-      color: #cdd6f4
-    }
+  &-strong {
+    font-weight: 700
+  }
 
-    &-comment {
-      color: #585b70;
-      font-style: italic
-    }
-
-    &-emphasis {
-      color: #f38ba8;
-      font-style: italic
-    }
-
-    &-strong {
-      color: #f38ba8;
-      font-weight: 700
-    }
-
-    &-link {
-      color: #74c7ec;
-      font-style: italic
-    }
-
-    &-quote {
-      color: #a6e3a1;
-      font-style: italic
-    }
-
-    &-addition {
-      color: #a6e3a1;
-      background: rgba(166, 227, 161, .15)
-    }
-
-    &-deletion {
-      color: #f38ba8;
-      background: rgba(243, 139, 168, .15)
-    }
+  &-link {
+    text-decoration: underline
   }
 }
