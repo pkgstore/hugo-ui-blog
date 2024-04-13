@@ -598,14 +598,15 @@ const hljsGrammar = (() => {
             },
             /* Section of cisco command keywords, argument, etc. */
             {
-              begin: /^\s*[a-zA-Z0-9_\-]+(?:\(([a-zA-Z0-9\-]*)\)#|[>#])/,
+              className: 'title',
+              begin: /^([\w+()>#])/,
               returnBegin: true,
               end: /$/,
               contains:
                 [
                   {
                     className: 'keyword',
-                    begin: /#/,
+                    begin: /[>#]/,
                     end: /$/,
                     excludeBegin: true,
                     contains:
