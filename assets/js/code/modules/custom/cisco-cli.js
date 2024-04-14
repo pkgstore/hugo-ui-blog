@@ -600,7 +600,7 @@ const hljsGrammar = (() => {
             /* Section of cisco command keywords, argument, etc. */
             {
               className: 'title',
-              begin: /^(([\w\-()]+[>#])|([>#]))/,
+              begin: /^(([\w()\-]+[>#])|([>#]))/,
               returnBegin: true,
               end: /$/,
               contains:
