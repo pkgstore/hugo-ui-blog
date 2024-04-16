@@ -20,17 +20,10 @@
 <!--[ / vendor-internal ]-->
 
 <!--[ code-internal ]-->
-{{ with ($scripts.code.internal.core) }}
+{{ with ($scripts.code.internal) }}
     {{ $bundle := slice }}
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
-    {{ $bundle = (($bundle) | resources.Concat "js/code.core.bundle.js") }}
-    {{ $bundle = (($bundle) | minify) }}
-    <script src="{{ ($bundle.RelPermalink) }}" crossorigin="anonymous" defer></script>
-{{ end }}
-{{ with ($scripts.code.internal.modules) }}
-    {{ $bundle := slice }}
-    {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
-    {{ $bundle = (($bundle) | resources.Concat "js/code.modules.bundle.js") }}
+    {{ $bundle = (($bundle) | resources.Concat "js/code.bundle.js") }}
     {{ $bundle = (($bundle) | minify) }}
     <script src="{{ ($bundle.RelPermalink) }}" crossorigin="anonymous" defer></script>
 {{ end }}
