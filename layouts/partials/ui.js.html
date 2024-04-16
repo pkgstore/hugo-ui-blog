@@ -24,8 +24,8 @@
 {{ with ($scripts.code.internal) }}
     {{ $bundle := slice }}
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
-    {{ $bundle = ((($bundle) | resources.Concat "js/code.bundle.js") | js.Build) }}
-    {{ $bundle = ((($bundle) | minify) | resources.Fingerprint) }}
+    {{ $bundle = (($bundle) | resources.Concat "js/code.bundle.js") }}
+    {{ $bundle = (($bundle) | minify) }}
     <script src="{{ ($bundle.RelPermalink) }}" integrity="{{ ($bundle.Data.Integrity) }}"
             crossorigin="anonymous" defer></script>
 {{ end }}

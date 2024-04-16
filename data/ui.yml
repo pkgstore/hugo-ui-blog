@@ -65,4 +65,4 @@ scripts:
       - 'js/system.js'
   code:
     internal:
-      - 'js/code.js'
+      - 'js/code/highlight.min.js'

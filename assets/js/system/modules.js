@@ -10,6 +10,7 @@ import * as clipboard from './modules/clipboard';
 import * as prevent_default from './modules/prevent_default';
 import * as search from './modules/search';
 import * as github from './modules/api.github';
+import * as hlJS from './modules/hl';
 
 export function init() {
   modal.init();
@@ -24,4 +25,5 @@ export function init() {
   prevent_default.init();
   search.init();
   github.init();
+  hlJS.init();
 }
