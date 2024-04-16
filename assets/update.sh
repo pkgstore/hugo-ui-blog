@@ -51,13 +51,13 @@ hlJS() {
   # hlJS: Core.
   echo '' && echo "--- [UI/CODE] Update: 'hlJS Core'" && echo ''
   ${curl} -o 'js/code/highlight.min.js' \
-    'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/es/highlight.min.js'
+    'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'
 
   # hlJS: Languages.
   for i in "${lang[@]}"; do
     echo '' && echo "--- [UI/CODE] Update: 'hlJS ${i}'" && echo ''
-    ${curl} -o "js/code/modules/${i}.min.js" \
-      "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/es/languages/${i}.min.js"
+    ${curl} -o "js/code/${i}.min.js" \
+      "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/${i}.min.js"
   done
 }
 
