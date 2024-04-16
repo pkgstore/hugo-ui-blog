@@ -56,7 +56,7 @@ hlJS() {
   # hlJS: Languages.
   for i in "${lang[@]}"; do
     echo '' && echo "--- [UI/CODE] Update: 'hlJS ${i}'" && echo ''
-    ${curl} -o "js/code/${i}.min.js" \
+    ${curl} -o "js/code/languages/${i}.min.js" \
       "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/${i}.min.js"
   done
 }
