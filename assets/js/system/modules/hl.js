@@ -5,7 +5,7 @@ export function init() {
 function highlight() {
   const $el = document.querySelectorAll('pre code');
   const $len = $el.length;
-  let $codeDataList = [], $codeList = [], $code = [], $lang =[];
+  let $codeDataList = [], $codeList = [], $code = [], $lang = [];
 
   for (let $i = 0; $i < $len; ++$i) {
     $code = $el[$i];
