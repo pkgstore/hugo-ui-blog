@@ -36,9 +36,7 @@
 
 <!--[ theme-color ]-->
 {{ $uiTheme := ((resources.Get "js/theme.js") | minify) }}
-{{ $uiTheme = (($uiTheme) | resources.Fingerprint) }}
-<script src="{{ ($uiTheme.RelPermalink) }}" integrity="{{ ($uiTheme.Data.Integrity) }}"
-        crossorigin="anonymous"></script>
+<script src="{{ ($uiTheme.RelPermalink) }}" crossorigin="anonymous"></script>
 <!--[ / theme-color ]-->
 
 <!--[ ui-fonts ]-->
