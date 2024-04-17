@@ -20,7 +20,7 @@ function highlight() {
     $codeList.push($code);
   }
 
-  const $worker = new Worker('/js/hl.worker.js');
+  const $worker = new Worker('/js/hl.worker.min.js');
 
   $worker.onmessage = ($event) => {
     for (let $i = 0; $i < $len; ++$i) {
