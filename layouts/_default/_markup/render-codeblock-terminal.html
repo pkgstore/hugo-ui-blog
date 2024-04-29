@@ -27,7 +27,7 @@ This shortcode allows you to create a simulation of an OS terminal window.
 
 {{ $attr := (.Attributes) }}
 {{ $type := (.Type) }}
-{{ $inner := (.Inner) }}
+{{ $inner := ((trim (.Inner) "\n\r") | chomp) }}
 {{ $ordinal := (.Ordinal) }}
 
 {{ $os := (($attr.os) | default "linux") }}
@@ -61,8 +61,6 @@ This shortcode allows you to create a simulation of an OS terminal window.
         </div>
       </div>
     </div>
-    <div class="card-body p-0" id="cp-{{ ($cp) }}">
-      <pre><code class="language-{{ ($lang) }}">{{ (trim (.Inner) "\n\r") }}</code></pre>
-    </div>
+    <div class="card-body p-0" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($lang)) }}</div>
   </div>
 </div>

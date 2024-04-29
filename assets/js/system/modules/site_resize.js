@@ -1,18 +1,18 @@
-export const init = () => {
-  resize();
-}
+export const $init = () => {
+  $resize();
+};
 
-const resize = () => {
-  _event('load');
-  _event('click');
-}
+const $resize = () => {
+  $_event('load');
+  $_event('click');
+};
 
-const _event = ($action) => {
+const $_event = ($action) => {
   if ($action === 'load') {
-    document.addEventListener("DOMContentLoaded", ($e) => {
+    document.addEventListener('DOMContentLoaded', ($e) => {
       if (localStorage.getItem('site-container')) {
-        _fluid('on');
-        _button('on');
+        $_fluid('on');
+        $_button('on');
       } else {
         return 0;
       }
@@ -23,17 +23,17 @@ const _event = ($action) => {
     document.getElementById('ext-site-resize').addEventListener('click', ($e) => {
       $e.preventDefault();
       if (localStorage.getItem('site-container')) {
-        _fluid('off');
-        _button('off');
+        $_fluid('off');
+        $_button('off');
       } else {
-        _fluid('on');
-        _button('on');
+        $_fluid('on');
+        $_button('on');
       }
     });
   }
-}
+};
 
-const _fluid = ($action) => {
+const $_fluid = ($action) => {
   if ($action === 'on') {
     const $el = document.querySelectorAll('.wrapper .container');
 
@@ -58,15 +58,13 @@ const _fluid = ($action) => {
   }
 }
 
-const _button = ($action) => {
+const $_button = ($action) => {
   if ($action === 'on' && document.querySelector('#ext-site-resize .fa-expand-alt')) {
     const $elSiteResize = document.querySelector('#ext-site-resize .fa-expand-alt');
-
     $elSiteResize.classList.replace('fa-expand-alt', 'fa-compress-alt');
   }
   if ($action === 'off' && document.querySelector('#ext-site-resize .fa-compress-alt')) {
     const $elSiteResize = document.querySelector('#ext-site-resize .fa-compress-alt');
-
     $elSiteResize.classList.replace('fa-compress-alt', 'fa-expand-alt');
   }
-}
+};

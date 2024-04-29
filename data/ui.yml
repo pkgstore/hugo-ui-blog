@@ -56,33 +56,8 @@ scripts:
       - 'js/vendor/headroom.min.js'
       # https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.umd.js
       - 'js/vendor/fancybox.min.js'
-      # https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js
-      - 'js/vendor/clipboard.min.js'
       # https://cdn.jsdelivr.net/npm/easyqrcodejs@4/dist/easy.qrcode.min.js
       - 'js/vendor/qrcode.min.js'
   system:
     internal:
       - 'js/system.js'
-  code:
-    internal:
-      - 'js/code/highlight.min.js'
-      - 'js/code/languages/apache.min.js'
-      - 'js/code/languages/autohotkey.min.js'
-      - 'js/code/languages/autoit.min.js'
-      - 'js/code/languages/awk.min.js'
-      - 'js/code/languages/cmake.min.js'
-      - 'js/code/languages/dns.min.js'
-      - 'js/code/languages/dockerfile.min.js'
-      - 'js/code/languages/dos.min.js'
-      - 'js/code/languages/excel.min.js'
-      - 'js/code/languages/http.min.js'
-      - 'js/code/languages/nginx.min.js'
-      - 'js/code/languages/pf.min.js'
-      - 'js/code/languages/pgsql.min.js'
-      - 'js/code/languages/powershell.min.js'
-      - 'js/code/languages/properties.min.js'
-      - 'js/code/languages/routeros.min.js'
-      - 'js/code/languages/twig.min.js'
-      - 'js/code/languages/vbscript.min.js'
-      - 'js/code/languages/custom/cisco-cli.js'
-      - 'js/code/languages/custom/rpm-spec.js'

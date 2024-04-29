@@ -1,16 +1,16 @@
-export const init = () => {
-  github('.shortcode .gh-repo', 'repos').catch(console.error);
-  github('.shortcode .gh-user', 'users').catch(console.error);
-}
+export const $init = () => {
+  $github('.shortcode .gh-repo', 'repos').catch(console.error);
+  $github('.shortcode .gh-user', 'users').catch(console.error);
+};
 
-const github = async ($selector, $type) => {
-  const $emojis = await _fetch('{{ (site.Params.api.github.url) }}/emojis');
+const $github = async ($selector, $type) => {
+  const $emojis = await $_fetch('{{ (site.Params.api.github.url) }}/emojis');
   const $el = document.querySelectorAll($selector);
   const $len = $el.length;
 
   for (let $i = 0; $i < $len; ++$i) {
     const $name = $el[$i].getAttribute('data-' + $type);
-    const $data = await _fetch('{{ (site.Params.api.github.url) }}/' + $type + '/' + $name);
+    const $data = await $_fetch('{{ (site.Params.api.github.url) }}/' + $type + '/' + $name);
 
     $data.description = ($data.description || '').replace(/:\w+:/g, ($match) => {
       const $name = $match.substring(1, $match.length - 1);
@@ -49,7 +49,7 @@ const github = async ($selector, $type) => {
   }
 }
 
-const _fetch = async ($url) => {
+const $_fetch = async ($url) => {
   const $token = atob(atob('{{ (site.Params.api.github.token) }}'));
   const $headers = new Headers({
     'Accept': 'application/vnd.github+json',

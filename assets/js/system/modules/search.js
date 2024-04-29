@@ -1,8 +1,8 @@
-export const init = () => {
-  search('{{ "search.json" | relLangURL }}').catch(console.error);
-}
+export const $init = () => {
+  $search('{{ "search.json" | relLangURL }}').catch(console.error);
+};
 
-const search = async ($path) => {
+const $search = async ($path) => {
   const $eResList = document.getElementById('search-results');
   const $eInput = document.getElementById('search-input');
   const $eHelp = document.getElementById('search-help');
@@ -15,9 +15,9 @@ const search = async ($path) => {
 
   if (!$eInput) return 0;
 
-  await _keyboard();
+  await $_keyboard();
 
-  const $json = await _fetch($path)
+  const $json = await $_fetch($path);
   const $fuse = new Fuse($json, $options);
 
   // Execute search as each character is typed.
@@ -69,10 +69,10 @@ const search = async ($path) => {
         $eResList.innerHTML = '';
       }
     }
-  }
-}
+  };
+};
 
-const _fetch = async ($path) => {
+const $_fetch = async ($path) => {
   const $CACHE_TIMEOUT = 300000;
   const $nowTime = new Date().getTime();
   const $prevResponse = JSON.parse(localStorage.getItem($path));
@@ -83,9 +83,9 @@ const _fetch = async ($path) => {
   const $json = await $response.json();
   localStorage.setItem($path, JSON.stringify({time: $nowTime, data: $json}));
   return $json;
-}
+};
 
-const _keyboard = async () => {
+const $_keyboard = async () => {
   const $eForm = document.getElementById('search-form');
   const $eInput = document.getElementById('search-input');
   const $eModal = document.getElementById('search-modal');
@@ -93,30 +93,30 @@ const _keyboard = async () => {
   let $searchModal = 0;
 
   // Open search modal.
-  document.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey && e.code === 'Slash') || (e.ctrlKey && e.key === '/')) {
-      e.preventDefault();
+  document.addEventListener('keydown', ($e) => {
+    if (($e.ctrlKey && $e.code === 'Slash') || ($e.ctrlKey && $e.key === '/')) {
+      $e.preventDefault();
       $bsModal.show();
       $searchModal = 1;
     }
-    if (((e.code === 'Escape') || (e.key === 'Escape'))
-      || ((e.ctrlKey && e.code === 'Slash') || (e.ctrlKey && e.key === '/'))) {
+    if ((($e.code === 'Escape') || ($e.key === 'Escape'))
+      || (($e.ctrlKey && $e.code === 'Slash') || ($e.ctrlKey && $e.key === '/'))) {
       if ($searchModal) {
-        e.preventDefault();
-        $bsModal.hide()
+        $e.preventDefault();
+        $bsModal.hide();
       }
     }
   });
 
   // Focus input search.
-  $eModal.addEventListener('shown.bs.modal', (e) => {
+  $eModal.addEventListener('shown.bs.modal', ($e) => {
     $eInput.focus();
 
     // Disable form key "Enter".
-    $eForm.addEventListener('keypress', (e) => {
-      if ((e.code === 'Enter') || (e.key === 'Enter')) {
-        e.preventDefault();
+    $eForm.addEventListener('keypress', ($e) => {
+      if (($e.code === 'Enter') || ($e.key === 'Enter')) {
+        $e.preventDefault();
       }
     });
   });
-}
+};

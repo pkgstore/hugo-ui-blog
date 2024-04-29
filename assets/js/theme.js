@@ -7,75 +7,68 @@
 (() => {
   'use strict'
 
-  const $getStoredTheme = () => localStorage.getItem('ui.theme')
-  const $setStoredTheme = $theme => localStorage.setItem('ui.theme', $theme)
+  const $getStoredTheme = () => localStorage.getItem('ui.theme');
+  const $setStoredTheme = $theme => localStorage.setItem('ui.theme', $theme);
 
   const $getPreferredTheme = () => {
-    const $storedTheme = $getStoredTheme()
-    if ($storedTheme) {
-      return $storedTheme
-    }
+    const $storedTheme = $getStoredTheme();
+    if ($storedTheme) return $storedTheme;
 
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
 
   const $setTheme = $theme => {
     if ($theme === 'auto') {
       document.documentElement.setAttribute('data-bs-theme',
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      )
+      );
     } else {
-      document.documentElement.setAttribute('data-bs-theme', $theme)
+      document.documentElement.setAttribute('data-bs-theme', $theme);
     }
-  }
+  };
 
-  $setTheme($getPreferredTheme())
+  $setTheme($getPreferredTheme());
 
   const $showActiveTheme = ($theme, $focus = false) => {
-    const $themeSwitcher = document.querySelector('.ui-theme')
+    const $themeSwitcher = document.querySelector('.ui-theme');
+    if (!$themeSwitcher) return;
 
-    if (!$themeSwitcher) {
-      return
-    }
-
-    const $btnToActive = document.querySelector(`[data-bs-theme-value="${$theme}"]`)
-
-    const $el = document.querySelectorAll('[data-bs-theme-value]')
-    const $len = $el.length
+    const $btnToActive = document.querySelector(`[data-bs-theme-value="${$theme}"]`);
+    const $el = document.querySelectorAll('[data-bs-theme-value]');
+    const $len = $el.length;
 
     for (let $i = 0; $i < $len; ++$i) {
-      $el[$i].classList.remove('active')
-      $el[$i].setAttribute('aria-pressed', 'false')
+      $el[$i].classList.remove('active');
+      $el[$i].setAttribute('aria-pressed', 'false');
     }
 
-    $btnToActive.classList.add('active')
-    $btnToActive.setAttribute('aria-pressed', 'true')
+    $btnToActive.classList.add('active');
+    $btnToActive.setAttribute('aria-pressed', 'true');
 
-    if ($focus) {
-      $themeSwitcher.focus()
-    }
-  }
+    if ($focus) $themeSwitcher.focus();
+  };
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    const $storedTheme = $getStoredTheme()
+    const $storedTheme = $getStoredTheme();
+
     if ($storedTheme !== 'light' && $storedTheme !== 'dark') {
-      $setTheme($getPreferredTheme())
+      $setTheme($getPreferredTheme());
     }
-  })
+  });
 
   window.addEventListener('DOMContentLoaded', () => {
-    $showActiveTheme($getPreferredTheme())
+    $showActiveTheme($getPreferredTheme());
 
-    const $el = document.querySelectorAll('[data-bs-theme-value]')
-    const $len = $el.length
+    const $el = document.querySelectorAll('[data-bs-theme-value]');
+    const $len = $el.length;
 
     for (let $i = 0; $i < $len; ++$i) {
       $el[$i].addEventListener('click', () => {
-        const $theme = $el[$i].getAttribute('data-bs-theme-value')
-        $setStoredTheme($theme)
-        $setTheme($theme)
-        $showActiveTheme($theme, true)
-      })
+        const $theme = $el[$i].getAttribute('data-bs-theme-value');
+        $setStoredTheme($theme);
+        $setTheme($theme);
+        $showActiveTheme($theme, true);
+      });
     }
-  })
-})()
+  });
+})();

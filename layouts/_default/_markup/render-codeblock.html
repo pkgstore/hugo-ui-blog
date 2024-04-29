@@ -11,8 +11,8 @@ This shortcode creates a block of code with syntax highlighting.
 */ -}}
 
 {{ $attr := (.Attributes) }}
-{{ $type := (.Type) }}
-{{ $inner := (.Inner) }}
+{{ $type := ((.Type) | default "plaintext") }}
+{{ $inner := ((trim (.Inner) "\n\r") | chomp) }}
 {{ $ordinal := (.Ordinal) }}
 
 {{ $cp := ((printf "clipboard-%s-%d" (delimit (shuffle (seq 11 99)) "") ($ordinal)) | md5) }}
@@ -43,21 +43,17 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
         </div>
       </div>
-      <div class="card-body" id="cp-{{ ($cp) }}">
-          {{ if ($type) }}{{ $type = (printf "class='language-%s'" ($type)) }}{{ end }}
-        <pre><code {{ (($type) | safeHTMLAttr) }}>{{ (trim (.Inner) "\n\r") }}</code></pre>
-      </div>
+      <div class="card-body" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
     </div>
   </div>
 
 {{ else }}
 
-  <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
+  <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }}
+{{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden" id="cp-{{ ($cp) }}">
-          {{ if ($type) }}{{ $type = (printf "class='language-%s'" ($type)) }}{{ end }}
-        <pre><code {{ (($type) | safeHTMLAttr) }}>{{ (trim (.Inner) "\n\r") }}</code></pre>
-      </div>
+      <div class="flex-grow-1 rounded overflow-hidden"
+           id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type) ($attr)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
