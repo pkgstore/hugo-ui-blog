@@ -19,8 +19,9 @@ This shortcode creates a block of code with syntax highlighting.
 
 {{ if (or ($attr.title) ($attr.file)) }}
 
-  <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}">
-    <div class="card overflow-hidden">
+  <div class="shortcode mb-3 shortcode-codeblock
+  shortcode-codeblock-{{ ($ordinal) }} shortcode-codeblock-{{ ($type) }}">
+    <div class="card overflow-hidden" data-bs-theme="dark">
       <div class="card-header">
         <div class="d-flex align-items-center">
           <div class="flex-shrink-0">
@@ -43,7 +44,7 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
         </div>
       </div>
-      <div class="card-body" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
+      <div class="card-body p-0" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
     </div>
   </div>
 
@@ -52,8 +53,8 @@ This shortcode creates a block of code with syntax highlighting.
   <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }}
 {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden"
-           id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type) ($attr)) }}</div>
+      <div class="flex-grow-1 rounded overflow-hidden bg-body-tertiary"
+           id="cp-{{ ($cp) }}" data-bs-theme="dark">{{ (highlight ($inner) ($type) ($attr)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
