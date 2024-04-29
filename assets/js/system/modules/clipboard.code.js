@@ -1,27 +1,30 @@
 export const $init = () => {
-  $clipboard('.shortcode-codeblock').catch(console.error);
-  $clipboard('.shortcode-file').catch(console.error);
+  $clipboard('.shortcode-codeblock', '[data-fn*="clipboard"]').catch(console.error);
+  $clipboard('.shortcode-file', '[data-fn*="clipboard"]').catch(console.error);
 };
 
-const $clipboard = async ($selector) => {
-  const $el = document.querySelectorAll($selector);
+const $clipboard = async ($shortcode, $button) => {
+  const $el = document.querySelectorAll($shortcode);
   const $len = $el.length;
   for (let $i = 0; $i < $len; ++$i) {
-    const $lines = $el[$i].querySelectorAll('[data-lang] > .line');
-    const $button = $el[$i].querySelector('[data-fn*="clipboard"]');
-    const $code = Array.from($lines).map($line => {
+    const $eLines = $el[$i].querySelectorAll('[data-lang] > .line');
+    const $eButton = $el[$i].querySelector($button);
+    const $cIcon = $eButton.firstElementChild.classList;
+    const $fa = $cIcon[1];
+
+    const $code = Array.from($eLines).map($line => {
       return Array.from($line.childNodes).map($node => $node.textContent).join('');
     });
-    const $text = $code.join('').replace(/\n{3,}/g, '\n\n');
-    const $icon = $button.firstElementChild.classList.value;
 
-    $button.addEventListener('click', ($e) => {
+    const $text = $code.join('').replace(/\n{3,}/g, '\n\n');
+
+    $eButton.addEventListener('click', ($e) => {
         $e.preventDefault();
         navigator.clipboard.writeText($text);
-        $button.firstElementChild.className = 'fas fa-check fa-fw';
+        $cIcon.replace($fa, 'fa-check');
         setTimeout(() => {
-          $button.firstElementChild.className = $icon;
-        }, 1000);
+          $cIcon.replace('fa-check', $fa);
+        }, 500);
       }
     );
   }
