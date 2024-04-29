@@ -13,10 +13,15 @@ const $clipboard = async ($selector) => {
       return Array.from($line.childNodes).map($node => $node.textContent).join('');
     });
     const $text = $code.join('').replace(/\n{3,}/g, '\n\n');
+    const $icon = $button.firstElementChild.classList.value;
 
     $button.addEventListener('click', ($e) => {
         $e.preventDefault();
         navigator.clipboard.writeText($text);
+        $button.firstElementChild.className = 'fas fa-check fa-fw';
+        setTimeout(() => {
+          $button.firstElementChild.className = $icon;
+        }, 1000);
       }
     );
   }
