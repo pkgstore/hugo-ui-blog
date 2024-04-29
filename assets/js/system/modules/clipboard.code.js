@@ -14,7 +14,8 @@ const $clipboard = async ($selector) => {
     });
     const $text = $code.join('').replace(/\n{3,}/g, '\n\n');
 
-    $button.addEventListener('click', () => {
+    $button.addEventListener('click', ($e) => {
+        $e.preventDefault();
         navigator.clipboard.writeText($text);
       }
     );
