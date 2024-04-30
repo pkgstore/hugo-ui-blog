@@ -1,7 +1,8 @@
 .highlight {
-  @import 'syntax.chroma.theme';
-
   .chroma {
+    @import 'syntax.chroma.theme';
+    color: #abb2bf;
+
     .lnt, .line, .hl {
       display: block;
     }

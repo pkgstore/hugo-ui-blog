@@ -53,7 +53,7 @@ This shortcode creates a block of code with syntax highlighting.
   <div class="shortcode mb-3 shortcode-codeblock shortcode-codeblock-{{ ($ordinal) }}
 {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex overflow-hidden">
-      <div class="flex-grow-1 rounded overflow-hidden bg-body-tertiary"
+      <div class="flex-grow-1 rounded overflow-hidden bg-body-tertiary text-body"
            id="cp-{{ ($cp) }}" data-bs-theme="dark">{{ (highlight ($inner) ($type) ($attr)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
