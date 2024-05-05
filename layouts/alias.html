@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}">
+<head>
+  <title>{{ .Permalink }}</title>
+  <link rel="canonical" href="{{ .Permalink }}"/>
+  <meta name="robots" content="noindex"/>
+  <meta charset="utf-8"/>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url={{ .Permalink }}"/>
+  </noscript>
+  <!--[ language-redirect ]-->
+    {{ $jsLang := (resources.Get "js/language.js") }}
+    {{ $jsLang = (($jsLang) | resources.ExecuteAsTemplate "js/language.js" .) }}
+    {{ $jsLang = ((($jsLang) | minify) | resources.Fingerprint) }}
+  <script src="{{ ($jsLang.RelPermalink) }}" integrity="{{ ($jsLang.Data.Integrity) }}"
+          crossorigin="anonymous"></script>
+  <!--[ / language-redirect ]-->
+</head>
+</html>
