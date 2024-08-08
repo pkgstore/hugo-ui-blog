@@ -16,10 +16,11 @@
    class="d-flex align-items-center rounded overflow-hidden bg-body-tertiary"
    href="{{ (.RelPermalink) }}">
   <picture>
-    <source srcset='{{ range $i, $e := ($srcset) }}{{ if $i }},{{ end }}{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ (.width) }}&amp;h={{ (.height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format {{ (.width) }}w{{ end }}' sizes="(min-width: 576px) 100vw"/>
+    <source srcset='{{ range $i, $e := ($srcset) }}{{ if $i }},{{ end }}{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ (.width) }}&amp;h={{ (.height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format {{ (.width) }}w{{ end }}'
+            sizes="(min-width: 576px) 100vw">
     <img class="img-fluid"
          src="{{ ($src) }}?crop={{ ($crop) }}&amp;w={{ ($width) }}&amp;h={{ ($height) }}&amp;fit={{ ($fit) }}&amp;auto=compress,format"
          width="{{ ($width) }}" height="{{ ($height) }}"
-         alt="{{ ((.Title) | plainify) }}" loading="lazy"/>
+         alt="{{ ((.Title) | plainify) }}" loading="lazy">
   </picture>
 </a>

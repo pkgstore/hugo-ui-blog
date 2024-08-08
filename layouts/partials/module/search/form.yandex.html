@@ -1,10 +1,11 @@
 {{ $url := (urls.Parse (site.BaseURL)) }}
 
 <form action="https://ya.ru/search" method="get" class="d-flex" target="_blank">
-  <input type="hidden" name="site" value="{{ ($url.Host) }}"/>
+  <input type="hidden" name="site" value="{{ ($url.Host) }}">
   <div class="input-group">
     <span class="input-group-text"><i class="fas fa-search fa-fw"></i></span>
-    <input type="search" class="form-control" name="text" placeholder='{{ (i18n "search_yandex") }}' aria-label='{{ (i18n "search_yandex") }}'/>
+    <input type="search" class="form-control" name="text" placeholder='{{ (i18n "search_yandex") }}'
+           aria-label='{{ (i18n "search_yandex") }}'>
     <span class="input-group-text"><i class="fab fa-yandex fa-fw"></i></span>
   </div>
 </form>

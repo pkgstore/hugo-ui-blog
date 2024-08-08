@@ -58,11 +58,14 @@
                       <div class="accordion-header">
                         <a class="accordion-button {{ ($btnCSS) }}" href="#" role="button" tabindex="0"
                            data-bs-toggle="collapse" data-bs-target="#accordion-item-{{ ($accordionItemID) }}"
-                           aria-expanded="{{ ($ariaExpanded) }}" aria-controls="accordion-item-{{ ($accordionItemID) }}" aria-label="{{ (.Name) }}">
+                           aria-expanded="{{ ($ariaExpanded) }}" aria-controls="accordion-item-{{ ($accordionItemID) }}"
+                           aria-label="{{ (.Name) }}">
                           <code>{{ (.Name) }}</code>
                         </a>
                       </div>
-                      <div id="accordion-item-{{ ($accordionItemID) }}" class="accordion-collapse collapse {{ ($itemCSS) }}" data-bs-parent="#accordion-{{ ($accordionID) }}">
+                      <div id="accordion-item-{{ ($accordionItemID) }}"
+                           class="accordion-collapse collapse {{ ($itemCSS) }}"
+                           data-bs-parent="#accordion-{{ ($accordionID) }}">
                         <div class="accordion-body">
                           <div class="table-responsive">
                             <table class="table table-striped table-bordered mb-0">
@@ -79,7 +82,8 @@
                                 </td>
                                 <td>
                                   <a href="#" role="button"
-                                     data-bs-toggle="modal" data-bs-target="#modal-{{ ($modalFileID) }}">{{ (.Name) }}</a>
+                                     data-bs-toggle="modal"
+                                     data-bs-target="#modal-{{ ($modalFileID) }}">{{ (.Name) }}</a>
                                 </td>
                               </tr>
                               {{ with ($.Resources.GetMatch ($readmeFile)) }}
@@ -89,7 +93,8 @@
                                   </td>
                                   <td>
                                     <a href="#" role="button"
-                                       data-bs-toggle="modal" data-bs-target="#modal-{{ ($modalReadmeID) }}">{{ (.Name) }}</a>
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#modal-{{ ($modalReadmeID) }}">{{ (.Name) }}</a>
                                   </td>
                                 </tr>
                               {{ end }}

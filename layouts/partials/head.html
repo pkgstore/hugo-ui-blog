@@ -1,20 +1,20 @@
 {{ $data := (newScratch) }}
 
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!--[ title ]-->
 {{ $title := "" }}
 {{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
 <title>{{ ($title) }} {{ (site.Title) }}</title>
-<meta name="title" content="{{ ($title) }} {{ (site.Title) }}"/>
+<meta name="title" content="{{ ($title) }} {{ (site.Title) }}">
 <!--[ / title ]-->
 
 <!--[ description ]-->
 {{ $description := (site.Params.description) }}
 {{ with (.Summary) }}{{ $description = . }}{{ end }}
 {{ with (.Description) }}{{ $description = . }}{{ end }}
-<meta name="description" content="{{ ((($description) | plainify) | chomp) }}"/>
+<meta name="description" content="{{ ((($description) | plainify) | chomp) }}">
 <!--[ / description ]-->
 
 <!--[ keywords ]-->
@@ -24,13 +24,13 @@
 {{ else }}
     {{ range ((site.Taxonomies.tags.ByCount) | first 20) }}{{ ($data.Add "keywords" (.Page.Title)) }}{{ end }}
 {{ end }}
-<meta name="keywords" content="{{ (((delimit (($data.Get "keywords") | uniq) ",") | truncate 250) | lower) }}"/>
+<meta name="keywords" content="{{ (((delimit (($data.Get "keywords") | uniq) ",") | truncate 250) | lower) }}">
 <!--[ / keywords ]-->
 
 <!--[ pre-connect ]-->
 {{ $preConnect := (site.Data.ui.network.pre_connect) }}
 {{ range ($preConnect) }}
-  <link rel="preconnect" href="{{ . }}" crossorigin="anonymous"/>
+  <link rel="preconnect" href="{{ . }}" crossorigin="anonymous">
 {{ end }}
 <!--[ / pre-connect ]-->
 
@@ -56,7 +56,7 @@
 {{ $scripts := (site.Data.ui.scripts) }}
 {{ with ($scripts.vendor.external) }}
     {{ range . }}
-      <link rel="preload" href="{{ . }}" as="script" crossorigin="anonymous"/>
+      <link rel="preload" href="{{ . }}" as="script" crossorigin="anonymous">
     {{ end }}
 {{ end }}
 <!--[ / pre-load-js ]-->
@@ -66,52 +66,55 @@
 {{ if (and (.IsNode) (not (.IsHome))) }}
     {{ with ($.Paginator) }}
         {{ $canonical = ((.URL) | absURL) }}
-        <link rel="first" href="{{ ((.First.URL) | absURL) }}"/>
-        <link rel="last" href="{{ ((.Last.URL) | absURL) }}"/>
+        <link rel="first" href="{{ ((.First.URL) | absURL) }}">
+        <link rel="last" href="{{ ((.Last.URL) | absURL) }}">
         {{ if (.HasPrev) }}
-          <link rel="prev" href="{{ ((.Prev.URL) | absURL) }}"/>
+          <link rel="prev" href="{{ ((.Prev.URL) | absURL) }}">
         {{ end }}
         {{ if (.HasNext) }}
-          <link rel="next" href="{{ ((.Next.URL) | absURL) }}"/>
+          <link rel="next" href="{{ ((.Next.URL) | absURL) }}">
         {{ end }}
     {{ end }}
 {{ end }}
-<link rel="canonical" href="{{ ($canonical) }}"/>
+<link rel="canonical" href="{{ ($canonical) }}">
 <!--[ / canonical ]-->
 
 <!--[ languages ]-->
-<link rel="alternate" href="{{ ("/" | absURL) }}" hreflang="x-default"/>
-<link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}"/>
+<link rel="alternate" href="{{ ("/" | absURL) }}" hreflang="x-default">
+<link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}">
 
 {{ if (.IsTranslated) }}
     {{ range (.Translations) }}
-      <link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}"/>
+      <link rel="alternate" href="{{ (.Permalink) }}" hreflang="{{ (.Lang) }}">
     {{ end }}
 {{ end }}
 <!--[ / languages ]-->
 
 <!--[ output-formats ]-->
-<link rel="manifest" type="application/manifest+json" href="{{ ("manifest.json" | absLangURL) }}" title="{{ (site.Title) }}"/>
-<link rel="search" type="application/opensearchdescription+xml" href="{{ ("opensearch.xml" | absLangURL) }}" title="{{ (site.Title) }}"/>
+<link rel="manifest" type="application/manifest+json" href="{{ ("manifest.json" | absLangURL) }}"
+      title="{{ (site.Title) }}">
+<link rel="search" type="application/opensearchdescription+xml" href="{{ ("opensearch.xml" | absLangURL) }}"
+      title="{{ (site.Title) }}">
 
 {{ range (.AlternativeOutputFormats) }}
-  <link rel="{{ (.Rel) }}" type="{{ (.MediaType.Type) }}" href="{{ ((.Permalink) | safeURL) }}" title="{{ (site.Title) }}"/>
+  <link rel="{{ (.Rel) }}" type="{{ (.MediaType.Type) }}" href="{{ ((.Permalink) | safeURL) }}"
+        title="{{ (site.Title) }}">
 {{ end }}
 <!--[ / output-formats ]-->
 
 <!--[ application-name ]-->
 {{ with (site.Title) }}
-  <meta name="application-name" content="{{ (site.Title) }}"/>
+  <meta name="application-name" content="{{ (site.Title) }}">
 {{ end }}
 <!--[ / application-name ]-->
 
 <!--[ theme-color ]-->
 {{ $theme := (site.Params.ui.color.theme) }}
 {{ with ($theme.light) }}
-  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)"/>
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: light)">
 {{ end }}
 {{ with ($theme.dark) }}
-  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)"/>
+  <meta name="theme-color" content="{{ . }}" media="(prefers-color-scheme: dark)">
 {{ end }}
 <!--[ / theme-color ]-->
 

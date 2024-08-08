@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom shadow-sm text-lg-center bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href='{{ ("/" | relLangURL) }}'>
-      <img src='{{ ("img/logo.min.svg" | absURL) }}' alt="{{ (i18n "logo") }}" width="30" height="24" class="d-inline-block align-text-top"/>
+      <img src='{{ ("img/logo.min.svg" | absURL) }}' alt="{{ (i18n "logo") }}" width="30" height="24"
+           class="d-inline-block align-text-top">
         {{ if ($.IsNode) }}
           <h1 class="d-inline-block h5 m-0 ms-1">{{ (site.Title) }}</h1>
         {{ else }}
           <h2 class="d-inline-block h5 m-0 ms-1">{{ (site.Title) }}</h2>
         {{ end }}
     </a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navTopBar"
+    <button type="button" class="navbar-toggler"
+            data-bs-toggle="collapse" data-bs-target="#navTopBar"
             aria-controls="navTopBar" aria-expanded="false" aria-label='{{ (i18n "toggle_navigation") }}'>
       <span class="navbar-toggler-icon"></span>
     </button>

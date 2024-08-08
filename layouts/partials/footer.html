@@ -39,14 +39,16 @@
         <ul class="list-inline mb-0">
             {{ with (.OutputFormats.Get "rss") }}
               <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ ((.Name) | upper) }}'>
-                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank" aria-label='{{ ((.Name) | upper) }}'>
+                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
+                   aria-label='{{ ((.Name) | upper) }}'>
                   <i class="fas fa-rss fa-fw"></i>
                 </a>
               </li>
             {{ end }}
             {{ with (.OutputFormats.Get "json") }}
               <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ ((.Name) | upper) }}'>
-                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank" aria-label='{{ ((.Name) | upper) }}'>
+                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
+                   aria-label='{{ ((.Name) | upper) }}'>
                   <i class="fas fa-code fa-fw"></i>
                 </a>
               </li>
@@ -54,7 +56,8 @@
             {{ with (site.Home.AllTranslations) }}
               <li class="list-inline-item dropup" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
                 <a class="dropdown-toggle btn btn-light btn-sm" href="#"
-                   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label='{{ (i18n "languages") }}'>
+                   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   aria-label='{{ (i18n "languages") }}'>
                   <i class="fas fa-language fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">

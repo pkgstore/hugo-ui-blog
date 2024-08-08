@@ -5,14 +5,14 @@
         {{ with (.WordCount) }}
           <div class="col">{{ (i18n "word_count") }}</div>
           <div class="col">
-            <input type="text" class="form-control" value="{{ . }}" readonly/>
+            <input type="text" class="form-control" value="{{ . }}" readonly>
           </div>
         {{ end }}
         {{ with (.ReadingTime) }}
           <div class="col">{{ (i18n "reading_time") }}</div>
           <div class="col">
             <div class="input-group">
-              <input type="text" class="form-control" value="{{ . }}" readonly/>
+              <input type="text" class="form-control" value="{{ . }}" readonly>
               <span class="input-group-text">{{ (i18n "minutes") }}</span>
             </div>
           </div>

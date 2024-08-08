@@ -5,39 +5,39 @@
 {{ $url := (urls.Parse (site.BaseURL)) }}
 
 <meta property="twitter:domain" content="{{ ($url.Host) }}">
-<meta property="twitter:url" content="{{ (.Permalink) }}"/>
-<meta property="og:locale" content="{{ ((replace (site.LanguageCode) "-" "_") | default "en_US") }}"/>
-<meta property="og:site_name" content="{{ (site.Title) }}"/>
+<meta property="twitter:url" content="{{ (.Permalink) }}">
+<meta property="og:locale" content="{{ ((replace (site.LanguageCode) "-" "_") | default "en_US") }}">
+<meta property="og:site_name" content="{{ (site.Title) }}">
 
 {{ if ($.IsPage) }}
-  <meta name="aiturec:title" content="{{ (.Title) }}"/>
-  <meta property="aiturec:description" content="{{ ($description) }}"/>
+  <meta name="aiturec:title" content="{{ (.Title) }}">
+  <meta property="aiturec:description" content="{{ ($description) }}">
 
   {{ with (.Params.uuid) }}
-    <meta property="aiturec:item_id" content="{{ . }}"/>
+    <meta property="aiturec:item_id" content="{{ . }}">
   {{ end }}
 
   {{ if (.Params.date) }}
-    <meta property="aiturec:datetime" content="{{ (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}"/>
+    <meta property="aiturec:datetime" content="{{ (.Date.UTC.Format "2006-01-02T15:04:05Z07:00") }}">
   {{ end }}
 
-  <!-- <meta itemprop="description" content="{{ ($description) }}"/> -->
+  <!-- <meta itemprop="description" content="{{ ($description) }}"> -->
 
   {{ with ($image) }}
-    <!-- <meta itemprop="image" content="{{ . }}"/> -->
-    <meta property="aiturec:image" content="{{ . }}"/>
-    <meta property="vk:image" content="{{ . }}"/>
+    <!-- <meta itemprop="image" content="{{ . }}"> -->
+    <meta property="aiturec:image" content="{{ . }}">
+    <meta property="vk:image" content="{{ . }}">
   {{ end }}
 
   {{ with (.GetTerms "authors") }}
       {{ range . }}
-        <meta property="article:author" content="{{ (.Title) }}"/>
+        <meta property="article:author" content="{{ (.Title) }}">
       {{ end }}
   {{ end }}
 
   {{ with (.GetTerms "tags") }}
       {{ range . }}
-        <meta property="article:tag" content="{{ ((.Title) | lower) }}"/>
+        <meta property="article:tag" content="{{ ((.Title) | lower) }}">
       {{ end }}
   {{ end }}
 {{ end }}

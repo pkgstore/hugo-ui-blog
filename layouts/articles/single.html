@@ -61,7 +61,8 @@
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "source_code") }}'>
               <button class="nav-link" id="tab-main-source" type="button" role="tab"
                       data-bs-toggle="tab" data-bs-target="#tab-pane-main-source"
-                      aria-controls="tab-pane-main-source" aria-selected="false" aria-label='{{ (i18n "source_code") }}'>
+                      aria-controls="tab-pane-main-source" aria-selected="false"
+                      aria-label='{{ (i18n "source_code") }}'>
                 <i class="fas fa-code fa-fw"></i>
               </button>
             </li>
@@ -70,7 +71,8 @@
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "changelog") }}'>
               <button class="nav-link" id="tab-main-changelog" type="button" role="tab"
                       data-bs-toggle="tab" data-bs-target="#tab-pane-main-changelog"
-                      aria-controls="tab-pane-main-changelog" aria-selected="false" aria-label='{{ (i18n "changelog") }}'>
+                      aria-controls="tab-pane-main-changelog" aria-selected="false"
+                      aria-label='{{ (i18n "changelog") }}'>
                 <i class="far fa-clock fa-fw"></i>
               </button>
             </li>
@@ -89,7 +91,8 @@
                 <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "comments") }}'>
                   <button class="nav-link" id="tab-main-comments" type="button" role="tab"
                           data-bs-toggle="tab" data-bs-target="#tab-pane-main-comments"
-                          aria-controls="tab-pane-main-comments" aria-selected="false" aria-label='{{ (i18n "comments") }}'>
+                          aria-controls="tab-pane-main-comments" aria-selected="false"
+                          aria-label='{{ (i18n "comments") }}'>
                     <i class="far fa-comments fa-fw"></i>
                   </button>
                 </li>
@@ -99,7 +102,8 @@
             <li class="nav-item" role="presentation" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
               <button class="nav-link" id="tab-main-languages" type="button" role="tab"
                       data-bs-toggle="tab" data-bs-target="#tab-pane-main-languages"
-                      aria-controls="tab-pane-main-languages" aria-selected="false" aria-label='{{ (i18n "languages") }}'>
+                      aria-controls="tab-pane-main-languages" aria-selected="false"
+                      aria-label='{{ (i18n "languages") }}'>
                 <i class="fas fa-language fa-fw"></i>
               </button>
             </li>
@@ -115,7 +119,8 @@
           {{ end }}
       </ul>
       <div class="tab-content">
-        <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home" tabindex="0">
+        <div class="tab-pane show active" id="tab-pane-main-home" role="tabpanel" aria-labelledby="tab-main-home"
+             tabindex="0">
           <div class="node-body">
               {{ if (in (.Params.categories) "inDev") }}
                   {{ (partial "function/alert" (dict
@@ -147,14 +152,16 @@
           </div>
         </div>
           {{ if ($cfg.tabs.source.enabled) }}
-            <div class="tab-pane" id="tab-pane-main-source" role="tabpanel" aria-labelledby="tab-main-source" tabindex="0">
+            <div class="tab-pane" id="tab-pane-main-source" role="tabpanel" aria-labelledby="tab-main-source"
+                 tabindex="0">
               <div class="node-body node-source">
                   {{ (highlight (readFile (.File.Path)) "md") }}
               </div>
             </div>
           {{ end }}
           {{ if (and ($cfg.tabs.changelog.enabled) (fileExists ($changelog))) }}
-            <div class="tab-pane" id="tab-pane-main-changelog" role="tabpanel" aria-labelledby="tab-main-changelog" tabindex="0">
+            <div class="tab-pane" id="tab-pane-main-changelog" role="tabpanel" aria-labelledby="tab-main-changelog"
+                 tabindex="0">
               <div class="node-body">
                   {{ ((readFile ($changelog)) | markdownify) }}
               </div>
@@ -200,7 +207,8 @@
           {{ end }}
           {{ if ($cfg.tabs.comments.enabled) }}
               {{ with (.Params.comments) }}
-                <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments" tabindex="0">
+                <div class="tab-pane" id="tab-pane-main-comments" role="tabpanel" aria-labelledby="tab-main-comments"
+                     tabindex="0">
                   <div class="node-body">
                       {{ (partial "module/node/tabs/comments" .) }}
                   </div>
@@ -208,12 +216,14 @@
               {{ end }}
           {{ end }}
           {{ if (.IsTranslated) }}
-            <div class="tab-pane" id="tab-pane-main-languages" role="tabpanel" aria-labelledby="tab-main-languages" tabindex="0">
+            <div class="tab-pane" id="tab-pane-main-languages" role="tabpanel" aria-labelledby="tab-main-languages"
+                 tabindex="0">
                 {{ (partial "module/node/tabs/languages" .) }}
             </div>
           {{ end }}
           {{ if ($cfg.tabs.share) }}
-            <div class="tab-pane" id="tab-pane-main-share" role="tabpanel" aria-labelledby="tab-main-share" tabindex="0">
+            <div class="tab-pane" id="tab-pane-main-share" role="tabpanel" aria-labelledby="tab-main-share"
+                 tabindex="0">
                 {{ (partial "module/node/tabs/share" .) }}
             </div>
           {{ end }}
