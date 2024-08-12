@@ -15,10 +15,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navTopBar">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav">
           {{ (partial "module/menu/item" (dict "context" . "id" "main")) }}
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
           {{ (partial "module/search/button" .) }}
       </ul>
     </div>
