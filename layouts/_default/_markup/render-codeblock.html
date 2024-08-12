@@ -33,7 +33,7 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
           <div class="flex-shrink-0">
             <ul class="list-inline mb-0">
-              <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
+              <li class="list-inline-item" title='{{ (i18n "copy") }}'>
                 <a class="text-body" href="#"
                    data-fn="clipboard" data-clipboard-target="#cp-{{ ($cp) }}"
                    role="button" aria-label='{{ (i18n "copy") }}'>
@@ -57,7 +57,7 @@ This shortcode creates a block of code with syntax highlighting.
            id="cp-{{ ($cp) }}" data-bs-theme="dark">{{ (highlight ($inner) ($type) ($attr)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
-          <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ (i18n "copy") }}'>
+          <li class="list-inline-item" title='{{ (i18n "copy") }}'>
             <a class="text-body" href="#"
                data-fn="clipboard" data-clipboard-target="#cp-{{ ($cp) }}"
                role="button" aria-label='{{ (i18n "copy") }}'>
