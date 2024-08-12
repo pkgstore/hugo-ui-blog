@@ -39,7 +39,7 @@
         <ul class="list-inline mb-0">
             {{ with (.OutputFormats.Get "rss") }}
               <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ ((.Name) | upper) }}'>
-                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
+                <a class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
                    aria-label='{{ ((.Name) | upper) }}'>
                   <i class="fas fa-rss fa-fw"></i>
                 </a>
@@ -47,26 +47,53 @@
             {{ end }}
             {{ with (.OutputFormats.Get "json") }}
               <li class="list-inline-item" data-bs-tooltip data-bs-title='{{ ((.Name) | upper) }}'>
-                <a class="btn btn-light btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
+                <a class="btn btn-sm" href="{{ (.RelPermalink) }}" target="_blank"
                    aria-label='{{ ((.Name) | upper) }}'>
                   <i class="fas fa-code fa-fw"></i>
                 </a>
               </li>
             {{ end }}
+          <li class="list-inline-item dropup" data-bs-tooltip data-bs-title='{{ (i18n "theme.theme") }}'>
+            <button class="btn btn-sm dropdown-toggle ui-theme" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" aria-label='{{ (i18n "theme.label") }}'>
+              <i class="fas fa-circle-half-stroke fa-fw"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+              <li>
+                <button class="dropdown-item" type="button" data-bs-theme-value="light" aria-pressed="false">
+                  <i class="fas fa-sun fa-fw"></i>
+                  <span>{{ (i18n "theme.light") }}</span>
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button" data-bs-theme-value="dark" aria-pressed="false">
+                  <i class="fas fa-moon fa-fw"></i>
+                  <span>{{ (i18n "theme.dark") }}</span>
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item active" type="button" data-bs-theme-value="auto" aria-pressed="true">
+                  <i class="fas fa-circle-half-stroke fa-fw"></i>
+                  <span>{{ (i18n "theme.auto") }}</span>
+                </button>
+              </li>
+            </ul>
+          </li>
             {{ with (site.Home.AllTranslations) }}
               <li class="list-inline-item dropup" data-bs-tooltip data-bs-title='{{ (i18n "languages") }}'>
-                <a class="dropdown-toggle btn btn-light btn-sm" href="#"
-                   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                   aria-label='{{ (i18n "languages") }}'>
+                <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" aria-label='{{ (i18n "languages") }}'>
                   <i class="fas fa-language fa-fw"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end shadow">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
                     {{ range . }}
-                      <a class="dropdown-item" href="{{ (.RelPermalink) }}" hreflang="{{ (.Language.Lang) }}">
-                          {{ (.Language.LanguageName) }}
-                      </a>
+                      <li>
+                        <a class="dropdown-item" href="{{ (.RelPermalink) }}" hreflang="{{ (.Language.Lang) }}">
+                            {{ (.Language.LanguageName) }}
+                        </a>
+                      </li>
                     {{ end }}
-                </div>
+                </ul>
               </li>
             {{ end }}
         </ul>
