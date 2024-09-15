@@ -26,7 +26,7 @@
     {{ range . }}{{ $bundle = (($bundle) | append (resources.Get .)) }}{{ end }}
     {{ $bundle = (($bundle) | resources.Concat "css/system.bundle.scss") }}
     {{ $bundle = (($bundle) | resources.ExecuteAsTemplate ("css/system.bundle.scss" | relLangURL) .) }}
-    {{ $bundle = ((($bundle) | resources.ToCSS) | minify) }}
+    {{ $bundle = ((($bundle) | css.Sass) | minify) }}
     <link rel="preload" href="{{ ($bundle.RelPermalink) }}" as="style">
     <link rel="stylesheet" href="{{ ($bundle.RelPermalink) }}">
 {{ end }}
