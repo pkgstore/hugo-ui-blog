@@ -11,6 +11,7 @@ This shortcode creates a block of code with syntax highlighting.
 */ -}}
 
 {{ $attr := (.Attributes) }}
+{{ $opts := (.Options) }}
 {{ $type := ((.Type) | default "plaintext") }}
 {{ $inner := ((trim (.Inner) "\n\r") | chomp) }}
 {{ $ordinal := (.Ordinal) }}
@@ -44,7 +45,7 @@ This shortcode creates a block of code with syntax highlighting.
           </div>
         </div>
       </div>
-      <div class="card-body p-0 overflow-auto" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type)) }}</div>
+      <div class="card-body p-0 overflow-auto" id="cp-{{ ($cp) }}">{{ (highlight ($inner) ($type) ($opts)) }}</div>
     </div>
   </div>
 
@@ -54,7 +55,7 @@ This shortcode creates a block of code with syntax highlighting.
 {{ with ($type) }}shortcode-codeblock-{{ . }}{{ end }}">
     <div class="d-flex overflow-hidden">
       <div class="flex-grow-1 rounded overflow-hidden bg-body-tertiary text-body"
-           id="cp-{{ ($cp) }}" data-bs-theme="dark">{{ (highlight ($inner) ($type) ($attr)) }}</div>
+           id="cp-{{ ($cp) }}" data-bs-theme="dark">{{ (highlight ($inner) ($type) ($opts)) }}</div>
       <div class="flex-shrink-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item" title='{{ (i18n "copy") }}'>
