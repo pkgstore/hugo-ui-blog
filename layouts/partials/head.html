@@ -4,10 +4,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!--[ title ]-->
-{{ $title := "" }}
-{{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s /" (.Title)) }}{{ end }}
-<title>{{ ($title) }} {{ (site.Title) }}</title>
-<meta name="title" content="{{ ($title) }} {{ (site.Title) }}">
+{{ $title := (site.Title) }}
+{{ if (and (.Title) ((ne (.Title) (site.Title)))) }}{{ $title = (printf "%s / %s" (.Title) (site.Title)) }}{{ end }}
+<title>{{ ($title) }}</title>
+<meta name="title" content="{{ ($title) }}">
 <!--[ / title ]-->
 
 <!--[ description ]-->
