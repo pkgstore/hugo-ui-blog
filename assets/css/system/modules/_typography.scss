@@ -55,11 +55,14 @@ body {
       pre {
         @include font-mono();
         border-radius: var(--bs-border-radius);
+        display: flex;
+        padding: 1rem;
 
         > code {
           background: unset;
-          display: block;
-          padding: 1rem;
+          flex-grow: 1;
+          line-height: 2;
+          padding: 0;
           white-space: pre;
         }
       }
