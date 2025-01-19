@@ -57,6 +57,7 @@ body {
         border-radius: var(--bs-border-radius);
         display: flex;
         padding: 1rem;
+        scrollbar-width: thin;
 
         > code {
           background: unset;
