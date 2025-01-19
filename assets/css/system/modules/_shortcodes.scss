@@ -57,10 +57,12 @@ body {
               border-radius: unset;
 
               > code {
-                .line:last-child:after {
-                  content: ' _ ';
-                  opacity: 0;
-                  animation: cursor 1s infinite;
+                .line:last-child {
+                  .cl:after {
+                    content: ' _ ';
+                    opacity: 0;
+                    animation: cursor 1s infinite;
+                  }
                 }
               }
 
