@@ -50,6 +50,7 @@ body {
         background-color: rgba(var(--bs-danger-rgb), 5%);
         border-radius: var(--bs-border-radius-sm);
         padding: 0 .3rem;
+        user-select: all;
       }
 
       pre {
@@ -64,6 +65,7 @@ body {
           flex-grow: 1;
           line-height: 2;
           padding: 0;
+          user-select: auto;
           white-space: pre;
         }
       }
