@@ -12,7 +12,7 @@ This shortcode creates a block of code with syntax highlighting.
 
 {{ $attr := (.Attributes) }}
 {{ $opts := (.Options) }}
-{{ $type := ((.Type) | default "plaintext") }}
+{{ $type := ((.Type) | default "text") }}
 {{ $inner := ((trim (.Inner) "\n\r") | chomp) }}
 {{ $ordinal := (.Ordinal) }}
 
