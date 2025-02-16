@@ -140,8 +140,34 @@ body {
             margin: 0;
           }
 
-          .card-body {
-            //max-height: calc(100vh - 10rem);
+          .card {
+            &-header {
+              ul {
+                li:nth-child(1) {
+                  i:nth-child(1) {
+                    display: none !important;
+                  }
+
+                  i:nth-child(2) {
+                    display: block !important;
+                  }
+
+                  .collapsed {
+                    i:nth-child(1) {
+                      display: block !important;
+                    }
+
+                    i:nth-child(2) {
+                      display: none !important;
+                    }
+                  }
+                }
+              }
+            }
+
+            &-body {
+              //max-height: calc(100vh - 10rem);
+            }
           }
         }
 

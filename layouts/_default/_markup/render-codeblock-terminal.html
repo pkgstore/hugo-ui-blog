@@ -50,11 +50,12 @@ This shortcode allows you to create a simulation of an OS terminal window.
         </div>
         <div class="flex-shrink-0">
           <ul class="list-inline mb-0">
-            <li class="list-inline-item" title='{{ (i18n "copy") }}'>
-              <a class="text-body" href="#"
+            <li class="list-inline-item">
+              <a class="d-block text-body" href="#"
                  data-fn="clipboard" data-clipboard-target="#cp-{{ ($cp) }}"
-                 role="button" aria-label='{{ (i18n "copy") }}'>
-                <i class="fas fa-copy fa-fw"></i>
+                 aria-label='{{ (i18n "copy") }}' role="button">
+                <i class="fas fa-copy fa-fw d-block"
+                   title='{{ (i18n "copy") }}'></i>
               </a>
             </li>
           </ul>
