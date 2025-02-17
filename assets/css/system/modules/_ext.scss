@@ -19,10 +19,14 @@
 }
 
 :target {
-  animation: target-fade 1s infinite alternate-reverse;
+  animation: toc-target 1s 10 alternate-reverse;
 }
 
-@keyframes target-fade {
-	from { background-color: var(--bs-primary-bg-subtle); }
-	to { background-color: transparent; }
+@keyframes toc-target {
+  from {
+    background-color: var(--bs-primary-bg-subtle);
+  }
+  to {
+    background-color: transparent;
+  }
 }
