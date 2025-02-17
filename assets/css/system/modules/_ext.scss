@@ -17,3 +17,12 @@
     z-index: var(--fancybox-zIndex, 2050);
   }
 }
+
+:target {
+  animation: target-fade 1s infinite alternate-reverse;
+}
+
+@keyframes target-fade {
+	from { background-color: var(--bs-primary-bg-subtle); }
+	to { background-color: transparent; }
+}
