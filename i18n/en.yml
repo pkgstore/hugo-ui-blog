@@ -83,7 +83,7 @@ alert:
   authors_not_found: { other: 'Authors not found.' }
   categories_not_found: { other: 'Categories not found.' }
   draft: { other: 'The material is a draft. You can use the information in the material only at your own peril and risk.' }
-  in_dev: { other: 'Information on this page is under revision. Information may be added (and / or) changed.' }
+  in_dev: { other: 'Information on this page is under revision. Information may be added and changed.' }
   in_history: { other: 'This material is an artifact of the past. It was found in old works and teleported here to be preserved in history.' }
   license_deprecated_id: { other: 'License ID is deprecated!' }
   license_fsf_libre: { other: 'License is considered free by the FSF.' }
